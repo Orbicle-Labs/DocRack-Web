@@ -28,7 +28,7 @@ const securityHeaders = [
       "default-src 'self'",
       process.env.NODE_ENV === 'development'
         ? "script-src 'self' 'unsafe-eval' 'unsafe-inline'"
-        : "script-src 'self'",
+        : "script-src 'self' 'unsafe-inline' https://vercel.live https://*.vercel-scripts.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
       "img-src 'self' data: blob: https:",
