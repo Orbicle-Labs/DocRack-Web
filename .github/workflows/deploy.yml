@@ -1,8 +1,8 @@
-name: Orvyn CI/CD Multi-Tenant Monorepo Pipeline
+name: Orvyn CI/CD Web Pipeline
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -19,27 +19,17 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install Monorepo Workspaces Dependencies
-        run: npm install
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Compile Shared Schema libraries
-        run: npm run build --workspace=packages/shared
+      - name: Run Linter
+        run: npm run lint
 
-      - name: Compile Database Connector interfaces
-        run: npm run build --workspace=packages/db
+      - name: Run Type Checks
+        run: npm run check-types
 
-      - name: Compile Express API Gateway controllers
-        run: npm run build --workspace=apps/api
-
-  docker-image-builds:
-    needs: lint-and-compile
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Source Codes
-        uses: actions/checkout@v4
-
-      - name: Build Express API Gateway Container
-        run: docker build -t orvyn-api-gateway -f Dockerfile.api .
-
-      - name: Build NextJS Portal Frontend Container
-        run: docker build -t orvyn-web-frontend -f Dockerfile.web .
+      - name: Build Next.js Portal Frontend
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://ypmzmdiehqycwmucmslj.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: sb_publishable_placeholder
