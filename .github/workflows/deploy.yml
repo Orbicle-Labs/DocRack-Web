@@ -1,0 +1,45 @@
+name: Orvyn CI/CD Multi-Tenant Monorepo Pipeline
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint-and-compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Codes
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS Runtime Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Monorepo Workspaces Dependencies
+        run: npm install
+
+      - name: Compile Shared Schema libraries
+        run: npm run build --workspace=packages/shared
+
+      - name: Compile Database Connector interfaces
+        run: npm run build --workspace=packages/db
+
+      - name: Compile Express API Gateway controllers
+        run: npm run build --workspace=apps/api
+
+  docker-image-builds:
+    needs: lint-and-compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Codes
+        uses: actions/checkout@v4
+
+      - name: Build Express API Gateway Container
+        run: docker build -t orvyn-api-gateway -f Dockerfile.api .
+
+      - name: Build NextJS Portal Frontend Container
+        run: docker build -t orvyn-web-frontend -f Dockerfile.web .

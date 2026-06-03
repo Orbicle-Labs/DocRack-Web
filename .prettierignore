@@ -1,0 +1,8 @@
+node_modules
+.next
+public
+dist
+coverage
+*.log
+*.env
+/.husky
