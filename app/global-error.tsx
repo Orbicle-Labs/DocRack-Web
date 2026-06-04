@@ -46,7 +46,7 @@ export default function GlobalError({
               margin: "0 0 16px",
             }}
           >
-            Orvyn
+            DocRack
           </h1>
           <p style={{ fontSize: 13, color: "#555", marginBottom: 32 }}>
             A critical error occurred. Please refresh the page.

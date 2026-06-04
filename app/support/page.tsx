@@ -15,19 +15,19 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     q: "How does the CARO 2020 Auto-Checklist work?",
-    a: "Orvyn extracts structured tables from accounting records (PDF, CSV, or XML) using a sandboxed document parser. These are evaluated against certified compliance prompt chains, flagging discrepancies matched directly to standard audit rows.",
+    a: "DocRack extracts structured tables from accounting records (PDF, CSV, or XML) using a sandboxed document parser. These are evaluated against certified compliance prompt chains, flagging discrepancies matched directly to standard audit rows.",
   },
   {
     q: "Is client financial data safe and DPDP compliant?",
-    a: "Yes. Orvyn uses Row Level Security (RLS) to lock database queries to verified CA client roles. All data is stored within India (AWS Mumbai region) — no compliance records leave sovereign borders.",
+    a: "Yes. DocRack uses Row Level Security (RLS) to lock database queries to verified CA client roles. All data is stored within India (AWS Mumbai region) — no compliance records leave sovereign borders.",
   },
   {
     q: "How are immutable audit trails guaranteed?",
     a: "Every checklist validation and ledger scan produces a cryptographic signature. These are linked sequentially in Merkle trees — any modification of older logs instantly breaks the hash chain, exposing tampering.",
   },
   {
-    q: "Can Orvyn integrate with legacy Tally Prime?",
-    a: "Yes. Orvyn accepts standard XML exports from Tally installations and can sync data into isolated workspaces via REST API. No changes to your existing Tally setup are required.",
+    q: "Can DocRack integrate with legacy Tally Prime?",
+    a: "Yes. DocRack accepts standard XML exports from Tally installations and can sync data into isolated workspaces via REST API. No changes to your existing Tally setup are required.",
   },
 ];
 
@@ -106,7 +106,7 @@ export default function SupportPage() {
         <span className="page-tag">Help & Support</span>
         <h1 className="page-title">Support & FAQ</h1>
         <p className="page-subtitle max-w-xl mx-auto">
-          Have a question about Orvyn? Browse our FAQs or send us a message and we will get back to you within one business day.
+          Have a question about DocRack? Browse our FAQs or send us a message and we will get back to you within one business day.
         </p>
       </header>
 

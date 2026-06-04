@@ -1,6 +1,6 @@
-# Orvyn Platform (Lead Generation Site)
+# DocRack Platform (Lead Generation Site)
 
-Orvyn is the marketing and lead-generation portal for a next-generation security and compliance platform designed for Indian Chartered Accountant (CA) firms and corporate audit/compliance teams.
+DocRack is the marketing and lead-generation portal for a next-generation security and compliance platform designed for Indian Chartered Accountant (CA) firms and corporate audit/compliance teams.
 
 This repository hosts the public-facing platform website, designed to capture customer compliance queries and demo booking requests securely.
 

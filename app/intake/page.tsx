@@ -78,7 +78,7 @@ export default function IntakePage() {
       <div className="auth-card">
         <header className="auth-header">
           <h3>BOOK A DEMO</h3>
-          <p>Schedule a live walkthrough with our team. We will show you exactly how Orvyn works.</p>
+          <p>Schedule a live walkthrough with our team. We will show you exactly how DocRack works.</p>
         </header>
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -209,7 +209,7 @@ export default function IntakePage() {
           </div>
           <h3 className="font-header font-black text-lg uppercase mb-2">Demo Booked!</h3>
           <p className="text-[12px] text-secondary max-w-xs mx-auto mb-6">
-            {"Thanks for your interest in Orvyn. Our team will reach out within 24 hours to confirm your demo slot."}
+            {"Thanks for your interest in DocRack. Our team will reach out within 24 hours to confirm your demo slot."}
           </p>
           <button
             onClick={() => setBookingSuccess(false)}

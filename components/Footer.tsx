@@ -1,13 +1,21 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-grid">
         <div className="footer-brand-col">
-          <Link href="/" className="brand">
-            <span className="brand-dot"></span>Orvyn
+          <Link href="/" className="brand" aria-label="DocRack Home">
+            <Image
+              src="/docrack_logo.png"
+              alt=""
+              width={24}
+              height={24}
+              className="brand-logo"
+            />
+            DocRack
           </Link>
           <p className="footer-desc">
             The secure technical platform designed specifically for Indian CA firms and internal enterprise risk compliance audits.
@@ -15,16 +23,16 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="footer-link-col">
-          <h5>Product Features</h5>
+          <h5>Product Workflow</h5>
           <ul className="footer-links">
             <li>
-              <Link href="/features">Pydantic AI Verifications</Link>
+              <Link href="/workflow">Pydantic AI Verifications</Link>
             </li>
             <li>
-              <Link href="/features">Tally GST Reconciler</Link>
+              <Link href="/workflow">Tally GST Reconciler</Link>
             </li>
             <li>
-              <Link href="/features">Immutable Merkle Trails</Link>
+              <Link href="/workflow">Immutable Merkle Trails</Link>
             </li>
           </ul>
         </div>
@@ -33,13 +41,13 @@ export const Footer: React.FC = () => {
           <h5>Sovereign Security</h5>
           <ul className="footer-links">
             <li>
-              <Link href="/features">DPDP Act Safeguards</Link>
+              <Link href="/workflow">DPDP Act Safeguards</Link>
             </li>
             <li>
-              <Link href="/features">Postgres RLS Matrices</Link>
+              <Link href="/workflow">Postgres RLS Matrices</Link>
             </li>
             <li>
-              <Link href="/features">AWS Mumbai VPC</Link>
+              <Link href="/workflow">AWS Mumbai VPC</Link>
             </li>
           </ul>
         </div>
@@ -47,7 +55,7 @@ export const Footer: React.FC = () => {
 
       <div className="footer-bottom">
         <p>
-          &copy; {new Date().getFullYear()} Orvyn Inc. All rights reserved. All data residency strictly localized in AWS Mumbai ap-south-1 VPC.
+          &copy; {new Date().getFullYear()} DocRack Inc. All rights reserved. All data residency strictly localized in AWS Mumbai ap-south-1 VPC.
         </p>
       </div>
     </footer>

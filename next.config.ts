@@ -51,6 +51,17 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // Redirect pricing route to intake form
+  async redirects() {
+    return [
+      {
+        source: "/pricing",
+        destination: "/intake",
+        permanent: false,
+      },
+    ];
+  },
+
   // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Page Not Found — Orvyn",
+  title: "Page Not Found — DocRack",
   description: "The page you are looking for does not exist.",
 };
 

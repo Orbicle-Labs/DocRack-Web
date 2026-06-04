@@ -17,7 +17,7 @@ const slides: SlideData[] = [
   {
     tag: "MODULE 01 / AI AUDIT",
     title: "CARO 2020 ENGINE",
-    desc: "Autonomous validation of CARO 2020 audit checkpoints. Scans inventory statements, fixed assets registers, and queries discrepancies using secure localized NLP parsing.",
+    desc: "CARO 2020 — 17 of 21 clauses auto-drafted from your books. Only 4 need your physical sign-off.",
     metric: "98.7%",
     metricLabel: "Fuzzy Extraction Precision"
   },
@@ -61,14 +61,13 @@ export default function HomePage() {
         <span className="plus-marker plus-br">+</span>
 
         <div className="hero-desc-block">
-          <span className="hero-tag">ORVYN // AUDIT OPERATIONS CENTER</span>
+          <span className="hero-tag">DOCRACK // AUDIT OPERATIONS CENTER</span>
           <h1 className="hero-heading">
-            RECONCILE LEDGERS. <br />
-            SAFEGUARD COMPLIANCE. <br />
-            ZERO DRIFT.
+            Audits from Months to Days. <br />
+            Every Number Provable.
           </h1>
           <p className="hero-sub">
-            The next-generation technical operating platform designed specifically for Indian CA firms and internal risk compliance teams. Lock down audit trails, automate CARO checklists, and reconcile Tally with GST sheets securely.
+            Data stays in India. Every audit file NFRA inspection-ready from day one.
           </p>
         </div>
 
@@ -111,19 +110,19 @@ export default function HomePage() {
         <span className="plus-marker plus-br">+</span>
 
         <div className="hero-visual-block w-full">
-          <div className="bg-structural-text">ORV</div>
+          <div className="bg-structural-text">DOC</div>
           
           {/* Hero graphic grayscale asset with fallbacks */}
           <Image
-            src="/orvyn_hero_visual.png"
-            alt="Orvyn Grayscale Drafting Graphic"
+            src="/docrack_hero_visual.png"
+            alt="DocRack Grayscale Drafting Graphic"
             width={400}
             height={300}
             className="hero-monochromatic-graphic object-contain max-h-[300px]"
             priority
           />
 
-          <Link href="/features" className="details-circle-btn">
+          <Link href="/workflow" className="details-circle-btn">
             <span>SHOWCASE</span>
             <span>CAPABILITIES</span>
             <svg 
@@ -154,7 +153,7 @@ export default function HomePage() {
           <span className="hero-tag">OPERATIONAL MODES</span>
           <h2 className="hero-right-title">CORE COMPLIANCE ARTIFACTS</h2>
           <p className="text-[13px] text-secondary">
-            Toggle between the underlying compliance engines running on the decentralized Orvyn framework:
+            Toggle between the underlying compliance engines running on the decentralized DocRack framework:
           </p>
         </div>
 
@@ -193,7 +192,7 @@ export default function HomePage() {
         <div className="border border-color p-5 rounded font-mono text-[11px] bg-neutral-900/5 dark:bg-white/5">
           <span className="text-muted block mb-2 uppercase text-[9px] font-bold">{"// SECURE AUDIT LEDGER TRAIL"}</span>
           <pre className="text-secondary overflow-x-auto whitespace-pre-wrap leading-tight">
-{`$ orvyn verify-tally-ledger --strict
+{`$ docrack verify-tally-ledger --strict
 [STATUS] loading cryptographed ledger...
 [OK] ed25519 leaf verification passed.
 [OK] no unauthorized alterations found.

@@ -37,13 +37,13 @@ export default function AboutPage() {
         <div className="about-details-content">
           <div className="flex flex-col gap-4">
             <h3 className="font-header font-extrabold text-[18px] uppercase tracking-tight text-primary flex items-center gap-2">
-              <Compass size={18} className="text-muted" /> The Orvyn Paradigm
+              <Compass size={18} className="text-muted" /> The DocRack Paradigm
             </h3>
             <p>
               Traditional auditing practices in India rely on fragile spreadsheet exchanges, unverified ERP exports, and manual, high-risk compliance checklist checks. This leaves firms exposed to transaction tampering, ledger adjustments, and audit-trail gaps.
             </p>
             <p>
-              Orvyn replaces this vulnerability with an automated, cryptographically secured operating console. By directly parsing accounting schemas and cross-checking inputs against national records (like GSTR tax tables) inside a secure sandboxed system, we provide absolute confidence to risk managers.
+              DocRack replaces this vulnerability with an automated, cryptographically secured operating console. By directly parsing accounting schemas and cross-checking inputs against national records (like GSTR tax tables) inside a secure sandboxed system, we provide absolute confidence to risk managers.
             </p>
           </div>
         </div>

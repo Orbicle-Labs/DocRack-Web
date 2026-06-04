@@ -23,7 +23,7 @@ serve(async (req: Request) => {
         "Authorization": `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Orvyn Support <onboarding@resend.dev>",
+        from: "DocRack Support <onboarding@resend.dev>",
         to: [NOTIFY_EMAIL],
         subject: `💬 New Support Message — ${record.full_name}`,
         html: `
@@ -54,7 +54,7 @@ serve(async (req: Request) => {
             </div>
 
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e5e5; font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em;">
-              Orvyn Support Notification System
+              DocRack Support Notification System
             </div>
           </div>
         `,

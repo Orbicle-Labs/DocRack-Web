@@ -25,7 +25,7 @@ serve(async (req: Request) => {
         "Authorization": `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Orvyn Leads <onboarding@resend.dev>",
+        from: "DocRack Leads <onboarding@resend.dev>",
         to: [NOTIFY_EMAIL],
         subject: `🎯 New Demo Booking — ${record.full_name} (${record.company_name})`,
         html: `
@@ -60,7 +60,7 @@ serve(async (req: Request) => {
             </table>
 
             <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid #e5e5e5; font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em;">
-              Orvyn Lead Notification System
+              DocRack Lead Notification System
             </div>
           </div>
         `,

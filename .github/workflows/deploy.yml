@@ -1,4 +1,4 @@
-name: Orvyn CI/CD Web Pipeline
+name: DocRack CI/CD Web Pipeline
 
 on:
   push:

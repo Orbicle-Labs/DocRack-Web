@@ -1,5 +1,5 @@
 // ============================================================
-// ORVYN DATABASE SCHEMA — Lead Generation Only
+// DOCRACK DATABASE SCHEMA — Lead Generation Only
 // Run this in your Supabase SQL Editor
 // ============================================================
 

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "./ThemeProvider";
 
@@ -9,6 +10,11 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { isDarkTheme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isActive = (path: string) => {
     return pathname === path ? "active" : "";
@@ -17,8 +23,15 @@ export const Navbar: React.FC = () => {
   return (
     <nav className={`navbar ${isOpen ? "nav-open" : ""}`} aria-label="Main Navigation">
       <div className="nav-brand-container">
-        <Link href="/" className="brand" aria-label="Orvyn Home">
-          <span className="brand-dot"></span>Orvyn
+        <Link href="/" className="brand" aria-label="DocRack Home">
+          <Image
+            src="/docrack_logo.png"
+            alt=""
+            width={36}
+            height={36}
+            className="brand-logo"
+          />
+          DocRack
         </Link>
       </div>
 
@@ -29,13 +42,8 @@ export const Navbar: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/features" className={`nav-link ${isActive("/features")}`}>
-            Features
-          </Link>
-        </li>
-        <li>
-          <Link href="/pricing" className={`nav-link ${isActive("/pricing")}`}>
-            Pricing
+          <Link href="/workflow" className={`nav-link ${isActive("/workflow")}`}>
+            Workflow
           </Link>
         </li>
         <li>
@@ -58,7 +66,7 @@ export const Navbar: React.FC = () => {
           title="Toggle visual theme"
           aria-label="Toggle visual theme"
         >
-          {isDarkTheme ? "🌙" : "☀"}
+          {mounted ? (isDarkTheme ? "🌙" : "☀") : "☀"}
         </button>
 
         <Link href="/support" className="btn btn-secondary nav-action-desktop">
@@ -92,20 +100,11 @@ export const Navbar: React.FC = () => {
             </li>
             <li>
               <Link
-                href="/features"
-                className={`mobile-nav-link ${isActive("/features")}`}
+                href="/workflow"
+                className={`mobile-nav-link ${isActive("/workflow")}`}
                 onClick={() => setIsOpen(false)}
               >
-                Features
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/pricing"
-                className={`mobile-nav-link ${isActive("/pricing")}`}
-                onClick={() => setIsOpen(false)}
-              >
-                Pricing
+                Workflow
               </Link>
             </li>
             <li>

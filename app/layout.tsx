@@ -32,15 +32,15 @@ const jetbrainsMono = JetBrains_Mono({
 
 // ── Global SEO Metadata ────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  metadataBase: new URL("https://orvyn.in"),
+  metadataBase: new URL("https://docrack.in"),
   title: {
-    default: "Orvyn | Audit & Compliance Platform for Indian CA Firms",
-    template: "%s | Orvyn",
+    default: "DocRack | Compliance Tool for Indian CA Firms",
+    template: "%s | DocRack",
   },
   description:
-    "Orvyn automates CARO 2020 checklists, reconciles Tally ledgers with GSTR-9C, and protects client records with Ed25519-signed Merkle audit trails. Built for Indian CA firms.",
+    "DocRack automates CARO 2020 checklists, reconciles Tally ledgers with GSTR-9C, and protects client records with Ed25519-signed Merkle audit trails. Built for Indian CA firms.",
   keywords: [
-    "Audit Platform India",
+    "Compliance Tool India",
     "CARO 2020 Automation",
     "GSTR-9C Reconciliation",
     "Tally Integration",
@@ -48,8 +48,21 @@ export const metadata: Metadata = {
     "Ed25519 Audit Trail",
     "Financial Data Security India",
   ],
-  authors: [{ name: "Orvyn" }],
-  creator: "Orvyn",
+  authors: [{ name: "DocRack" }],
+  creator: "DocRack",
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/favicon-180x180.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
@@ -58,9 +71,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://orvyn.in",
-    siteName: "Orvyn",
-    title: "Orvyn | Audit & Compliance Platform for Indian CA Firms",
+    url: "https://docrack.in",
+    siteName: "DocRack",
+    title: "DocRack | Compliance Tool for Indian CA Firms",
     description:
       "Automate CARO 2020 checklists, reconcile Tally with GSTR-9C, and protect client records with cryptographic audit trails.",
     images: [
@@ -68,13 +81,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Orvyn — Enterprise Audit & Compliance Platform",
+        alt: "DocRack — Enterprise Compliance Tool",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orvyn | Audit & Compliance Platform for Indian CA Firms",
+    title: "DocRack | Compliance Tool for Indian CA Firms",
     description:
       "Automate CARO 2020, reconcile Tally with GSTR-9C, cryptographic audit trails. Built for Indian CA firms.",
     images: ["/og-image.png"],
