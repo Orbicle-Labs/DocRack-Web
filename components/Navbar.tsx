@@ -25,13 +25,13 @@ export const Navbar: React.FC = () => {
       <div className="nav-brand-container">
         <Link href="/" className="brand" aria-label="DocRack Home">
           <Image
-            src="/docrack_logo.png"
-            alt=""
-            width={36}
-            height={36}
-            className="brand-logo"
+            src="/docrack_full_logo.png"
+            alt="DocRack Logo"
+            width={140}
+            height={34}
+            className="brand-logo object-contain"
+            priority
           />
-          DocRack
         </Link>
       </div>
 

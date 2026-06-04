@@ -9,13 +9,12 @@ export const Footer: React.FC = () => {
         <div className="footer-brand-col">
           <Link href="/" className="brand" aria-label="DocRack Home">
             <Image
-              src="/docrack_logo.png"
-              alt=""
-              width={24}
-              height={24}
-              className="brand-logo"
+              src="/docrack_full_logo.png"
+              alt="DocRack Logo"
+              width={140}
+              height={34}
+              className="brand-logo object-contain"
             />
-            DocRack
           </Link>
           <p className="footer-desc">
             The secure technical platform designed specifically for Indian CA firms and internal enterprise risk compliance audits.
