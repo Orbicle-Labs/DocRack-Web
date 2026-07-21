@@ -134,7 +134,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             aria-live="polite"
             aria-atomic="true"
           />
-          <Analytics />
+          {/* Only mount in production: locally the insights script fails to load
+              (404 / ad-blocker) and rejects with an Event, which Next's dev
+              overlay surfaces as "Runtime Error: [object Event]". */}
+          {process.env.NODE_ENV === 'production' && <Analytics />}
         </ThemeProvider>
       </body>
     </html>

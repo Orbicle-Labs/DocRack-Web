@@ -670,6 +670,58 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* 2.10 Credibility — Trusted by & Backed by */}
+        <section className="content-panel flex flex-col items-center gap-14 text-center">
+          <div className="flex flex-col items-center gap-6 w-full">
+            <span className="hero-tag">TRUSTED BY</span>
+            <div className="credibility-strip">
+              <div className="credibility-item">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="credibility-logo"
+                  src="/logos/aditya-birla.png"
+                  alt="Aditya Birla"
+                  width={250}
+                  height={154}
+                  loading="lazy"
+                />
+                <span className="credibility-caption">Health Insurance</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-6 w-full">
+            <span className="hero-tag">BACKED BY</span>
+            <div className="credibility-strip">
+              <div className="credibility-item">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="credibility-logo credibility-logo--badge"
+                  src="/logos/nvidia-inception.png"
+                  alt="NVIDIA Inception Program"
+                  width={636}
+                  height={280}
+                  loading="lazy"
+                />
+              </div>
+              <div className="credibility-item">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="credibility-logo"
+                  src="/logos/iit-bombay.png"
+                  alt="IIT Bombay"
+                  width={250}
+                  height={244}
+                  loading="lazy"
+                />
+                <span className="credibility-caption">IDEAS Program</span>
+              </div>
+            </div>
+          </div>
+
+          <p className="credibility-parent">Built by Orbicle Labs Pvt. Ltd.</p>
+        </section>
       </div>
     </>
   );

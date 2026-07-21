@@ -1544,6 +1544,79 @@ p {
 }
 
 /* ==========================================================================
+   CREDIBILITY — TRUSTED BY / BACKED BY STRIPS
+   ========================================================================== */
+
+.credibility-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.credibility-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 26px 36px;
+  min-width: 230px;
+  min-height: 132px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  /* White card in both themes so multi-colored logos stay legible */
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: var(--transition-smooth);
+}
+
+.dark-theme .credibility-item {
+  border-color: rgba(233, 228, 214, 0.16);
+}
+
+.credibility-item:hover {
+  border-color: var(--border-color-strong);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+.credibility-logo {
+  max-height: 52px;
+  max-width: 170px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Self-contained lockups (e.g. the NVIDIA Inception badge) can run a bit larger */
+.credibility-logo--badge {
+  max-height: 66px;
+  max-width: 210px;
+}
+
+.credibility-caption {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5b6b62;
+}
+
+.credibility-parent {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
    TRUST BADGES & AUDIT LOG COMPONENTS
    ========================================================================== */
 
@@ -1613,6 +1686,7 @@ p {
   max-width: 550px;
   margin: 0 auto;
   padding: 20px;
+  transform: translateY(-115px);
 }
 
 .lifecycle-svg {
@@ -1747,7 +1821,7 @@ p {
 
 .segment-label {
   font-family: var(--font-header);
-  font-size: 11.5px;
+  font-size: 14.1px;
   font-weight: 700;
   fill: var(--text-secondary);
   dominant-baseline: central;
