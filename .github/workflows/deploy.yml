@@ -5,6 +5,14 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  # Lets you redeploy the live site from the Actions tab without a code change.
+  # Still main-only: a dispatch from any other branch is rejected by GCP (see deploy job).
+  workflow_dispatch:
+
+concurrency:
+  group: docrack-web-${{ github.ref }}
+  # Cancel superseded PR runs, but never cancel a rollout to production mid-flight.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   lint-and-compile:
@@ -30,3 +38,50 @@ jobs:
 
       - name: Build Next.js Portal Frontend
         run: npm run build
+
+  # Deploys to Cloud Run. Runs ONLY on main — feature branches and PRs stop after the
+  # checks above. Enforced twice, independently:
+  #   1. the `if` below, and
+  #   2. GCP itself: the deployer service account is bound to the Workload Identity
+  #      subject `repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main` only, so a run on
+  #      any other branch cannot obtain credentials even if this `if` were removed.
+  deploy:
+    needs: lint-and-compile
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write   # required to mint the GitHub OIDC token for WIF
+    steps:
+      - name: Checkout Source Codes
+        uses: actions/checkout@v4
+
+      # Keyless auth via Workload Identity Federation — no service-account key is
+      # stored in GitHub. These two values are identifiers, not credentials.
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: github-deployer@docrack-web.iam.gserviceaccount.com
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      # Cloud Build builds the Dockerfile from the uploaded source.
+      # No --set-env-vars / --set-secrets: omitting them preserves the live values
+      # (GOOGLE_SHEET_ID, NOTIFY_EMAIL, and the RESEND_API_KEY secret binding).
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy docrack-web \
+            --source . \
+            --project docrack-web \
+            --region asia-southeast1 \
+            --service-account docrack-web-sa@docrack-web.iam.gserviceaccount.com \
+            --quiet
+
+      - name: Report deployed revision
+        run: |
+          gcloud run services describe docrack-web \
+            --project docrack-web \
+            --region asia-southeast1 \
+            --format 'value(status.latestReadyRevisionName, status.url)'
