@@ -47,9 +47,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 // ── Global SEO Metadata ────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  metadataBase: new URL('https://docrack.in'),
+  metadataBase: new URL('https://docrack.ai'),
   title: {
-    default: 'DocRack | Compliance Tool for Indian CA Firms',
+    default: 'DocRack',
     template: '%s | DocRack',
   },
   description:
@@ -86,9 +86,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://docrack.in',
+    url: 'https://docrack.ai',
     siteName: 'DocRack',
-    title: 'DocRack | Compliance Tool for Indian CA Firms',
+    title: 'DocRack',
     description:
       'Automate CARO 2020 checklists, reconcile Tally with GSTR-9C, and protect client records with cryptographic audit trails.',
     images: [
@@ -102,7 +102,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DocRack | Compliance Tool for Indian CA Firms',
+    title: 'DocRack',
     description:
       'Automate CARO 2020, reconcile Tally with GSTR-9C, cryptographic audit trails. Built for Indian CA firms.',
     images: ['/og-image.png'],

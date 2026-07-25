@@ -1,13 +1,13 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://docrack.in";
-  const routes = ["", "/workflow", "/about", "/support", "/intake"];
+  const baseUrl = 'https://docrack.ai';
+  const routes = ['', '/workflow', '/about', '/support', '/intake'];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: route === "" ? 1.0 : 0.8,
+    changeFrequency: 'monthly' as const,
+    priority: route === '' ? 1.0 : 0.8,
   }));
 }

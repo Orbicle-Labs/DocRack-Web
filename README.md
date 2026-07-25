@@ -9,7 +9,9 @@ This repository hosts the public-facing platform website, designed to capture cu
 ## 🛠️ Technology Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router with TypeScript)
-- **Database**: [Supabase](https://supabase.com/) (Postgres database with Row Level Security)
+- **Lead Storage**: [Google Sheets](https://sheets.google.com/) (one spreadsheet, one tab per form)
+- **Notifications**: [Resend](https://resend.com/) (instant email per submission)
+- **Hosting**: [GCP Cloud Run](https://cloud.google.com/run) (Docker, serverless)
 - **Styling**: Vanilla CSS with [Tailwind CSS v3](https://tailwindcss.com/) utilities
 - **Validation**: [Zod](https://zod.dev/) schemas
 - **Tracking**: [@vercel/analytics](https://vercel.com/analytics)
@@ -26,8 +28,7 @@ This repository hosts the public-facing platform website, designed to capture cu
 - **Anti-Spam Controls**:
   - **Honeypot Input**: Invisible `_hp` fields capture and discard bot submissions.
   - **IP Rate Limiting**: Limiters restrict abuse (3 demo requests/20m, 5 support tickets/30m).
-  - **Duplicate Check**: Prevents identical email submissions within a cooldown window.
-- **Row-Level Security (RLS)**: Scoped policies that block public `SELECT` queries while allowing `INSERT`-only operations for public traffic.
+- **HTML Escaping**: All user input is escaped before being rendered into notification emails.
 
 ---
 
@@ -39,30 +40,29 @@ This repository hosts the public-facing platform website, designed to capture cu
 npm install
 ```
 
-### 2. Set Up Environment Variables
+### 2. Create the Google Sheet
+
+Create one spreadsheet (e.g. "DocRack Leads") with two tabs, and add a header row to each:
+
+- `Demo Bookings`: `Timestamp | Full Name | Email | Company | Annual Audits`
+- `Support Tickets`: `Timestamp | Full Name | Email | Message`
+
+Share the spreadsheet (as **Editor**) with your GCP service account's email
+(`docrack-web-sa@<project-id>.iam.gserviceaccount.com`). For local development, download a JSON
+key for that service account and save it at `secrets/gcp-sa-key.json` (gitignored).
+
+### 3. Set Up Environment Variables
 
 Create a `.env.local` file in the root directory and copy the contents from `.env.example`:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key-here
+GOOGLE_SHEET_ID=your-sheet-id-here
+GOOGLE_APPLICATION_CREDENTIALS=./secrets/gcp-sa-key.json
 
-# Server-only (Never commit to Git)
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key-here
+# Optional — email notification per submission (server-only, never commit)
+RESEND_API_KEY=re_your_resend_api_key
+NOTIFY_EMAIL=you@yourdomain.com
 ```
-
-### 3. Initialize the Supabase Database
-
-Run the schema setup script inside your Supabase project's SQL Editor:
-
-- File: [`supabase_schema.sql`](/supabase_schema.sql)
-
-This script initializes:
-
-- `demo_bookings` & `support_tickets` tables.
-- CHECK constraints for inputs (length limiters, audit range enums, regex email checks).
-- Indexes for query performance.
-- RLS Policies.
 
 ### 4. Run Development Server
 
@@ -79,6 +79,16 @@ Verify typescript compilation, ESLint rules, and asset bundle sizes:
 ```bash
 npm run build
 ```
+
+---
+
+## ☁️ Deploy (GCP Cloud Run)
+
+The app ships as a Docker image (see `Dockerfile`, standalone Next.js output) and runs on
+Cloud Run with the `docrack.ai` domain mapped. In production no key file is needed — the
+Cloud Run service account provides keyless credentials for Sheets, and `RESEND_API_KEY`
+is injected from Secret Manager. See `DEPLOYMENT.md` for the full step-by-step runbook
+(GCP setup, deploy command, GoDaddy DNS, Resend domain verification).
 
 ---
 

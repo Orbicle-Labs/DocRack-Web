@@ -9,6 +9,7 @@
 .env.test.local
 .env.production.local
 .env.*.local
+.env.docker.local
 
 # Next.js build output
 .next/
@@ -44,6 +45,6 @@ next-env.d.ts
 # Vercel
 .vercel
 
-# Supabase local dev (not the functions themselves)
-supabase/.temp/
-supabase/config.toml
+# GCP service-account keys — NEVER commit
+secrets/
+*service-account*.json

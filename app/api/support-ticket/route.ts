@@ -1,19 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { rateLimit, getRateLimitReset } from '@/lib/rate-limit';
-
-// Server-side Supabase client — created lazily so builds don't require env vars
-let supabaseClient: SupabaseClient | null = null;
-function getSupabase() {
-  if (!supabaseClient) {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey =
-      process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-    supabaseClient = createClient(supabaseUrl, supabaseKey);
-  }
-  return supabaseClient;
-}
+import { appendRow } from '@/lib/sheets';
+import { sendEmail, supportTicketEmailHtml } from '@/lib/notify';
 
 // Server-side schema
 const schema = z.object({
@@ -73,41 +62,35 @@ export async function POST(req: NextRequest) {
   }
 
   const { fullName, email, message } = result.data;
-  const supabase = getSupabase();
+  const submittedAt = new Date();
+  const timestamp = `${submittedAt.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST`;
 
-  // ── 5. Duplicate check (same email in last 1 hour) ────────────────────────
+  // ── 5. Append to Google Sheet (system of record) ──────────────────────────
   try {
-    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const { data: existing } = await supabase
-      .from('support_tickets')
-      .select('id')
-      .eq('email', email)
-      .gte('created_at', since)
-      .maybeSingle();
-
-    if (existing) {
-      return NextResponse.json(
-        { error: 'A support message from this email was already submitted in the last hour.' },
-        { status: 409 }
-      );
-    }
-  } catch {
-    // If duplicate check fails, proceed anyway
-  }
-
-  // ── 6. Insert ─────────────────────────────────────────────────────────────
-  const { error: dbError } = await supabase.from('support_tickets').insert({
-    full_name: fullName.trim(),
-    email,
-    message: message.trim(),
-  });
-
-  if (dbError) {
-    console.error('[api/support-ticket] insert error:', dbError.message);
+    await appendRow('Support Tickets', [timestamp, fullName.trim(), email, message.trim()]);
+  } catch (err) {
+    console.error('[api/support-ticket] sheets append error:', err);
     return NextResponse.json(
       { error: 'Failed to send your message. Please try again.' },
       { status: 500 }
     );
+  }
+
+  // ── 6. Email notification — best-effort, but awaited (Cloud Run throttles
+  //       CPU after the response is sent, so fire-and-forget would be dropped)
+  try {
+    await sendEmail({
+      from: 'DocRack Support <onboarding@resend.dev>',
+      subject: `💬 New Support Message — ${fullName}`,
+      html: supportTicketEmailHtml({
+        fullName: fullName.trim(),
+        email,
+        message: message.trim(),
+        submittedAt,
+      }),
+    });
+  } catch (err) {
+    console.error('[api/support-ticket] email notify failed (non-fatal):', err);
   }
 
   return NextResponse.json({ success: true }, { status: 201 });

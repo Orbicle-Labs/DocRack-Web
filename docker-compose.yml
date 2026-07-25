@@ -1,0 +1,35 @@
+services:
+  web-dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.docker.local
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/secrets/gcp-sa-key.json
+    volumes:
+      - .:/app                 # live source for hot reload (includes ./secrets)
+      - /app/node_modules      # keep container's Linux node_modules (don't shadow with host)
+      - /app/.next             # keep container's build cache
+
+  web-prod:
+    profiles: ["prod"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.docker.local
+    environment:
+      - NODE_ENV=production
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/secrets/gcp-sa-key.json
+    volumes:
+      # Service-account key mounted at runtime — never baked into the image.
+      # On Cloud Run this is unnecessary (keyless ADC via the attached service account).
+      - ./secrets/gcp-sa-key.json:/app/secrets/gcp-sa-key.json:ro

@@ -1,21 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { rateLimit, getRateLimitReset } from '@/lib/rate-limit';
-
-// Server-side Supabase client — created lazily so builds don't require env vars
-// Uses service_role key if available (bypasses RLS for duplicate check)
-// Falls back to anon key (RLS-enforced INSERT still works)
-let supabaseClient: SupabaseClient | null = null;
-function getSupabase() {
-  if (!supabaseClient) {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey =
-      process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-    supabaseClient = createClient(supabaseUrl, supabaseKey);
-  }
-  return supabaseClient;
-}
+import { appendRow } from '@/lib/sheets';
+import { sendEmail, demoBookingEmailHtml } from '@/lib/notify';
 
 // Server-side schema — stricter than client
 const schema = z.object({
@@ -82,42 +69,42 @@ export async function POST(req: NextRequest) {
   }
 
   const { fullName, email, companyName, auditCount } = result.data;
-  const supabase = getSupabase();
+  const submittedAt = new Date();
+  const timestamp = `${submittedAt.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST`;
 
-  // ── 5. Duplicate check (same email in last 24 hours) ─────────────────────
+  // ── 5. Append to Google Sheet (system of record) ──────────────────────────
   try {
-    const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    const { data: existing } = await supabase
-      .from('demo_bookings')
-      .select('id')
-      .eq('email', email)
-      .gte('created_at', since)
-      .maybeSingle();
-
-    if (existing) {
-      return NextResponse.json(
-        { error: 'A demo request from this email was already submitted in the last 24 hours.' },
-        { status: 409 }
-      );
-    }
-  } catch {
-    // If duplicate check fails (e.g. RLS blocks SELECT with anon key), proceed anyway
-  }
-
-  // ── 6. Insert ─────────────────────────────────────────────────────────────
-  const { error: dbError } = await supabase.from('demo_bookings').insert({
-    full_name: fullName.trim(),
-    email,
-    company_name: companyName.trim(),
-    audit_count: auditCount,
-  });
-
-  if (dbError) {
-    console.error('[api/demo-booking] insert error:', dbError.message);
+    await appendRow('Demo Bookings', [
+      timestamp,
+      fullName.trim(),
+      email,
+      companyName.trim(),
+      auditCount,
+    ]);
+  } catch (err) {
+    console.error('[api/demo-booking] sheets append error:', err);
     return NextResponse.json(
       { error: 'Failed to save your booking. Please try again.' },
       { status: 500 }
     );
+  }
+
+  // ── 6. Email notification — best-effort, but awaited (Cloud Run throttles
+  //       CPU after the response is sent, so fire-and-forget would be dropped)
+  try {
+    await sendEmail({
+      from: 'DocRack Leads <onboarding@resend.dev>',
+      subject: `🎯 New Demo Booking — ${fullName} (${companyName})`,
+      html: demoBookingEmailHtml({
+        fullName: fullName.trim(),
+        email,
+        companyName: companyName.trim(),
+        auditCount,
+        submittedAt,
+      }),
+    });
+  } catch (err) {
+    console.error('[api/demo-booking] email notify failed (non-fatal):', err);
   }
 
   return NextResponse.json({ success: true }, { status: 201 });
