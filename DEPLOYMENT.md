@@ -104,9 +104,65 @@ After this, form submissions on the live site start landing in the sheet.
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | Leads spreadsheet           | [DocRack Leads](https://docs.google.com/spreadsheets/d/1GvA62o61kaLAXDJ7WAmtnRpFtQcTQG8LJ7oMF9r5j9Q/edit)                              |
 | Cloud Run console           | <https://console.cloud.google.com/run?project=docrack-web>                                                                             |
-| Redeploy after code changes | `gcloud run deploy docrack-web --source . --project docrack-web --region asia-southeast1`                                              |
+| Redeploy after code changes | Merge to `main` — CI/CD deploys automatically (see below)                                                                              |
 | Change notification address | `gcloud run services update docrack-web --project docrack-web --region asia-southeast1 --update-env-vars "NOTIFY_EMAIL=new@email.com"` |
 | Estimated monthly cost      | ~$0–2 (scale-to-zero) + domain renewal                                                                                                 |
+
+---
+
+## Shipping changes (CI/CD)
+
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml) handles deployment. To update the
+live site:
+
+```powershell
+git switch -c my-change
+# ...edit...
+git commit -am "describe the change"
+git push -u origin my-change
+```
+
+Open a PR to `main`. The pipeline runs `lint` → `check-types` → `build`; the deploy job is
+**skipped**. Merge the PR and the same pipeline runs again, this time deploying to Cloud Run
+(~4–5 min). `docrack.ai` serves the new revision as soon as it's ready — traffic is pinned to
+`latestRevision`, so no manual traffic shift is needed.
+
+**Deploys happen on `main` and nowhere else.** That's enforced in two independent places:
+
+1. The deploy job's `if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'`.
+2. GCP itself. The deployer service account is bound to the Workload Identity subject
+   `repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main` only — a run on any other branch cannot
+   obtain credentials at all, even if someone deleted the `if` above.
+
+Auth is keyless (Workload Identity Federation), so there is no service-account key in GitHub and
+nothing to rotate.
+
+To redeploy without a code change: Actions tab → "DocRack CI/CD Web Pipeline" → **Run workflow**
+on `main`.
+
+### Break-glass manual deploy
+
+If Actions is down, the pipeline is still the same single command:
+
+```powershell
+gcloud run deploy docrack-web --source . --project docrack-web --region asia-southeast1
+```
+
+### Rollback
+
+```powershell
+gcloud run revisions list --service docrack-web --project docrack-web --region asia-southeast1
+gcloud run services update-traffic docrack-web --to-revisions REVISION_NAME=100 --project docrack-web --region asia-southeast1
+```
+
+### CI/CD infrastructure (already provisioned)
+
+| Thing                    | Value                                                                                                                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Deployer service account | `github-deployer@docrack-web.iam.gserviceaccount.com`                                                                                                                                                                     |
+| Roles                    | `run.admin`, `cloudbuild.builds.editor`, `artifactregistry.writer` (project); `iam.serviceAccountUser` on `docrack-web-sa` and the compute default SA; `storage.objectAdmin` on `run-sources-docrack-web-asia-southeast1` |
+| WIF provider             | `projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider`                                                                                                                      |
+| Provider condition       | `assertion.repository == 'Orbicle-Labs/DocRack-Web'`                                                                                                                                                                      |
 
 Note: billing was unlinked from `orvyn-demo-2` to free a billing-account slot for this
 project (Google caps small accounts at 3 billed projects). If you ever need that project
