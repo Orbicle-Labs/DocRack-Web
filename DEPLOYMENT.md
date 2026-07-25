@@ -130,9 +130,10 @@ Open a PR to `main`. The pipeline runs `lint` → `check-types` → `build`; the
 **Deploys happen on `main` and nowhere else.** That's enforced in two independent places:
 
 1. The deploy job's `if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'`.
-2. GCP itself. The deployer service account is bound to the Workload Identity subject
-   `repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main` only — a run on any other branch cannot
-   obtain credentials at all, even if someone deleted the `if` above.
+2. GCP itself. The Workload Identity provider's attribute condition requires both
+   `assertion.repository == 'Orbicle-Labs/DocRack-Web'` **and** `assertion.ref == 'refs/heads/main'`.
+   A run on any other branch — or from any other repo — is refused at the token exchange, before
+   it can reach Cloud Run at all, even if someone deleted the `if` above.
 
 Auth is keyless (Workload Identity Federation), so there is no service-account key in GitHub and
 nothing to rotate.
@@ -162,7 +163,14 @@ gcloud run services update-traffic docrack-web --to-revisions REVISION_NAME=100 
 | Deployer service account | `github-deployer@docrack-web.iam.gserviceaccount.com`                                                                                                                                                                     |
 | Roles                    | `run.admin`, `cloudbuild.builds.editor`, `artifactregistry.writer` (project); `iam.serviceAccountUser` on `docrack-web-sa` and the compute default SA; `storage.objectAdmin` on `run-sources-docrack-web-asia-southeast1` |
 | WIF provider             | `projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider`                                                                                                                      |
-| Provider condition       | `assertion.repository == 'Orbicle-Labs/DocRack-Web'`                                                                                                                                                                      |
+| Provider condition       | `assertion.repository == 'Orbicle-Labs/DocRack-Web' && assertion.ref == 'refs/heads/main'`                                                                                                                                |
+| Impersonation binding    | `roles/iam.workloadIdentityUser` for `principalSet://…/attribute.repository/Orbicle-Labs/DocRack-Web`                                                                                                                     |
+
+The binding uses an attribute-based `principalSet://`, **not** a `principal://…/subject/…`. The
+GitHub `sub` claim (`repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main`) contains slashes, which do
+not match as a subject principal — that misconfiguration fails at deploy time with
+`Permission 'iam.serviceAccounts.getAccessToken' denied`. The branch restriction lives in the
+provider condition instead, which rejects earlier anyway, at the token exchange.
 
 Note: billing was unlinked from `orvyn-demo-2` to free a billing-account slot for this
 project (Google caps small accounts at 3 billed projects). If you ever need that project

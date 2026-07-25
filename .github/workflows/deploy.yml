@@ -42,9 +42,9 @@ jobs:
   # Deploys to Cloud Run. Runs ONLY on main — feature branches and PRs stop after the
   # checks above. Enforced twice, independently:
   #   1. the `if` below, and
-  #   2. GCP itself: the deployer service account is bound to the Workload Identity
-  #      subject `repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main` only, so a run on
-  #      any other branch cannot obtain credentials even if this `if` were removed.
+  #   2. GCP itself: the Workload Identity provider's attribute condition requires
+  #      repository == Orbicle-Labs/DocRack-Web AND ref == refs/heads/main, so a run on
+  #      any other branch is refused a token even if this `if` were removed.
   deploy:
     needs: lint-and-compile
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
