@@ -158,19 +158,31 @@ gcloud run services update-traffic docrack-web --to-revisions REVISION_NAME=100 
 
 ### CI/CD infrastructure (already provisioned)
 
-| Thing                    | Value                                                                                                                                                                                                                     |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Deployer service account | `github-deployer@docrack-web.iam.gserviceaccount.com`                                                                                                                                                                     |
-| Roles                    | `run.admin`, `cloudbuild.builds.editor`, `artifactregistry.writer` (project); `iam.serviceAccountUser` on `docrack-web-sa` and the compute default SA; `storage.objectAdmin` on `run-sources-docrack-web-asia-southeast1` |
-| WIF provider             | `projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider`                                                                                                                      |
-| Provider condition       | `assertion.repository == 'Orbicle-Labs/DocRack-Web' && assertion.ref == 'refs/heads/main'`                                                                                                                                |
-| Impersonation binding    | `roles/iam.workloadIdentityUser` for `principalSet://…/attribute.repository/Orbicle-Labs/DocRack-Web`                                                                                                                     |
+| Thing                    | Value                                                                                                                                                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Deployer service account | `github-deployer@docrack-web.iam.gserviceaccount.com`                                                                                                                                                                                                         |
+| Roles                    | project-level: `run.admin`, `cloudbuild.builds.editor`, `artifactregistry.writer`, `storage.admin`; plus `iam.serviceAccountUser` on `docrack-web-sa` (service runs as it) and on `876741720957-compute@developer.gserviceaccount.com` (builds execute as it) |
+| Build executor           | `876741720957-compute@developer.gserviceaccount.com`, regional Cloud Build in `asia-southeast1`                                                                                                                                                               |
+| WIF provider             | `projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider`                                                                                                                                                          |
+| Provider condition       | `assertion.repository == 'Orbicle-Labs/DocRack-Web' && assertion.ref == 'refs/heads/main'`                                                                                                                                                                    |
+| Impersonation binding    | `roles/iam.workloadIdentityUser` for `principalSet://…/attribute.repository/Orbicle-Labs/DocRack-Web`                                                                                                                                                         |
 
-The binding uses an attribute-based `principalSet://`, **not** a `principal://…/subject/…`. The
-GitHub `sub` claim (`repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main`) contains slashes, which do
-not match as a subject principal — that misconfiguration fails at deploy time with
-`Permission 'iam.serviceAccounts.getAccessToken' denied`. The branch restriction lives in the
-provider condition instead, which rejects earlier anyway, at the token exchange.
+Two gotchas worth keeping written down, since both cost a failed pipeline run:
+
+1. **The impersonation binding must be an attribute-based `principalSet://`, not a
+   `principal://…/subject/…`.** The GitHub `sub` claim
+   (`repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main`) contains slashes, which do not match as a
+   subject principal. Getting this wrong fails with
+   `Permission 'iam.serviceAccounts.getAccessToken' denied`. The branch restriction lives in the
+   provider's attribute condition instead, which rejects earlier anyway — at the token exchange.
+2. **`storage.admin` must be granted at PROJECT level, not scoped to the staging bucket.**
+   `gcloud run deploy --source` calls `storage.buckets.list` against the project, which no
+   bucket-scoped binding can satisfy. A bucket-scoped grant fails with
+   `does not have storage.buckets.list access to the Google Cloud project`. (Bucket-scoped
+   `objectAdmin` is doubly insufficient — it carries no bucket-level permissions at all.)
+
+Builds do not stream logs (`logStreamingOption: STREAM_OFF`, `logging: CLOUD_LOGGING_ONLY`), so the
+deployer needs no `logging.*` permission. If a build fails, read its log in the Cloud Build console.
 
 Note: billing was unlinked from `orvyn-demo-2` to free a billing-account slot for this
 project (Google caps small accounts at 3 billed projects). If you ever need that project
