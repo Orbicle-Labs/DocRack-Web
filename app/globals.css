@@ -28,6 +28,13 @@
   --gold-soft: #d4af37;
   --gold-glow: rgba(184, 134, 11, 0.12);
 
+  /* Frosted glass — cream frost tuned to the light theme */
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-bg-strong: rgba(252, 251, 249, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-blur: saturate(180%) blur(16px);
+  --glass-shadow: 0 8px 32px rgba(27, 46, 38, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
   --purple: #0f5132;
   --purple-glow: rgba(15, 81, 50, 0.08);
   --emerald: #0f5132;
@@ -65,6 +72,12 @@
   --gold: #d4af37;
   --gold-soft: #e5c558;
   --gold-glow: rgba(212, 175, 55, 0.2);
+
+  /* Frosted glass — deep-forest frost tuned to the dark theme */
+  --glass-bg: rgba(30, 46, 38, 0.42);
+  --glass-bg-strong: rgba(11, 20, 16, 0.68);
+  --glass-border: rgba(233, 228, 214, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   --purple-glow: rgba(46, 139, 87, 0.22);
   --emerald: #34c77b;
@@ -112,6 +125,27 @@ body::after {
 
 .dark-theme::after {
   opacity: 0.025; /* Slightly less visible in dark mode */
+}
+
+/* Ambient colour glows behind everything — gives the frosted glass surfaces
+   something to actually refract (forest green + brass gold, kept subtle) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(620px 440px at 12% 16%, rgba(15, 81, 50, 0.12), transparent 60%),
+    radial-gradient(520px 380px at 88% 10%, rgba(184, 134, 11, 0.1), transparent 60%),
+    radial-gradient(700px 540px at 80% 88%, rgba(46, 139, 87, 0.1), transparent 62%);
+}
+
+.dark-theme::before {
+  background:
+    radial-gradient(620px 440px at 12% 16%, rgba(46, 139, 87, 0.18), transparent 60%),
+    radial-gradient(520px 380px at 88% 10%, rgba(212, 175, 55, 0.12), transparent 60%),
+    radial-gradient(700px 540px at 80% 88%, rgba(46, 139, 87, 0.16), transparent 62%);
 }
 
 /* Typography & General */
@@ -165,8 +199,10 @@ p {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 0 5%;
-  background: var(--bg-primary);
-  border-bottom: 1px solid var(--border-color);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
   transition:
     background-color 0.4s ease,
     border-color 0.4s ease;
@@ -1456,7 +1492,9 @@ p {
   left: 0;
   width: 100%;
   height: calc(100vh - 80px);
-  background: var(--bg-primary);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   z-index: 99;
   padding: 40px 8%;
   border-top: 1px solid var(--border-color);
@@ -2025,4 +2063,309 @@ p {
 
 .dark-theme .brand-logo {
   filter: invert(1);
+}
+
+/* ==========================================================================
+   INTERACTIVE — scroll progress + reconciliation demo (motion only)
+   ========================================================================== */
+
+/* Reading-progress bar pinned to the bottom edge of the fixed navbar */
+.nav-scroll-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--brand), var(--gold));
+  z-index: 101;
+  pointer-events: none;
+}
+
+/* Lifecycle wheel — active (auto-advancing) segment mirrors the hover state */
+.lifecycle-segment.is-active .segment-path {
+  fill: rgba(0, 0, 0, 0.06);
+  stroke: var(--text-primary);
+  stroke-width: 2;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+}
+
+.dark-theme .lifecycle-segment.is-active .segment-path {
+  fill: rgba(255, 255, 255, 0.08);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.12));
+}
+
+.lifecycle-segment.is-active .segment-icon-bg {
+  fill: var(--bg-primary);
+  stroke: var(--text-primary);
+  stroke-width: 1.5;
+  r: 38;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+}
+
+.lifecycle-segment.is-active .segment-icon-svg {
+  transform: scale(1.15);
+}
+
+.lifecycle-segment.is-active .segment-label {
+  fill: var(--text-primary);
+}
+
+/* Audit-seal vignette — hashed chain sealing into a tamper-evident trail */
+.seal-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.seal-chain {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+}
+
+.seal-node {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 92px;
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.seal-node--edge,
+.seal-node--sealed {
+  color: var(--gold);
+}
+
+.seal-node--sealed {
+  border-color: color-mix(in srgb, var(--gold) 42%, transparent);
+}
+
+.seal-link {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 2px;
+  background: var(--border-color-strong);
+  transform-origin: left center;
+}
+
+.seal-hash {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.seal-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.seal-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.seal-foot-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* Reconciliation vignette */
+.recon-demo {
+  display: flex;
+  flex-direction: column;
+}
+
+.recon-demo-head,
+.recon-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.recon-demo-head {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 2px 12px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 4px;
+}
+
+.recon-row {
+  padding: 13px 2px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recon-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.recon-cell--deck .recon-label {
+  display: none;
+}
+
+.recon-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.recon-val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.recon-val-bad {
+  color: var(--rose);
+}
+
+.recon-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.recon-status.is-ok {
+  color: var(--emerald);
+  border-color: color-mix(in srgb, var(--emerald) 32%, transparent);
+}
+
+.recon-status.is-bad {
+  color: var(--rose);
+  border-color: color-mix(in srgb, var(--rose) 32%, transparent);
+}
+
+.recon-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding-top: 14px;
+}
+
+.recon-foot-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--emerald) 60%, transparent);
+  animation: recon-pulse 2s ease-out infinite;
+}
+
+@keyframes recon-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--emerald) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@media (max-width: 640px) {
+  .recon-demo-head {
+    display: none;
+  }
+  .recon-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .recon-cell--deck {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recon-foot-dot {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   FROSTED GLASS SURFACES
+   Layered onto the existing card system; theme-aware via the --glass-* tokens
+   (cream frost in light mode, deep-forest frost in dark).
+   ========================================================================== */
+
+/* Reusable utility for markup that opts in directly */
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Retrofit the primary card surfaces */
+.content-panel,
+.pricing-card,
+.pricing-card.popular,
+.hero-interactive-card,
+.hero-stats-block,
+.audit-log-card,
+.lifecycle-detail-panel,
+.trust-badge {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Override the existing higher-specificity .dark-theme card backgrounds so the
+   forest frost wins in dark mode */
+.dark-theme .content-panel,
+.dark-theme .pricing-card,
+.dark-theme .pricing-card.popular,
+.dark-theme .hero-interactive-card,
+.dark-theme .hero-stats-block,
+.dark-theme .audit-log-card,
+.dark-theme .lifecycle-detail-panel,
+.dark-theme .trust-badge {
+  background: var(--glass-bg);
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { AuditSealDemo } from '@/components/AuditSealDemo';
 import {
   ChevronLeft,
   ChevronRight,
@@ -151,7 +152,23 @@ const slides: SlideData[] = [
 export default function HomePage() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [activeDetail, setActiveDetail] = useState(0);
+  const [wheelPaused, setWheelPaused] = useState(false);
   const visualizationRef = useRef<HTMLDivElement>(null);
+
+  // Idle auto-advance for the lifecycle wheel (pauses on hover / reduced motion)
+  useEffect(() => {
+    if (wheelPaused) return;
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+    const id = setInterval(() => {
+      setActiveDetail((prev) => (prev + 1) % wheelSegments.length);
+    }, 2600);
+    return () => clearInterval(id);
+  }, [wheelPaused]);
 
   useEffect(() => {
     // Scroll animation trigger
@@ -255,7 +272,11 @@ export default function HomePage() {
           <span className="plus-marker plus-br">+</span>
 
           <div className="hero-visual-block w-full" ref={visualizationRef}>
-            <div className="audit-lifecycle-visualization">
+            <div
+              className="audit-lifecycle-visualization"
+              onMouseEnter={() => setWheelPaused(true)}
+              onMouseLeave={() => setWheelPaused(false)}
+            >
               <svg
                 viewBox="0 0 840 840"
                 className="lifecycle-svg"
@@ -286,7 +307,9 @@ export default function HomePage() {
                   return (
                     <g
                       key={segment.label}
-                      className={`lifecycle-segment segment-${i + 1}`}
+                      className={`lifecycle-segment segment-${i + 1}${
+                        activeDetail === i ? ' is-active' : ''
+                      }`}
                       data-segment={i + 1}
                       onMouseEnter={() => setActiveDetail(i)}
                     >
@@ -528,6 +551,22 @@ export default function HomePage() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* 2.45 Tamper-evident audit trail */}
+        <section className="content-panel flex flex-col gap-6">
+          <div>
+            <span className="hero-tag mb-2 inline-block">TAMPER-EVIDENT AUDIT TRAIL</span>
+            <h2 className="section-heading text-2xl md:text-3xl mb-4">
+              Every action, sealed into a chain you can verify
+            </h2>
+            <p className="text-secondary text-sm leading-relaxed max-w-3xl">
+              Upload, verification, review, and sign-off are each cryptographically hashed and
+              linked — so anyone can prove exactly what happened, when, and by whom, even offline
+              years later.
+            </p>
+          </div>
+          <AuditSealDemo />
         </section>
 
         {/* 2.5 Who it's for */}

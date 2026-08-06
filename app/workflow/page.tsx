@@ -12,6 +12,8 @@ import {
   ShieldCheck,
   CheckCircle2,
 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ReconciliationDemo } from '@/components/ReconciliationDemo';
 
 interface WorkflowStep {
   num: string;
@@ -188,6 +190,12 @@ export default function WorkflowPage() {
               </div>
             </section>
 
+            {/* Live reconciliation demo */}
+            <section className="flex flex-col gap-6">
+              <span className="hero-tag text-center">LIVE RECONCILIATION</span>
+              <ReconciliationDemo />
+            </section>
+
             {/* How it works */}
             <section className="flex flex-col gap-6">
               <span className="hero-tag text-center">HOW IT WORKS</span>
@@ -197,10 +205,14 @@ export default function WorkflowPage() {
                   ['02', 'Extract', 'Values are extracted from the PPT/PDF.'],
                   ['03', 'Reconcile', 'Every number matched to its source, automatically.'],
                   ['04', 'Flag', 'Discrepancies surfaced with a click-through audit trail.'],
-                ].map(([num, title, desc]) => (
-                  <div
+                ].map(([num, title, desc], i) => (
+                  <motion.div
                     key={num}
                     className="border border-color rounded-xl p-6 bg-neutral-900/5 dark:bg-white/5 flex flex-col gap-3"
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ delay: i * 0.12, duration: 0.4, ease: 'easeOut' }}
                   >
                     <span className="font-mono font-bold text-sm text-[color:var(--gold)]">
                       {num}
@@ -209,7 +221,7 @@ export default function WorkflowPage() {
                       {title}
                     </h4>
                     <p className="text-secondary text-[13px] leading-relaxed">{desc}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </section>
@@ -282,7 +294,7 @@ export default function WorkflowPage() {
               {steps.map((step, idx) => {
                 const isHovered = hoveredIdx === idx;
                 return (
-                  <div
+                  <motion.div
                     key={step.num}
                     className={`border rounded p-4 lg:p-5 transition-all cursor-pointer select-none bg-background ${
                       isHovered
@@ -290,6 +302,8 @@ export default function WorkflowPage() {
                         : 'border-color hover:border-color-strong'
                     }`}
                     onMouseEnter={() => setHoveredIdx(idx)}
+                    onViewportEnter={() => setHoveredIdx(idx)}
+                    viewport={{ margin: '-45% 0px -45% 0px' }}
                     onClick={() => {
                       setHoveredIdx(idx);
                       toggleMobileExpand(idx);
@@ -354,7 +368,7 @@ export default function WorkflowPage() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
