@@ -1,10 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useTheme } from "./ThemeProvider";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -12,16 +13,29 @@ export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  // Reading-progress bar tracking full-page scroll
+  const { scrollYProgress } = useScroll();
+  const progressScaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.3,
+  });
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const isActive = (path: string) => {
-    return pathname === path ? "active" : "";
+    return pathname === path ? 'active' : '';
   };
 
   return (
-    <nav className={`navbar ${isOpen ? "nav-open" : ""}`} aria-label="Main Navigation">
+    <nav className={`navbar ${isOpen ? 'nav-open' : ''}`} aria-label="Main Navigation">
+      <motion.div
+        className="nav-scroll-progress"
+        style={{ scaleX: progressScaleX }}
+        aria-hidden="true"
+      />
       <div className="nav-brand-container">
         <Link href="/" className="brand" aria-label="DocRack Home">
           <Image
@@ -37,22 +51,22 @@ export const Navbar: React.FC = () => {
 
       <ul className="nav-links">
         <li>
-          <Link href="/" className={`nav-link ${isActive("/")}`}>
+          <Link href="/" className={`nav-link ${isActive('/')}`}>
             Home
           </Link>
         </li>
         <li>
-          <Link href="/workflow" className={`nav-link ${isActive("/workflow")}`}>
+          <Link href="/workflow" className={`nav-link ${isActive('/workflow')}`}>
             Workflow
           </Link>
         </li>
         <li>
-          <Link href="/about" className={`nav-link ${isActive("/about")}`}>
+          <Link href="/about" className={`nav-link ${isActive('/about')}`}>
             About
           </Link>
         </li>
         <li>
-          <Link href="/support" className={`nav-link ${isActive("/support")}`}>
+          <Link href="/support" className={`nav-link ${isActive('/support')}`}>
             Support
           </Link>
         </li>
@@ -66,7 +80,7 @@ export const Navbar: React.FC = () => {
           title="Toggle visual theme"
           aria-label="Toggle visual theme"
         >
-          {mounted ? (isDarkTheme ? "🌙" : "☀") : "☀"}
+          {mounted ? (isDarkTheme ? '🌙' : '☀') : '☀'}
         </button>
 
         <Link href="/support" className="btn btn-secondary nav-action-desktop">
@@ -82,17 +96,22 @@ export const Navbar: React.FC = () => {
           aria-expanded={isOpen}
           aria-label="Toggle navigation menu"
         >
-          {isOpen ? "✕" : "☰"}
+          {isOpen ? '✕' : '☰'}
         </button>
       </div>
 
       {isOpen && (
-        <div className="mobile-menu-overlay" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+        <div
+          className="mobile-menu-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation Menu"
+        >
           <ul className="mobile-nav-links">
             <li>
               <Link
                 href="/"
-                className={`mobile-nav-link ${isActive("/")}`}
+                className={`mobile-nav-link ${isActive('/')}`}
                 onClick={() => setIsOpen(false)}
               >
                 Home
@@ -101,7 +120,7 @@ export const Navbar: React.FC = () => {
             <li>
               <Link
                 href="/workflow"
-                className={`mobile-nav-link ${isActive("/workflow")}`}
+                className={`mobile-nav-link ${isActive('/workflow')}`}
                 onClick={() => setIsOpen(false)}
               >
                 Workflow
@@ -110,7 +129,7 @@ export const Navbar: React.FC = () => {
             <li>
               <Link
                 href="/about"
-                className={`mobile-nav-link ${isActive("/about")}`}
+                className={`mobile-nav-link ${isActive('/about')}`}
                 onClick={() => setIsOpen(false)}
               >
                 About
@@ -119,7 +138,7 @@ export const Navbar: React.FC = () => {
             <li>
               <Link
                 href="/support"
-                className={`mobile-nav-link ${isActive("/support")}`}
+                className={`mobile-nav-link ${isActive('/support')}`}
                 onClick={() => setIsOpen(false)}
               >
                 Support
