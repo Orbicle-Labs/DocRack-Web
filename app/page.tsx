@@ -189,7 +189,7 @@ export default function HomePage() {
   const currentSlide = slides[slideIndex];
 
   return (
-    <>
+    <div className="legacy-page">
       <div className="brutalist-grid">
         {/* 1. LEFT COLUMN: Hero Pitch & Telemetry Status */}
         <section className="brutalist-col justify-between">
@@ -705,6 +705,6 @@ export default function HomePage() {
           <p className="credibility-parent">Built by Orbicle Labs Pvt. Ltd.</p>
         </section>
       </div>
-    </>
+    </div>
   );
 }

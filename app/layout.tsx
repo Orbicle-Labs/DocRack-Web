@@ -1,70 +1,47 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Outfit, Inter, JetBrains_Mono, Poppins, Fraunces } from 'next/font/google';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { Analytics } from '@vercel/analytics/react';
+import { SiteHeader } from '@/components/layout/SiteHeader';
+import { SiteFooter } from '@/components/layout/SiteFooter';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 import './globals.css';
 
 // ── next/font — self-hosted, zero layout shift, no external request ────────
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
-});
-
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-});
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  variable: '--font-poppins',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
-});
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-fraunces',
-  display: 'swap',
-  style: ['normal', 'italic'],
-  axes: ['opsz', 'SOFT', 'WONK'],
+  weight: ['400', '500', '600', '700'],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains',
   display: 'swap',
-  weight: ['400', '500', '600'],
+  weight: ['400', '500'],
 });
 
 // ── Global SEO Metadata ────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  metadataBase: new URL('https://docrack.ai'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'DocRack',
-    template: '%s | DocRack',
+    default: 'DocRack — Audit fieldwork execution for internal audit',
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    'DocRack automates CARO 2020 checklists, reconciles Tally ledgers with GSTR-9C, and protects client records with Ed25519-signed Merkle audit trails. Built for Indian CA firms.',
+  description: SITE_DESCRIPTION,
   keywords: [
-    'Compliance Tool India',
-    'CARO 2020 Automation',
-    'GSTR-9C Reconciliation',
-    'Tally Integration',
-    'CA Compliance Software',
-    'Ed25519 Audit Trail',
-    'Financial Data Security India',
+    'Internal audit software',
+    'Audit fieldwork automation',
+    'Audit test recipes',
+    'Working paper automation',
+    'Credit audit software',
+    'IFC SOX control testing',
+    'Audit evidence traceability',
   ],
-  authors: [{ name: 'DocRack' }],
-  creator: 'DocRack',
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -83,62 +60,50 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  // Open Graph images come from app/opengraph-image.tsx, which Next wires up
+  // automatically — the previous static /og-image.png never existed and every
+  // share rendered a broken image.
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://docrack.ai',
-    siteName: 'DocRack',
-    title: 'DocRack',
-    description:
-      'Automate CARO 2020 checklists, reconcile Tally with GSTR-9C, and protect client records with cryptographic audit trails.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'DocRack — Enterprise Compliance Tool',
-      },
-    ],
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: 'DocRack — Audit fieldwork execution for internal audit',
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DocRack',
-    description:
-      'Automate CARO 2020, reconcile Tally with GSTR-9C, cryptographic audit trails. Built for Indian CA firms.',
-    images: ['/og-image.png'],
+    title: 'DocRack — Audit fieldwork execution for internal audit',
+    description: SITE_DESCRIPTION,
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${outfit.variable} ${inter.variable} ${poppins.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
-    >
-      <body suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body>
         {/* Skip to main content — keyboard/screen reader accessibility */}
-        <a href="#main-content" className="skip-to-content" aria-label="Skip to main content">
+        <a href="#main-content" className="skip-to-content">
           Skip to content
         </a>
-        <ThemeProvider>
-          <Navbar />
-          <main id="main-content" className="marketing-workspace">
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          <main id="main-content" className="flex-1">
             {children}
           </main>
-          <Footer />
-          <Toaster
-            richColors
-            position="top-right"
-            theme="system"
-            aria-live="polite"
-            aria-atomic="true"
-          />
-          {/* Only mount in production: locally the insights script fails to load
-              (404 / ad-blocker) and rejects with an Event, which Next's dev
-              overlay surfaces as "Runtime Error: [object Event]". */}
-          {process.env.NODE_ENV === 'production' && <Analytics />}
-        </ThemeProvider>
+          <SiteFooter />
+        </div>
+        <Toaster
+          richColors
+          position="top-right"
+          theme="light"
+          aria-live="polite"
+          aria-atomic="true"
+        />
+        {/* Only mount in production: locally the insights script fails to load
+            (404 / ad-blocker) and rejects with an Event, which Next's dev
+            overlay surfaces as "Runtime Error: [object Event]". */}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   );

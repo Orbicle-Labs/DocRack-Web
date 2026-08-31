@@ -107,7 +107,7 @@ export default function WorkflowPage() {
   };
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="legacy-page min-h-screen pb-20">
       {/* Page Title Section */}
       <header className="page-title-section">
         <span className="page-tag">Platform Mechanics</span>
