@@ -9,7 +9,7 @@ dist
 .vscode
 .idea
 secrets
-*.md
+/*.md
 .env
 .env.local
 .env.*.local

@@ -55,15 +55,10 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Redirect pricing route to intake form
+  // Route migrations. Populated in Phase 3 when the new routes land
+  // (/intake → /book-demo, /workflow → /product, /about → /company).
   async redirects() {
-    return [
-      {
-        source: '/pricing',
-        destination: '/intake',
-        permanent: false,
-      },
-    ];
+    return [];
   },
 
   // Compiler optimizations — keep console.error so route failures reach server logs
