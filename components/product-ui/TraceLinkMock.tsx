@@ -9,7 +9,7 @@ import { OutcomeBadge } from '@/components/ui';
 
 export function TraceLinkMock() {
   return (
-    <div className="flex h-full w-full flex-col bg-surface text-[11px] leading-normal sm:text-xs">
+    <div className="flex h-full w-full flex-col bg-surface text-caption tabular-nums">
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line px-4 py-2.5">
         <span className="font-mono font-medium text-ink">INV-4471</span>
         <OutcomeBadge outcome="fail" size="sm" />
@@ -43,20 +43,17 @@ export function TraceLinkMock() {
           <div className="shrink-0 border-b border-line px-3.5 py-2 text-muted">
             invoice-4471.pdf · page 2
           </div>
-          <div className="flex flex-1 flex-col gap-1.5 p-3.5">
-            <div className="h-1.5 w-3/4 rounded-full bg-line" />
-            <div className="h-1.5 w-2/3 rounded-full bg-line" />
+          {/* Squared bars, not rounded-full: rounded bars read as a wireframe,
+              squared ones read as redacted body text. */}
+          <div className="flex flex-1 flex-col gap-2 p-3.5">
+            <div className="h-1.5 w-3/4 rounded-[2px] bg-neutral-200" />
+            <div className="h-1.5 w-2/3 rounded-[2px] bg-neutral-200" />
             <div className="flex items-center gap-2 rounded border border-danger bg-surface px-2 py-1">
               <span className="text-muted">Qty</span>
               <span className="font-mono text-ink">132</span>
             </div>
-            <div className="h-1.5 w-1/2 rounded-full bg-line" />
-            <div className="h-1.5 w-3/5 rounded-full bg-line" />
-            <div className="h-1.5 w-2/5 rounded-full bg-line" />
-            <div className="mt-auto space-y-1.5">
-              <div className="h-1.5 w-5/6 rounded-full bg-line" />
-              <div className="h-1.5 w-1/2 rounded-full bg-line" />
-            </div>
+            <div className="h-1.5 w-1/2 rounded-[2px] bg-neutral-200" />
+            <div className="h-1.5 w-3/5 rounded-[2px] bg-neutral-200" />
           </div>
           <div className="shrink-0 border-t border-line px-3.5 py-2 text-muted">
             grn-register.xlsx · <span className="font-mono">D412</span>

@@ -2,43 +2,44 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 /**
- * Sizes per §8: H1 56–72px desktop / 40–48px mobile, H2 40–52px desktop.
- * `display` is the hero; it is deliberately at the lower end of the range so
- * the primary CTA still clears the fold at 1366×768.
+ * Sizes carry their own line-height, tracking and weight (see the `fontSize`
+ * block in tailwind.config.js). Each is a clamp() so one class spans every
+ * breakpoint — there are no responsive size classes here by design.
+ *
+ * `display` tops out at 60px, inside §8's 56–72 range and low enough that the
+ * primary CTA still clears the fold at 1366×768.
  */
 const SIZES = {
-  display: 'text-[40px] leading-[1.08] sm:text-[52px] lg:text-[60px]',
-  h1: 'text-[36px] leading-[1.1] sm:text-[44px] lg:text-[52px]',
-  h2: 'text-[30px] leading-[1.15] sm:text-[36px] lg:text-[42px]',
-  h3: 'text-[22px] leading-[1.25] sm:text-[26px]',
-  h4: 'text-lg leading-[1.35] sm:text-xl',
+  display: 'text-display',
+  h1: 'text-h1',
+  h2: 'text-h2',
+  h3: 'text-h3',
+  h4: 'text-h4',
 } as const;
+
+/** Large type is where a ragged last line reads as a mistake. */
+const BALANCE_BY_DEFAULT: (keyof typeof SIZES)[] = ['display', 'h1', 'h2'];
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   /** Semantic level — kept separate from `size` so visual weight never forces
    *  a heading-order violation. */
   level: 1 | 2 | 3 | 4;
   size?: keyof typeof SIZES;
+  /** Defaults to true at display/h1/h2. Pass false to opt out. */
   balance?: boolean;
 }
 
-export function Heading({
-  level,
-  size,
-  balance = false,
-  className,
-  children,
-  ...rest
-}: HeadingProps) {
+export function Heading({ level, size, balance, className, children, ...rest }: HeadingProps) {
   const Tag = `h${level}` as const;
   const resolved = size ?? (`h${level}` as keyof typeof SIZES);
+  const wrapBalanced = balance ?? BALANCE_BY_DEFAULT.includes(resolved);
 
   return (
     <Tag
       className={cn(
-        'font-semibold tracking-[-0.022em] text-current',
+        'text-current',
         SIZES[resolved],
-        balance && '[text-wrap:balance]',
+        wrapBalanced && '[text-wrap:balance]',
         className
       )}
       {...rest}

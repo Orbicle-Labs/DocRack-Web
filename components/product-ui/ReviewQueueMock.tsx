@@ -68,7 +68,7 @@ const ROWS: Row[] = [
 
 export function ReviewQueueMock() {
   return (
-    <div className="flex h-full w-full flex-col bg-surface text-[11px] leading-normal sm:text-xs">
+    <div className="flex h-full w-full flex-col bg-surface text-caption tabular-nums">
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line px-4 py-2.5">
         <span className="font-medium text-ink">Review · Three-way invoice match</span>
         <span className="hidden text-muted sm:inline">4,182 tested · 37 exceptions</span>
@@ -79,25 +79,25 @@ export function ReviewQueueMock() {
       <div className="flex shrink-0 items-center gap-3 border-b border-line bg-canvas px-3 py-1.5 font-medium text-muted sm:px-4">
         <span className="flex-1 sm:w-[104px] sm:flex-none">Ref</span>
         <span className="hidden flex-1 lg:block">Rule applied</span>
-        <span className="hidden w-[74px] shrink-0 text-right sm:block">Expected</span>
-        <span className="hidden w-[74px] shrink-0 text-right sm:block">Actual</span>
+        <span className="hidden w-[86px] shrink-0 text-right sm:block">Expected</span>
+        <span className="hidden w-[86px] shrink-0 text-right sm:block">Actual</span>
         <span className="w-[92px] shrink-0 text-right">Result</span>
       </div>
 
       <div className="flex-1 divide-y divide-line overflow-hidden">
         {ROWS.map((row) => (
-          <div key={row.ref} className="flex items-center gap-3 px-3 py-2.5 sm:px-4">
+          <div key={row.ref} className="flex items-center gap-3 px-3 py-3 sm:px-4">
             <span className="min-w-0 flex-1 sm:w-[104px] sm:flex-none">
               <span className="block font-mono text-ink">{row.ref}</span>
-              <span className="block truncate text-[10px] text-muted">{row.vendor}</span>
+              <span className="block truncate text-mono-xs text-muted">{row.vendor}</span>
               {/* The rule rides along under the ref once its own column is gone. */}
-              <span className="block truncate text-[10px] text-muted lg:hidden">{row.rule}</span>
+              <span className="block truncate text-mono-xs text-muted lg:hidden">{row.rule}</span>
             </span>
             <span className="hidden flex-1 truncate text-ink lg:block">{row.rule}</span>
-            <span className="hidden w-[74px] shrink-0 truncate text-right text-muted sm:block">
+            <span className="hidden w-[86px] shrink-0 truncate text-right text-muted sm:block">
               {row.expected}
             </span>
-            <span className="hidden w-[74px] shrink-0 truncate text-right text-ink sm:block">
+            <span className="hidden w-[86px] shrink-0 truncate text-right text-ink sm:block">
               {row.actual}
             </span>
             <span className="flex w-[92px] shrink-0 justify-end">

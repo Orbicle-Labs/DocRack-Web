@@ -22,7 +22,7 @@ const RULES: { rule: string; tolerance: string }[] = [
 
 export function RecipeCard() {
   return (
-    <div className="flex h-full w-full flex-col bg-surface text-[11px] leading-normal sm:text-xs">
+    <div className="flex h-full w-full flex-col bg-surface text-caption tabular-nums">
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5">
         <span className="font-medium text-ink">Three-way invoice match</span>
         <span className="flex items-center gap-2">

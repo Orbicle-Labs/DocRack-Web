@@ -60,7 +60,7 @@ const DOCS: Doc[] = [
 
 export function DocumentIntakeMock() {
   return (
-    <div className="flex h-full w-full flex-col bg-surface text-[11px] leading-normal sm:text-xs">
+    <div className="flex h-full w-full flex-col bg-surface text-caption tabular-nums">
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line px-4 py-2.5">
         <span className="font-medium text-ink">Evidence · P2P Q3 FY26</span>
         <span className="hidden text-muted sm:inline">5 inputs</span>
@@ -71,7 +71,7 @@ export function DocumentIntakeMock() {
           <div key={doc.name} className="flex flex-1 items-center gap-3 px-4 py-2">
             <span className="min-w-0 flex-1">
               <span className="block truncate font-mono text-ink">{doc.name}</span>
-              <span className="block truncate text-[10px] text-muted">{doc.kind}</span>
+              <span className="block truncate text-mono-xs text-muted">{doc.kind}</span>
             </span>
             <span className="hidden shrink-0 sm:block">
               <Badge tone={doc.tone} size="sm">

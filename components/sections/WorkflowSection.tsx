@@ -43,21 +43,25 @@ export function WorkflowSection() {
   }
 
   return (
-    <Section tone="canvas" id="workflow">
-      <div className="max-w-2xl">
-        <Eyebrow>{workflow.eyebrow}</Eyebrow>
-        <Heading level={2} balance>
+    <Section tone="surface" spacing="open" id="workflow">
+      <div>
+        <Eyebrow variant="rule">{workflow.eyebrow}</Eyebrow>
+        <Heading level={2} className="max-w-[26ch]">
           {workflow.heading}
         </Heading>
       </div>
 
       {/* Step rail. Buttons, not links — this switches a panel in place. */}
-      <div className="mt-10 overflow-x-auto pb-1">
+      {/* A segmented track, not six filled pills. Six brand-blue pills were the
+          heaviest element on the page and they are chrome, not content. The
+          hairline behind the track makes the six read as a sequence rather
+          than as six unrelated options. */}
+      <div className="relative mt-10 overflow-x-auto pb-1">
         <div
           role="tablist"
           aria-label="Workflow steps"
           onKeyDown={onKeyDown}
-          className="flex min-w-max gap-2"
+          className="relative flex min-w-max gap-1 rounded-[11px] bg-neutral-100 p-1"
         >
           {workflow.steps.map((item, index) => (
             <button
@@ -71,19 +75,14 @@ export function WorkflowSection() {
               tabIndex={index === active ? 0 : -1}
               onClick={() => setActive(index)}
               className={cn(
-                'flex items-center gap-2 rounded-button border px-3.5 py-2 text-sm transition-colors',
+                'flex items-center gap-2 rounded-[8px] px-3.5 py-2 text-body-sm',
+                'transition-[background-color,box-shadow,color] duration-fast ease-out',
                 index === active
-                  ? 'border-brand bg-brand text-white'
-                  : 'border-line bg-surface text-muted hover:border-line-strong hover:text-ink'
+                  ? 'bg-surface font-medium text-ink shadow-1'
+                  : 'text-muted hover:text-ink'
               )}
             >
-              <span
-                className={cn(
-                  // white/70 on brand blue is 3.87:1 — below AA at 12px.
-                  'font-mono text-xs',
-                  index === active ? 'text-white/90' : 'text-muted'
-                )}
-              >
+              <span className="text-label tabular-nums text-muted">
                 {String(index + 1).padStart(2, '0')}
               </span>
               {item.title}
@@ -96,18 +95,23 @@ export function WorkflowSection() {
         role="tabpanel"
         id={`workflow-panel-${step.key}`}
         aria-labelledby={`workflow-tab-${step.key}`}
-        className="mt-8 grid gap-8 lg:grid-cols-12 lg:gap-12"
+        className="mt-10 grid gap-8 lg:grid-cols-12 lg:gap-x-6"
       >
-        <div className="lg:col-span-4">
+        <div className="min-w-0 lg:col-span-4">
           <Heading level={3}>{step.title}</Heading>
-          <p className="mt-3 text-[15px] leading-relaxed text-ink">{step.summary}</p>
-          <p className="mt-3 text-sm leading-relaxed text-muted">{step.detail}</p>
+          <p className="mt-3 text-body-lg text-ink">{step.summary}</p>
+          <p className="mt-3 max-w-[46ch] text-body-sm text-muted">{step.detail}</p>
         </div>
-        <div className="lg:col-span-8">
+        <div className="min-w-0 lg:col-start-6 lg:col-span-7">
           {/* aspect="auto": these mocks vary in height and a fixed ratio leaves
               dead space under the shorter ones. A min-height on the panel keeps
               the layout from jumping as tabs change. */}
-          <ProductFrame aspect="auto" minHeight="min-h-[340px]" caption={visual.caption}>
+          <ProductFrame
+            aspect="auto"
+            minHeight="min-h-[340px]"
+            caption={visual.caption}
+            breadcrumb={`Engagement / P2P Q3 FY26 · ${step.title}`}
+          >
             {visual.node}
           </ProductFrame>
         </div>

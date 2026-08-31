@@ -8,26 +8,38 @@ type ButtonSize = 'sm' | 'md' | 'lg';
 // `secondary` and `ghost` inherit their foreground from the surrounding
 // Section tone (text-current) rather than hardcoding text-ink, so they stay
 // legible on <Section tone="ink"> without the caller overriding anything.
+//
+// secondary uses line-interactive, not line-strong: a control edge has to
+// clear 3:1 (WCAG 1.4.11) and line-strong is 1.63:1 on white.
 const VARIANTS: Record<ButtonVariant, string> = {
-  primary: 'bg-brand text-white hover:bg-brand-hover border border-transparent',
-  secondary: 'bg-transparent text-current border border-line-strong hover:border-current',
-  ghost: 'bg-transparent text-current border border-transparent hover:bg-canvas',
-  link: 'bg-transparent text-brand border border-transparent hover:text-brand-hover underline underline-offset-4 decoration-1',
+  primary:
+    'bg-brand text-white border border-transparent shadow-key ' +
+    'hover:bg-brand-hover hover:shadow-key-hover active:shadow-press',
+  secondary:
+    'bg-transparent text-current border border-line-interactive ' +
+    'hover:border-current hover:bg-surface-2 hover:shadow-1',
+  ghost: 'bg-transparent text-current border border-transparent hover:bg-surface-2',
+  link:
+    'bg-transparent text-accent border border-transparent hover:text-accent-hover ' +
+    'underline underline-offset-[3px] decoration-1 hover:decoration-2',
 };
 
 const SIZES: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3.5 text-sm gap-1.5',
-  md: 'h-11 px-5 text-[15px] gap-2',
-  lg: 'h-[52px] px-6 text-base gap-2',
+  sm: 'h-9 px-3.5 text-caption gap-1.5',
+  md: 'h-11 px-5 text-body-sm gap-2',
+  lg: 'h-[52px] px-6 text-body gap-2',
 };
 
 const BASE =
-  'inline-flex items-center justify-center rounded-button font-medium leading-none ' +
-  'transition-colors duration-150 whitespace-nowrap ' +
+  'u-press inline-flex items-center justify-center rounded-button font-medium leading-none ' +
+  // Transition only what changes — transition-all animates layout properties
+  // and is a jank source.
+  'transition-[background-color,border-color,box-shadow,color,transform] ' +
+  'duration-fast ease-out whitespace-nowrap active:translate-y-[0.5px] ' +
   // Grey out rather than fade: a 55%-opacity brand fill just reads as a
   // lighter blue, which is not a recognisable disabled state.
-  'disabled:pointer-events-none disabled:border-transparent ' +
-  'disabled:bg-line disabled:text-muted';
+  'disabled:pointer-events-none disabled:border-transparent disabled:shadow-none ' +
+  'disabled:bg-line disabled:text-muted disabled:translate-y-0';
 
 interface CommonProps {
   variant?: ButtonVariant;
@@ -99,7 +111,7 @@ export function Button(props: ButtonProps) {
     // In flight keeps its own colour — the action is pending, not unavailable
     // — so it must not pick up the grey disabled treatment.
     loading && 'cursor-wait',
-    loading && variant === 'primary' && 'disabled:bg-brand disabled:text-white',
+    loading && variant === 'primary' && 'disabled:bg-brand disabled:text-white disabled:shadow-key',
     loading && variant !== 'primary' && 'disabled:bg-transparent disabled:text-current',
     className
   );

@@ -7,6 +7,12 @@
  * page-agnostic.
  */
 
+/** Section chrome, kept here with the data rather than inline in JSX. */
+export const useCasesSection = {
+  eyebrow: 'Use cases',
+  heading: 'Four procedures teams configure first.',
+} as const;
+
 export interface UseCase {
   key: string;
   label: string;

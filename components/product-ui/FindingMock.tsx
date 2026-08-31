@@ -25,7 +25,7 @@ const NARRATIVE: { label: string; value: string }[] = [
 
 export function FindingMock() {
   return (
-    <div className="flex h-full w-full flex-col bg-surface text-[11px] leading-normal sm:text-xs">
+    <div className="flex h-full w-full flex-col bg-surface text-caption tabular-nums">
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line px-4 py-2.5">
         <span className="font-medium text-ink">F-07 · Three-way match not enforced</span>
         <span className="flex shrink-0 items-center gap-1.5">

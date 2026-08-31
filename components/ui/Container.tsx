@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const SIZES = {
+  prose: 'max-w-prose',
   narrow: 'max-w-3xl',
   default: 'max-w-content',
   wide: 'max-w-[1440px]',
@@ -21,7 +22,7 @@ export function Container({
   ...rest
 }: ContainerProps) {
   return (
-    <Tag className={cn('mx-auto w-full px-5 sm:px-6 lg:px-8', SIZES[size], className)} {...rest}>
+    <Tag className={cn('mx-auto w-full px-5 sm:px-8 lg:px-10', SIZES[size], className)} {...rest}>
       {children}
     </Tag>
   );

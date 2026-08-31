@@ -35,8 +35,11 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 bg-surface/85 backdrop-blur-md transition-shadow duration-200',
-        scrolled ? 'border-b border-line' : 'border-b border-transparent'
+        'tone-light sticky top-0 z-40 bg-surface transition-[box-shadow,border-color] duration-base ease-out',
+        'supports-[backdrop-filter]:bg-surface/80 supports-[backdrop-filter]:backdrop-blur-md',
+        // At rest the header sits on the hero's white gradient and is
+        // invisible; a shadow as well as a border is what detaches it.
+        scrolled ? 'border-b border-line shadow-1' : 'border-b border-transparent'
       )}
     >
       <Container>
@@ -62,11 +65,18 @@ export function SiteHeader() {
                       href={item.href}
                       aria-current={active ? 'page' : undefined}
                       className={cn(
-                        'rounded-button px-3 py-2 text-[15px] transition-colors',
+                        'relative rounded-button px-3 py-2 text-body-sm transition-colors duration-fast ease-out',
                         active ? 'text-ink' : 'text-muted hover:text-ink'
                       )}
                     >
                       {item.label}
+                      {/* Colour alone at 15px is a weak current-page cue. */}
+                      {active && (
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-x-3 -bottom-[9px] h-0.5 bg-accent"
+                        />
+                      )}
                     </Link>
                   </li>
                 );

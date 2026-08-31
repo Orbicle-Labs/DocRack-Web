@@ -1,21 +1,22 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-// Tints are literal rgba rather than `bg-brand/10`: the colour tokens are
-// var()-based, and Tailwind's opacity modifier can't decompose a var().
-// Foregrounds use the *-text variants, which clear AA against these tints;
-// the base success/warning values do not.
+// Tints come from the literal-hex ramp, not opacity modifiers — see the
+// roles-vs-pigments note in tailwind.config.js. Foregrounds use the *-strong
+// variants, which clear AA against these tints; the base success/warning
+// values do not. `accent` follows the Section tone, so it stays legible on ink.
 const TONES = {
-  neutral: 'bg-canvas text-muted border-line',
-  brand: 'bg-[rgba(40,85,217,0.07)] text-brand border-[rgba(40,85,217,0.22)]',
-  success: 'bg-[rgba(22,132,74,0.09)] text-success-text border-[rgba(22,132,74,0.25)]',
-  warning: 'bg-[rgba(199,123,0,0.10)] text-warning-text border-[rgba(199,123,0,0.25)]',
-  danger: 'bg-[rgba(199,56,66,0.08)] text-danger-text border-[rgba(199,56,66,0.25)]',
+  neutral: 'bg-surface-2 text-muted border-line',
+  brand: 'bg-brand-150 text-brand border-brand-300',
+  accent: 'bg-transparent text-accent border-line-interactive',
+  success: 'bg-success-100 text-success-strong border-success-300',
+  warning: 'bg-warning-100 text-warning-strong border-warning-300',
+  danger: 'bg-danger-100 text-danger-strong border-danger-300',
 } as const;
 
 const SIZES = {
-  sm: 'h-5 px-1.5 text-[11px] gap-1',
-  md: 'h-6 px-2 text-xs gap-1.5',
+  sm: 'h-5 px-1.5 text-mono-xs gap-1',
+  md: 'h-6 px-2 text-caption gap-1.5',
 } as const;
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {

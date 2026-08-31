@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { Badge } from './Badge';
 
 const ASPECTS = {
   '16/10': 'aspect-[16/10]',
@@ -30,6 +31,12 @@ export interface ProductFrameProps {
    */
   variant?: 'illustrative' | 'real';
   priority?: boolean;
+  /** One object per page may be dramatically raised; it should be the hero. */
+  elevation?: 'frame' | 'hero';
+  /** Breadcrumb shown in the frame chrome. */
+  breadcrumb?: string;
+  /** Right-hand chrome text, usually a timestamp. */
+  chromeMeta?: string;
   /**
    * Floor for `aspect="auto"` frames whose content varies in height — stops
    * the box resizing as a tab switches between a short and a tall mock.
@@ -38,12 +45,18 @@ export interface ProductFrameProps {
   className?: string;
 }
 
-function WindowChrome() {
+/**
+ * Application chrome, not a mac-window sticker. Three grey dots is the most
+ * generic element a product frame can have; a breadcrumb and a timestamp cost
+ * the same and make the frame read as a real screen.
+ */
+function FrameChrome({ breadcrumb, meta }: { breadcrumb: string; meta?: string }) {
   return (
-    <div className="flex h-9 shrink-0 items-center gap-1.5 border-b border-line bg-canvas px-3.5">
-      <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
-      <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
-      <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
+    <div className="flex h-9 shrink-0 items-center justify-between gap-3 border-b border-line bg-surface-2 px-3.5">
+      <span className="truncate text-caption text-muted">{breadcrumb}</span>
+      {meta && (
+        <span className="shrink-0 font-mono text-mono-xs text-muted tabular-nums">{meta}</span>
+      )}
     </div>
   );
 }
@@ -65,16 +78,25 @@ export function ProductFrame({
   chrome = 'window',
   variant = 'illustrative',
   priority = false,
+  elevation = 'frame',
+  breadcrumb = 'Engagement / P2P Q3 FY26',
+  chromeMeta = '12 Aug 2026',
   minHeight,
   className,
 }: ProductFrameProps) {
   return (
     <figure className={cn('w-full', className)}>
-      {/* The frame is always a light surface, even inside <Section tone="ink">.
-          Reset the tone-scoped token overrides here or the dark section's
-          muted/border values leak into the mock and drop it below AA. */}
-      <div className="overflow-hidden rounded-card border border-line bg-surface shadow-frame [--color-border-strong:#c3cbd8] [--color-border:#dfe3ea] [--color-muted:#5b6577]">
-        {chrome === 'window' && <WindowChrome />}
+      {/* `tone-light` is load-bearing: the frame is always a light surface,
+          even inside <Section tone="ink">. Without it the dark section's
+          muted, border, accent and focus values leak in and drop the mock
+          below AA — a bug this already shipped once. */}
+      <div
+        className={cn(
+          'tone-light overflow-hidden rounded-frame bg-surface',
+          elevation === 'hero' ? 'shadow-hero' : 'shadow-frame'
+        )}
+      >
+        {chrome === 'window' && <FrameChrome breadcrumb={breadcrumb} meta={chromeMeta} />}
         <div className={cn('relative w-full', ASPECTS[aspect], minHeight)}>
           {src ? (
             <Image
@@ -98,14 +120,16 @@ export function ProductFrame({
       </div>
 
       {(caption || variant === 'illustrative') && (
-        <figcaption className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
+        <figcaption className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-caption text-muted">
           {caption && <span>{caption}</span>}
-          {caption && variant === 'illustrative' && (
-            <span aria-hidden="true" className="text-line-strong">
-              ·
-            </span>
+          {/* A Badge, not grey text: this is an honesty disclosure and it
+              should read as deliberate rather than apologetic. Making the
+              frames prettier must never make this less visible. */}
+          {variant === 'illustrative' && (
+            <Badge tone="neutral" size="sm">
+              Illustrative interface
+            </Badge>
           )}
-          {variant === 'illustrative' && <span>Illustrative interface</span>}
         </figcaption>
       )}
     </figure>

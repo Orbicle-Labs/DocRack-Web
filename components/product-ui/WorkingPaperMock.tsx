@@ -19,7 +19,7 @@ const SUMMARY: { label: string; value: string }[] = [
 
 export function WorkingPaperMock() {
   return (
-    <div className="flex h-full w-full flex-col bg-canvas text-[11px] leading-normal sm:text-xs">
+    <div className="flex h-full w-full flex-col bg-canvas text-caption tabular-nums">
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line bg-surface px-4 py-2.5">
         <span className="font-medium text-ink">WP-3.2 Three-way invoice match</span>
         <span className="hidden text-muted sm:inline">Excel · PDF</span>
@@ -35,7 +35,9 @@ export function WorkingPaperMock() {
               }`}
             >
               <span className="text-muted">{row.label}</span>
-              <span className="font-mono text-ink">{row.value}</span>
+              {/* Prose with a number in it — Inter with tabular figures. Mono
+                  is reserved for strings a user could copy elsewhere. */}
+              <span className="text-ink">{row.value}</span>
             </div>
           ))}
         </div>
@@ -61,8 +63,8 @@ export function WorkingPaperMock() {
         </div>
 
         <div className="mt-3 space-y-1.5">
-          <div className="h-1.5 w-full rounded-full bg-line" />
-          <div className="h-1.5 w-2/3 rounded-full bg-line" />
+          <div className="h-1.5 w-full rounded-[2px] bg-neutral-200" />
+          <div className="h-1.5 w-2/3 rounded-[2px] bg-neutral-200" />
         </div>
       </div>
 
