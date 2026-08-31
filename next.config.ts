@@ -55,10 +55,15 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Route migrations. Populated in Phase 3 when the new routes land
-  // (/intake → /book-demo, /workflow → /product, /about → /company).
+  // Route migrations (Phase 3). 308 rather than 307: these are permanent moves
+  // and the link equity should transfer. Each `source` is an exact path, so
+  // none of them can shadow /api/*.
   async redirects() {
-    return [];
+    return [
+      { source: '/intake', destination: '/book-demo', permanent: true },
+      { source: '/workflow', destination: '/product', permanent: true },
+      { source: '/about', destination: '/company', permanent: true },
+    ];
   },
 
   // Compiler optimizations — keep console.error so route failures reach server logs

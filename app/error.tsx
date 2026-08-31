@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import { Button, Heading, Section } from '@/components/ui';
 
 export default function ErrorPage({
   error,
@@ -11,31 +11,40 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   return (
-    <div className="min-h-screen flex items-center justify-center px-6">
-      <div className="text-center max-w-md">
-        <span className="font-mono text-[10px] text-muted tracking-widest uppercase block mb-4">
-          Error
-        </span>
-        <h1 className="font-header font-black text-[48px] uppercase tracking-tight text-primary leading-none mb-4">
-          Something went wrong
-        </h1>
-        <p className="text-[13px] text-secondary mb-8">
-          An unexpected error occurred. Please try again or return to the homepage.
+    <Section spacing="finale" className="flex min-h-[60vh] items-center">
+      <div className="mx-auto max-w-lg text-center">
+        <p className="text-label uppercase text-muted">Error</p>
+        <Heading level={1} size="h1" className="mt-4">
+          Something went wrong.
+        </Heading>
+        <p className="mx-auto mt-5 max-w-prose text-body-lg text-muted">
+          An unexpected error occurred on this page. Trying again usually resolves it.
         </p>
-        {process.env.NODE_ENV === "development" && error?.message && (
-          <pre className="text-left text-[11px] font-mono bg-rose-500/5 border border-rose-500/20 text-rose-500 p-4 rounded mb-6 overflow-auto">
+
+        {/* The message can contain internal detail, so it stays in development
+            only. `digest` is safe to show anywhere and is what support needs to
+            find the matching server log. */}
+        {process.env.NODE_ENV === 'development' && error?.message && (
+          <pre className="mt-6 overflow-auto rounded-card border border-danger-300 bg-danger-100 p-4 text-left font-mono text-mono-xs text-danger-strong">
             {error.message}
           </pre>
         )}
-        <div className="flex gap-3 justify-center">
-          <button onClick={reset} className="btn btn-primary">
-            Try Again
-          </button>
-          <Link href="/" className="btn btn-secondary">
-            Go Home
-          </Link>
+
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button onClick={reset} size="lg" fullWidth className="sm:w-auto">
+            Try again
+          </Button>
+          <Button href="/" variant="secondary" size="lg" fullWidth className="sm:w-auto">
+            Back to home
+          </Button>
         </div>
+
+        {error?.digest && (
+          <p className="mt-6 text-caption text-muted">
+            Reference <span className="font-mono text-mono-xs">{error.digest}</span>
+          </p>
+        )}
       </div>
-    </div>
+    </Section>
   );
 }
