@@ -3,12 +3,14 @@ import { cn } from '@/lib/utils';
 
 // Tints are literal rgba rather than `bg-brand/10`: the colour tokens are
 // var()-based, and Tailwind's opacity modifier can't decompose a var().
+// Foregrounds use the *-text variants, which clear AA against these tints;
+// the base success/warning values do not.
 const TONES = {
   neutral: 'bg-canvas text-muted border-line',
   brand: 'bg-[rgba(40,85,217,0.07)] text-brand border-[rgba(40,85,217,0.22)]',
-  success: 'bg-[rgba(22,132,74,0.09)] text-success border-[rgba(22,132,74,0.25)]',
-  warning: 'bg-[rgba(199,123,0,0.10)] text-warning border-[rgba(199,123,0,0.25)]',
-  danger: 'bg-[rgba(199,56,66,0.08)] text-danger border-[rgba(199,56,66,0.25)]',
+  success: 'bg-[rgba(22,132,74,0.09)] text-success-text border-[rgba(22,132,74,0.25)]',
+  warning: 'bg-[rgba(199,123,0,0.10)] text-warning-text border-[rgba(199,123,0,0.25)]',
+  danger: 'bg-[rgba(199,56,66,0.08)] text-danger-text border-[rgba(199,56,66,0.25)]',
 } as const;
 
 const SIZES = {
@@ -25,7 +27,9 @@ export function Badge({ tone = 'neutral', size = 'md', className, children, ...r
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full border font-medium leading-none',
+        // whitespace-nowrap: a wrapped label breaks out of the pill shape,
+        // which is worse than letting a long badge be wide.
+        'inline-flex items-center whitespace-nowrap rounded-full border font-medium leading-none',
         TONES[tone],
         SIZES[size],
         className

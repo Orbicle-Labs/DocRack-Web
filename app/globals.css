@@ -27,6 +27,14 @@
      --color-canvas, where --color-border is nearly invisible. */
   --color-border-strong: #c3cbd8;
 
+  /* Darker status text for use ON the tinted status backgrounds. The §8
+     values above are calibrated against white; on their own 8–10% tints
+     success drops to 4.21:1 and warning to 3.01:1, both below AA. These
+     clear 4.5:1 while reading as the same colour. Verified with axe. */
+  --color-success-text: #0f6337;
+  --color-warning-text: #8a5600;
+  --color-danger-text: #a82c35;
+
   --radius-card: 12px;
   --radius-button: 9px;
   --content-width: 1240px;

@@ -55,6 +55,11 @@ module.exports = {
         success: 'var(--color-success)',
         warning: 'var(--color-warning)',
         danger: 'var(--color-danger)',
+        // Darker variants for text sitting on the matching status tint —
+        // the base values fail AA there. See the note in globals.css.
+        'success-text': 'var(--color-success-text)',
+        'warning-text': 'var(--color-warning-text)',
+        'danger-text': 'var(--color-danger-text)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', ...SANS_FALLBACK],

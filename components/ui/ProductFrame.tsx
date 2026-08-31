@@ -30,6 +30,11 @@ export interface ProductFrameProps {
    */
   variant?: 'illustrative' | 'real';
   priority?: boolean;
+  /**
+   * Floor for `aspect="auto"` frames whose content varies in height — stops
+   * the box resizing as a tab switches between a short and a tall mock.
+   */
+  minHeight?: string;
   className?: string;
 }
 
@@ -60,13 +65,17 @@ export function ProductFrame({
   chrome = 'window',
   variant = 'illustrative',
   priority = false,
+  minHeight,
   className,
 }: ProductFrameProps) {
   return (
     <figure className={cn('w-full', className)}>
-      <div className="overflow-hidden rounded-card border border-line bg-surface shadow-frame">
+      {/* The frame is always a light surface, even inside <Section tone="ink">.
+          Reset the tone-scoped token overrides here or the dark section's
+          muted/border values leak into the mock and drop it below AA. */}
+      <div className="overflow-hidden rounded-card border border-line bg-surface shadow-frame [--color-border-strong:#c3cbd8] [--color-border:#dfe3ea] [--color-muted:#5b6577]">
         {chrome === 'window' && <WindowChrome />}
-        <div className={cn('relative w-full', ASPECTS[aspect])}>
+        <div className={cn('relative w-full', ASPECTS[aspect], minHeight)}>
           {src ? (
             <Image
               src={src}
@@ -76,6 +85,12 @@ export function ProductFrame({
               sizes="(min-width: 1024px) 60vw, 100vw"
               className="object-cover object-top"
             />
+          ) : aspect === 'auto' ? (
+            // Content sizes the frame. Mocks use h-full, so give them a
+            // definite flex height to fill rather than absolute positioning.
+            <div className="flex min-h-full w-full overflow-hidden [&>*]:min-h-full">
+              {children}
+            </div>
           ) : (
             <div className="absolute inset-0 overflow-hidden">{children}</div>
           )}
