@@ -1,5 +1,4 @@
 import { Eyebrow, Heading, ProductFrame, Section } from '@/components/ui';
-import { TraceLinkMock } from '@/components/product-ui/TraceLinkMock';
 import { traceability } from '@/lib/content/homepage';
 
 const CHAIN = [
@@ -27,14 +26,13 @@ export function TraceabilitySection() {
       <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-x-6">
         <div className="lg:col-span-7">
           <ProductFrame
-            aspect="auto"
-            minHeight="min-h-[320px]"
-            caption="Exception opened against its evidence"
-            breadcrumb="Review / INV-4471"
-            chromeMeta="12 Aug 2026"
-          >
-            <TraceLinkMock />
-          </ProductFrame>
+            src="/product/trace-link.png"
+            alt="An exception traced to its source: the rule applied, expected versus actual values, and the invoice PDF page beside the spreadsheet cell each value came from"
+            variant="real"
+            chrome="none"
+            aspect="16/10"
+            caption="An exception opened against its evidence"
+          />
         </div>
 
         <div className="lg:col-start-9 lg:col-span-4">

@@ -1,6 +1,5 @@
 import { Check } from 'lucide-react';
 import { Eyebrow, Heading, ProductFrame, Section } from '@/components/ui';
-import { RecipeCard } from '@/components/product-ui/RecipeCard';
 import { recipe } from '@/lib/content/homepage';
 
 /**
@@ -33,17 +32,14 @@ export function RecipeSection() {
         </div>
 
         <div className="lg:col-start-7 lg:col-span-6">
-          {/* auto + a floor rather than a fixed ratio — these mocks are
-              content-dense but short, and a fixed ratio leaves dead space. */}
           <ProductFrame
-            aspect="auto"
-            minHeight="min-h-[300px]"
-            caption="Audit Test Recipe"
-            breadcrumb="Library / Three-way invoice match"
-            chromeMeta="v2.1"
-          >
-            <RecipeCard />
-          </ProductFrame>
+            src="/product/recipe-builder.png"
+            alt="Editing an Audit Test Recipe: each rule has an explicit measure, operator and tolerance, alongside a recipe-health checklist and approval route"
+            variant="real"
+            chrome="none"
+            aspect="16/10"
+            caption="Configuring rules and tolerances"
+          />
         </div>
       </div>
     </Section>

@@ -42,6 +42,8 @@ export interface ProductFrameProps {
    * the box resizing as a tab switches between a short and a tall mock.
    */
   minHeight?: string;
+  /** Override when the frame is not at the default ~58% column width. */
+  sizes?: string;
   className?: string;
 }
 
@@ -82,6 +84,9 @@ export function ProductFrame({
   breadcrumb = 'Engagement / P2P Q3 FY26',
   chromeMeta = '12 Aug 2026',
   minHeight,
+  // Frames sit at ~58% of a 1240 container on desktop; below lg they run full
+  // width inside the gutters. Override for full-width placements.
+  sizes = '(min-width: 1280px) 720px, (min-width: 1024px) 58vw, 92vw',
   className,
 }: ProductFrameProps) {
   return (
@@ -104,7 +109,7 @@ export function ProductFrame({
               alt={alt ?? ''}
               fill
               priority={priority}
-              sizes="(min-width: 1024px) 60vw, 100vw"
+              sizes={sizes}
               className="object-cover object-top"
             />
           ) : aspect === 'auto' ? (

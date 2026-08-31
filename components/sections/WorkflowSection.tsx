@@ -2,22 +2,41 @@
 
 import { useState } from 'react';
 import { Eyebrow, Heading, ProductFrame, Section } from '@/components/ui';
-import { DocumentIntakeMock } from '@/components/product-ui/DocumentIntakeMock';
-import { FindingMock } from '@/components/product-ui/FindingMock';
-import { RecipeCard } from '@/components/product-ui/RecipeCard';
-import { ReviewQueueMock } from '@/components/product-ui/ReviewQueueMock';
-import { WorkingPaperMock } from '@/components/product-ui/WorkingPaperMock';
 import { workflow } from '@/lib/content/homepage';
 import { cn } from '@/lib/utils';
 
-/** Which mock illustrates each step. */
-const VISUALS: Record<string, { node: React.ReactNode; caption: string }> = {
-  documents: { node: <DocumentIntakeMock />, caption: 'Classified inputs with extraction status' },
-  recipe: { node: <RecipeCard />, caption: 'Audit Test Recipe' },
-  run: { node: <ReviewQueueMock />, caption: 'Run results' },
-  review: { node: <ReviewQueueMock />, caption: 'Review queue' },
-  findings: { node: <FindingMock />, caption: 'Audit observation with management response' },
-  'working-paper': { node: <WorkingPaperMock />, caption: 'Working paper output' },
+/** The product screen for each step. */
+const VISUALS: Record<string, { src: `/${string}`; alt: string; caption: string }> = {
+  documents: {
+    src: '/product/document-intake.png',
+    alt: 'Documents screen listing each engagement input with its classification, owner and extraction status',
+    caption: 'Inputs classified by the role they play in the test',
+  },
+  recipe: {
+    src: '/product/recipe.png',
+    alt: 'Audit Test Recipe showing objective, risk, population, required inputs, extracted fields, and rules with tolerances',
+    caption: 'An approved Audit Test Recipe, version 4.2',
+  },
+  run: {
+    src: '/product/run-progress.png',
+    alt: 'A run executing against the population, showing configured-test coverage, records processed and live per-rule results',
+    caption: 'A run executing against the defined population',
+  },
+  review: {
+    src: '/product/review-queue.png',
+    alt: 'Review queue showing each exception with the rule applied, expected and actual values, outcome and severity',
+    caption: 'Exceptions queued with the evidence behind them',
+  },
+  findings: {
+    src: '/product/finding.png',
+    alt: 'Audit finding with condition, criteria, cause, consequence, recommendation and the management response',
+    caption: 'Confirmed exceptions grouped into an observation',
+  },
+  'working-paper': {
+    src: '/product/working-paper.png',
+    alt: 'Working paper showing population and results summary, exception register, frozen input versions and sign-offs',
+    caption: 'Review-ready output with frozen input versions',
+  },
 };
 
 export function WorkflowSection() {
@@ -91,29 +110,36 @@ export function WorkflowSection() {
         </div>
       </div>
 
+      {/* Stacked, not split. These captures are full application screens and
+          §8 asks for product screens at readable sizes — a 7-of-12 column
+          renders them at roughly a quarter scale, which is legible as an
+          impression but not as evidence. Full width nearly doubles that. */}
       <div
         role="tabpanel"
         id={`workflow-panel-${step.key}`}
         aria-labelledby={`workflow-tab-${step.key}`}
-        className="mt-10 grid gap-8 lg:grid-cols-12 lg:gap-x-6"
+        className="mt-10"
       >
-        <div className="min-w-0 lg:col-span-4">
-          <Heading level={3}>{step.title}</Heading>
-          <p className="mt-3 text-body-lg text-ink">{step.summary}</p>
-          <p className="mt-3 max-w-[46ch] text-body-sm text-muted">{step.detail}</p>
+        <div className="grid gap-x-6 gap-y-3 lg:grid-cols-12">
+          <Heading level={3} className="min-w-0 lg:col-span-4">
+            {step.title}
+          </Heading>
+          <div className="min-w-0 lg:col-start-6 lg:col-span-7">
+            <p className="text-body-lg text-ink">{step.summary}</p>
+            <p className="mt-3 max-w-[62ch] text-body-sm text-muted">{step.detail}</p>
+          </div>
         </div>
-        <div className="min-w-0 lg:col-start-6 lg:col-span-7">
-          {/* aspect="auto": these mocks vary in height and a fixed ratio leaves
-              dead space under the shorter ones. A min-height on the panel keeps
-              the layout from jumping as tabs change. */}
+
+        <div className="mt-8">
           <ProductFrame
-            aspect="auto"
-            minHeight="min-h-[340px]"
+            src={visual.src}
+            alt={visual.alt}
+            variant="real"
+            chrome="none"
+            aspect="16/10"
+            sizes="(min-width: 1280px) 1160px, 92vw"
             caption={visual.caption}
-            breadcrumb={`Engagement / P2P Q3 FY26 · ${step.title}`}
-          >
-            {visual.node}
-          </ProductFrame>
+          />
         </div>
       </div>
     </Section>

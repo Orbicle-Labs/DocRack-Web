@@ -1,5 +1,4 @@
 import { Button, Container, Heading, ProductFrame } from '@/components/ui';
-import { ReviewQueueMock } from '@/components/product-ui/ReviewQueueMock';
 import { hero } from '@/lib/content/homepage';
 import { DEMO_HREF } from '@/lib/nav';
 
@@ -35,15 +34,18 @@ export function Hero() {
           </div>
 
           <div className="lg:col-start-6 lg:col-span-7">
+            {/* chrome="none": the capture already includes the product's own
+                sidebar and toolbar, so the frame must not draw a second bar. */}
             <ProductFrame
+              src="/product/review-queue.png"
+              alt="DocRack review queue showing exceptions with the rule applied, expected and actual values, and outcome for each item"
+              variant="real"
+              chrome="none"
               aspect="16/10"
               elevation="hero"
-              caption="Review queue"
-              breadcrumb="Engagement / P2P Q3 FY26 · Review"
-              chromeMeta="12 Aug 2026"
-            >
-              <ReviewQueueMock />
-            </ProductFrame>
+              priority
+              caption="Review queue — Procure-to-Pay engagement"
+            />
           </div>
         </div>
       </Container>
