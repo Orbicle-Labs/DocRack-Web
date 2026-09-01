@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Badge, Eyebrow, Heading, Section } from '@/components/ui';
 import { useCases, useCasesSection } from '@/lib/content/use-cases';
+import { useStepSequence } from '@/lib/use-step-sequence';
 import { cn } from '@/lib/utils';
 
 /** One definition rather than the same class string repeated per column. */
@@ -11,23 +12,22 @@ function ColumnHead({ children }: { children: React.ReactNode }) {
 }
 
 export function UseCasesSection() {
-  const [active, setActive] = useState(0);
+  // `orientation: 'both'` is the fix for a real bug: this rail is a row below
+  // lg and a column at lg, so binding only ArrowLeft/ArrowRight left the
+  // vertical form unreachable by its documented keys. APG allows a tablist to
+  // accept both pairs, which is simpler and more forgiving than watching the
+  // breakpoint. axe never caught this — it is behavioural, not structural.
+  const {
+    index: active,
+    goTo,
+    handleKeyDown,
+  } = useStepSequence(useCases.length, {
+    wrap: true,
+    orientation: 'both',
+    onMove: (next) => document.getElementById(`use-case-tab-${useCases[next].key}`)?.focus(),
+  });
+
   const useCase = useCases[active];
-
-  function onKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
-    const last = useCases.length - 1;
-    let next: number | null = null;
-
-    if (event.key === 'ArrowRight') next = active === last ? 0 : active + 1;
-    else if (event.key === 'ArrowLeft') next = active === 0 ? last : active - 1;
-    else if (event.key === 'Home') next = 0;
-    else if (event.key === 'End') next = last;
-
-    if (next === null) return;
-    event.preventDefault();
-    setActive(next);
-    document.getElementById(`use-case-tab-${useCases[next].key}`)?.focus();
-  }
 
   return (
     <Section tone="canvas">
@@ -47,11 +47,14 @@ export function UseCasesSection() {
             track and scroll the page. */}
         <div className="min-w-0 lg:col-span-3">
           <div className="overflow-x-auto pb-1 lg:overflow-visible lg:pb-0">
+            {/* No aria-orientation: this rail is a row below lg and a column at
+                lg, so any fixed value is a lie at one of the two breakpoints.
+                Omitting it takes the tablist default (horizontal) while the
+                handler accepts both arrow pairs, so neither form is stranded. */}
             <div
               role="tablist"
               aria-label="Use cases"
-              aria-orientation="vertical"
-              onKeyDown={onKeyDown}
+              onKeyDown={handleKeyDown}
               className="flex min-w-max gap-1 border-b border-line lg:min-w-0 lg:flex-col lg:gap-0 lg:border-b-0"
             >
               {useCases.map((item, index) => (
@@ -63,7 +66,7 @@ export function UseCasesSection() {
                   aria-selected={index === active}
                   aria-controls={`use-case-panel-${item.key}`}
                   tabIndex={index === active ? 0 : -1}
-                  onClick={() => setActive(index)}
+                  onClick={() => goTo(index)}
                   className={cn(
                     'px-3.5 py-2.5 text-body-sm transition-[background-color,border-color,color] duration-fast ease-out',
                     '-mb-px border-b-2 lg:mb-0 lg:border-b-0 lg:border-l-2 lg:text-left',

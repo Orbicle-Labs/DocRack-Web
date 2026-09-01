@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import { Eyebrow, Heading, ProductFrame, Section } from '@/components/ui';
 import { workflow } from '@/lib/content/homepage';
+import { useStepSequence } from '@/lib/use-step-sequence';
 import { cn } from '@/lib/utils';
 
 /** The product screen for each step. */
@@ -40,26 +40,22 @@ const VISUALS: Record<string, { src: `/${string}`; alt: string; caption: string 
 };
 
 export function WorkflowSection() {
-  const [active, setActive] = useState(0);
+  // Arrow keys move between tabs, per the WAI-ARIA tabs pattern — a tablist
+  // that only responds to clicks is worse than no tablist role at all. `wrap`
+  // is on because APG specifies it for tabs; the shared hook defaults it off
+  // for steppers, where wrapping would misrepresent a sequence as a loop.
+  const {
+    index: active,
+    goTo,
+    handleKeyDown,
+  } = useStepSequence(workflow.steps.length, {
+    wrap: true,
+    orientation: 'horizontal',
+    onMove: (next) => document.getElementById(`workflow-tab-${workflow.steps[next].key}`)?.focus(),
+  });
+
   const step = workflow.steps[active];
   const visual = VISUALS[step.key];
-
-  // Arrow keys move between tabs, per the WAI-ARIA tabs pattern — a tablist
-  // that only responds to clicks is worse than no tablist role at all.
-  function onKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
-    const last = workflow.steps.length - 1;
-    let next: number | null = null;
-
-    if (event.key === 'ArrowRight') next = active === last ? 0 : active + 1;
-    else if (event.key === 'ArrowLeft') next = active === 0 ? last : active - 1;
-    else if (event.key === 'Home') next = 0;
-    else if (event.key === 'End') next = last;
-
-    if (next === null) return;
-    event.preventDefault();
-    setActive(next);
-    document.getElementById(`workflow-tab-${workflow.steps[next].key}`)?.focus();
-  }
 
   return (
     <Section tone="surface" spacing="open" id="workflow">
@@ -79,7 +75,7 @@ export function WorkflowSection() {
         <div
           role="tablist"
           aria-label="Workflow steps"
-          onKeyDown={onKeyDown}
+          onKeyDown={handleKeyDown}
           className="relative flex min-w-max gap-1 rounded-[11px] bg-neutral-100 p-1"
         >
           {workflow.steps.map((item, index) => (
@@ -92,7 +88,7 @@ export function WorkflowSection() {
               aria-controls={`workflow-panel-${item.key}`}
               // Roving tabindex: one stop for the whole rail, arrows move within.
               tabIndex={index === active ? 0 : -1}
-              onClick={() => setActive(index)}
+              onClick={() => goTo(index)}
               className={cn(
                 'flex items-center gap-2 rounded-[8px] px-3.5 py-2 text-body-sm',
                 'transition-[background-color,box-shadow,color] duration-fast ease-out',
