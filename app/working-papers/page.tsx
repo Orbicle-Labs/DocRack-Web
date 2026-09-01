@@ -1,4 +1,7 @@
 import { CapabilityLayout } from '@/components/sections/CapabilityLayout';
+import { ExplainerSequence } from '@/components/motion/ExplainerSequence';
+import { ExceptionHandoff } from '@/components/motion/ExceptionHandoff';
+import { exceptionHandoff } from '@/lib/content/motion';
 import { workingPapersPage } from '@/lib/content/product';
 import { buildMetadata } from '@/lib/seo';
 
@@ -9,5 +12,16 @@ export const metadata = buildMetadata({
 });
 
 export default function WorkingPapersPage() {
-  return <CapabilityLayout page={workingPapersPage} />;
+  return (
+    <CapabilityLayout
+      page={workingPapersPage}
+      interaction={
+        <ExplainerSequence
+          explainer={exceptionHandoff}
+          tone="surface"
+          aside={<ExceptionHandoff />}
+        />
+      }
+    />
+  );
 }

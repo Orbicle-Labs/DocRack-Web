@@ -1,3 +1,4 @@
+import React from 'react';
 import { Check } from 'lucide-react';
 import { Eyebrow, Heading, Section } from '@/components/ui';
 import { PageHero } from './PageHero';
@@ -10,8 +11,18 @@ import type { CapabilityPage } from '@/lib/content/product';
  * screen, ledger rows for the substance, a checklist for the payoff, closing
  * CTA. Writing it once means they cannot drift apart, and the content module
  * stays the only place their copy lives.
+ *
+ * `interaction` is the one seam: two of the four pages carry a §8 explainer,
+ * and passing it in from the page keeps framer-motion out of the bundle for
+ * the two that do not.
  */
-export function CapabilityLayout({ page }: { page: CapabilityPage }) {
+export function CapabilityLayout({
+  page,
+  interaction,
+}: {
+  page: CapabilityPage;
+  interaction?: React.ReactNode;
+}) {
   return (
     <>
       <PageHero
@@ -22,6 +33,8 @@ export function CapabilityLayout({ page }: { page: CapabilityPage }) {
       />
 
       <LedgerRows rows={page.rows} tone="canvas" spacing="open" />
+
+      {interaction}
 
       {/* Archetype D without a frame — the checklist is the visual. */}
       <Section tone="surface" spacing="default">

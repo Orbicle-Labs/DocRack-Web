@@ -44,6 +44,15 @@ export interface ProductFrameProps {
   minHeight?: string;
   /** Override when the frame is not at the default ~58% column width. */
   sizes?: string;
+  /**
+   * Annotation layer drawn over the screenshot, inside the frame's clip and its
+   * `tone-light` scope.
+   *
+   * For pointing at part of a real capture — never for drawing product chrome
+   * that isn't in the capture, which would make a `variant="real"` frame lie
+   * (§16). Anything that adds interface belongs beside the frame, not on it.
+   */
+  overlay?: React.ReactNode;
   className?: string;
 }
 
@@ -87,6 +96,7 @@ export function ProductFrame({
   // Frames sit at ~58% of a 1240 container on desktop; below lg they run full
   // width inside the gutters. Override for full-width placements.
   sizes = '(min-width: 1280px) 720px, (min-width: 1024px) 58vw, 92vw',
+  overlay,
   className,
 }: ProductFrameProps) {
   return (
@@ -121,6 +131,11 @@ export function ProductFrame({
           ) : (
             <div className="absolute inset-0 overflow-hidden">{children}</div>
           )}
+
+          {/* Sibling of the image, inside the same clipped, aspect-fixed box,
+              so a callout can be positioned in percentages of the frame and
+              cannot extend the page's scrollable width. */}
+          {overlay && <div className="absolute inset-0">{overlay}</div>}
         </div>
       </div>
 

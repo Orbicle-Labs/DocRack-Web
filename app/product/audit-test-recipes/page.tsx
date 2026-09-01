@@ -3,6 +3,8 @@ import { Eyebrow, Heading, ProductFrame, Section } from '@/components/ui';
 import { PageHero } from '@/components/sections/PageHero';
 import { LedgerRows } from '@/components/sections/LedgerRows';
 import { CtaSection } from '@/components/sections/CtaSection';
+import { ExplainerSequence } from '@/components/motion/ExplainerSequence';
+import { recipeRun } from '@/lib/content/motion';
 import { recipesPage } from '@/lib/content/product';
 import { buildMetadata } from '@/lib/seo';
 
@@ -43,6 +45,10 @@ export default function AuditTestRecipesPage() {
         spacing="tight"
         numbered
       />
+
+      {/* §8.2 — the anatomy above, now executed. Placed here so the
+          interaction demonstrates the claim the reader has just finished. */}
+      <ExplainerSequence explainer={recipeRun} tone="surface" />
 
       {/* Archetype D — versioning, with the builder as the evidence. */}
       <Section tone="surface" spacing="open">
