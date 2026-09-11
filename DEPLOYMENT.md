@@ -1,189 +1,244 @@
-# DocRack — Remaining Deployment Steps (manual)
+# DocRack-Web — deployment and operations
 
-Most of the setup is already done. Current state:
+**Documentation refreshed:** 11 September 2026.
 
-| Done | What                                                                                                            |
-| ---- | --------------------------------------------------------------------------------------------------------------- |
-| ✅   | GCP project **docrack-web** created (account `games.wisemen@gmail.com`), billing linked                         |
-| ✅   | APIs enabled (Cloud Run, Cloud Build, Artifact Registry, Sheets, Secret Manager)                                |
-| ✅   | Service account **docrack-web-sa@docrack-web.iam.gserviceaccount.com** + local key at `secrets/gcp-sa-key.json` |
-| ✅   | Spreadsheet **"DocRack Leads"** created in your Drive (tejushchauhan2002@gmail.com)                             |
-| ✅   | Empty Secret Manager secret `resend-api-key` created, service account granted access                            |
-| ✅   | Site deployed to Cloud Run (region asia-southeast1)                                                             |
+This runbook describes the existing website deployment configuration and the planned rebuild release gates. It does not certify the current cloud state, domain mapping, secret values, Sheet sharing, or email delivery. Verify those facts when performing operations.
 
-What's left needs **you** (account sign-ups, browser verifications, DNS):
+The application has not yet migrated to the target runtime, folder structure, shared limiter, or analytics provider. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
 
----
+## 1. Configured deployment topology
 
-## Step 1 — Share the spreadsheet with the service account (30 seconds)
+```text
+GitHub Actions → Workload Identity Federation → Cloud Build
+               → standalone Next.js Docker image → Cloud Run
 
-Open [DocRack Leads](https://docs.google.com/spreadsheets/d/1GvA62o61kaLAXDJ7WAmtnRpFtQcTQG8LJ7oMF9r5j9Q/edit)
-→ **Share** → paste:
-
-```
-docrack-web-sa@docrack-web.iam.gserviceaccount.com
+Cloud Run service identity → Google Sheets
+Cloud Run + Secret Manager → Resend → internal notification inbox
 ```
 
-→ role **Editor** → untick "Notify people" → Share.
+Values below come from the checked-in workflow and previous runbook, not a fresh cloud inspection.
 
-Then finish the tab setup (names the tabs and header rows) — run in the repo root,
-or just ask Claude to run it:
+| Setting                 | Configured / recorded value                                                                          | Evidence                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Repository              | `Orbicle-Labs/DocRack-Web`                                                                           | Workflow comments and recorded WIF setup                |
+| GCP project             | `docrack-web`                                                                                        | Workflow deploy arguments                               |
+| Cloud Run service       | `docrack-web`                                                                                        | Workflow deploy arguments                               |
+| Region                  | `asia-southeast1`                                                                                    | Workflow deploy arguments                               |
+| Intended public origin  | `https://docrack.ai`                                                                                 | Site metadata                                           |
+| Runtime service account | `docrack-web-sa@docrack-web.iam.gserviceaccount.com`                                                 | Workflow deploy arguments                               |
+| CI deployer             | `github-deployer@docrack-web.iam.gserviceaccount.com`                                                | Workflow auth step                                      |
+| WIF provider            | `projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider` | Workflow auth step                                      |
+| Recorded email secret   | `resend-api-key` → `RESEND_API_KEY`                                                                  | Prior runbook; verify binding/version before operations |
+| Current runtime image   | `node:20-alpine`                                                                                     | Both Dockerfiles; Phase 1 will replace this             |
+| Container entry         | `node server.js`, standalone output                                                                  | Dockerfile and Next config                              |
+
+Use the cloud console or an authorised read-only inspection to verify the live service before any change. If it differs, document the difference before choosing a release target.
+
+This region is the website's configured region. It does not establish product audit-data residency, and the Sheets/email/analytics data flows need their own disclosures.
+
+## 2. What the existing pipeline does
+
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml) currently:
+
+1. Runs on pushes to main, pull requests targeting main, and manual dispatch.
+2. Installs Node 20 and runs `npm ci`, `npm run lint`, `npm run check-types`, and `npm run build`.
+3. Runs the deployment job only when the ref is main and the event is not a pull request.
+4. Authenticates using GitHub OIDC/Workload Identity Federation, then calls `gcloud run deploy --source .`.
+5. Does not set env vars or secret bindings in the deploy command.
+
+**A push or merge to main is a release action.** A manual workflow run on main also deploys. PRs run checks but this workflow does not provide an isolated staging service or preview environment automatically.
+
+Use a feature branch for implementation. Preserve existing user work and use the current task branch if appropriate. Do not merge only to make documentation available to a new agent session.
+
+The previous runbook recorded a WIF restriction to this repository and main ref. Verify the actual provider condition and service-account bindings before relying on that second control; comments in YAML are not proof of live IAM policy.
+
+## 3. Runtime configuration and environment separation
+
+| Variable                         | Production treatment                                          | Local/staging treatment                                 |
+| -------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------- |
+| `GOOGLE_SHEET_ID`                | Existing enquiry spreadsheet                                  | Separate test spreadsheet                               |
+| `GOOGLE_APPLICATION_CREDENTIALS` | Do not inject a downloaded key; use attached service identity | Optional path to an intended local test key             |
+| `RESEND_API_KEY`                 | Secret Manager binding                                        | Omit to skip notifications, or use a test configuration |
+| `NOTIFY_EMAIL`                   | Verified internal team destination                            | Designated test inbox, never a prospect                 |
+| `EMAIL_FROM`                     | Verified sender/domain                                        | Omit or use a provider-supported test sender            |
+
+The current notification helper skips email when either API key or notification destination is absent. A saved enquiry still succeeds. Verify sender/domain eligibility in Resend before expecting delivery; the code's default `onboarding@resend.dev` sender is not evidence that general production sending is configured.
+
+Copy [.env.example](.env.example) only into a missing local file, and enter values privately. The template contains current variable names only; planned Firestore/analytics/sign-in variables will be added alongside their implementations.
+
+For Docker, Compose expects `.env.docker.local`; it does not load `.env.docker` by name. The current production Compose profile also requires an intended local key file at `secrets/gcp-sa-key.json`. These are local Compose requirements, not Cloud Run requirements.
+
+### Preserve existing configuration
+
+The routine deploy command omits env/secret flags. When a configuration change is part of an authorised task, use targeted updates after inspecting existing bindings; do not replace the whole set accidentally.
+
+Cloud Run's `--set-env-vars` and `--set-secrets` replace existing configuration in their respective categories. Prefer scoped `--update-env-vars` and `--update-secrets` where adding/changing entries is intended. Record the selected secret version and rollback implications. [Environment variables](https://docs.cloud.google.com/run/docs/configuring/services/environment-variables), [Secret configuration](https://docs.cloud.google.com/run/docs/configuring/services/secrets).
+
+Do not place secret values in documentation, shell history, browser bundles, task output, or a committed key file. A source release does not require re-creating the GCP project, service accounts, domain mapping, spreadsheet, or secret.
+
+## 4. Sheet setup and integration checks
+
+Existing tab contracts:
+
+| Tab             | Column order                                        |
+| --------------- | --------------------------------------------------- |
+| Demo Bookings   | Timestamp, Full Name, Email, Company, Annual Audits |
+| Support Tickets | Timestamp, Full Name, Email, Message                |
+
+The service account requires access to the intended spreadsheet. Configure separate test access before sending staging submissions.
+
+`scripts/setup-sheet.mjs` reads `.env.local`, can rename the first tab, creates a support tab if absent, and writes both header rows. Run it only for an explicitly authorised initial setup target. Never run it automatically on deployment or against historical leads as a “repair” without inspecting the intended changes.
+
+For automated validation, mock Sheets/Resend. For an authorised staging integration check:
+
+1. Confirm the target service uses a test Sheet and a test internal notification destination.
+2. Submit one clearly identified internal test through each form.
+3. Verify the row's tab, columns, values, and timestamp.
+4. Verify the team notification when configured.
+5. Check that email failure after a successful append still returns success.
+6. Record results without copying personal data or credentials into QA artifacts.
+
+A real submission through localhost can write to production if it uses production env values. Merely changing the browser URL does not isolate integrations.
+
+## 5. Read-only pre-release inspection
+
+These commands inspect selected service metadata. Run from a shell authenticated to the intended project; they do not deploy.
 
 ```powershell
-node scripts/setup-sheet.mjs
+gcloud run services describe docrack-web --project docrack-web --region asia-southeast1 --format="yaml(status.url,status.latestReadyRevisionName,status.traffic,spec.template.spec.serviceAccountName)"
+gcloud run revisions list --service docrack-web --project docrack-web --region asia-southeast1 --format="table(metadata.name,metadata.creationTimestamp)"
 ```
 
-After this, form submissions on the live site start landing in the sheet.
+Record the active traffic allocation and known-good revision in the release report. “Latest ready” is not necessarily the revision currently receiving all traffic.
 
-## Step 2 — Resend account (email notifications)
+Verify current Sheet access, sender verification, notification destination, secret bindings, container port/health, domain routing, and WIF restrictions through the appropriate authorised inspection. Avoid dumping a full service/environment configuration into a shared transcript.
 
-1. Sign up free at <https://resend.com> **using tejushchauhan2002@gmail.com** — until your
-   domain is verified (Step 4), Resend's test sender only delivers to your own account email.
-2. Dashboard → API Keys → Create → copy the `re_...` key.
-3. Put it in Secret Manager and attach it to the service:
-   ```powershell
-   gcloud secrets versions add resend-api-key --data-file=- --project docrack-web
-   ```
-   (paste the key, press Enter, then **Ctrl+Z and Enter** to finish input)
-   ```powershell
-   gcloud run services update docrack-web --project docrack-web --region asia-southeast1 --set-secrets "RESEND_API_KEY=resend-api-key:latest"
-   ```
+Confirm the schema, env names, and integrations expected by the candidate revision. Before future Firestore/analytics changes, document provisioning, permissions, data handling, and rollback compatibility.
 
-## Step 3 — Point docrack.ai at Cloud Run (GoDaddy DNS)
+## 6. Rebuild quality gates before release
 
-1. **Verify domain ownership** (opens a browser — must be you):
+### Phase 1
 
-   ```powershell
-   gcloud domains verify docrack.ai
-   ```
+- Align supported Node 24 in package engines, `.nvmrc`, Docker, and CI.
+- Upgrade Next/React and move source paths as specified.
+- Migrate deprecated `next lint` to explicit ESLint CLI.
+- Add baseline contract tests and verify the standalone image.
+- Update this runbook and README to show the implemented state.
 
-   In Search Console choose the TXT-record method → add the TXT record at
-   GoDaddy → My Products → docrack.ai → **DNS** → wait a few minutes → click Verify.
-   Important: verify while signed in as **games.wisemen@gmail.com** (the mapping below
-   checks ownership under the same account).
+### Phase 6
 
-2. **Create the mappings:**
+- Configure/test shared rate limiting and its fallback.
+- Validate provider timeouts, safe logging, request guards, and persistence/notification semantics.
+- Configure a real analytics destination or leave the adapter disabled.
+- Update privacy/data-flow documentation and runtime configuration examples.
+- Preserve existing enquiry history.
 
-   ```powershell
-   gcloud beta run domain-mappings create --service docrack-web --domain docrack.ai --project docrack-web --region asia-southeast1
-   gcloud beta run domain-mappings create --service docrack-web --domain www.docrack.ai --project docrack-web --region asia-southeast1
-   gcloud beta run domain-mappings describe --domain docrack.ai --project docrack-web --region asia-southeast1
-   ```
+### Phase 7
 
-   The `describe` output lists the exact DNS records.
+- Run lint, type checks, installed test suites, content/assets checks, production build, and browser QA.
+- Verify redirects, canonical metadata, sitemap, robots, source/download assets, headers, mobile layouts, keyboard access, and performance.
+- Prepare a release report with the intended target, checks, factual limitations, configuration changes, current revision, and rollback action.
+- Complete all local/reviewable work before seeking any missing release authorisation.
 
-3. **Add them at GoDaddy DNS.** Typically:
-   - 4 × `A` records, Name `@`: `216.239.32.21`, `216.239.34.21`, `216.239.36.21`, `216.239.38.21`
-   - 4 × `AAAA` records, Name `@`: `2001:4860:4802:32::15`, `:34::15`, `:36::15`, `:38::15`
-   - 1 × `CNAME`, Name `www`, Value `ghs.googlehosted.com`
+Tests/e2e/content/asset scripts are planned additions; they do not exist in the initial checkout. Do not invent passing results. Keep production credentials and live submissions out of CI.
 
-   **Delete** GoDaddy's default "Parked" A record on `@` and any existing `www` CNAME.
+## 7. Release procedure
 
-4. **Wait for the HTTPS certificate** (usually 15–60 min, up to 24 h). Check with the
-   `describe` command. Then <https://docrack.ai> is live.
+Use this procedure only when production release is included in the user's authorised task.
 
-## Step 4 — Send emails from @docrack.ai (Resend domain verification)
+1. Complete the quality gate and verify the live target/configuration.
+2. Review the exact changes on the implementation branch.
+3. Use the existing main-only pipeline for the approved release.
+4. Watch the workflow result and inspect the resulting revision and traffic allocation.
+5. Run the read-only website checks below.
+6. Perform a live form smoke test only when that write and internal notification have been authorised.
+7. Record the release outcome and monitoring owner.
 
-1. Resend dashboard → **Domains** → Add Domain → `docrack.ai`. Add the DNS records it
-   shows (DKIM TXT + MX/SPF on a `send` subdomain) at GoDaddy, then click **Verify**.
-2. Switch the sender:
-   ```powershell
-   gcloud run services update docrack-web --project docrack-web --region asia-southeast1 --update-env-vars "EMAIL_FROM=DocRack <notifications@docrack.ai>"
-   ```
-
-## Step 5 — Final checks
-
-- Submit both forms on <https://docrack.ai> → row appears in the sheet + email arrives.
-- Logs: `gcloud run services logs read docrack-web --project docrack-web --region asia-southeast1 --limit 50`
-
----
-
-## Quick reference
-
-| Thing                       | Where                                                                                                                                  |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Leads spreadsheet           | [DocRack Leads](https://docs.google.com/spreadsheets/d/1GvA62o61kaLAXDJ7WAmtnRpFtQcTQG8LJ7oMF9r5j9Q/edit)                              |
-| Cloud Run console           | <https://console.cloud.google.com/run?project=docrack-web>                                                                             |
-| Redeploy after code changes | Merge to `main` — CI/CD deploys automatically (see below)                                                                              |
-| Change notification address | `gcloud run services update docrack-web --project docrack-web --region asia-southeast1 --update-env-vars "NOTIFY_EMAIL=new@email.com"` |
-| Estimated monthly cost      | ~$0–2 (scale-to-zero) + domain renewal                                                                                                 |
-
----
-
-## Shipping changes (CI/CD)
-
-[.github/workflows/deploy.yml](.github/workflows/deploy.yml) handles deployment. To update the
-live site:
+The current workflow's deployment command is equivalent to:
 
 ```powershell
-git switch -c my-change
-# ...edit...
-git commit -am "describe the change"
-git push -u origin my-change
+gcloud run deploy docrack-web --source . --project docrack-web --region asia-southeast1 --service-account docrack-web-sa@docrack-web.iam.gserviceaccount.com --quiet
 ```
 
-Open a PR to `main`. The pipeline runs `lint` → `check-types` → `build`; the deploy job is
-**skipped**. Merge the PR and the same pipeline runs again, this time deploying to Cloud Run
-(~4–5 min). `docrack.ai` serves the new revision as soon as it's ready — traffic is pinned to
-`latestRevision`, so no manual traffic shift is needed.
+This command changes production. It is a reference for the existing pipeline or an authorised manual recovery; it is not part of local setup or Phase 0. Do not add broad env/secret/IAM/DNS flags for a routine website release.
 
-**Deploys happen on `main` and nowhere else.** That's enforced in two independent places:
+For a separate staging service, configure an explicit isolated target, service identity, test spreadsheet, and test inbox. The existing workflow does not create that environment; do not assume a preview URL has test data isolation.
 
-1. The deploy job's `if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'`.
-2. GCP itself. The Workload Identity provider's attribute condition requires both
-   `assertion.repository == 'Orbicle-Labs/DocRack-Web'` **and** `assertion.ref == 'refs/heads/main'`.
-   A run on any other branch — or from any other repo — is refused at the token exchange, before
-   it can reach Cloud Run at all, even if someone deleted the `if` above.
+### Read-only website smoke checks
 
-Auth is keyless (Workload Identity Federation), so there is no service-account key in GitHub and
-nothing to rotate.
+Inspect the intended public domain for:
 
-To redeploy without a code change: Actions tab → "DocRack CI/CD Web Pipeline" → **Run workflow**
-on `main`.
+- Home, Product, Book a Demo, Support, Security, and representative solution pages.
+- CSS/fonts/images and the generated social image.
+- Existing redirects plus new product redirects once Phase 5 implements them.
+- Correct canonical origin, sitemap/robots, and no accidental production noindex.
+- Effective headers and browser console/network failures.
+- A nonexistent path returning a usable 404.
+- GET requests to the two form API routes returning 405.
 
-### Break-glass manual deploy
+Do not POST to a live form merely to check that the site is online.
 
-If Actions is down, the pipeline is still the same single command:
+### Authorised live form smoke test
+
+Use an internal test identity, not customer data. Verify one recorded submission and its internal notification; distinguish genuine 201 persistence from the honeypot's generic 200.
+
+Exclude test enquiries from sales reporting. Preserve historical rows; any cleanup of test records must target only the identified test rows. Analytics counts are supplementary and may differ from persisted leads.
+
+If email fails, inspect the already-saved row before retrying. Sheets append does not provide exactly-once semantics; repeat submissions can produce duplicates.
+
+## 8. Rollback
+
+Use the previously recorded known-good revision, not an assumed “previous” entry. First inspect current traffic using §5.
+
+For an authorised full rollback:
 
 ```powershell
-gcloud run deploy docrack-web --source . --project docrack-web --region asia-southeast1
+$rollbackRevision = 'REPLACE_WITH_VERIFIED_GOOD_REVISION'
+gcloud run services update-traffic docrack-web --project docrack-web --region asia-southeast1 --to-revisions "$($rollbackRevision)=100"
 ```
 
-### Rollback
+Replace the placeholder before execution. This routes all service traffic to that revision. If the service previously had a deliberate split, restore the recorded allocation instead. [Cloud Run traffic command](https://docs.cloud.google.com/sdk/gcloud/reference/run/services/update-traffic).
+
+Repeat read-only smoke checks and monitor conversion errors. A traffic rollback does not undo Sheet rows, newly provisioned services, rotated secrets, or incompatible schema changes. Keep backend migrations compatible with the rollback revision.
+
+After traffic is pinned to a named revision, verify the next intended release's traffic assignment explicitly. Do not assume that creating another ready revision automatically promotes it.
+
+Never roll back by deleting enquiries, resetting the repository, removing all secrets, or reinitialising Sheets.
+
+## 9. Operations and troubleshooting
+
+| Symptom                                       | Check                                                                                             |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Build fails                                   | Local and CI runtime, lockfile, font network access, imports, Next/analyser compatibility         |
+| Image starts but assets fail                  | Standalone bundle plus `public` and `.next/static` copies, port and hostname                      |
+| Form returns 422                              | Exact field names, `auditCount` enum, client/server validation                                    |
+| Form returns 429                              | Current limiter window; do not bypass by changing request identity                                |
+| Form returns 500                              | Sheet ID/access, ADC/service identity, provider error class; do not expose raw errors to visitors |
+| Row saved but no email                        | Optional config present, verified sender, destination, provider status; don't append again        |
+| Analytics absent                              | Actual script/event endpoints, network/CSP, provider configuration, ad blocking                   |
+| Production appears unchanged                  | Ready revision and actual traffic allocation, build result, asset/browser cache                   |
+| CI cannot authenticate                        | Actual WIF provider condition, repository/ref, impersonation binding, minimum required IAM        |
+| Rollback succeeds but next deploy is not live | Traffic may remain pinned to a named revision                                                     |
+| Local Compose env failure                     | Required `.env.docker.local` filename and test key mount                                          |
+
+An authorised operator can inspect recent service logs:
 
 ```powershell
-gcloud run revisions list --service docrack-web --project docrack-web --region asia-southeast1
-gcloud run services update-traffic docrack-web --to-revisions REVISION_NAME=100 --project docrack-web --region asia-southeast1
+gcloud run services logs read docrack-web --project docrack-web --region asia-southeast1 --limit 50
 ```
 
-### CI/CD infrastructure (already provisioned)
+Existing logs may contain provider error details. Review them privately and redact any enquiry/credential information before sharing. Phase 6 adds safer logging and operational signals; those protections are not implemented yet.
 
-| Thing                    | Value                                                                                                                                                                                                                                                         |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Deployer service account | `github-deployer@docrack-web.iam.gserviceaccount.com`                                                                                                                                                                                                         |
-| Roles                    | project-level: `run.admin`, `cloudbuild.builds.editor`, `artifactregistry.writer`, `storage.admin`; plus `iam.serviceAccountUser` on `docrack-web-sa` (service runs as it) and on `876741720957-compute@developer.gserviceaccount.com` (builds execute as it) |
-| Build executor           | `876741720957-compute@developer.gserviceaccount.com`, regional Cloud Build in `asia-southeast1`                                                                                                                                                               |
-| WIF provider             | `projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider`                                                                                                                                                          |
-| Provider condition       | `assertion.repository == 'Orbicle-Labs/DocRack-Web' && assertion.ref == 'refs/heads/main'`                                                                                                                                                                    |
-| Impersonation binding    | `roles/iam.workloadIdentityUser` for `principalSet://…/attribute.repository/Orbicle-Labs/DocRack-Web`                                                                                                                                                         |
+Monitor API storage failures, notification failures, provider latency, and—once implemented—shared-limiter fallback. Record a response owner. Do not infer business success from a green build alone.
 
-Two gotchas worth keeping written down, since both cost a failed pipeline run:
+## 10. Provisioning and historical notes
 
-1. **The impersonation binding must be an attribute-based `principalSet://`, not a
-   `principal://…/subject/…`.** The GitHub `sub` claim
-   (`repo:Orbicle-Labs/DocRack-Web:ref:refs/heads/main`) contains slashes, which do not match as a
-   subject principal. Getting this wrong fails with
-   `Permission 'iam.serviceAccounts.getAccessToken' denied`. The branch restriction lives in the
-   provider's attribute condition instead, which rejects earlier anyway — at the token exchange.
-2. **`storage.admin` must be granted at PROJECT level, not scoped to the staging bucket.**
-   `gcloud run deploy --source` calls `storage.buckets.list` against the project, which no
-   bucket-scoped binding can satisfy. A bucket-scoped grant fails with
-   `does not have storage.buckets.list access to the Google Cloud project`. (Bucket-scoped
-   `objectAdmin` is doubly insufficient — it carries no bucket-level permissions at all.)
+The previous runbook recorded an existing project, Sheet, secret, domain setup, WIF bindings, and broad deployer permissions, but several provider verification/setup steps were still described as pending. Their current status was not checked during this documentation refresh.
 
-Builds do not stream logs (`logStreamingOption: STREAM_OFF`, `logging: CLOUD_LOGGING_ONLY`), so the
-deployer needs no `logging.*` permission. If a build fails, read its log in the Cloud Build console.
+Preserve useful identifiers from §1, but inspect live configuration before changing IAM. A historical permission workaround is not a standing instruction to grant broad project roles.
 
-Note: billing was unlinked from `orvyn-demo-2` to free a billing-account slot for this
-project (Google caps small accounts at 3 billed projects). If you ever need that project
-billed again, request a quota increase via Google's billing support form.
+Do not re-create DNS records, alter registrar settings, unlink billing, or re-provision cloud resources as part of the visual rebuild. If an infrastructure change becomes necessary, prepare its exact target/change/rollback and handle it within the authorised scope.
+
+Keep operational account emails, secret values, and unnecessary customer identifiers out of the public README. Store sensitive account/recovery information in the team's appropriate private system.
+
+No infrastructure, DNS, secrets, live enquiries, or notifications were changed by this documentation update.
