@@ -48,3 +48,8 @@ next-env.d.ts
 # GCP service-account keys — NEVER commit
 secrets/
 *service-account*.json
+
+# Local validation tools and browser artifacts
+.local-tools/
+test-results/
+playwright-report/

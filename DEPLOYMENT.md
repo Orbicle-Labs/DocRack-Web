@@ -4,7 +4,7 @@
 
 This runbook describes the existing website deployment configuration and the planned rebuild release gates. It does not certify the current cloud state, domain mapping, secret values, Sheet sharing, or email delivery. Verify those facts when performing operations.
 
-The application has not yet migrated to the target runtime, folder structure, shared limiter, or analytics provider. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
+Phase 1 migrated the runtime and source boundaries and added mocked unit/browser tests. Shared limiting and the analytics adapter remain Phase 6 work. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
 
 ## 1. Configured deployment topology
 
@@ -29,7 +29,7 @@ Values below come from the checked-in workflow and previous runbook, not a fresh
 | CI deployer             | `github-deployer@docrack-web.iam.gserviceaccount.com`                                                | Workflow auth step                                      |
 | WIF provider            | `projects/876741720957/locations/global/workloadIdentityPools/github-pool/providers/github-provider` | Workflow auth step                                      |
 | Recorded email secret   | `resend-api-key` → `RESEND_API_KEY`                                                                  | Prior runbook; verify binding/version before operations |
-| Current runtime image   | `node:20-alpine`                                                                                     | Both Dockerfiles; Phase 1 will replace this             |
+| Current runtime image   | `node:24.21.0-alpine`                                                                                | Both Dockerfiles; Phase 1 local image verified          |
 | Container entry         | `node server.js`, standalone output                                                                  | Dockerfile and Next config                              |
 
 Use the cloud console or an authorised read-only inspection to verify the live service before any change. If it differs, document the difference before choosing a release target.
@@ -41,7 +41,7 @@ This region is the website's configured region. It does not establish product au
 [.github/workflows/deploy.yml](.github/workflows/deploy.yml) currently:
 
 1. Runs on pushes to main, pull requests targeting main, and manual dispatch.
-2. Installs Node 20 and runs `npm ci`, `npm run lint`, `npm run check-types`, and `npm run build`.
+2. Installs Node 24.21.0 from `.nvmrc`; runs `npm ci`, ESLint, TypeScript, mocked Vitest contracts, the production build, then Chromium Playwright checks.
 3. Runs the deployment job only when the ref is main and the event is not a pull request.
 4. Authenticates using GitHub OIDC/Workload Identity Federation, then calls `gcloud run deploy --source .`.
 5. Does not set env vars or secret bindings in the deploy command.
@@ -117,13 +117,26 @@ Confirm the schema, env names, and integrations expected by the candidate revisi
 
 ## 6. Rebuild quality gates before release
 
-### Phase 1
+### Phase 1 — implemented locally
 
-- Align supported Node 24 in package engines, `.nvmrc`, Docker, and CI.
-- Upgrade Next/React and move source paths as specified.
-- Migrate deprecated `next lint` to explicit ESLint CLI.
-- Add baseline contract tests and verify the standalone image.
-- Update this runbook and README to show the implemented state.
+Node 24.21.0, Next 16.3.4 and React 19.3.0 are aligned; source lives under `src/`, server integrations use `server-only`, and ESLint uses flat config. The standalone build, mocked tests, route checks and image boot evidence are in [the Phase 1 report](docs/qa/phase-1.md). This is not live integration or deployment verification.
+
+For credential-free container QA:
+
+```powershell
+docker build -t docrack-web:local .
+docker run --rm --name docrack-web-local --publish 127.0.0.1:3100:3000 docrack-web:local
+```
+
+Run browser checks in a separate terminal:
+
+```powershell
+$env:PLAYWRIGHT_BASE_URL = 'http://127.0.0.1:3100'
+npm run test:e2e
+Remove-Item Env:PLAYWRIGHT_BASE_URL
+```
+
+No env file or key mount is needed to render this image. Browser POSTs are intercepted. The image cannot save a genuine enquiry without runtime configuration. `.dockerignore` and `.gcloudignore` exclude every `.env*` file except `.env.example`, keys and local tooling; the existing tracked `.env.docker` is preserved but excluded from upload/image contexts. Compose remains an explicitly configured integration workflow with `.env.docker.local`; it is not used for credential-free tests.
 
 ### Phase 6
 
@@ -140,7 +153,7 @@ Confirm the schema, env names, and integrations expected by the candidate revisi
 - Prepare a release report with the intended target, checks, factual limitations, configuration changes, current revision, and rollback action.
 - Complete all local/reviewable work before seeking any missing release authorisation.
 
-Tests/e2e/content/asset scripts are planned additions; they do not exist in the initial checkout. Do not invent passing results. Keep production credentials and live submissions out of CI.
+Vitest and baseline Chromium Playwright commands now exist and run in CI. Content/asset checks and the full release browser matrix remain future additions. Keep production credentials and live submissions out of CI.
 
 ## 7. Release procedure
 

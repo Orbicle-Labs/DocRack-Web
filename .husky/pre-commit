@@ -1,8 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# ESLint 9 defaults to flat config; this project uses legacy .eslintrc.json
-# (same config next build reads). Keep lint-staged on the legacy resolver.
-export ESLINT_USE_FLAT_CONFIG=false
-
-npx lint-staged
+# Source migrations can exceed Windows' command-line limit; check smaller batches.
+npx lint-staged --max-arg-length 6000

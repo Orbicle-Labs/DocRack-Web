@@ -6,7 +6,7 @@ This repository contains the **public website and its demo/support enquiry backe
 
 ## Rebuild status and project documents
 
-The website is being prepared for a complete redesign. The new specification and supporting instructions are ready; implementation starts at **Phase 0**. Check [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) for the latest actual state.
+Phase 1 has implemented the supported runtime, source boundaries, and baseline tests. The current presentation is preserved for this mechanical migration; the new visual system starts in Phase 2. Check [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) for the latest actual state.
 
 | Document                                                                           | Purpose                                                                                  |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -23,24 +23,31 @@ The current website is a source for backend behaviour and route migration. Its d
 
 ## Current implementation versus planned changes
 
-Versions below are the lockfile/configuration snapshot checked on 11 September 2026. Refresh this table when implementation changes them.
+Versions below are the lockfile/configuration snapshot checked on 12 September 2026. Refresh this table when implementation changes them.
 
-| Area           | Implemented now                                                    | Planned rebuild                                                               |
-| -------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| Framework      | Next.js 15.5.18, React 18.3.1, App Router                          | Next.js 16 and compatible React 19                                            |
-| Runtime        | Node 20 in `.nvmrc`, Docker, and CI; package engines `>=20`        | Supported Node 24 LTS patch, aligned everywhere                               |
-| Language/style | TypeScript 5.9.3, Tailwind 3.4.19, custom CSS tokens               | Strict TypeScript, fresh tokens and components; retain Tailwind 3.4 initially |
-| Source layout  | Root `app/`, `components/`, `lib/`                                 | Source moves under `src/` in Phase 1                                          |
-| Fonts          | Inter and JetBrains Mono via `next/font/google`                    | Manrope with limited Instrument Serif accents                                 |
-| Forms          | React Hook Form, Zod, inline feedback and Sonner                   | Preserve contracts; redesign presentation and unify schemas                   |
-| Storage        | Google Sheets through server-side ADC                              | Preserve existing enquiry records and tab/column layout                       |
-| Email          | Resend REST notifications to the internal team                     | Preserve best-effort delivery after storage; add reliability controls         |
-| Abuse control  | Honeypot and process-local IP limiter                              | Shared counters and additional guards in Phase 6                              |
-| Analytics      | Vercel Analytics mounted in production; delivery not verified here | Provider adapter, proposed Plausible, disabled until configured               |
-| Deployment     | Docker standalone image, GCP Cloud Run, GitHub Actions             | Retain platform and keyless deployment                                        |
-| Tests          | Lint/type/build scripts; no website test/e2e scripts yet           | Add focused unit/integration/browser/content/asset checks                     |
+| Area           | Implemented now                                                   | Remaining rebuild                                              |
+| -------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- |
+| Framework      | Next.js 16.3.4, React/React DOM 19.3.0, App Router                | New visual composition and page content                        |
+| Runtime        | Node 24.21.0 in engines, .nvmrc, both Dockerfiles and CI          | Recheck security patches before release                        |
+| Language/style | Strict TypeScript 5.9.3, Tailwind 3.4.19                          | New tokens/fonts/primitives in Phase 2                         |
+| Source         | src/app, src/components, src/content, src/lib                     | New content and demos in Phases 3–5                            |
+| Forms          | Existing React Hook Form/Zod contracts and inline/Sonner feedback | Shared schema and reliability hardening in Phase 6             |
+| Integrations   | Server-only Google auth 11.0.2, Sheets and best-effort Resend     | Shared limiter, provider timeouts and safe logging in Phase 6  |
+| Analytics      | Existing Vercel integration; delivery unverified                  | Disabled-until-configured adapter in Phase 6                   |
+| Tests          | ESLint CLI, TypeScript, Vitest/RTL and Chromium Playwright        | Broader accessibility/browser/content/asset QA in later phases |
+| Deployment     | Docker standalone image and main-only Cloud Run pipeline          | No deployment performed in Phase 1                             |
 
-This table does not recommend installing Node 20 for new work. The local preparation checks used Node 24.14.0; complete the supported-runtime alignment in Phase 1 before release. Exact target versions are resolved during that phase.
+Use the exact Node version in [.nvmrc](.nvmrc), for example with your Node version manager. Phase 1 checks also used a checksum-verified portable Node installation in the ignored local tools directory; the machine-wide Node installation was not changed.
+
+### Source boundaries
+
+- `src/app/layout.tsx`: document markup, fonts, metadata and global providers.
+- `src/app/(marketing)/layout.tsx`: header, one main landmark, footer and skip link. Existing public paths are unchanged.
+- `src/content/pages/`: existing typed copy, pending replacement. `src/content/routes.ts` records sixteen published pages and seven planned destinations; the sitemap uses publication status, independently of navigation.
+- `src/lib/server/`: Sheets, notifications and the current process-local limiter, guarded by `server-only`.
+- `src/lib/forms/submit.ts`, `src/lib/hooks/`, `src/lib/seo/`: browser submission, headless interaction and SEO helpers. `@/*` resolves into `src/*`.
+
+Public assets remain in `public/`; their URLs do not change. The four future product redirects remain inactive until replacement pages ship. Phase 0 registers retain historical source paths; the phase report documents the move.
 
 ## Run the current site locally
 
@@ -112,10 +119,13 @@ Both profiles use port 3000, so run one at a time. The current production Compos
 ```powershell
 npm run lint
 npm run check-types
+npm test
 npm run build
+npx playwright install chromium
+npm run test:e2e
 ```
 
-The current `lint` script uses deprecated `next lint`; migrate it in Phase 1. There is no `npm test` or `npm run test:e2e` yet. Do not report those checks as passing until the scripts and suites exist.
+Vitest runs without Next env loading; Sheets/Resend are mocked and unmocked fetch calls are blocked. Playwright targets localhost only, blocks external traffic, and intercepts form POSTs. It starts a production server on port 3100 after a build; do not point it at live services. The content/asset scripts are still planned, and the baseline Chromium suite is not the full release accessibility or cross-browser gate.
 
 The supported container runtime entry point is the Dockerfile's standalone `node server.js`, with public and static files copied into the image. Validate that image during the build/release phases.
 
@@ -128,7 +138,7 @@ git diff --check
 
 `npm run format` rewrites the whole repository; use scoped formatting for a small documentation change.
 
-For an optional bundle analysis, set `ANALYZE=true` only for the build. The current analyser and framework majors differ, so validate compatibility as part of Phase 1. Do not treat this as a guaranteed working check today.
+Use `npm run analyze` for optional webpack bundle analysis. Normal `npm run build` uses the Next 16 Turbopack default; the matching analyser runs only in its separate webpack command.
 
 ## Enquiry backend
 
@@ -156,8 +166,8 @@ The repository does not establish live delivery of Vercel Analytics, product ten
 
 The rebuild includes claim verification, privacy-text correction, shared abuse control, provider timeouts, and header review. Those requirements remain planned until implemented and tested.
 
-## Deployment and first rebuild session
+## Deployment and continuation
 
 The checked-in workflow runs checks for pull requests and deploys qualifying main-branch push/manual runs. **Pushing or merging to main can release the site.** Consult [DEPLOYMENT.md](DEPLOYMENT.md) before release work.
 
-To begin the rebuild, open this checkout in a fresh local Codex session and paste the Phase 0 prompt from [docs/CODEX_START.md](docs/CODEX_START.md). The agent should populate the audit artifacts and update [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md), then proceed to implementation phases when requested.
+Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). The next implementation phase is Phase 2: the new visual system and reviewable prototypes. Phase 1 verification is recorded in [docs/qa/phase-1.md](docs/qa/phase-1.md).

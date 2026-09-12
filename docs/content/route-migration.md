@@ -6,7 +6,7 @@ Current site: sixteen page routes, two API endpoints and three configured perman
 
 ## Page registry and launch acceptance ledger
 
-This table is the Phase 0 planning registry. Phase 1 will add the typed `src/content/routes.ts` implementation. A target path below does not mean it exists today. **All launch acceptance entries remain pending.** Canonicals use the intended origin `https://docrack.ai`; live apex/www routing is not verified here.
+This table is the Phase 0 planning registry. Phase 1 now implements the typed `src/content/routes.ts` registry; the source paths in this baseline table are historical. Pages moved to `src/app/(marketing)/`, APIs to `src/app/api/`, and navigation to `src/content/navigation.ts`. A target path below does not mean it exists today. **All launch acceptance entries remain pending.** Canonicals use the intended origin `https://docrack.ai`; live apex/www routing is not verified here.
 
 | ID  | Existing route / source                        | Canonical launch route               | Disposition and content acceptance                                                                                                  | Navigation / discovery                                           | Implementation phase / launch gate                  |
 | --- | ---------------------------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------- |
@@ -105,3 +105,7 @@ No search-console, traffic or backlink data was accessed; the fragment list is r
 Conditional routes remain unpublished: `/test-packs`, `/test-packs/[slug]`, `/resources`, `/resources/[slug]`, `/customers/[slug]`, additional operational/compliance/finance solutions, pricing and languages. No nav or sitemap entry until substantive evidence-backed content exists. Any scope change must update this table, typed registry, navigation, sitemap and acceptance ledger together.
 
 **Phase 0 route gate: complete.** Every discovered current page, API, redirect and machine/error surface has a disposition. Runtime redirect/browser checks and target-page launch acceptance remain assigned to later phases.
+
+## Phase 1 implementation evidence
+
+The sixteen published URLs remain unchanged. The sitemap now reads the explicit route registry independently of navigation. The seven future destinations are marked planned/non-indexable; none has a page or active link. Only the three existing redirects are active. Baseline browser checks cover all current pages, query-preserving redirects, API GET 405 and a usable 404. See [Phase 1 QA](../qa/phase-1.md). All nineteen redesigned-page launch acceptance entries above remain pending.

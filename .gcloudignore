@@ -1,0 +1,12 @@
+# Keep source uploads consistent with local and container credential boundaries.
+.gcloudignore
+.git
+.gitignore
+#!include:.gitignore
+.env*
+!.env.example
+.claude/
+.agents/
+.codex/
+secrets/
+*service-account*.json

@@ -103,3 +103,7 @@ Evidence uses `object-contain` where clipping would remove meaning. Inspect sour
 Removal order: produce verified replacement → switch every consumer/caption/metadata entry → check references and rendered pages → remove obsolete file in its assigned phase. Static URLs with no source consumer may still have external references; inspect before removal. No old asset's colour, chrome, framing or page position is a design requirement.
 
 **Phase 0 asset gate: inventory complete; inherited product proof and rights not approved.** Replacement production, current capture attestation, mobile review, sample inspection and rights verification remain Phase 2/3/7 work with explicit omission/illustration fallbacks.
+
+## Phase 1 source relocation
+
+All physical assets are preserved byte-for-byte. The three App Router icons and generated OG/font source moved to `src/app/`; page consumers now live in `src/app/(marketing)/`, presentation in `src/components/`, and copy in `src/content/pages/`. Paths in the Phase 0 inventory above describe the original snapshot. Product capture provenance, replacement assignments and publication limits are unchanged. Phase 1 browser/image QA is recorded in [the phase report](../qa/phase-1.md).

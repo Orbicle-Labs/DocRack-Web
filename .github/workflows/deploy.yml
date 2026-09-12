@@ -2,9 +2,9 @@ name: DocRack CI/CD Web Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
   # Lets you redeploy the live site from the Actions tab without a code change.
   # Still main-only: a dispatch from any other branch is rejected by GCP (see deploy job).
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
       - name: Setup NodeJS Runtime Environment
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -36,8 +36,17 @@ jobs:
       - name: Run Type Checks
         run: npm run check-types
 
+      - name: Run mocked contract tests
+        run: npm test
+
       - name: Build Next.js Portal Frontend
         run: npm run build
+
+      - name: Install browser for baseline checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify routes and mocked forms in production mode
+        run: npm run test:e2e
 
   # Deploys to Cloud Run. Runs ONLY on main — feature branches and PRs stop after the
   # checks above. Enforced twice, independently:
@@ -51,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write   # required to mint the GitHub OIDC token for WIF
+      id-token: write # required to mint the GitHub OIDC token for WIF
     steps:
       - name: Checkout Source Codes
         uses: actions/checkout@v4

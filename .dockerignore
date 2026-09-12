@@ -19,3 +19,14 @@ npm-debug.log*
 Dockerfile*
 docker-compose*.yml
 .dockerignore
+
+# Exclude all environment files and local-only artifacts from every image
+.env*
+!.env.example
+.claude
+.agents
+.codex
+.local-tools
+test-results
+playwright-report
+*service-account*.json

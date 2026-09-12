@@ -1,3 +1,4 @@
+import { activeRedirects } from './src/content/routes';
 import type { NextConfig } from 'next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
@@ -55,15 +56,11 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Route migrations (Phase 3). 308 rather than 307: these are permanent moves
+  // Existing route migrations. 308 rather than 307: these are permanent moves
   // and the link equity should transfer. Each `source` is an exact path, so
   // none of them can shadow /api/*.
   async redirects() {
-    return [
-      { source: '/intake', destination: '/book-demo', permanent: true },
-      { source: '/workflow', destination: '/product', permanent: true },
-      { source: '/about', destination: '/company', permanent: true },
-    ];
+    return activeRedirects;
   },
 
   // Compiler optimizations — keep console.error so route failures reach server logs
@@ -78,5 +75,5 @@ const nextConfig: NextConfig = {
 };
 
 export default process.env.ANALYZE === 'true'
-  ? withBundleAnalyzer({ enabled: true })(nextConfig)
+  ? withBundleAnalyzer({ enabled: true, openAnalyzer: false })(nextConfig)
   : nextConfig;
