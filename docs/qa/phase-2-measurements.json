@@ -1,0 +1,33 @@
+{
+  "amountFonts": [
+    {
+      "familyName": "Manrope ExtraLight",
+      "postScriptName": "Manrope-ExtraLight",
+      "isCustomFont": true,
+      "glyphCount": 6
+    }
+  ],
+  "home1280CtaVisible": true,
+  "mobileFieldVisible": true,
+  "landscapeMenuScroll": true,
+  "forcedColourOutline": "solid",
+  "contrast": {
+    "body / ivory": 13.74,
+    "muted / ivory": 5.64,
+    "white / forest": 12.19,
+    "muted / forest": 7.23,
+    "ink / citron": 12.05,
+    "control / white": 3.87,
+    "control / ivory": 3.47,
+    "control / soft": 3.16,
+    "focus / white": 7.8,
+    "focus / ivory": 6.98,
+    "focus / forest": 9.56,
+    "state 0 / white": 7.42,
+    "state 1 / white": 6.58,
+    "state 2 / white": 6.51,
+    "state 3 / white": 8.33,
+    "state 4 / white": 6.3,
+    "state 5 / white": 8.45
+  }
+}

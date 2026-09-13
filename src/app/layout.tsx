@@ -1,24 +1,34 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo/metadata';
 import './globals.css';
 
-// ── next/font — self-hosted, zero layout shift, no external request ────────
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
+const manrope = localFont({
+  src: '../../public/fonts/manrope-variable.woff2',
+  variable: '--font-manrope',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: '200 800',
+  adjustFontFallback: false,
 });
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains',
+const manropeExtended = localFont({
+  src: '../../public/fonts/manrope-latin-ext.woff2',
+  variable: '--font-manrope-ext',
   display: 'swap',
-  weight: ['400', '500'],
+  weight: '200 800',
+  adjustFontFallback: false,
+});
+const editorial = localFont({
+  src: [
+    { path: '../../public/fonts/instrument-serif-regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/instrument-serif-italic.woff2', weight: '400', style: 'italic' },
+  ],
+  variable: '--font-editorial',
+  display: 'swap',
+  preload: false,
+  fallback: ['Georgia'],
 });
 
 // ── Global SEO Metadata ────────────────────────────────────────────────────
@@ -78,7 +88,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${manrope.variable} ${manropeExtended.variable} ${editorial.variable}`}
+    >
       <body>
         {children}
         <Toaster

@@ -1,101 +1,69 @@
-import { Container, Eyebrow, Heading, Panel } from '@/components/ui';
+import Link from 'next/link';
 import { DemoForm } from '@/components/forms/DemoForm';
 import { buildMetadata } from '@/lib/seo/metadata';
-
 export const metadata = buildMetadata({
   title: 'Book a demo',
   description:
-    'Bring one audit procedure. We will configure it as an Audit Test Recipe against your own ' +
-    'evidence and show you the working paper it produces.',
+    'Request a DocRack demo to discuss your audit workflow, source-linked review and working papers.',
   path: '/book-demo',
 });
-
-/** What the session actually is. Concrete beats "see DocRack in action". */
-const AGENDA = [
-  {
-    title: 'You bring one procedure',
-    body: 'A test you already run — a three-way match, an interest recalculation, a sanction-terms check. Whatever your team spends real hours on.',
-  },
-  {
-    title: 'We configure it as a recipe',
-    body: 'Live, on the call: inputs, extracted fields, the rules and tolerances that decide pass or fail, and what counts as insufficient evidence.',
-  },
-  {
-    title: 'We run it against a population',
-    body: 'Sample evidence if you would rather not share your own. Exceptions come back with the rule applied and the source page or cell behind each value.',
-  },
-  {
-    title: 'You see the working paper',
-    body: 'Scope, population, procedure, results, exception register and sign-off blocks — the output your reviewer would receive.',
-  },
-];
-
 export default function BookDemoPage() {
   return (
-    <>
-      {/* Archetype A, narrowed. A conversion page earns no hero image: the
-          form is the only object on it that matters. */}
-      <section className="bg-page-top">
-        <Container>
-          {/* Three grid children, ordered for mobile: heading, form, agenda.
-              At 375 a heading-then-agenda-then-form order put the form 1233px
-              down the page — below the entire agenda, on the one page whose
-              only purpose is the form. Explicit row placement at lg restores
-              the two-column reading order on desktop. */}
-          <div className="grid gap-x-6 gap-y-12 pb-24 pt-16 sm:pt-20 lg:grid-cols-12">
-            <div className="lg:col-span-5 lg:row-start-1">
-              <Eyebrow>Book a demo</Eyebrow>
-              <Heading level={1} size="h1">
-                Bring one audit procedure. See it become a repeatable test.
-              </Heading>
-              <p className="mt-5 max-w-prose text-body-lg text-muted">
-                Forty-five minutes, screen-shared, no slides. We configure your procedure against
-                evidence you recognise and you keep the working paper it produces.
-              </p>
-            </div>
-
-            <div className="lg:col-start-7 lg:col-span-6 lg:row-start-1 lg:row-span-2">
-              <div className="lg:sticky lg:top-24">
-                <DemoForm />
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 lg:row-start-2">
-              <ol>
-                {AGENDA.map((item, index) => (
-                  <Panel
-                    as="li"
-                    key={item.title}
-                    variant={index === 0 ? 'accent' : 'rule'}
-                    className="pb-5"
-                  >
-                    <div className="flex gap-4">
-                      <span className="mt-0.5 shrink-0 font-mono text-mono-xs tabular-nums text-muted">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <div className="min-w-0">
-                        <h2 className="text-h4">{item.title}</h2>
-                        <p className="mt-1.5 max-w-prose text-body-sm text-muted">{item.body}</p>
-                      </div>
-                    </div>
-                  </Panel>
-                ))}
-              </ol>
-
-              <p className="mt-8 max-w-prose text-body-sm text-muted">
-                Not ready for a demo?{' '}
-                <a
-                  href="/support"
-                  className="text-accent underline decoration-1 underline-offset-[3px] hover:decoration-2"
-                >
-                  Send us a question
-                </a>{' '}
-                instead — same team answers it.
-              </p>
-            </div>
-          </div>
-        </Container>
+    <div className="v2 design-container demo-layout">
+      <div className="demo-intro">
+        <p className="eyeline">Book a demo</p>
+        <h1>
+          Let’s talk
+          <br />
+          about your
+          <br />
+          <span className="editorial">audit workflow.</span>
+        </h1>
+        <p>
+          Explore a procedure, inspect an exception, and discuss what your reviewer needs to see.
+        </p>
+        <a className="text-action mobile-form-jump" href="#demo-request">
+          Go to the request form <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+      <section id="demo-request" className="demo-form-panel" aria-labelledby="form-title">
+        <p className="eyeline">A conversation starts here</p>
+        <h2 id="form-title">Request a demo</h2>
+        <p className="caption">
+          Share a few details. This is an enquiry, not a calendar reservation.
+        </p>
+        <DemoForm />
       </section>
-    </>
+      <div className="demo-agenda">
+        <p className="eyeline">What we can explore</p>
+        <ol>
+          <li>
+            <span>01</span>
+            <div>
+              <h2>The procedure</h2>
+              <p>Your scope, evidence and review requirements.</p>
+            </div>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h2>The exception</h2>
+              <p>A result, the source behind it and the rule applied.</p>
+            </div>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h2>The working paper</h2>
+              <p>How the procedure and review decisions fit together.</p>
+            </div>
+          </li>
+        </ol>
+        <p className="caption">
+          Please don’t send confidential audit documents through this form. For a product or support
+          question, <Link href="/support">contact us</Link>.
+        </p>
+      </div>
+    </div>
   );
 }

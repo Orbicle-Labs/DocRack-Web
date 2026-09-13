@@ -1,114 +1,95 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu } from 'lucide-react';
-import { Button, Container } from '@/components/ui';
-import { cn } from '@/lib/utils';
-import { primaryNav, DEMO_HREF } from '@/content/navigation';
+import { Menu, ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui';
+import { footerNav } from '@/content/navigation';
 import { MobileNav } from './MobileNav';
-
 export function SiteHeader() {
   const pathname = usePathname();
-  // A route change remounts the menu state closed, without an extra effect render.
-  return <HeaderForRoute key={pathname} pathname={pathname} />;
+  return <HeaderForRoute key={pathname} />;
 }
-
-function HeaderForRoute({ pathname }: { pathname: string }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const toggleRef = useRef<HTMLButtonElement>(null);
-
-  // Hairline appears only once the page has moved, so the header sits flush
-  // with the hero at rest (§10.2 "sticky after scrolling").
+function HeaderForRoute() {
+  const [open, setOpen] = useState(false);
+  const toggle = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 8);
-    }
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const media = window.matchMedia('(min-width: 1024px)');
+    const reset = () => {
+      if (media.matches) setOpen(false);
+    };
+    media.addEventListener('change', reset);
+    const outside = (event: PointerEvent) => {
+      if (!header.current?.contains(event.target as Node))
+        header.current
+          ?.querySelectorAll('details[open]')
+          .forEach((item) => item.removeAttribute('open'));
+    };
+    document.addEventListener('pointerdown', outside);
+    return () => {
+      media.removeEventListener('change', reset);
+      document.removeEventListener('pointerdown', outside);
+    };
   }, []);
-
   return (
-    <header
-      className={cn(
-        'tone-light sticky top-0 z-40 bg-surface transition-[box-shadow,border-color] duration-base ease-out',
-        'supports-[backdrop-filter]:bg-surface/80 supports-[backdrop-filter]:backdrop-blur-md',
-        // At rest the header sits on the hero's white gradient and is
-        // invisible; a shadow as well as a border is what detaches it.
-        scrolled ? 'border-b border-line shadow-1' : 'border-b border-transparent'
-      )}
-    >
-      <Container>
-        <div className="flex h-16 items-center justify-between gap-6">
-          <Link href="/" className="shrink-0" aria-label="DocRack — home">
-            <Image
-              src="/docrack_full_logo.png"
-              alt="DocRack"
-              width={140}
-              height={34}
-              priority
-              className="h-[26px] w-auto object-contain"
-            />
-          </Link>
-
-          <nav aria-label="Primary" className="hidden lg:block">
-            <ul className="flex items-center gap-1">
-              {primaryNav.map((item) => {
-                const active = pathname === item.href;
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={active ? 'page' : undefined}
-                      className={cn(
-                        'relative rounded-button px-3 py-2 text-body-sm transition-colors duration-fast ease-out',
-                        active ? 'text-ink' : 'text-muted hover:text-ink'
-                      )}
-                    >
-                      {item.label}
-                      {/* Colour alone at 15px is a weak current-page cue. */}
-                      {active && (
-                        <span
-                          aria-hidden="true"
-                          className="absolute inset-x-3 -bottom-[9px] h-0.5 bg-accent"
-                        />
-                      )}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            {/* No Sign in link until the product app has a public entry
-                point — see the note in MobileNav. */}
-            <Button href="/support" variant="ghost" size="sm" className="hidden lg:inline-flex">
-              Contact us
-            </Button>
-            <Button href={DEMO_HREF} size="sm" className="hidden sm:inline-flex">
-              Book a demo
-            </Button>
-
-            <button
-              ref={toggleRef}
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-expanded={menuOpen}
-              aria-label="Open navigation"
-              className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-button text-ink hover:bg-canvas lg:hidden"
+    <header className="site-header" ref={header}>
+      <div className="design-container header-row">
+        <Link href="/" aria-label="DocRack home" className="brand-logo">
+          <Image src="/docrack_full_logo.png" width={138} height={36} alt="DocRack" priority />
+        </Link>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {footerNav.slice(0, 2).map((group) => (
+            <details
+              key={group.title}
+              name="main-navigation"
+              className="nav-disclosure"
+              onKeyDown={(event) => {
+                if (event.key === 'Escape') {
+                  event.currentTarget.open = false;
+                  event.currentTarget.querySelector('summary')?.focus();
+                }
+              }}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node))
+                  event.currentTarget.open = false;
+              }}
             >
-              <Menu size={20} aria-hidden="true" />
-            </button>
-          </div>
+              <summary>
+                {group.title}
+                <ChevronDown size={14} aria-hidden="true" />
+              </summary>
+              <div className="nav-panel">
+                {group.items.map((item) => (
+                  <Link key={item.href} href={item.href}>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </details>
+          ))}
+          <Link href="/security">Security</Link>
+          <Link href="/company">Company</Link>
+        </nav>
+        <div className="header-actions">
+          <Button href="/book-demo" size="sm">
+            Book a demo
+          </Button>
+          <button
+            ref={toggle}
+            type="button"
+            className="menu-toggle"
+            aria-label="Open navigation"
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
+          >
+            <Menu size={22} aria-hidden="true" />
+          </button>
         </div>
-      </Container>
-
-      <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} returnFocusTo={toggleRef} />
+      </div>
+      {open && <MobileNav onClose={() => setOpen(false)} returnFocusTo={toggle} />}
     </header>
   );
 }

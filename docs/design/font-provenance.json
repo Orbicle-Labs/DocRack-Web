@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-12",
+  "packages": ["@fontsource-variable/manrope@5.3.0", "@fontsource/instrument-serif@5.3.0"],
+  "licence": "SIL OFL 1.1; original licence files included beside fonts",
+  "files": [
+    {
+      "file": "instrument-serif-italic.woff2",
+      "bytes": 22128,
+      "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7"
+    },
+    {
+      "file": "instrument-serif-regular.woff2",
+      "bytes": 21032,
+      "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31"
+    },
+    {
+      "file": "manrope-latin-ext.woff2",
+      "bytes": 15120,
+      "sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb"
+    },
+    {
+      "file": "manrope-variable.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    }
+  ]
+}

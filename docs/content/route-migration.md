@@ -109,3 +109,7 @@ Conditional routes remain unpublished: `/test-packs`, `/test-packs/[slug]`, `/re
 ## Phase 1 implementation evidence
 
 The sixteen published URLs remain unchanged. The sitemap now reads the explicit route registry independently of navigation. The seven future destinations are marked planned/non-indexable; none has a page or active link. Only the three existing redirects are active. Baseline browser checks cover all current pages, query-preserving redirects, API GET 405 and a usable 404. See [Phase 1 QA](../qa/phase-1.md). All nineteen redesigned-page launch acceptance entries above remain pending.
+
+## Phase 2 prototype adoption — 12 September 2026
+
+The existing `/`, `/product` and `/book-demo` routes now serve reviewable new-design prototypes. `/#workflow` opens the synthetic source-review scene. No public route was added or consolidated; the sixteen published registry entries, sitemap and active redirects are unchanged. Header/footer Product and Solutions disclosures use only published existing destinations. The internal reference board and screenshots live under `docs/design/`, outside public route delivery. Full homepage/page/redirect migrations remain Phases 4–5; Phase 2 does not clear their content acceptance.

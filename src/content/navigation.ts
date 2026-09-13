@@ -6,8 +6,7 @@ export interface NavItem {
 }
 
 /**
- * Existing navigation preserved during Phase 1. The new Product/Solutions
- * disclosures are Phase 2/5 work. PublishedPath prevents links to planned pages.
+ * Navigation includes published paths only. Product and Solutions disclosures use the corresponding footer groups.
  */
 export const primaryNav: NavItem[] = [
   { label: 'Product', href: '/product' },

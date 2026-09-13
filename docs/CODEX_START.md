@@ -40,6 +40,8 @@ Phase 0 creates an evidence-backed starting point. The first runtime changes hap
 
 ## Start the next phase after reviewing the result
 
+Current handoff (13 September 2026): Phase 2's local prototype gate is complete and the user requested its commit. Review [the direction and screenshots](design/direction.md). The next authorised session should execute **Phase 3 only**, preserving the Phase 2 implementation and any subsequent user changes. Use the prompt below with that scope; do not commit later work, push, deploy or modify live services without a separate request. Current product release/capture/export evidence remains to be established.
+
 Use this in the next session:
 
 ```text

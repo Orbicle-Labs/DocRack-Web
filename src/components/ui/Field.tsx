@@ -13,11 +13,7 @@ import { cn } from '@/lib/utils';
  * input boundary is a control boundary and WCAG 1.4.11 wants 3:1 for it.
  */
 
-const CONTROL_BASE =
-  'w-full rounded-button border bg-surface-1 px-3.5 text-body text-ink ' +
-  'transition-[border-color,box-shadow] duration-fast ease-out ' +
-  'placeholder:text-muted hover:border-ink-700 ' +
-  'disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted';
+const CONTROL_BASE = 'v2-field';
 
 /** Invalid state is a border colour AND an inner ring — colour alone fails 1.4.1. */
 function stateClasses(invalid?: boolean) {
@@ -54,13 +50,13 @@ export function Field({
 }: FieldProps) {
   return (
     <div className={cn('flex flex-col gap-1.5', className)}>
-      <label htmlFor={htmlFor} className="text-body-sm font-medium text-ink">
+      <label htmlFor={htmlFor} className="v2-field-label">
         {label}
         {optional && <span className="ml-1.5 font-normal text-muted">(optional)</span>}
       </label>
 
       {hint && (
-        <p id={`${htmlFor}-hint`} className="text-caption text-muted">
+        <p id={`${htmlFor}-hint`} className="v2-field-hint">
           {hint}
         </p>
       )}

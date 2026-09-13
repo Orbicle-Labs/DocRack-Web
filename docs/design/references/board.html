@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DocRack — Evidence, in focus / original reference board</title>
+    <style>
+      @font-face {
+        font-family: Manrope;
+        src: url(../../../public/fonts/manrope-variable.woff2);
+        font-weight: 200 800;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Instrument;
+        src: url(../../../public/fonts/instrument-serif-regular.woff2);
+        font-display: swap;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f5f2eb;
+        color: #182823;
+        font:
+          16px/1.55 Manrope,
+          Arial,
+          sans-serif;
+      }
+      main {
+        max-width: 1360px;
+        margin: auto;
+        padding: 56px;
+      }
+      h1 {
+        font-size: 76px;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        font-weight: 500;
+        max-width: 800px;
+        margin: 32px 0;
+      }
+      h1 em {
+        font:
+          normal 90px/1 Instrument,
+          Georgia,
+          serif;
+      }
+      .label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-weight: 650;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #77857a;
+        padding-bottom: 22px;
+      }
+      .intro {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        align-items: end;
+      }
+      .intro p {
+        max-width: 350px;
+        margin-bottom: 36px;
+      }
+      .board {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 24px;
+        margin-block: 32px;
+      }
+      .composition {
+        background: #153c31;
+        color: #f5f7ee;
+        padding: 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+      .composition h2 {
+        font-size: 38px;
+        font-weight: 500;
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+      .paper {
+        background: white;
+        color: #182823;
+        padding: 26px;
+        align-self: center;
+        box-shadow: 10px 12px 0 #ffffff18;
+      }
+      .paper p {
+        font-size: 13px;
+      }
+      .amount {
+        font-size: 42px;
+        letter-spacing: -0.05em;
+      }
+      .highlight {
+        background: #d9ed91;
+        padding: 12px;
+        font-size: 13px;
+      }
+      .swatches {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .swatch {
+        padding: 24px;
+        min-height: 126px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 13px;
+        border: 1px solid #d5d9cf;
+      }
+      .ivory {
+        background: #f5f2eb;
+      }
+      .forest {
+        background: #153c31;
+        color: #f5f7ee;
+      }
+      .citron {
+        background: #d9ed91;
+      }
+      .white {
+        background: white;
+      }
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        padding-block: 40px;
+        border-block: 1px solid #77857a;
+      }
+      .principles h2 {
+        font-size: 22px;
+        font-weight: 550;
+      }
+      .principles p {
+        font-size: 14px;
+        color: #56635b;
+      }
+      .samples {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-block: 40px;
+      }
+      .samples h2 {
+        font-size: 30px;
+        font-weight: 500;
+      }
+      .serif {
+        font:
+          48px Instrument,
+          Georgia,
+          serif;
+      }
+      .notes {
+        font-size: 13px;
+        color: #56635b;
+        max-width: 100ch;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 4px;
+      }
+      li {
+        margin-block: 8px;
+      }
+      @media (max-width: 800px) {
+        main {
+          padding: 28px;
+        }
+        h1 {
+          font-size: 46px;
+        }
+        h1 em {
+          font-size: 56px;
+        }
+        .intro {
+          display: block;
+        }
+        .board,
+        .samples,
+        .principles {
+          grid-template-columns: 1fr;
+        }
+        .composition {
+          grid-template-columns: 1fr;
+        }
+        .intro p {
+          max-width: none;
+        }
+        header {
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <strong>DocRack / Design study 02</strong
+        ><span class="label">12 September 2026 · Original composition</span>
+      </header>
+      <div class="intro">
+        <h1>Evidence,<br /><em>in focus.</em></h1>
+        <p>
+          A considered publication about audit work. Spacious language on ivory; a precise source
+          highlight inside a forest-green evidence chapter.
+        </p>
+      </div>
+      <div class="board">
+        <section class="composition" aria-label="Original composition sketch">
+          <div>
+            <p class="label">Composition study</p>
+            <h2>A result.<br />Its source.<br />Your judgement.</h2>
+            <p>One inspectable relationship earns the space.</p>
+          </div>
+          <div class="paper">
+            <p>DEMO-0042 · Amount mismatch</p>
+            <div class="amount">₹5,000</div>
+            <p>Difference from the approved PO</p>
+            <div class="highlight">Subtotal → exact source location</div>
+            <p>Synthetic Policy v3 · §4.2<br />Awaiting reviewer confirmation</p>
+          </div>
+        </section>
+        <section class="swatches" aria-label="Selected palette">
+          <div class="swatch ivory"><strong>Warm ivory</strong><span>#F5F2EB / canvas</span></div>
+          <div class="swatch forest">
+            <strong>Forest</strong><span>#153C31 / evidence chapter</span>
+          </div>
+          <div class="swatch white">
+            <strong>Paper white</strong><span>#FFFFFF / source surface</span>
+          </div>
+          <div class="swatch citron">
+            <strong>Restrained citron</strong><span>#D9ED91 / selected evidence</span>
+          </div>
+        </section>
+      </div>
+      <section class="principles">
+        <div>
+          <p class="label">01 / Editorial split</p>
+          <h2>Scale makes the opening.</h2>
+          <p>
+            Seven columns of clear category and outcome; five columns for one legible exception. On
+            phones, the CTA precedes the evidence.
+          </p>
+        </div>
+        <div>
+          <p class="label">02 / Evidence chapter</p>
+          <h2>Detail earns attention.</h2>
+          <p>
+            A result and an exact source sit side by side. Six labelled states, source versions and
+            review boundaries remain visible.
+          </p>
+        </div>
+        <div>
+          <p class="label">03 / Procedure rows</p>
+          <h2>Structure carries the explanation.</h2>
+          <p>
+            Scope, logic and control form compact rows. Reserve cards for distinct selectable
+            things. No dashboard collage.
+          </p>
+        </div>
+      </section>
+      <div class="samples">
+        <div>
+          <p class="label">Manrope / variable 200–800</p>
+          <h2>From audit evidence to answers you can review.</h2>
+          <p>Aranya Office Supplies · Asha Rao<br />1,20,000 / 1,25,000 / DEMO-0042</p>
+          <p class="serif">Keep the judgement.</p>
+        </div>
+        <div>
+          <p class="label">Reference observations → original decisions</p>
+          <ul>
+            <li>
+              <a href="https://linear.app/">Linear</a>: concrete interface examples → one readable
+              record.
+            </li>
+            <li>
+              <a href="https://trullion.com/">Trullion</a>: category and demo action → clarity
+              before depth.
+            </li>
+            <li>
+              <a href="https://white-desert.com/">White Desert</a>: an experience with room to
+              breathe → scale and space for evidence.
+            </li>
+            <li>
+              <a href="https://retool.com/">Retool</a>: capability and evaluation context → human
+              responsibilities beside the example.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="notes">
+        Reference page content rechecked on 12 September 2026; these are design interpretations, not
+        conversion findings or a new rendered/mobile audit of those sites. This board is original
+        HTML/CSS; no reference imagery, copy, layout or code was reproduced. Its financial example
+        is invented. Local fonts are SIL OFL 1.1; licence files accompany the fonts. The board is an
+        internal review artifact, not a published route or product capture.
+      </p>
+    </main>
+  </body>
+</html>

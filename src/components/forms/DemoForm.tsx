@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -123,8 +124,8 @@ export function DemoForm() {
         <CheckCircle2 size={28} className="text-success" aria-hidden="true" />
         <h2 className="mt-4 text-h3">Request received.</h2>
         <p className="mt-3 max-w-prose text-body text-muted">
-          We will reply from a docrack.ai address on the next working day to arrange a time. If it
-          is urgent, reply to that email and say so.
+          Thank you for your interest. Your demo request has been received. Our team will follow up
+          to discuss your workflow.
         </p>
         <Button
           variant="secondary"
@@ -163,7 +164,7 @@ export function DemoForm() {
           htmlFor="email"
           label="Work email"
           error={errors.email?.message}
-          hint="We reply to this address — a personal one slows the response down."
+          hint="The address our team can use to follow up."
         >
           <Input
             id="email"
@@ -189,7 +190,7 @@ export function DemoForm() {
           htmlFor="auditCount"
           label="Audits run each year"
           error={errors.auditCount?.message}
-          hint="Roughly. It tells us which parts of the product to show you."
+          hint="An approximate range helps us understand your team."
         >
           <Select
             id="auditCount"
@@ -224,8 +225,11 @@ export function DemoForm() {
       </Button>
 
       <p className="mt-4 text-caption text-muted">
-        We use these details to arrange the demo and follow up about DocRack. No newsletter, and we
-        do not pass them on.
+        We use these details to respond to your enquiry. Read our{' '}
+        <Link href="/privacy" className="underline underline-offset-4">
+          privacy notice
+        </Link>{' '}
+        for information about website data handling.
       </p>
     </form>
   );

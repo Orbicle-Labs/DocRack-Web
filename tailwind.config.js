@@ -43,18 +43,18 @@ module.exports = {
       // Never write `bg-brand/10`: brand is a var and the modifier silently
       // produces nothing. Use the ramp instead.
       colors: {
-        ink: { DEFAULT: 'var(--color-ink)', 900: '#10141c', 800: '#2a3140', 700: '#444d5d' },
+        ink: { DEFAULT: 'var(--color-ink)', 900: '#182823', 800: '#294438', 700: '#466052' },
         navy: 'var(--color-navy)',
         brand: {
           DEFAULT: 'var(--color-brand)',
           hover: 'var(--color-brand-hover)',
           onInk: 'var(--color-brand-on-ink)',
-          50: '#f6f8fe',
-          100: '#f2f5fd',
-          150: '#eaeefb', // brand text on this = 5.34:1
-          200: '#dde4f9',
-          300: '#cbd6f6',
-          400: '#a9bbf0',
+          50: '#f5f7ee',
+          100: '#eef2e9',
+          150: '#e5ecdf', // brand text on this = 5.34:1
+          200: '#d5e0cc',
+          300: '#c6d6bc',
+          400: '#aec79f',
         },
         accent: { DEFAULT: 'var(--color-accent)', hover: 'var(--color-accent-hover)' },
         canvas: 'var(--color-canvas)',
@@ -72,17 +72,17 @@ module.exports = {
         },
         muted: 'var(--color-muted)',
         neutral: {
-          25: '#fbfcfd',
-          50: '#f6f7f9',
-          100: '#eef0f4',
-          200: '#dfe3ea',
-          300: '#c3cbd8',
-          400: '#9aa3b4',
-          500: '#737e91',
-          600: '#5b6577',
-          700: '#444d5d',
-          800: '#2a3140',
-          900: '#10141c',
+          25: '#faf9f5',
+          50: '#f5f2eb',
+          100: '#ebe8df',
+          200: '#d5d9cf',
+          300: '#b8c1b6',
+          400: '#8d9c8e',
+          500: '#728573',
+          600: '#56635b',
+          700: '#466052',
+          800: '#294438',
+          900: '#182823',
         },
         // *-strong variants clear AA on their own tint; the base §8 values do
         // not. Named `strong`, not `text` — `text-danger-text` reads badly and
@@ -149,8 +149,8 @@ module.exports = {
       },
 
       fontFamily: {
-        sans: ['var(--font-inter)', ...SANS_FALLBACK],
-        mono: ['var(--font-jetbrains)', ...MONO_FALLBACK],
+        sans: ['var(--font-manrope)', ...SANS_FALLBACK],
+        mono: ['var(--font-manrope)', ...MONO_FALLBACK],
       },
 
       borderRadius: {

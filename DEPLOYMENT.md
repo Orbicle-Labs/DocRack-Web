@@ -4,7 +4,7 @@
 
 This runbook describes the existing website deployment configuration and the planned rebuild release gates. It does not certify the current cloud state, domain mapping, secret values, Sheet sharing, or email delivery. Verify those facts when performing operations.
 
-Phase 1 migrated the runtime and source boundaries and added mocked unit/browser tests. Shared limiting and the analytics adapter remain Phase 6 work. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
+Phase 1 migrated the runtime and source boundaries and added mocked unit/browser tests. Phase 2 added the visual system and locally served licensed fonts; the build no longer downloads Google fonts. Its standalone image and browser checks are local validation only, not a deployment. Shared limiting and the analytics adapter remain Phase 6 work. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
 
 ## 1. Configured deployment topology
 

@@ -5,41 +5,18 @@ import { cn } from '@/lib/utils';
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-// `secondary` and `ghost` inherit their foreground from the surrounding
-// Section tone (text-current) rather than hardcoding text-ink, so they stay
-// legible on <Section tone="ink"> without the caller overriding anything.
-//
-// secondary uses line-interactive, not line-strong: a control edge has to
-// clear 3:1 (WCAG 1.4.11) and line-strong is 1.63:1 on white.
 const VARIANTS: Record<ButtonVariant, string> = {
-  primary:
-    'bg-brand text-white border border-transparent shadow-key ' +
-    'hover:bg-brand-hover hover:shadow-key-hover active:shadow-press',
-  secondary:
-    'bg-transparent text-current border border-line-interactive ' +
-    'hover:border-current hover:bg-surface-2 hover:shadow-1',
-  ghost: 'bg-transparent text-current border border-transparent hover:bg-surface-2',
-  link:
-    'bg-transparent text-accent border border-transparent hover:text-accent-hover ' +
-    'underline underline-offset-[3px] decoration-1 hover:decoration-2',
+  primary: 'v2-button-primary',
+  secondary: 'v2-button-secondary',
+  ghost: 'v2-button-ghost',
+  link: 'v2-button-link',
 };
-
 const SIZES: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3.5 text-caption gap-1.5',
-  md: 'h-11 px-5 text-body-sm gap-2',
-  lg: 'h-[52px] px-6 text-body gap-2',
+  sm: 'v2-button-sm',
+  md: 'v2-button-md',
+  lg: 'v2-button-lg',
 };
-
-const BASE =
-  'u-press inline-flex items-center justify-center rounded-button font-medium leading-none ' +
-  // Transition only what changes — transition-all animates layout properties
-  // and is a jank source.
-  'transition-[background-color,border-color,box-shadow,color,transform] ' +
-  'duration-fast ease-out whitespace-nowrap active:translate-y-[0.5px] ' +
-  // Grey out rather than fade: a 55%-opacity brand fill just reads as a
-  // lighter blue, which is not a recognisable disabled state.
-  'disabled:pointer-events-none disabled:border-transparent disabled:shadow-none ' +
-  'disabled:bg-line disabled:text-muted disabled:translate-y-0';
+const BASE = 'v2-button';
 
 interface CommonProps {
   variant?: ButtonVariant;

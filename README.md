@@ -6,7 +6,7 @@ This repository contains the **public website and its demo/support enquiry backe
 
 ## Rebuild status and project documents
 
-Phase 1 has implemented the supported runtime, source boundaries, and baseline tests. The current presentation is preserved for this mechanical migration; the new visual system starts in Phase 2. Check [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) for the latest actual state.
+Phase 2 has implemented the new visual system and reviewable homepage/source-review, product and demo prototypes. The full content/capture and remaining page rebuild phases are still pending. Review [the design direction and screenshots](docs/design/direction.md). Check [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) for the latest actual state.
 
 | Document                                                                           | Purpose                                                                                  |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@ Versions below are the lockfile/configuration snapshot checked on 12 September 2
 | -------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- |
 | Framework      | Next.js 16.3.4, React/React DOM 19.3.0, App Router                | New visual composition and page content                        |
 | Runtime        | Node 24.21.0 in engines, .nvmrc, both Dockerfiles and CI          | Recheck security patches before release                        |
-| Language/style | Strict TypeScript 5.9.3, Tailwind 3.4.19                          | New tokens/fonts/primitives in Phase 2                         |
+| Language/style | Strict TypeScript 5.9.3, Tailwind 3.4.19, new ivory/forest tokens | Final page adoption in Phases 3–5                              |
 | Source         | src/app, src/components, src/content, src/lib                     | New content and demos in Phases 3–5                            |
 | Forms          | Existing React Hook Form/Zod contracts and inline/Sonner feedback | Shared schema and reliability hardening in Phase 6             |
 | Integrations   | Server-only Google auth 11.0.2, Sheets and best-effort Resend     | Shared limiter, provider timeouts and safe logging in Phase 6  |
@@ -43,7 +43,8 @@ Use the exact Node version in [.nvmrc](.nvmrc), for example with your Node versi
 
 - `src/app/layout.tsx`: document markup, fonts, metadata and global providers.
 - `src/app/(marketing)/layout.tsx`: header, one main landmark, footer and skip link. Existing public paths are unchanged.
-- `src/content/pages/`: existing typed copy, pending replacement. `src/content/routes.ts` records sixteen published pages and seven planned destinations; the sitemap uses publication status, independently of navigation.
+- `src/styles/`, `src/components/demos/`, `src/content/demos/p2p.ts`: Phase 2 visual system and clearly labelled synthetic source-review prototypes.
+- `src/content/pages/`: inherited typed copy on the remaining pages, pending replacement. `src/content/routes.ts` records sixteen published pages and seven planned destinations; the sitemap uses publication status, independently of navigation.
 - `src/lib/server/`: Sheets, notifications and the current process-local limiter, guarded by `server-only`.
 - `src/lib/forms/submit.ts`, `src/lib/hooks/`, `src/lib/seo/`: browser submission, headless interaction and SEO helpers. `@/*` resolves into `src/*`.
 
@@ -62,7 +63,7 @@ Open [localhost:3000](http://localhost:3000). Stop the dev server with Ctrl+C.
 
 Production form credentials are not required to render pages. With no valid Sheets configuration, a genuine form submission cannot be saved. Do not use production credentials for automated tests or routine visual checks.
 
-Next's Google font integration may need internet access at build time even though font requests are served locally at runtime. Record restricted-network failures accurately; do not disable validation to hide them.
+Manrope and Instrument Serif are licensed, vendored WOFF2 files in `public/fonts/`, loaded with `next/font/local`. Neither build nor runtime requires a font-provider connection.
 
 ### Optional local integration configuration
 
@@ -170,4 +171,4 @@ The rebuild includes claim verification, privacy-text correction, shared abuse c
 
 The checked-in workflow runs checks for pull requests and deploys qualifying main-branch push/manual runs. **Pushing or merging to main can release the site.** Consult [DEPLOYMENT.md](DEPLOYMENT.md) before release work.
 
-Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). The next implementation phase is Phase 2: the new visual system and reviewable prototypes. Phase 1 verification is recorded in [docs/qa/phase-1.md](docs/qa/phase-1.md).
+Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). Phase 2's local prototype gate is complete; review [the direction and screenshots](docs/design/direction.md). The next implementation phase, when authorised, is Phase 3: source-grounded content and asset production. Validation is recorded in [Phase 2 QA](docs/qa/phase-2.md); [Phase 1 QA](docs/qa/phase-1.md) retains foundation evidence.

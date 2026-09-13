@@ -1,200 +1,178 @@
 import Link from 'next/link';
-import { ArrowRight, Check } from 'lucide-react';
-import { Card, Eyebrow, Heading, ProductFrame, Section } from '@/components/ui';
-import { PageHero } from '@/components/sections/PageHero';
-import { LedgerRows } from '@/components/sections/LedgerRows';
-import { CtaSection } from '@/components/sections/CtaSection';
-import { productPage, recipesPage } from '@/content/pages/product';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui';
+import { Disclosure } from '@/components/ui/Disclosure';
+import { ProductFigure } from '@/components/ui/ProductFigure';
 import { buildMetadata } from '@/lib/seo/metadata';
-
+import { p2p } from '@/content/demos/p2p';
 export const metadata = buildMetadata({
   title: 'Product',
   description:
-    'DocRack holds the evidence, the procedure and the result together — so the working paper ' +
-    'is a by-product of doing the work rather than a document assembled afterwards.',
+    'Explore how evidence, an Audit Test Recipe, a versioned Run and human review fit together in an illustrative fieldwork example.',
   path: '/product',
 });
-
-/** The four capability pages, as the only Card cluster on this page. */
-const AREAS = [
-  {
-    href: '/documents',
-    title: 'Documents',
-    body: 'Evidence in one engagement, classified by the role it plays, with every extracted value keeping its page and cell.',
-  },
-  {
-    href: '/reconciliation-and-checks',
-    title: 'Reconciliation and checks',
-    body: 'Matching across sources, deterministic calculations, stated tolerances and policy checks, across the whole population.',
-  },
-  {
-    href: '/review-and-findings',
-    title: 'Review and findings',
-    body: 'Exceptions queued with their evidence, five outcomes rather than two, and every reviewer decision on the record.',
-  },
-  {
-    href: '/working-papers',
-    title: 'Working papers',
-    body: 'Excel and PDF generated from the run, with the exception register, evidence links and frozen versions intact.',
-  },
+const steps = [
+  ['Documents', 'Evidence with a role and a source location.'],
+  ['Tests', 'An Audit Test Recipe defines what to check.'],
+  ['Runs', 'One execution, with its own version snapshot.'],
+  ['Review', 'Resolve uncertainty beside the source.'],
+  ['Findings', 'Group confirmed exceptions into an issue.'],
+  ['Working Papers', 'Carry the procedure and decisions forward.'],
 ];
-
 export default function ProductPage() {
   return (
-    <>
-      <PageHero
-        eyebrow={productPage.hero.eyebrow}
-        heading={productPage.hero.heading}
-        sub={productPage.hero.sub}
-        secondary={{ label: 'See Audit Test Recipes', href: '/product/audit-test-recipes' }}
-        visual={{
-          src: '/product/engagement-dashboard.png',
-          alt: 'Engagement dashboard showing active audit tests, run status, open exceptions and working-paper progress across an engagement',
-          caption: 'One engagement, from evidence through to sign-off',
-        }}
-      />
-
-      <LedgerRows
-        eyebrow="End to end"
-        heading="From evidence to working paper, in one traceable line."
-        rows={productPage.stages}
-        tone="canvas"
-        spacing="open"
-      />
-
-      {/* Archetype G — the only Cards on the page. */}
-      <Section tone="surface" spacing="default">
-        <div>
-          <Eyebrow variant="rule">Explore</Eyebrow>
-          <Heading level={2} className="max-w-[26ch]">
-            Four areas, one continuous record.
-          </Heading>
-        </div>
-
-        {/* `relative` on the Card is load-bearing: the title link stretches to
-            cover the whole card via after:inset-0, so the card must be its
-            offset parent. Without it the overlay covers the viewport. */}
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {AREAS.map((area) => (
-            <Card key={area.href} as="article" padding="lg" interactive className="relative">
-              <h3 className="text-h4">
-                <Link
-                  href={area.href}
-                  className="transition-colors duration-fast ease-out after:absolute after:inset-0 group-hover:text-accent"
-                >
-                  {area.title}
-                </Link>
-              </h3>
-              <p className="mt-3 text-body-sm text-muted">{area.body}</p>
-              <span
-                aria-hidden="true"
-                className="mt-5 inline-flex items-center gap-1.5 text-body-sm text-accent"
-              >
-                Read more
-                <ArrowRight size={15} className="shrink-0" />
-              </span>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* Archetype D — Audit Test Recipes, the idea the rest depends on. */}
-      <Section tone="canvas" spacing="open">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-x-6">
-          <div className="lg:col-span-5">
-            <Eyebrow>{recipesPage.hero.eyebrow}</Eyebrow>
-            <Heading level={2}>{recipesPage.hero.heading}</Heading>
-            <p className="mt-5 max-w-prose text-body-lg text-muted">{recipesPage.hero.sub}</p>
-            <Link
-              href="/product/audit-test-recipes"
-              className="mt-7 inline-flex items-center gap-1.5 text-body text-accent underline decoration-1 underline-offset-[3px] hover:decoration-2"
+    <div className="v2">
+      <section className="design-container product-opening">
+        <p className="eyeline">Product / The fieldwork system</p>
+        <div className="product-heading">
+          <h1>
+            One procedure.
+            <br />A connected
+            <br />
+            <span className="editorial">record of work.</span>
+          </h1>
+          <div>
+            <p>
+              Documents tell part of the story. The Audit Test Recipe defines the question, a Run
+              records the execution, and review gives the result its context.
+            </p>
+            <Button
+              href="/book-demo"
+              size="lg"
+              iconRight={<ArrowRight size={18} aria-hidden="true" />}
             >
-              How a recipe is built
-              <ArrowRight size={16} className="shrink-0" aria-hidden="true" />
+              Book a demo
+            </Button>
+          </div>
+        </div>
+        <ol className="workflow-map">
+          {steps.map(([title, body], i) => (
+            <li key={title}>
+              <span className="eyeline">0{i + 1}</span>
+              <h2>{title}</h2>
+              <p>{body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <section className="recipe-chapter">
+        <div className="design-container recipe-layout">
+          <div>
+            <p className="eyeline">Inside Tests / Audit Test Recipe</p>
+            <h2>
+              Your procedure,
+              <br />
+              <span className="editorial">made explicit.</span>
+            </h2>
+            <p>
+              Extract, Reconcile and Checks belong inside Tests. The Recipe sets the scope, source
+              hierarchy, calculations and reviewer requirements.
+            </p>
+            <Link className="text-action" href="/product/audit-test-recipes">
+              Explore all 14 components <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </div>
-
-          <div className="lg:col-start-7 lg:col-span-6">
-            <ProductFrame
-              src="/product/recipe-builder.png"
-              alt="Editing an Audit Test Recipe: each rule has an explicit measure, operator and tolerance, alongside a recipe-health checklist and approval route"
-              variant="real"
-              chrome="none"
-              aspect="16/10"
-              caption="Configuring rules and tolerances"
-            />
-          </div>
+          <ProductFigure caption="Representative Recipe and Run. Fixed synthetic versions; no live processing.">
+            <div className="recipe-sheet">
+              <p className="eyeline">{p2p.recipe}</p>
+              <h3>
+                Compare invoice subtotal
+                <br />
+                with approved PO amount.
+              </h3>
+              <dl className="recipe-rows">
+                <div>
+                  <dt>Scope</dt>
+                  <dd>
+                    PO-backed invoices · Q1 FY27
+                    <br />
+                    Invoice, PO, goods receipt and ERP evidence
+                  </dd>
+                </div>
+                <div>
+                  <dt>Logic</dt>
+                  <dd>
+                    Approved PO is the amount authority.
+                    <br />
+                    Absolute difference ≤ ₹1.
+                    <br />
+                    {p2p.policy}
+                  </dd>
+                </div>
+                <div>
+                  <dt>Control</dt>
+                  <dd>
+                    Recipe approved by reviewer in this fixture.
+                    <br />
+                    Exceptions await reviewer confirmation.
+                  </dd>
+                </div>
+              </dl>
+              <div className="run-snapshot">
+                <p className="eyeline">Run / {p2p.run}</p>
+                <p>
+                  Recipe v3 · Policy v3 · Inputs v1
+                  <br />
+                  Engine demo-1 · Model fixture-1
+                </p>
+                <p className="caption">
+                  Completed Run history is immutable. A new Recipe version creates new work; it does
+                  not rewrite this snapshot.
+                </p>
+              </div>
+            </div>
+          </ProductFigure>
         </div>
-      </Section>
-
-      {/* Archetype D reversed, on ink — the visual leads. */}
-      <Section tone="ink" spacing="open">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-x-6">
-          <div className="lg:col-span-7">
-            <ProductFrame
-              src="/product/knowledge-hub.png"
-              alt="Knowledge Hub listing policies, SOPs and regulatory requirements with their source, version, effective date and applicability"
-              variant="real"
-              chrome="none"
-              aspect="16/10"
-              caption="Policies and requirements, versioned and citable"
-            />
-          </div>
-
-          <div className="lg:col-start-9 lg:col-span-4">
-            <Eyebrow>{productPage.knowledge.eyebrow}</Eyebrow>
-            <Heading level={2}>{productPage.knowledge.heading}</Heading>
-            <p className="mt-5 text-body-lg text-muted">{productPage.knowledge.body}</p>
-            <ul className="mt-8 border-b border-line">
-              {productPage.knowledge.points.map((point) => (
-                <li
-                  key={point}
-                  className="flex gap-3 border-t border-line py-3.5 text-body-sm text-muted"
-                >
-                  <Check size={15} className="mt-1 shrink-0 text-accent" aria-hidden="true" />
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
+      </section>
+      <section className="design-container responsibility-section">
+        <div>
+          <p className="eyeline">Assistance and accountability</p>
+          <h2>
+            A clear place
+            <br />
+            for human judgement.
+          </h2>
+          <p>
+            Illustrative product model. Review stays incomplete until a person records a decision.
+          </p>
         </div>
-      </Section>
-
-      {/* Copilot lives here rather than on its own route: one screen and four
-          claims is not a page, and §9 rules out thin routes cut to fill a nav. */}
-      <Section tone="surface" spacing="open" id="copilot">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-x-6">
-          <div className="lg:col-span-5">
-            <Eyebrow>{productPage.copilot.eyebrow}</Eyebrow>
-            <Heading level={2}>{productPage.copilot.heading}</Heading>
-            <p className="mt-5 max-w-prose text-body-lg text-muted">{productPage.copilot.body}</p>
-            <ul className="mt-8 border-b border-line">
-              {productPage.copilot.points.map((point) => (
-                <li
-                  key={point}
-                  className="flex gap-3 border-t border-line py-3.5 text-body-sm text-muted"
-                >
-                  <Check size={15} className="mt-1 shrink-0 text-accent" aria-hidden="true" />
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-start-7 lg:col-span-6">
-            <ProductFrame
-              src="/product/copilot.png"
-              alt="Copilot answering a question about an engagement document, with the citation and source page shown beside the answer"
-              variant="real"
-              chrome="none"
-              aspect="16/10"
-              caption="Answers carry the document and page behind them"
-            />
-          </div>
+        <div>
+          <Disclosure title="AI assists. Code compares.">
+            <p>
+              AI can extract, explain and draft. Deterministic code applies the configured
+              arithmetic and comparisons. Copilot’s drafts require human approval.
+            </p>
+          </Disclosure>
+          <Disclosure title="An exception is not a finding.">
+            <p>
+              The ₹5,000 mismatch is a record-level exception. A reviewer may group related
+              confirmed exceptions into one finding, with criteria, condition and sign-offs.
+            </p>
+          </Disclosure>
+          <Disclosure title="Know what completed and what remains.">
+            <p>
+              For this single-check fixture: 200 received, 10 excluded, 190 eligible. Execution
+              completed for 180; 6 await evidence and 4 have processing errors. Completed outcomes:
+              157 Pass, 17 Fail, 6 Needs human review. Not applicable: 0. Completion does not
+              resolve human review.
+            </p>
+          </Disclosure>
+          <Disclosure title="Keep engagement and workspace context.">
+            <p>
+              Documents, Tests, Runs, Review, Findings and Working Papers sit in the engagement. The
+              workspace holds the reusable Test Library and versioned Knowledge Hub. Copilot assists
+              across this work.
+            </p>
+          </Disclosure>
         </div>
-      </Section>
-
-      <CtaSection heading={productPage.cta.heading} body={productPage.cta.body} />
-    </>
+      </section>
+      <section className="design-container product-end">
+        <h2>Start with the evidence.</h2>
+        <p>Inspect the amount mismatch and its exact page, cell and rule.</p>
+        <Button href="/#workflow" variant="secondary">
+          Explore the source-review example <ArrowRight size={18} aria-hidden="true" />
+        </Button>
+      </section>
+    </div>
   );
 }

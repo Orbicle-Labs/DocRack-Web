@@ -120,15 +120,4 @@ test('both hydrated forms submit the existing contracts with a mocked response',
   }
 });
 
-test('workflow keyboard selection works after the React migration', async ({ page }) => {
-  await page.goto('/');
-  const tabs = page.getByRole('tablist', { name: 'Workflow steps' }).getByRole('tab');
-  await tabs.first().focus();
-  await page.keyboard.press('ArrowRight');
-  await expect(tabs.nth(1)).toHaveAttribute('aria-selected', 'true');
-  await expect(tabs.nth(1)).toBeFocused();
-  await page.keyboard.press('End');
-  await expect(tabs.last()).toHaveAttribute('aria-selected', 'true');
-  await page.keyboard.press('ArrowRight');
-  await expect(tabs.first()).toHaveAttribute('aria-selected', 'true');
-});
+// Source/state keyboard behaviour replaces the retired workflow tabs in phase-2.spec.ts.
