@@ -1,4 +1,4 @@
-# DocRack — marketing website
+﻿# DocRack — marketing website
 
 DocRack is an AI-assisted internal-audit fieldwork platform for Indian enterprises. It turns company policies, regulations, audit procedures, documents, and data into repeatable tests, source-linked exceptions, findings, and review-ready working papers.
 
@@ -6,7 +6,7 @@ This repository contains the **public website and its demo/support enquiry backe
 
 ## Rebuild status and project documents
 
-Phase 3 adds typed copy/metadata and briefs for nineteen launch pages, shared synthetic fixtures, responsive illustrative assets, traced identity outputs and a new OG image using the Phase 2 direction. Genuine current-product captures/exports remain blocked by the user's instruction; full homepage/page adoption remains Phases 4–5. Review [the page briefs](docs/content/page-briefs.md), [asset board](docs/design/phase-3/index.html) and [current handoff](docs/CURRENT_PHASE.md). No founder visual approval is inferred.
+Phase 3 adds typed copy/metadata and briefs for nineteen launch pages, shared synthetic fixtures, responsive illustrative assets, traced identity outputs and a new OG image using the Phase 2 direction. Phase 4 implements the full homepage, six-step workflow and accessible source inspection using those labelled illustrations. Genuine current-product captures/exports remain blocked, and other-page adoption remains Phase 5. Review [the page briefs](docs/content/page-briefs.md), [asset board](docs/design/phase-3/index.html) and [current handoff](docs/CURRENT_PHASE.md). No founder visual approval is inferred.
 
 | Document                                                                           | Purpose                                                                                  |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -187,3 +187,20 @@ The rebuild includes claim verification, privacy-text correction, shared abuse c
 The checked-in workflow runs checks for pull requests and deploys qualifying main-branch push/manual runs. **Pushing or merging to main can release the site.** Consult [DEPLOYMENT.md](DEPLOYMENT.md) before release work.
 
 Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). Phase 2's local prototype gate is complete; review [the direction and screenshots](docs/design/direction.md). The next implementation phase, when authorised, is Phase 3: source-grounded content and asset production. Validation is recorded in [Phase 2 QA](docs/qa/phase-2.md); [Phase 1 QA](docs/qa/phase-1.md) retains foundation evidence.
+
+### Phase 4 homepage QA
+
+With the credential-free standalone image running on `127.0.0.1:3100`:
+
+```powershell
+$env:PLAYWRIGHT_BASE_URL = 'http://127.0.0.1:3100'
+npm run test:e2e
+npx playwright install firefox webkit
+npx playwright test --config=playwright.phase4.config.ts
+node scripts/measure-homepage.mjs
+Remove-Item Env:PLAYWRIGHT_BASE_URL
+```
+
+The default suite includes the homepage checks and all retained regressions. `playwright.phase4.config.ts` adds the focused homepage suite in Firefox and WebKit. Native device Safari and assistive-technology acceptance remain separate release work. If using this checkout's ignored browser cache, set `PLAYWRIGHT_BROWSERS_PATH` to the absolute `.local-tools/browsers` path for both installation and execution; the default browser cache may contain an older revision. Firefox may require a runner outside the filesystem sandbox to launch.
+
+`measure-homepage.mjs` refuses remote targets, blocks external/API requests, stubs analytics and records homepage resource sizes, gzip estimates, local layout shift, evidence bounds and focus return in `docs/qa/phase-4-measurements.json`. It does not post enquiries. Gzip estimates include the small walkthrough; no heavy media is loaded. Lighthouse results and conditions are recorded separately in [Phase 4 QA](docs/qa/phase-4.md). The asset/content checks remain part of `npm test`.

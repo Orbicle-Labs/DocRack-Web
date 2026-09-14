@@ -1,6 +1,6 @@
-# Public claims register — Phase 0 baseline and Phase 3 decisions
+﻿# Public claims register — Phase 0 baseline and Phase 3 decisions
 
-**Baseline reviewed:** 11 September 2026. **Phase 3 reviewed:** 13 September 2026. **Publication scope:** rebuilt marketing website, including metadata, structured data, captions, demos, downloadable files and form feedback. The original ledger is preserved below; the Phase 3 decision record supplements it. Existing page adoption remains Phases 4–5, except the new OG image and shared P2P fixture adapter.
+**Baseline reviewed:** 11 September 2026. **Phase 3 reviewed:** 13 September 2026. **Publication scope:** rebuilt marketing website, including metadata, structured data, captions, demos, downloadable files and form feedback. The original ledger is preserved below; the Phase 3 decision record supplements it. Homepage adoption is recorded below under Phase 4; other-page adoption remains Phase 5.
 
 ## Phase 3 publication decision — 13 September 2026
 
@@ -153,3 +153,21 @@ No existing capability was promoted to Verified available or Pilot. The followin
 | P2-06 | “This is an enquiry, not a calendar reservation”; request receipt and follow-up copy                                       | Demo page/form                                | Existing endpoint persists enquiry and emails internal team; existing contract mocks    | Verified website behaviour; no date, duration, visitor email or response SLA promised                 |
 
 The new homepage/product/demo prototypes omit the inherited unsupported programme, residency, integrations, response-time and no-sharing assertions. Those on other inherited pages remain later-phase replacements, not cleared claims. No downloadable sample or real product capture is claimed.
+
+## Phase 4 homepage adoption — 14 September 2026
+
+The user authorised independent homepage implementation from `49b000f` using labelled illustrations while genuine captures/export remain blocked. This changes publication scope for `/` only; it does not promote any capability to Verified available or Pilot. Phase 3's complete evidence gate remains **BLOCKED**.
+
+`src/content/pages/home.ts` adopts the homepage candidate from `launch.ts`, supplies the six-step transcript and procedure identities, and records the claim IDs used by the new chapters. `components/sections/home/` presents the same product definitions, with these publication treatments:
+
+| Homepage material                  | Claims                            | Public treatment                                                                                                                                                                 |
+| ---------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Opening and metadata               | C01, C18, C44                     | Audience/category plus an invitation to explore a worked illustration; no verified-release promise.                                                                              |
+| Documents, Recipe and Run          | C03, C04, C08, C09, C11, C14      | Invented sources and versions. Test defines a procedure; Run is its execution snapshot. Recipe approval is explicitly within the illustration.                                   |
+| Review and coverage                | C05, C06, C10, C13, C14, C32      | All six states; explicit population denominators; missing evidence/completeness qualification. The proposed reviewer note is not submitted; no override or sign-off is recorded. |
+| P2P, credit and IFC procedure rows | C17, C44                          | Separate fixture IDs, criteria and source roles. Possible exceptions, not current Pack availability or compliance claims.                                                        |
+| Finding and paper contents         | C13, C21, C22                     | Finding not raised; zero confirmed exceptions; Draft / review incomplete. Clearly labelled HTML contents, no genuine export or download link.                                    |
+| Governance and knowledge           | C11, C15, C16, C30, C31, C32, C33 | Product definitions and concrete evaluation questions; no deployed-control, residency or security guarantee.                                                                     |
+| Commercial action                  | C42                               | `/book-demo` requests a conversation, not a calendar reservation.                                                                                                                |
+
+The existing source-review selector retains six illustrative records. The Not applicable record is expressly outside DEMO-RUN-018. Advancing workflow steps does not change any record's result or approval. Legacy content on other routes remains governed by its earlier holds and Phase 5 adoption work. [Phase 4 QA](../qa/phase-4.md) records implementation acceptance separately from release readiness.

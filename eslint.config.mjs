@@ -15,6 +15,8 @@ export default defineConfig([
     '.claude/**',
     'playwright-report/**',
     'test-results/**',
+    'test-results-phase4/**',
+    'playwright-report-phase4/**',
   ]),
   {
     rules: {

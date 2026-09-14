@@ -29,4 +29,6 @@ docker-compose*.yml
 .local-tools
 test-results
 playwright-report
+test-results-phase4
+playwright-report-phase4
 *service-account*.json

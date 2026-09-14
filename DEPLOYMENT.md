@@ -255,3 +255,11 @@ Do not re-create DNS records, alter registrar settings, unlink billing, or re-pr
 Keep operational account emails, secret values, and unnecessary customer identifiers out of the public README. Store sensitive account/recovery information in the team's appropriate private system.
 
 No infrastructure, DNS, secrets, live enquiries, or notifications were changed by this documentation update.
+
+### Phase 4 — homepage local verification
+
+The full homepage uses labelled synthetic HTML scenes and an illustrative working-paper contents panel. Genuine capture/export acceptance remains blocked; no public sample is downloadable. The backend/runtime/deployment configuration is unchanged.
+
+The final image and exact evidence are recorded in [Phase 4 QA](docs/qa/phase-4.md). Run the normal Chromium regression suite, the focused `npx playwright test --config=playwright.phase4.config.ts` Firefox/WebKit suite, and `node scripts/measure-homepage.mjs` against the credential-free port-3100 container. The measurement command refuses remote targets and never submits forms. See README for browser-cache selection. Keep ports 3000/8000 and live integrations untouched.
+
+Homepage implementation acceptance does not close the genuine-product evidence, performance, legal, actual-device, assistive-technology or release gates. Three mobile Lighthouse reports are local lab evidence, not field INP/p75 or production verification.

@@ -1,6 +1,6 @@
 /** Publication is explicit and independent of navigation. Planned URLs stay private. */
 export const contentModules = {
-  homepage: 'src/content/pages/homepage.ts',
+  homepage: 'src/content/pages/home.ts',
   product: 'src/content/pages/product.ts',
   solutions: 'src/content/pages/solutions.ts',
   support: 'src/content/pages/support.ts',

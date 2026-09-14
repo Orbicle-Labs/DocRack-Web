@@ -156,3 +156,19 @@ The Phase 0 inventory remains historical. No still-used screenshot, icon or bran
 | `docs/design/screenshots/phase-2/*.png`                          | Local production website renders, 12 September 2026; fixed synthetic display data; no authenticated product commit                                        | 1440/768/390/320 widths; full pages and documented source crops; 1280 opening/focus/board extras | Internal review screenshots indexed in [direction](direction.md); not marketing product captures |
 
 Four WOFF2 files total 83,116 bytes. Font licences accompany redistribution. No generated raster or third-party media was required. Final product captures, export artifacts, asset registry production and publication rights remain Phase 3 work.
+
+## Phase 4 homepage composition — 14 September 2026
+
+The homepage now uses the existing `HeroEvidence` and `SourceReview` representative HTML interfaces plus new semantic HTML compositions in `components/sections/home/`. The canonical P2P/credit/IFC fixtures remain the data authority. All scenes are explicitly illustrative; no product capture, generated raster, private data, customer proof or working-paper artifact was added.
+
+| Composition                                       | Provenance and treatment                                                                                                      | Usage                       |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| Opening amount / source review                    | Existing Phase 2 HTML, now using Phase 3 fixture adapter; original invented invoice/PO/policy excerpts                        | `/` opening and Review step |
+| Documents / Recipe / Run / Finding / Paper stages | Original HTML from `fixtures.ts`, six-step transcript in `home.ts`; Run DEMO-RUN-018, Recipe v3, inputs v1, unresolved review | `/` six-step workflow       |
+| Recipe relationship and coverage                  | HTML scope/logic/control, policy-to-Recipe-to-Run relationship, explicit 180/190 completion and six-state counts              | `/` chapters 3–4            |
+| Procedure rows                                    | Separate DEMO-0042 / DEMO-LN-0011 / DEMO-JEA-002 sources and illustrative Run identities                                      | `/` use cases               |
+| Working-paper contents                            | Annotated HTML explanation; Draft / review incomplete; not an export or download                                              | `/` reviewer output         |
+
+No new public raster payload is needed. Existing Phase 3 PNG variants, original brand assets and font files remain byte-for-byte unchanged. The regular Instrument Serif face used by the homepage heading is preloaded on that route; no unused italic face is newly preloaded. Captured website renders in `docs/design/screenshots/phase-4/` are **QA artifacts of marketing illustrations**, not authenticated-product evidence. Their [review board](phase-4/index.html) and [measurement report](../qa/phase-4-measurements.json) record responsive rendering, font sizes and payloads.
+
+Twelve unused legacy homepage section components and their unused copy were retired after reference inspection. `ExplainerSequence`, `ExceptionHandoff`, their data, the shared step hook, solution data, and legacy company/security copy remain because other pages still consume them. The Phase 3 genuine capture/export requirement remains **BLOCKED**, including original-artifact confidentiality/macro/connection/source-link inspection.

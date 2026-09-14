@@ -5,6 +5,7 @@ import sharp from 'sharp';
 import { fixtures, formatMoney, resultStates } from '../../src/content/demos/fixtures';
 import { p2p } from '../../src/content/demos/p2p';
 import { launchPages } from '../../src/content/pages/launch';
+import { homeClaims, procedures } from '../../src/content/pages/home';
 import { assets } from '../../src/content/assets';
 import { routes } from '../../src/content/routes';
 
@@ -27,6 +28,11 @@ describe('Phase 3 publication controls', () => {
   });
   it('resolves every material copy claim into the source/status/decision register', () => {
     const register = readFileSync('docs/content/claims-register.md', 'utf8');
+    for (const id of homeClaims) expect(register).toMatch(new RegExp(`\\| ${id} +\\|`));
+    for (const procedure of procedures)
+      expect(
+        routes.some((route) => route.path === procedure.href && route.status === 'published')
+      ).toBe(true);
     for (const page of launchPages) {
       const claims = [
         ...page.claims,

@@ -1,27 +1,45 @@
 import { ArrowRight } from 'lucide-react';
+import localFont from 'next/font/local';
 import { Button } from '@/components/ui';
 import { HeroEvidence } from '@/components/demos/HeroEvidence';
-import { SourceReview } from '@/components/demos/SourceReview';
+import { Workflow } from '@/components/sections/home/Workflow';
+import {
+  RecipeChapter,
+  CoverageChapter,
+  UseCasesChapter,
+  OutputChapter,
+  GovernanceChapter,
+  FinalChapter,
+} from '@/components/sections/home/Chapters';
+import { home } from '@/content/pages/home';
+import '@/styles/home.css';
+// Preload only the regular accent used in the LCP heading, not the unused italic face.
+const openingAccent = localFont({
+  src: '../../../public/fonts/instrument-serif-regular.woff2',
+  display: 'swap',
+  weight: '400',
+  preload: true,
+  variable: '--font-editorial',
+  adjustFontFallback: false,
+  fallback: ['Georgia'],
+});
 import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata = buildMetadata({
-  title: 'AI-assisted internal-audit fieldwork',
-  description:
-    'From audit evidence to answers you can review. Explore an illustrative audit test, its sources and the human review boundary.',
+  title: home.metadata.title,
+  description: home.metadata.description,
   path: '/',
 });
 export default function HomePage() {
   return (
-    <div className="v2">
-      <section className="design-container home-opening">
+    <div className={`v2 ${openingAccent.variable}`}>
+      <section data-chapter="opening" className="design-container home-opening">
         <div className="opening-copy">
           <p className="eyeline">AI-assisted internal-audit fieldwork</p>
           <h1>
-            From audit evidence to answers you can <span className="editorial">review.</span>
+            From audit evidence to answers you can{' '}
+            <span className={`editorial ${openingAccent.className}`}>review.</span>
           </h1>
-          <p className="opening-lead">
-            Turn documents, spreadsheets and company policies into repeatable audit tests. Review
-            exceptions with their sources, then produce working papers your team can sign off.
-          </p>
+          <p className="opening-lead">{home.introduction}</p>
           <div className="opening-actions">
             <Button
               href="/book-demo"
@@ -38,26 +56,13 @@ export default function HomePage() {
         </div>
         <HeroEvidence />
       </section>
-      <SourceReview />
-      <section className="design-container prototype-close">
-        <p className="eyeline">The procedure behind the result</p>
-        <h2>
-          Define the test.
-          <br />
-          <span className="editorial">Keep the judgement.</span>
-        </h2>
-        <p>
-          An Audit Test Recipe brings scope, logic and review requirements together. A Run records
-          one execution of that approved version.
-        </p>
-        <Button
-          variant="secondary"
-          href="/product"
-          iconRight={<ArrowRight size={18} aria-hidden="true" />}
-        >
-          Explore the product
-        </Button>
-      </section>
+      <Workflow />
+      <RecipeChapter />
+      <CoverageChapter />
+      <UseCasesChapter />
+      <OutputChapter />
+      <GovernanceChapter />
+      <FinalChapter />
     </div>
   );
 }

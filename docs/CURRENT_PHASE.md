@@ -1,65 +1,61 @@
-# Marketing rebuild — current phase
+﻿# Marketing rebuild — current phase
 
 **Updated:** 14 September 2026
 
-**Current phase:** Phase 3 — Source-grounded content and asset production
+**Current phase:** Phase 4 — Homepage and signature workflow
 
-**Status:** Independent content and illustrative asset production implemented and locally verified. **The full Phase 3 exit gate is blocked on genuine current-product captures and a synthetic working-paper export**, as explicitly requested by the user. Phase 4 has not started.
+**Status:** Independent homepage implementation delivered using the expressly authorised labelled illustrations. All six functional exit conditions pass within the [recorded QA scope](qa/phase-4.md). **The handoff is qualified: mobile LCP misses its target; this is not an all-green release gate. Phase 3's full genuine capture/export gate remains BLOCKED.** Phase 5 has not started.
 
-**Last completed phase:** Phase 2, committed as `c3e12ff`. Its visual direction is retained; founder approval is not inferred.
+**Baseline / repository:** `49b000f` (independent Phase 3 content/assets), branch `redesign/marketing-v2`. The user authorised a local Phase 4 commit on 14 September. The implementation and this handoff are recorded in the commit containing this file; its parent is `49b000f`. This commit does not close the LCP or product-evidence gates. Last phase with its full gate completed: Phase 2, `c3e12ff`. No founder visual approval is inferred.
 
-**Next action:** Keep Phase 3 open. When the user supplies an approved synthetic capture/export set or specifically authorises an identified isolated synthetic session, verify product commit/Run/input/Recipe/approval provenance, obtain the required real captures/export, inspect private data, macros/connections and source references, reconcile all fixtures/captions, produce readable responsive treatments and rerun affected checks. Do not seed, reset or change the product. The user authorised a local Phase 3 commit on 14 September; it does not close the evidence gate. Do not start Phase 4, push or deploy under this handoff. A proposed [Phase 4 prompt](PHASE_4_PROMPT.md) is prepared for a later explicit instruction.
+**Exact next action:** review the [Phase 4 QA](qa/phase-4.md), [screenshots](design/phase-4/index.html) and committed implementation. Retain the mobile LCP optimisation task and blocked product-evidence intake. The user requested the local Phase 4 commit only. Stop before Phase 5, further commits, push, deployment or live-service changes. A [copyable Phase 5 prompt](PHASE_5_PROMPT.md) is prepared for a later instruction; it is not being executed now.
 
-## Implemented work
+## Implemented paths
 
-- `src/content/pages/launch.ts`: nineteen complete launch-page copy/metadata/FAQ/brief contracts, per-section claim references, proof assets and publication holds. [Readable briefs](content/page-briefs.md). Metadata titles exclude the inherited site suffix. No new page route or redirect activated; adoption remains Phase 4/5.
-- `src/content/readiness.ts`: separates format admission, extraction, preview and export evidence. [Claims register](content/claims-register.md) updated through C51; no product capability promoted to Verified available or Pilot.
-- [Read-only product evidence](content/product-evidence.md) and [source hashes](content/product-source-manifest.json): product HEAD `d7a92e4416d65c6beebc0348e702d3aa6a470820`, implementation/test source versus historical evaluation and current acceptance distinguished.
-- `src/content/demos/fixtures.ts`: separate P2P, credit and IFC illustrations with arithmetic, six-state counters, source roles/Traces, periods, policy/Recipe/input versions, explicit illustrative approval, unresolved result review and draft paper state. Existing `p2p.ts` is now an adapter; Phase 2 interaction/appearance preserved.
-- `scripts/produce-content-assets.mjs`, `src/content/assets.ts`, `public/illustrations/`, `public/brand/`: six code-rendered scenes × desktop/tablet/mobile/320px variants, traced existing mark/wordmark, six PNG favicon sizes and a proper ICO. Source/rights/bytes/dimensions/hash/limitations recorded in [asset manifest](design/phase-3/asset-manifest.json) and [asset register](design/assets.md). Existing active marks retained.
-- `src/app/opengraph-image.tsx`: new 1200×630 ivory/forest/citron OG image using existing identity and qualified headline. `src/lib/seo/metadata.ts` explicitly retains its OG/Twitter image across page metadata overrides.
-- `tests/unit/content-assets.test.ts`, `tests/e2e/phase-3.spec.ts`: content/fixture/provenance/brand/browser verification. `check-content`, `check-assets`, `assets:produce` commands added; existing Sharp 0.35.4 declared directly as an asset-tool dev dependency. README/DEPLOYMENT updated.
-- [Phase 3 QA](qa/phase-3.md), [measurements](qa/phase-3-measurements.json), [review board](design/phase-3/index.html), and 26 retained review images in `docs/design/screenshots/phase-3/`.
+- Homepage route, `src/components/sections/home/{Workflow,Chapters}.tsx`, `src/styles/home.css`: eight chapters in specification order, established visual direction, truthful commercial actions, separate procedure examples, six-state coverage, reviewer control, paper annotations and governance evaluation questions.
+- `src/components/product-demo/WorkflowViewer.tsx`, retained `src/components/demos/SourceReview.tsx`: accessible six-step viewer, source selection/focus/return and native six-step transcript with exact Traces. Initial Review remains readable before JavaScript; no source/step selection approves anything.
+- `src/content/pages/home.ts` and the existing `launch.ts`/fixtures: same P2P identity/amounts/versions and draft state throughout; credit/IFC stay separate. Only the route registry's homepage content pointer changes; paths/redirects/nav/sitemap stay intact.
+- Twelve unused legacy homepage sections and unused copy removed; shared motion scenes, hooks, solution data and company/security copy retained for existing pages.
+- `tests/e2e/phase-4.spec.ts`, `playwright.phase4.config.ts`, expanded content check and `scripts/measure-homepage.mjs`; isolated ignored browser report directories. README/DEPLOYMENT, claims, route and asset registers updated. Regular homepage accent font preloaded/reused without new font bytes.
 
-## Exit gate
+## Validation and exit gate
 
-| Condition                                                                                                            | Result                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| All core content exists; material claims have source/status/publication decisions                                    | PASS for the nineteen-page candidate set. Privacy/terms are concrete review drafts held for owner/legal inputs. Page adoption remains later work.                                       |
-| Example amounts/counts/references agree across text and media                                                        | PASS for controlled illustrative fixtures and their generated assets. Actual product Run/export agreement is BLOCKED because neither was supplied.                                      |
-| Required captures have readable mobile treatments                                                                    | BLOCKED for genuine product captures. Six labelled illustrative scenes pass at 1440/768/390/320px; these do not substitute for missing product proof.                                   |
-| Missing optional photo/video/customer quote leaves no broken section                                                 | PASS — omitted without placeholders or dead downloads.                                                                                                                                  |
-| No confidential data, generated product screenshot, fabricated customer proof or outdated five-state visual included | PASS for new Phase 3 deliverables. Genuine export confidentiality/macro/link inspection is NOT RUN. Existing still-used legacy assets remain untouched with their recorded limitations. |
+Lint, strict types, 69 mocked/content/asset tests, credential-free standalone build, **44 Chromium + 10 Firefox + 10 WebKit checks** pass. The full homepage and steps are tested at 1440/1280/1024/768/390/320px; keyboard/touch source inspection, focus return, reduced motion, no-JS/blocked-font/media fallback, 200% text-size reflow, CTA routes and review invariants pass. Eighteen new homepage axe scans have no violations. Scoped formatting, documentation links and diff checks pass. [48 retained screenshots](design/phase-4/index.html) are website illustrations, never authenticated-product evidence.
 
-Validation details and exact image evidence are in [QA](qa/phase-3.md). Lint, strict types, 69 mocked/content/asset tests, credential-free standalone build and 34 Chromium checks pass; file-scoped Prettier, documentation links and diff checks pass. Four new board axe scans plus twelve retained prototype scans report no violations. Source evidence fits all four widths; minimum small-label text is 14px, primary body text 17px, with loaded local fonts. This is not full release accessibility/legal/current-product acceptance.
+Lighthouse mobile median **94 Performance / 100 Accessibility / 100 SEO**. Median simulated LCP **3.07 s** (FAIL against 2.5 s). All three CLS values are 0. Initial JS maximum 203.9 KiB gzip including the walkthrough; initial measured transfer maximum 318.7 KiB. JS, page-transfer, font/media and CLS budgets pass. Field INP/p75, actual mobile Safari, complete assistive-technology/OS scaling and release acceptance are not established.
+
+| Phase 4 functional condition                                   | Result                                                                   |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Eight chapters at required widths                              | PASS — all six widths, three engines                                     |
+| Audience / inputs / procedure / reviewer / output identifiable | PASS for content coverage; fresh-reader timed comprehension not measured |
+| Keyboard/touch source-open and focus/scroll                    | PASS                                                                     |
+| Example remains accurate across steps                          | PASS — no approval; draft paper                                          |
+| CTA/routes and no placeholder downloads                        | PASS                                                                     |
+| No-motion / pre-hydration readability                          | PASS — SSR Review and native transcript/annotations                      |
 
 ## Remaining work by owner
 
-**From the user / product owner:** captures and export are deliberately blocked. To resume them, provide approved synthetic artifacts with commit/Run/version/approval provenance or authorise a specific safe synthetic session. Do not send passwords or tokens. An authoritative brand master or confirmation of inherited identity/rights remains useful before replacing active marks. Legal entity, privacy/retention/contact, programme/security facts and final legal review remain their documented later-phase inputs; unsupported claims are omitted/held.
+**From implementation:** mobile LCP 3.07 s exceeds 2.5 s; investigate the heading's critical CSS/font/render path and main-thread work and repeat the three-run production check before release. Other pages retain Phase 5 adoption and existing legacy claim limitations. Full release/accessibility/device/legal/live-integration checks remain later-phase work.
 
-**From implementation:** no known required independent Phase 3 content or asset-production task remains. Once the evidence boundary changes, capture/download and inspect genuine artifacts, reconcile actual results without altering screenshots, create remaining responsive treatments, update registers and rerun affected checks. Only then reassess the complete Phase 3 gate. Applying these briefs to the full homepage and remaining pages is Phase 4/5 and is not authorised by this task.
+**From the user/product owner:** genuine captures/export remain deliberately blocked. Supply approved synthetic artifacts with product commit, Run, Recipe/input versions and approval provenance or separately authorise an identified isolated synthetic session. Apply the [intake gate](content/product-evidence.md) before publication; never seed/reset the product or fabricate artifacts. Founder visual review and brand/legal/company/security/data-handling facts remain their existing inputs.
 
-## Preservation and repository state
+## Phase 3 evidence status — preserved
 
-Branch `redesign/marketing-v2`; Phase 2 baseline is `c3e12ff`. Independent Phase 3 work is recorded in the commit containing this handoff, at the explicit request of the user. The evidence gate remains blocked. Initial status contained only untracked `.claude/`; it, secrets, env files and local configuration were preserved. Product repository status remained clean, and no files there were modified.
+The independent content/illustration production in `49b000f` remains verified: nineteen launch copy/metadata/brief candidates, separate fixtures, six responsive illustrative scenes, source/provenance/claims/assets registers and OG output. [Phase 3 QA](qa/phase-3.md) retains its exact evidence. **Full gate NOT PASSED:** no genuine current-product capture or synthetic working-paper export was supplied; actual artifact confidentiality/macro/connection/source-link inspection remains NOT RUN. Independent Phase 4 authorisation does not change this status.
 
-Existing sixteen routes, navigation/sitemap, three active redirects, both API handlers, form fields/statuses, auditCount values and Sheets-first/best-effort-email contract remain unchanged. No setup-sheet command, live form POST, product login/seed/build, notification, deployment or push occurred. The subsequent local commit was explicitly requested by the user. Services on ports 3000/8000 were left untouched. QA used a credential-free website container on 127.0.0.1:3100; it was stopped after validation.
+## Preservation and stop boundary
 
-## Phase tracking
+Both enquiry APIs/forms/fields/statuses, auditCount values, Sheets-first persistence and best-effort internal notification are unchanged. Published routes, redirects, navigation/sitemap, dependencies, public assets, secrets/env/local configuration and untracked `.claude/` are preserved. No sibling-repository writes or product-environment access, no live POST/provider/notification, no setup-sheet, no deployment or push. The subsequent local Phase 4 commit is explicitly requested by the user. Services on 3000/8000 were untouched. The temporary credential-free `docrack-web-phase4-qa` container on 3100 is stopped at handoff; final runtime image configuration is `sha256:6cb812f339b508451dc166fcf22b7976cd0db9adc18d9db94b946f42e67749e8`.
 
-| Phase | Scope                                  | State                                                                  |
-| ----- | -------------------------------------- | ---------------------------------------------------------------------- |
-| 0     | Baseline and public truth              | Complete; limitations in baseline/registers                            |
-| 1     | Foundation and source boundaries       | Complete, `1486ee4`; [QA](qa/phase-1.md)                               |
-| 2     | Visual system and prototypes           | Complete, `c3e12ff`; [QA](qa/phase-2.md), no inferred founder approval |
-| 3     | Content and asset production           | Independent work verified; genuine capture/export gate blocked         |
-| 4     | Homepage and workflow                  | Not started                                                            |
-| 5     | Product, solution and supporting pages | Not started                                                            |
-| 6     | Conversion reliability and analytics   | Not started                                                            |
-| 7     | Release QA and cleanup                 | Not started                                                            |
-| 8     | Controlled launch                      | Not started                                                            |
-| 9     | Ongoing improvement                    | Not started                                                            |
-
-## Copyable continuation scope
-
-> Continue Phase 3 only after the supplied product evidence/access boundary is explicitly changed. Inspect status; preserve the committed Phase 3 work and any new user changes, including .claude/. Read CURRENT_PHASE, phase-3 QA, product-evidence, claims and asset registers. Use the existing direction and fixtures. Obtain only the authorised genuine synthetic captures/export; verify commit/Run/versions, amounts/counts, source links, private data, macros/external connections and approval state. Preserve untouched originals; never fabricate product proof or seed/reset the product. Finish remaining responsive treatments and rerun affected content/asset/browser checks. Report each exit gate truthfully. Stop before Phase 4, commit, push, deployment or live-service changes.
+| Phase | Scope                    | State                                                                               |
+| ----- | ------------------------ | ----------------------------------------------------------------------------------- |
+| 0     | Baseline/public truth    | Complete, with recorded limitations                                                 |
+| 1     | Foundation               | Complete, `1486ee4`                                                                 |
+| 2     | Visual system/prototypes | Complete, `c3e12ff`; no inferred founder approval                                   |
+| 3     | Content/assets           | Independent work committed `49b000f`; genuine capture/export gate BLOCKED           |
+| 4     | Homepage/workflow        | Implementation committed with this handoff; functional checks pass; LCP budget open |
+| 5     | Other pages              | Not started                                                                         |
+| 6     | Conversion/analytics     | Not started                                                                         |
+| 7     | Release QA/cleanup       | Not started                                                                         |
+| 8     | Controlled launch        | Not started                                                                         |
+| 9     | Ongoing improvement      | Not started                                                                         |

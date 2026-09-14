@@ -1,0 +1,431 @@
+.home-chapter {
+  padding-block: 112px;
+}
+.home-chapter h2 {
+  overflow-wrap: anywhere;
+}
+.home-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7%;
+  align-items: start;
+}
+.home-split > *,
+.workflow-stage > *,
+.procedure-row > * {
+  min-width: 0;
+}
+.chapter-copy {
+  max-width: 65ch;
+}
+.chapter-copy .eyeline {
+  margin-bottom: 24px;
+}
+.chapter-copy > p:not(.eyeline),
+.chapter-aside {
+  margin-top: 28px;
+  color: var(--text-muted);
+}
+.chapter-copy .text-action {
+  margin-top: 24px;
+}
+.home-rows > div {
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.home-rows dt,
+.procedure-facts dt {
+  font-weight: 650;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.home-rows dd {
+  color: var(--text-muted);
+  font-size: 17px;
+}
+.procedure-sheet,
+.paper-contents {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 36px;
+  overflow-wrap: anywhere;
+}
+.procedure-sheet blockquote,
+.stage-record blockquote {
+  font-size: 23px;
+  line-height: 1.5;
+  margin-block: 24px;
+  letter-spacing: -0.02em;
+}
+.version-relationship {
+  margin-block: 24px;
+  background: var(--canvas);
+  border-left: 3px solid var(--forest);
+  padding: 20px;
+}
+.version-relationship > span {
+  display: block;
+  padding-block: 6px;
+}
+.workflow-caption {
+  margin-bottom: 20px;
+  color: var(--muted-on-dark);
+}
+.workflow-controls {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.workflow-controls button {
+  border: 1px solid var(--muted-on-dark);
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 15px;
+  min-height: 76px;
+  border-radius: 6px;
+}
+.workflow-controls button > span {
+  display: block;
+  margin-bottom: 4px;
+}
+.workflow-controls button[aria-selected='true'] {
+  color: var(--ink);
+  background: var(--citron);
+  border-color: var(--citron);
+}
+.workflow-controls button:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.workflow-viewer [role='tabpanel'] {
+  border-radius: 10px;
+  scroll-margin-top: 110px;
+}
+.workflow-viewer [role='tabpanel'][hidden] {
+  display: none;
+}
+.workflow-stage {
+  background: white;
+  color: var(--ink);
+  --color-focus: var(--focus);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 540px;
+  overflow-wrap: anywhere;
+}
+.stage-copy,
+.stage-record {
+  padding: 40px;
+}
+.stage-copy h3 {
+  margin-block: 26px;
+  font-size: 32px;
+}
+.stage-copy > p:last-child {
+  color: var(--text-muted);
+}
+.stage-record {
+  background: var(--surface-soft);
+  border-radius: 0 10px 10px 0;
+}
+.stage-record h3 {
+  margin-block: 22px;
+}
+.stage-record hr {
+  margin-block: 24px;
+  border-color: var(--control-border);
+}
+.stage-record > p + p {
+  margin-top: 20px;
+}
+.workflow-transcript {
+  margin-top: 24px;
+  border-block: 1px solid var(--muted-on-dark);
+}
+.workflow-transcript summary,
+.home-disclosure summary,
+.paper-annotation summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  min-height: 56px;
+  padding-block: 16px;
+  font-weight: 600;
+  list-style: none;
+  font-size: 15px;
+}
+.workflow-transcript summary > span,
+.home-disclosure summary > span,
+.paper-annotation summary > span:last-child {
+  flex: 0 0 auto;
+}
+details[open] > summary > span:last-child {
+  transform: rotate(45deg);
+}
+.workflow-transcript ol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 48px;
+  margin-block: 24px;
+}
+.workflow-transcript li h3 {
+  margin-bottom: 10px;
+}
+.workflow-transcript > p {
+  margin-block: 16px;
+}
+.workflow-transcript p {
+  color: var(--muted-on-dark);
+  max-width: 70ch;
+}
+.source-actions button[aria-pressed='true'] {
+  background: var(--citron);
+  box-shadow: inset 0 -3px var(--forest);
+}
+.coverage-chapter {
+  background: var(--surface-soft);
+}
+.coverage-headline {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  margin-block: 48px 28px;
+}
+.coverage-headline > strong {
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: -0.06em;
+  font-weight: 500;
+}
+.coverage-headline > strong span {
+  color: var(--text-muted);
+}
+.coverage-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-block: 1px solid var(--control-border);
+  padding-block: 24px;
+  gap: 20px;
+}
+.coverage-strip dt {
+  font-size: 14px;
+}
+.coverage-strip dd {
+  font-size: 32px;
+}
+.outcome-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 32px;
+  padding-block: 28px;
+}
+.outcome-legend li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.outcome-legend .outcome {
+  font-size: 14px;
+}
+.judgement-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7%;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--control-border);
+}
+.judgement-layout h3 {
+  margin-bottom: 20px;
+}
+.judgement-layout .text-action {
+  margin-top: 20px;
+}
+.home-disclosure {
+  border-block: 1px solid var(--control-border);
+  align-self: start;
+}
+.home-disclosure > p,
+.home-disclosure > a {
+  margin-block: 18px;
+}
+.procedure-list {
+  margin-top: 48px;
+}
+.procedure-row {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 7%;
+  padding-block: 36px;
+  border-top: 1px solid var(--control-border);
+}
+.procedure-row h3 {
+  font-size: 28px;
+  margin-block: 18px;
+}
+.procedure-row .caption {
+  color: var(--text-muted);
+}
+.procedure-facts > div {
+  margin-bottom: 24px;
+}
+.procedure-facts dd {
+  font-size: 17px;
+}
+.home-note {
+  margin-top: 28px;
+  color: var(--text-muted);
+  max-width: 76ch;
+}
+.output-chapter {
+  background: var(--surface-soft);
+}
+.paper-contents {
+  box-shadow: 10px 12px 0 var(--line);
+}
+.paper-contents > h3 {
+  margin-block: 24px 16px;
+}
+.paper-status {
+  border-left: 3px solid var(--warning-text);
+  background: var(--canvas);
+  padding: 12px 16px;
+}
+.paper-contents > .caption {
+  margin-block: 20px;
+  color: var(--text-muted);
+}
+.paper-annotation {
+  border-top: 1px solid var(--line);
+}
+.paper-annotation summary {
+  justify-content: start;
+}
+.paper-annotation summary > span:last-child {
+  margin-left: auto;
+}
+.paper-annotation > p {
+  padding: 0 0 20px;
+  color: var(--text-muted);
+}
+.governance-rows > div:first-child {
+  padding-top: 0;
+}
+.knowledge-note {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 7%;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--control-border);
+}
+.knowledge-note > p:first-child {
+  font-size: 24px;
+}
+.knowledge-note .text-action {
+  grid-column: 2;
+  justify-self: start;
+}
+.home-final {
+  background: var(--citron);
+}
+.home-final h2 {
+  margin-block: 24px;
+}
+.home-final p {
+  max-width: 64ch;
+}
+@media (max-width: 1023px) {
+  .home-chapter {
+    padding-block: 80px;
+  }
+  .home-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .home-split .chapter-aside {
+    margin-top: 0;
+  }
+  .workflow-controls {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stage-copy,
+  .stage-record {
+    padding: 28px;
+  }
+  .coverage-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .procedure-row {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 32px;
+  }
+  .procedure-sheet,
+  .paper-contents {
+    max-width: 100%;
+  }
+}
+@media (max-width: 639px) {
+  .home-chapter {
+    padding-block: 64px;
+  }
+  .workflow-controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .workflow-controls button {
+    min-height: 72px;
+  }
+  .workflow-stage,
+  .workflow-transcript ol,
+  .judgement-layout,
+  .procedure-row,
+  .knowledge-note {
+    grid-template-columns: 1fr;
+  }
+  .stage-copy,
+  .stage-record {
+    padding: 28px 20px;
+  }
+  .stage-record {
+    border-radius: 0 0 10px 10px;
+  }
+  .procedure-sheet,
+  .paper-contents {
+    padding: 24px 20px;
+  }
+  .coverage-headline {
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+  .coverage-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .outcome-legend {
+    grid-template-columns: 1fr;
+  }
+  .judgement-layout {
+    gap: 28px;
+  }
+  .knowledge-note {
+    margin-top: 40px;
+  }
+  .knowledge-note .text-action {
+    grid-column: auto;
+  }
+  .paper-contents {
+    box-shadow: 5px 6px 0 var(--line);
+  }
+}
+@media (forced-colors: active) {
+  .workflow-controls button[aria-selected='true'],
+  .source-actions button[aria-pressed='true'] {
+    outline: 3px solid Highlight;
+    outline-offset: -4px;
+  }
+}

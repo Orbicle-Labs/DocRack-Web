@@ -51,5 +51,7 @@ secrets/
 
 # Local validation tools and browser artifacts
 .local-tools/
+test-results-phase4/
+playwright-report-phase4/
 test-results/
 playwright-report/
