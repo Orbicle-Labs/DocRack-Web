@@ -1,15 +1,14 @@
 import { ImageResponse } from 'next/og';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
-export const alt = 'DocRack — Audit fieldwork execution for internal audit';
+export const alt = 'DocRack — From audit evidence to answers you can review.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-/**
- * Generated at build time. Replaces the static /og-image.png that metadata
- * referenced but which never existed in public/ — every share rendered a
- * broken image.
- */
-export default function OpengraphImage() {
+/** Editorial category and procedure, not a product capture or performance claim. C01/C03/C18. */
+export default async function OpengraphImage() {
+  const mark = await readFile(join(process.cwd(), 'public/favicon-192x192.png'));
   return new ImageResponse(
     <div
       style={{
@@ -18,51 +17,52 @@ export default function OpengraphImage() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: '#ffffff',
-        padding: '80px',
+        background: '#f5f2eb',
+        padding: '58px 68px',
+        color: '#182823',
         fontFamily: 'sans-serif',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-        <div
-          style={{
-            width: '30px',
-            height: '30px',
-            borderRadius: '7px',
-            backgroundColor: '#2855d9',
-          }}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+        {/* Existing identity, preserved while traced vector candidates are reviewed. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`data:image/png;base64,${mark.toString('base64')}`}
+          width={54}
+          height={54}
+          alt=""
         />
-        <div style={{ fontSize: '30px', fontWeight: 600, color: '#10141c' }}>DocRack</div>
+        <span style={{ fontSize: 34, fontWeight: 700 }}>DocRack</span>
+        <span style={{ marginLeft: 'auto', fontSize: 19 }}>
+          AI-assisted internal-audit fieldwork
+        </span>
       </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            fontSize: '66px',
-            fontWeight: 600,
-            color: '#10141c',
-            letterSpacing: '-0.028em',
-            lineHeight: 1.08,
-          }}
-        >
-          Run audit fieldwork faster.
-        </div>
-        <div
-          style={{
-            fontSize: '66px',
-            fontWeight: 600,
-            color: '#2855d9',
-            letterSpacing: '-0.028em',
-            lineHeight: 1.08,
-          }}
-        >
-          Defend every conclusion.
-        </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          fontSize: 72,
+          fontWeight: 700,
+          letterSpacing: '-3px',
+          lineHeight: 1.08,
+        }}
+      >
+        <span>From audit evidence</span>
+        <span>to answers you can review.</span>
       </div>
-
-      <div style={{ display: 'flex', fontSize: '27px', color: '#5b6577', lineHeight: 1.4 }}>
-        Documents, Excel and policies into repeatable audit tests, source-linked exceptions and
-        review-ready working papers.
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '26px 30px',
+          background: '#153c31',
+          color: '#fff',
+          fontSize: 24,
+        }}
+      >
+        <span>Evidence → Audit Test Recipe → Human review</span>
+        <span style={{ color: '#d9ed91', fontSize: 20 }}>docrack.ai</span>
       </div>
     </div>,
     size

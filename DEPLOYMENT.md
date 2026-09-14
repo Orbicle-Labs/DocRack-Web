@@ -153,7 +153,7 @@ No env file or key mount is needed to render this image. Browser POSTs are inter
 - Prepare a release report with the intended target, checks, factual limitations, configuration changes, current revision, and rollback action.
 - Complete all local/reviewable work before seeking any missing release authorisation.
 
-Vitest and baseline Chromium Playwright commands now exist and run in CI. Content/asset checks and the full release browser matrix remain future additions. Keep production credentials and live submissions out of CI.
+Vitest and Chromium Playwright commands exist and run in CI. Phase 3 adds `check-content`, `check-assets` and `assets:produce`; the focused content/asset suite is also included in `npm test`. Its generator uses only local content and installed Chromium, never product services or credentials. The full release browser matrix remains a future gate. Keep production credentials and live submissions out of CI.
 
 ## 7. Release procedure
 

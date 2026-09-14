@@ -1,0 +1,35 @@
+{
+  "og": {
+    "width": 1200,
+    "height": 630,
+    "bytes": 56206,
+    "sha256": "a4383deac423bb57b3699b6112e61187a6f6f6875f5a9e4845b33efba022e24d",
+    "contentType": "image/png"
+  },
+  "viewports": {
+    "320": {
+      "pageFits": true,
+      "overflowingEvidence": [],
+      "minimumEvidenceTextPx": 14,
+      "fontsLoaded": true
+    },
+    "390": {
+      "pageFits": true,
+      "overflowingEvidence": [],
+      "minimumEvidenceTextPx": 14,
+      "fontsLoaded": true
+    },
+    "768": {
+      "pageFits": true,
+      "overflowingEvidence": [],
+      "minimumEvidenceTextPx": 14,
+      "fontsLoaded": true
+    },
+    "1440": {
+      "pageFits": true,
+      "overflowingEvidence": [],
+      "minimumEvidenceTextPx": 14,
+      "fontsLoaded": true
+    }
+  }
+}

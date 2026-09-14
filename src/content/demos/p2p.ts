@@ -1,20 +1,23 @@
 import type { Outcome } from '@/components/ui/OutcomeLabel';
+import { fixtures, formatMoney } from './fixtures';
+
+const fixture = fixtures.p2p;
 
 /** Display fixtures only. No evaluator, provider or authenticated product dependency. */
 export const p2p = {
-  engagement: 'P2P — Q1 FY27',
-  record: 'DEMO-0042',
-  recipe: 'P2P amount check · v3',
-  run: 'DEMO-RUN-018',
-  expected: '₹1,20,000',
-  actual: '₹1,25,000',
-  difference: '₹5,000',
-  tolerance: '₹1',
-  policy: 'Synthetic Procurement Policy v3 · §4.2',
-  invoice: 'DEMO-0042.pdf',
-  cell: 'Orders!H43',
-  sheet: 'purchase-orders.xlsx',
-  review: 'Awaiting reviewer confirmation',
+  engagement: fixture.title,
+  record: fixture.record,
+  recipe: `${fixture.recipe.name} · v${fixture.recipe.version}`,
+  run: fixture.run,
+  expected: fixture.expected,
+  actual: fixture.actual,
+  difference: formatMoney(fixture.money.deltaPaise),
+  tolerance: formatMoney(fixture.money.tolerancePaise),
+  policy: `${fixture.policy.title} v${fixture.policy.version} · ${fixture.policy.clause}`,
+  invoice: fixture.traces[0].file,
+  cell: fixture.traces[1].location,
+  sheet: fixture.traces[1].file,
+  review: fixture.review,
 } as const;
 export const outcomeExamples: {
   outcome: Outcome;

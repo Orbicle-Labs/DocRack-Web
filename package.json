@@ -15,6 +15,9 @@
     "check-types": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "check-content": "vitest run tests/unit/content-assets.test.ts",
+    "check-assets": "vitest run tests/unit/content-assets.test.ts",
+    "assets:produce": "node scripts/produce-content-assets.mjs",
     "analyze": "node scripts/analyze.mjs"
   },
   "dependencies": {
@@ -52,6 +55,7 @@
     "lint-staged": "17.5.1",
     "postcss": "^8.4.38",
     "prettier": "^3.0.0",
+    "sharp": "0.35.4",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vitest": "5.0.0"

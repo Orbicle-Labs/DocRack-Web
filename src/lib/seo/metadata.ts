@@ -29,8 +29,23 @@ export function buildMetadata({ title, description, path }: BuildMetadataArgs): 
       title: `${title} | ${SITE_NAME}`,
       description: resolved,
       url: path,
+      images: [
+        {
+          url: '/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: 'DocRack — From audit evidence to answers you can review.',
+        },
+      ],
     },
     twitter: {
+      card: 'summary_large_image',
+      images: [
+        {
+          url: '/opengraph-image',
+          alt: 'DocRack — From audit evidence to answers you can review.',
+        },
+      ],
       title: `${title} | ${SITE_NAME}`,
       description: resolved,
     },

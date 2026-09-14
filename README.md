@@ -6,7 +6,7 @@ This repository contains the **public website and its demo/support enquiry backe
 
 ## Rebuild status and project documents
 
-Phase 2 has implemented the new visual system and reviewable homepage/source-review, product and demo prototypes. The full content/capture and remaining page rebuild phases are still pending. Review [the design direction and screenshots](docs/design/direction.md). Check [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) for the latest actual state.
+Phase 3 adds typed copy/metadata and briefs for nineteen launch pages, shared synthetic fixtures, responsive illustrative assets, traced identity outputs and a new OG image using the Phase 2 direction. Genuine current-product captures/exports remain blocked by the user's instruction; full homepage/page adoption remains Phases 4–5. Review [the page briefs](docs/content/page-briefs.md), [asset board](docs/design/phase-3/index.html) and [current handoff](docs/CURRENT_PHASE.md). No founder visual approval is inferred.
 
 | Document                                                                           | Purpose                                                                                  |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -44,7 +44,8 @@ Use the exact Node version in [.nvmrc](.nvmrc), for example with your Node versi
 - `src/app/layout.tsx`: document markup, fonts, metadata and global providers.
 - `src/app/(marketing)/layout.tsx`: header, one main landmark, footer and skip link. Existing public paths are unchanged.
 - `src/styles/`, `src/components/demos/`, `src/content/demos/p2p.ts`: Phase 2 visual system and clearly labelled synthetic source-review prototypes.
-- `src/content/pages/`: inherited typed copy on the remaining pages, pending replacement. `src/content/routes.ts` records sixteen published pages and seven planned destinations; the sitemap uses publication status, independently of navigation.
+- `src/content/pages/launch.ts`: final Phase 3 candidate copy, metadata, FAQs, briefs and publication holds for nineteen target pages. Inherited page modules remain until Phase 4/5 adoption. `src/content/routes.ts` still records sixteen published pages and seven planned destinations; no future redirect is active.
+- `src/content/demos/fixtures.ts`, `src/content/readiness.ts`, `src/content/assets.ts`: three separate controlled display fixtures, editorial format/readiness evidence and generated asset registry. These do not implement or call the authenticated product.
 - `src/lib/server/`: Sheets, notifications and the current process-local limiter, guarded by `server-only`.
 - `src/lib/forms/submit.ts`, `src/lib/hooks/`, `src/lib/seo/`: browser submission, headless interaction and SEO helpers. `@/*` resolves into `src/*`.
 
@@ -126,7 +127,21 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Vitest runs without Next env loading; Sheets/Resend are mocked and unmocked fetch calls are blocked. Playwright targets localhost only, blocks external traffic, and intercepts form POSTs. It starts a production server on port 3100 after a build; do not point it at live services. The content/asset scripts are still planned, and the baseline Chromium suite is not the full release accessibility or cross-browser gate.
+Vitest runs without Next env loading; Sheets/Resend are mocked and unmocked fetch calls are blocked. Playwright targets localhost only, blocks external traffic, and intercepts form POSTs. It starts a production server on port 3100 after a build; do not point it at live services. The Chromium suite is not the full release accessibility or cross-browser gate.
+
+Phase 3 commands:
+
+```powershell
+npm run check-content
+npm run check-assets
+npm run assets:produce
+```
+
+The first two commands run the same focused content/asset suite: route coverage, claim references, metadata uniqueness, glossary anchors, fixture arithmetic/population/review invariants, asset hashes/dimensions and brand silhouette/ICO validation. The full `npm test` includes it, so rerunning all three checks is unnecessary.
+
+`assets:produce` uses installed Playwright Chromium and pinned Sharp 0.35.4 to regenerate the local HTML review board, page briefs, public illustrative/brand outputs and typed/JSON manifests. It formats generated text with the repository Prettier configuration. It does not start Next, read env files, run the product, generate working papers or contact external services. It writes only the documented Phase 3 outputs. Regeneration overwrites those generated files; edit `launch.ts`, `fixtures.ts` or the generator as appropriate. SVG tracing preserves the existing logo silhouette; it is not an authoritative original master. Existing active marks remain unchanged.
+
+For website QA alongside other apps on 3000/8000, use the credential-free Docker image on **127.0.0.1:3100** as documented in DEPLOYMENT. Leave those other services untouched. Privacy/terms candidates remain held for owner/legal review, and missing genuine exports have no public download link.
 
 The supported container runtime entry point is the Dockerfile's standalone `node server.js`, with public and static files copied into the image. Validate that image during the build/release phases.
 

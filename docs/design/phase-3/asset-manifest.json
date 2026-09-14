@@ -1,0 +1,454 @@
+{
+  "created": "2026-09-13",
+  "assets": [
+    {
+      "id": "brand-mark",
+      "src": "/brand/docrack-mark.svg",
+      "kind": "Mechanically traced existing identity",
+      "width": 512,
+      "height": 512,
+      "bytes": 21182,
+      "sha256": "0dd7f5b43de3d4916734df2d2326c1c1980c054a3a24fb4b90b724be5af43af4",
+      "source": "src/app/icon.png",
+      "sourceSha256": "308bc55d52db7061d83623a2a39dcac7692f69aaaa84f25956dd2ffa8b475ad5",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity; independent legal ownership not attested",
+      "limitations": "Threshold trace preserves silhouette; existing active marks retained. This is not an authoritative original vector."
+    },
+    {
+      "id": "brand-wordmark",
+      "src": "/brand/docrack-wordmark.svg",
+      "kind": "Mechanically traced existing identity",
+      "width": 1024,
+      "height": 242,
+      "bytes": 29614,
+      "sha256": "2c353d4f416a4cd552a3fa1cd7ebb2a233e52eb1becede59134e33135c2df835",
+      "source": "public/docrack_full_logo.png",
+      "sourceSha256": "194cf66002eb13526eba52401e11721185d13afa01b11de94e2b010eeb986308",
+      "alt": "DocRack",
+      "rights": "Inherited DocRack identity; independent legal ownership not attested",
+      "limitations": "Threshold trace preserves silhouette; existing active marks retained. This is not an authoritative original vector."
+    },
+    {
+      "id": "brand-16",
+      "src": "/brand/favicon-16.png",
+      "kind": "Deterministic favicon output",
+      "width": 16,
+      "height": 16,
+      "bytes": 278,
+      "sha256": "9efad46bd68d68d49175d7da66ec7790557f1982be8ca67a4b55a4153b1f9c82",
+      "source": "public/brand/docrack-mark.svg",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity",
+      "limitations": "Candidate output; existing metadata icons remain active."
+    },
+    {
+      "id": "brand-32",
+      "src": "/brand/favicon-32.png",
+      "kind": "Deterministic favicon output",
+      "width": 32,
+      "height": 32,
+      "bytes": 364,
+      "sha256": "dae7ff88c4b6713f0214704907121f0521ba8aa9b75d6141d32a019086bf5963",
+      "source": "public/brand/docrack-mark.svg",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity",
+      "limitations": "Candidate output; existing metadata icons remain active."
+    },
+    {
+      "id": "brand-48",
+      "src": "/brand/favicon-48.png",
+      "kind": "Deterministic favicon output",
+      "width": 48,
+      "height": 48,
+      "bytes": 522,
+      "sha256": "cb4c4657daa564aa0adeb4f9b1dee80de3950012fdc42777df20ee5b9bf2313b",
+      "source": "public/brand/docrack-mark.svg",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity",
+      "limitations": "Candidate output; existing metadata icons remain active."
+    },
+    {
+      "id": "brand-180",
+      "src": "/brand/favicon-180.png",
+      "kind": "Deterministic favicon output",
+      "width": 180,
+      "height": 180,
+      "bytes": 1733,
+      "sha256": "1e3b8299d0128dcd1abb482e881c645541d10b2b0847f392b71c5582a10a6c71",
+      "source": "public/brand/docrack-mark.svg",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity",
+      "limitations": "Candidate output; existing metadata icons remain active."
+    },
+    {
+      "id": "brand-192",
+      "src": "/brand/favicon-192.png",
+      "kind": "Deterministic favicon output",
+      "width": 192,
+      "height": 192,
+      "bytes": 1659,
+      "sha256": "6db6015d63e8fc463ad50a64213cb41420d3162344aeeafa3a3958de039bd52c",
+      "source": "public/brand/docrack-mark.svg",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity",
+      "limitations": "Candidate output; existing metadata icons remain active."
+    },
+    {
+      "id": "brand-512",
+      "src": "/brand/favicon-512.png",
+      "kind": "Deterministic favicon output",
+      "width": 512,
+      "height": 512,
+      "bytes": 5507,
+      "sha256": "f47e3cbcd9c0f706eb7a1acf18b7b865875183d3dc3c43222cefcae3a81e66ed",
+      "source": "public/brand/docrack-mark.svg",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity",
+      "limitations": "Candidate output; existing metadata icons remain active."
+    },
+    {
+      "id": "brand-ico",
+      "src": "/brand/favicon.ico",
+      "kind": "ICO containing 16/32/48 PNG frames",
+      "width": 48,
+      "height": 48,
+      "bytes": 1218,
+      "sha256": "ae5c39b02a803b53677d79254c55be1dc024cc3fde02dc9bed89c989751fb8b5",
+      "source": "public/brand/docrack-mark.svg",
+      "alt": "DocRack mark",
+      "rights": "Inherited DocRack identity",
+      "limitations": "Candidate output; no existing favicon endpoint replaced."
+    },
+    {
+      "id": "p2p-review",
+      "kind": "Illustrative interface",
+      "fixture": "p2p",
+      "alt": "P2P — Q1 FY27. DEMO-0042: Amount mismatch. Awaiting reviewer confirmation. Illustrative example · invented data · not a product capture.",
+      "caption": "P2P — Q1 FY27. DEMO-0042: Amount mismatch. Awaiting reviewer confirmation. Illustrative example · invented data · not a product capture.",
+      "source": "src/content/demos/fixtures.ts + scripts/produce-content-assets.mjs",
+      "productCommit": null,
+      "productRun": null,
+      "illustrativeRun": "DEMO-RUN-018",
+      "created": "2026-09-13",
+      "synthetic": true,
+      "rights": "Original code-rendered website illustration; local Manrope under SIL OFL",
+      "limitations": "Not an authenticated product capture. No executable source file or working-paper download. Human review remains incomplete.",
+      "variants": [
+        {
+          "src": "/illustrations/p2p-review-desktop.png",
+          "width": 2136,
+          "height": 1423,
+          "bytes": 177146,
+          "sha256": "13bb83a7212d4d897818d1653d458e39c8d5d4d27d391768ba9f6a4c885997e4",
+          "treatment": "Full scene; contain, never clip source text",
+          "renderedWidth": 2136
+        },
+        {
+          "src": "/illustrations/p2p-review-tablet.png",
+          "width": 704,
+          "height": 1005,
+          "bytes": 99122,
+          "sha256": "0c1280982d58cfbc369502ef16a347dd35b0993be11cecc78429c6fa746a33bb",
+          "treatment": "Dedicated 768px layout; not a scaled desktop crop",
+          "renderedWidth": 704
+        },
+        {
+          "src": "/illustrations/p2p-review-mobile.png",
+          "width": 366,
+          "height": 1586,
+          "bytes": 91224,
+          "sha256": "95bbb77aaa927bc1fb702bd69e29b1e68ed8c7ebc2aa2d75dc21130698864ed8",
+          "treatment": "Dedicated 390px layout; not a scaled desktop crop",
+          "renderedWidth": 366
+        },
+        {
+          "src": "/illustrations/p2p-review-narrow.png",
+          "width": 296,
+          "height": 1716,
+          "bytes": 91014,
+          "sha256": "a60867d3ba8397326820b3d0d1bcbc65f2a20a4b9a5465cf967ada45578e1491",
+          "treatment": "Dedicated 320px layout; not a scaled desktop crop",
+          "renderedWidth": 296
+        }
+      ]
+    },
+    {
+      "id": "credit-review",
+      "kind": "Illustrative interface",
+      "fixture": "credit",
+      "alt": "Credit and loan files — Q1 FY27. DEMO-LN-0011: Amount mismatch. Awaiting reviewer confirmation. Illustrative example · invented data · not a product capture.",
+      "caption": "Credit and loan files — Q1 FY27. DEMO-LN-0011: Amount mismatch. Awaiting reviewer confirmation. Illustrative example · invented data · not a product capture.",
+      "source": "src/content/demos/fixtures.ts + scripts/produce-content-assets.mjs",
+      "productCommit": null,
+      "productRun": null,
+      "illustrativeRun": "DEMO-CREDIT-001",
+      "created": "2026-09-13",
+      "synthetic": true,
+      "rights": "Original code-rendered website illustration; local Manrope under SIL OFL",
+      "limitations": "Not an authenticated product capture. No executable source file or working-paper download. Human review remains incomplete.",
+      "variants": [
+        {
+          "src": "/illustrations/credit-review-desktop.png",
+          "width": 1936,
+          "height": 1422,
+          "bytes": 189309,
+          "sha256": "8fea3908062159076267655ead403343a2aba74052c5c8c12ad2f635351d188b",
+          "treatment": "Full scene; contain, never clip source text",
+          "renderedWidth": 1936
+        },
+        {
+          "src": "/illustrations/credit-review-tablet.png",
+          "width": 704,
+          "height": 1006,
+          "bytes": 103067,
+          "sha256": "b0410eba81e3f05475be98d274e2d7e9c3137e8e28d2bc400202b8243dea16bd",
+          "treatment": "Dedicated 768px layout; not a scaled desktop crop",
+          "renderedWidth": 704
+        },
+        {
+          "src": "/illustrations/credit-review-mobile.png",
+          "width": 366,
+          "height": 1585,
+          "bytes": 94236,
+          "sha256": "f8dae77e0158e52268a59e37e95e2d35f50fe3d893bdb762ae9d2c7a7d6c79bb",
+          "treatment": "Dedicated 390px layout; not a scaled desktop crop",
+          "renderedWidth": 366
+        },
+        {
+          "src": "/illustrations/credit-review-narrow.png",
+          "width": 296,
+          "height": 1823,
+          "bytes": 95761,
+          "sha256": "86af06d005f5e15d5de64831e1e3b77818396a8ebc9e9e534a83d0e373734632",
+          "treatment": "Dedicated 320px layout; not a scaled desktop crop",
+          "renderedWidth": 296
+        }
+      ]
+    },
+    {
+      "id": "ifc-review",
+      "kind": "Illustrative interface",
+      "fixture": "ifc",
+      "alt": "Journal-entry control — Q1 FY27. DEMO-JEA-002: Independent review not evidenced. Awaiting reviewer confirmation. Illustrative example · invented data · not a product capture.",
+      "caption": "Journal-entry control — Q1 FY27. DEMO-JEA-002: Independent review not evidenced. Awaiting reviewer confirmation. Illustrative example · invented data · not a product capture.",
+      "source": "src/content/demos/fixtures.ts + scripts/produce-content-assets.mjs",
+      "productCommit": null,
+      "productRun": null,
+      "illustrativeRun": "DEMO-IFC-001",
+      "created": "2026-09-13",
+      "synthetic": true,
+      "rights": "Original code-rendered website illustration; local Manrope under SIL OFL",
+      "limitations": "Not an authenticated product capture. No executable source file or working-paper download. Human review remains incomplete.",
+      "variants": [
+        {
+          "src": "/illustrations/ifc-review-desktop.png",
+          "width": 1936,
+          "height": 1480,
+          "bytes": 214277,
+          "sha256": "1ff1998770a617301013e63b13ff2116d4457de4f8330d24816db6b9cc878846",
+          "treatment": "Full scene; contain, never clip source text",
+          "renderedWidth": 1936
+        },
+        {
+          "src": "/illustrations/ifc-review-tablet.png",
+          "width": 704,
+          "height": 1029,
+          "bytes": 116173,
+          "sha256": "89868a8c4c2df40b16ae2f5a8135d25570065a59a9a9a096bf3ac2bdb454ef12",
+          "treatment": "Dedicated 768px layout; not a scaled desktop crop",
+          "renderedWidth": 704
+        },
+        {
+          "src": "/illustrations/ifc-review-mobile.png",
+          "width": 366,
+          "height": 1645,
+          "bytes": 106390,
+          "sha256": "ab03434d2e8930520e160cf84c1792770dccb0036dc9797c91a0d00ad792c551",
+          "treatment": "Dedicated 390px layout; not a scaled desktop crop",
+          "renderedWidth": 366
+        },
+        {
+          "src": "/illustrations/ifc-review-narrow.png",
+          "width": 296,
+          "height": 1960,
+          "bytes": 108109,
+          "sha256": "a4aeda2b85f84be86a1d7130864fe4a21213b1b339b7379a5d6959e9f6ee7392",
+          "treatment": "Dedicated 320px layout; not a scaled desktop crop",
+          "renderedWidth": 296
+        }
+      ]
+    },
+    {
+      "id": "p2p-recipe",
+      "kind": "Illustrative interface",
+      "fixture": "p2p",
+      "alt": "Illustrative P2P Recipe v3 and DEMO-RUN-018; Policy v3 §4.2, inputs v1. Human review remains incomplete.",
+      "caption": "Illustrative P2P Recipe v3 and DEMO-RUN-018; Policy v3 §4.2, inputs v1. Human review remains incomplete.",
+      "source": "src/content/demos/fixtures.ts + scripts/produce-content-assets.mjs",
+      "productCommit": null,
+      "productRun": null,
+      "illustrativeRun": "DEMO-RUN-018",
+      "created": "2026-09-13",
+      "synthetic": true,
+      "rights": "Original code-rendered website illustration; local Manrope under SIL OFL",
+      "limitations": "Not an authenticated product capture. No executable source file or working-paper download. Human review remains incomplete.",
+      "variants": [
+        {
+          "src": "/illustrations/p2p-recipe-desktop.png",
+          "width": 2136,
+          "height": 1006,
+          "bytes": 124404,
+          "sha256": "3699cd1e1c9b965ebd91d496d1644a76bf4a31b99c62c18825e1ea92d29c4088",
+          "treatment": "Full scene; contain, never clip source text",
+          "renderedWidth": 2136
+        },
+        {
+          "src": "/illustrations/p2p-recipe-tablet.png",
+          "width": 704,
+          "height": 809,
+          "bytes": 87566,
+          "sha256": "4373bd1e745d8e4c5555b347023869ebac52df9706ae5002465a81de0a3b70f3",
+          "treatment": "Dedicated 768px layout; not a scaled desktop crop",
+          "renderedWidth": 704
+        },
+        {
+          "src": "/illustrations/p2p-recipe-mobile.png",
+          "width": 366,
+          "height": 1195,
+          "bytes": 75883,
+          "sha256": "65ec22030ad463b60abf0adeed4c6c99dd2114dec405047d71512dfe56b5b7fd",
+          "treatment": "Dedicated 390px layout; not a scaled desktop crop",
+          "renderedWidth": 366
+        },
+        {
+          "src": "/illustrations/p2p-recipe-narrow.png",
+          "width": 296,
+          "height": 1429,
+          "bytes": 79625,
+          "sha256": "71c3ff13f455029ce37ac99215baa825e9917de51cee39028eb70c156db820e7",
+          "treatment": "Dedicated 320px layout; not a scaled desktop crop",
+          "renderedWidth": 296
+        }
+      ]
+    },
+    {
+      "id": "p2p-population",
+      "kind": "Illustrative interface",
+      "fixture": "p2p",
+      "alt": "Illustrative single-check population: 200 received, 190 eligible, 180 completed, 6 awaiting evidence and 4 processing failures; all six states shown.",
+      "caption": "Illustrative single-check population: 200 received, 190 eligible, 180 completed, 6 awaiting evidence and 4 processing failures; all six states shown.",
+      "source": "src/content/demos/fixtures.ts + scripts/produce-content-assets.mjs",
+      "productCommit": null,
+      "productRun": null,
+      "illustrativeRun": "DEMO-RUN-018",
+      "created": "2026-09-13",
+      "synthetic": true,
+      "rights": "Original code-rendered website illustration; local Manrope under SIL OFL",
+      "limitations": "Not an authenticated product capture. No executable source file or working-paper download. Human review remains incomplete.",
+      "variants": [
+        {
+          "src": "/illustrations/p2p-population-desktop.png",
+          "width": 2136,
+          "height": 1144,
+          "bytes": 135698,
+          "sha256": "12ae4eeefa65bd90928c61c4b1620f7c288ddb74ba1501cd36512ebb2a83b194",
+          "treatment": "Full scene; contain, never clip source text",
+          "renderedWidth": 2136
+        },
+        {
+          "src": "/illustrations/p2p-population-tablet.png",
+          "width": 704,
+          "height": 826,
+          "bytes": 76387,
+          "sha256": "e49e52fa29bb612caa42faf161f22c82ebdac76d0b961b7952fe6b029775622f",
+          "treatment": "Dedicated 768px layout; not a scaled desktop crop",
+          "renderedWidth": 704
+        },
+        {
+          "src": "/illustrations/p2p-population-mobile.png",
+          "width": 366,
+          "height": 1355,
+          "bytes": 74409,
+          "sha256": "2405a450330275e71c0e795918e564091407f723688d726f6dbc8ac37905db8a",
+          "treatment": "Dedicated 390px layout; not a scaled desktop crop",
+          "renderedWidth": 366
+        },
+        {
+          "src": "/illustrations/p2p-population-narrow.png",
+          "width": 296,
+          "height": 1492,
+          "bytes": 75600,
+          "sha256": "0870165455c5c1697cb24ff5842c08106a95c264a426b105552ccd54e37e7a8a",
+          "treatment": "Dedicated 320px layout; not a scaled desktop crop",
+          "renderedWidth": 296
+        }
+      ]
+    },
+    {
+      "id": "knowledge-versions",
+      "kind": "Illustrative interface",
+      "fixture": "p2p",
+      "alt": "Illustrative relationship: Policy v3 informs Recipe v3 and DEMO-RUN-018; a new policy needs reapproval and does not rewrite completed history.",
+      "caption": "Illustrative relationship: Policy v3 informs Recipe v3 and DEMO-RUN-018; a new policy needs reapproval and does not rewrite completed history.",
+      "source": "src/content/demos/fixtures.ts + scripts/produce-content-assets.mjs",
+      "productCommit": null,
+      "productRun": null,
+      "illustrativeRun": "DEMO-RUN-018",
+      "created": "2026-09-13",
+      "synthetic": true,
+      "rights": "Original code-rendered website illustration; local Manrope under SIL OFL",
+      "limitations": "Not an authenticated product capture. No executable source file or working-paper download. Human review remains incomplete.",
+      "variants": [
+        {
+          "src": "/illustrations/knowledge-versions-desktop.png",
+          "width": 1936,
+          "height": 769,
+          "bytes": 78727,
+          "sha256": "a4aa64c37ebb087164a7b1e14fffd11d56802d2e7f0b62b9d529bafceed91dcb",
+          "treatment": "Full scene; contain, never clip source text",
+          "renderedWidth": 1936
+        },
+        {
+          "src": "/illustrations/knowledge-versions-tablet.png",
+          "width": 704,
+          "height": 541,
+          "bytes": 45907,
+          "sha256": "41b1d154cec316a2e8cc7900861088a4c362a5ed9e70aab0a56181479eb3e368",
+          "treatment": "Dedicated 768px layout; not a scaled desktop crop",
+          "renderedWidth": 704
+        },
+        {
+          "src": "/illustrations/knowledge-versions-mobile.png",
+          "width": 366,
+          "height": 926,
+          "bytes": 44236,
+          "sha256": "a57c8779adb1de54ec8bc182693515e1236e7e9e4312675b3e1dfa440d3cbd9f",
+          "treatment": "Dedicated 390px layout; not a scaled desktop crop",
+          "renderedWidth": 366
+        },
+        {
+          "src": "/illustrations/knowledge-versions-narrow.png",
+          "width": 296,
+          "height": 979,
+          "bytes": 44713,
+          "sha256": "5fe5c459f795888eb10b64348873945b0814b37a7e3e831d58a84019d56b65dc",
+          "treatment": "Dedicated 320px layout; not a scaled desktop crop",
+          "renderedWidth": 296
+        }
+      ]
+    },
+    {
+      "id": "social-sharing",
+      "src": "/opengraph-image",
+      "kind": "Generated social image",
+      "generated": true,
+      "width": 1200,
+      "height": 630,
+      "source": "src/app/opengraph-image.tsx",
+      "alt": "DocRack — From audit evidence to answers you can review.",
+      "rights": "Original website composition; preserved inherited DocRack mark",
+      "limitations": "Editorial category and procedure, not product proof. Encoded bytes/hash are recorded from the production response in Phase 3 QA."
+    }
+  ]
+}

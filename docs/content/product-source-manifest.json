@@ -1,0 +1,102 @@
+{
+  "reviewed": "2026-09-13",
+  "productCommit": "d7a92e4416d65c6beebc0348e702d3aa6a470820",
+  "mode": "Read-only source inspection; no current acceptance execution",
+  "files": [
+    {
+      "path": "DOCRACK_SPEC.md",
+      "bytes": 30242,
+      "sha256": "f521729040380de52a39a6f583d1ffeb23b45402e6a9759b61ae79cd3dcc8b97"
+    },
+    {
+      "path": "DOCRACK_BUILD_PLAN.md",
+      "bytes": 23432,
+      "sha256": "f9e830d38f9966d0b4d9441582615cf14d8c1c46555220a18d7fb061e0813bcf"
+    },
+    {
+      "path": "docs/CURRENT_PHASE.md",
+      "bytes": 8,
+      "sha256": "ce59a4ad0c72911726d717a639fa5e1ec9c606cdaeeb1c0de41f512422086b7a"
+    },
+    {
+      "path": "docs/evals/2026-09-06-eval-report.md",
+      "bytes": 4124,
+      "sha256": "efdd6eed486dc4225bc3522000a1dc1c4a857e01809e5a61ee81241a01559a53"
+    },
+    {
+      "path": "docs/product-guide/working-papers.md",
+      "bytes": 2663,
+      "sha256": "93df9519c8f36fb343a1c52c85a9f5b0cd1312aae593bd3c40efb2c6a3382d5e"
+    },
+    {
+      "path": "docs/security/SECURITY.md",
+      "bytes": 6643,
+      "sha256": "ba894a008ee68246b9b1781202fe047ec75e798a932d81e1078e8a93b3f37e60"
+    },
+    {
+      "path": "docs/pilot/README.md",
+      "bytes": 1247,
+      "sha256": "1add2eef98520898e052900e74bb3cc0509427b33d721cfa874fea1bc36562c2"
+    },
+    {
+      "path": "services/api/app/core/uploads.py",
+      "bytes": 5335,
+      "sha256": "267a763f3fc4965653d522d1f08406a06408b7250ca55f70a221e2739efc474a"
+    },
+    {
+      "path": "services/api/app/exports/content.py",
+      "bytes": 26399,
+      "sha256": "637d91b6390a817eeb73dc8824113f7465328e23e2b20757e51b54b278d00f69"
+    },
+    {
+      "path": "services/api/app/exports/excel.py",
+      "bytes": 14089,
+      "sha256": "fac8262472bc050b656e91da9c441526ed083903f211c681bf238125594543cd"
+    },
+    {
+      "path": "services/api/app/exports/render.py",
+      "bytes": 3441,
+      "sha256": "9b673789a61e484a630354ab69170440558c8b92c450887b1321a13a0c618d19"
+    },
+    {
+      "path": "services/api/app/exports/pdf.py",
+      "bytes": 1450,
+      "sha256": "0263ffea6c2cbbcd50b207b6343f817abcaf76601af268ebafc7de984f4a3462"
+    },
+    {
+      "path": "services/api/app/exports/lifecycle.py",
+      "bytes": 1979,
+      "sha256": "6aa4ff1ffc8b3a6811b1f7580f742a1ad50898ad9958ffa32932e4dd623c572b"
+    },
+    {
+      "path": "services/api/tests/datasets/test_phase3_full_loop.py",
+      "bytes": 16257,
+      "sha256": "b4d9e822874a5dd8685799c701aacd848d8746905f44c42428faeda0d63aef01"
+    },
+    {
+      "path": "datasets/pack-credit_file/planted_errors.json",
+      "bytes": 6617,
+      "sha256": "ecae3ac792528f05bd8e7096499bc2421ee982836bacceeb59d1fe8ddb8ac59a"
+    },
+    {
+      "path": "datasets/pack-credit_file/generator/generate.py",
+      "bytes": 23903,
+      "sha256": "cf582f70ce2ee32ea27276c0e75166a12b59ece2aaa7ead932095642d234582b"
+    },
+    {
+      "path": "datasets/pack-credit_file/disbursement_ledger.csv",
+      "bytes": 2224,
+      "sha256": "7d328e350b7812c659de875b83d269eb80c83145cb4d68f9f61d11aaa639c6a1"
+    },
+    {
+      "path": "datasets/pack-ifc_controls/planted_errors.json",
+      "bytes": 3721,
+      "sha256": "0dfed4ada0d97baf730b3d2838cca05e750b130d75fb7d402ac3580e1e511705"
+    },
+    {
+      "path": "datasets/pack-ifc_controls/generator/generate.py",
+      "bytes": 17003,
+      "sha256": "ae71a1f9c0dd365b7d580087dbf7220d2b68233ce574aa5522045585fc6c38f7"
+    }
+  ]
+}
