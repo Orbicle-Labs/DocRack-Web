@@ -1,6 +1,7 @@
 @import '../styles/tokens.css';
 @import '../styles/typography.css';
 @import '../styles/visual-system.css';
+@import '../styles/pages.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

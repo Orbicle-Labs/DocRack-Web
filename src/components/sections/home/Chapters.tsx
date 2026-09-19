@@ -150,7 +150,7 @@ export function CoverageChapter() {
               AI extracts and drafts; deterministic code performs the configured arithmetic. A
               reviewer assesses sources, resolves uncertainty and owns the conclusion.
             </p>
-            <a className="text-action" href="/review-and-findings">
+            <a className="text-action" href="/product/review-and-findings">
               Explore review and findings <ArrowRight size={18} aria-hidden="true" />
             </a>
           </div>
@@ -313,7 +313,7 @@ export function OutputChapter() {
           </h2>
           <p>{home.sections[4].paragraphs[0]}</p>
           <p>Select a contents annotation to inspect the reasoning and remaining review work.</p>
-          <a className="text-action" href="/working-papers">
+          <a className="text-action" href="/product/working-papers">
             Explore working papers <ArrowRight size={18} aria-hidden="true" />
           </a>
         </div>
@@ -397,8 +397,8 @@ export function GovernanceChapter() {
           Knowledge Hub holds versioned sources; Copilot’s role is to draft and explain with
           citations. People approve Recipes and conclusions.
         </p>
-        <a className="text-action" href="/product">
-          Explore the product model <ArrowRight size={18} aria-hidden="true" />
+        <a className="text-action" href="/product/knowledge-hub-and-copilot">
+          Explore Knowledge Hub and Copilot <ArrowRight size={18} aria-hidden="true" />
         </a>
       </div>
     </section>

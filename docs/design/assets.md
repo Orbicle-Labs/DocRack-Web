@@ -1,3 +1,21 @@
+# Phase 5 asset adoption - 15 September 2026
+
+This addendum supersedes historical consumer/status statements below. The full current-product capture/export gate remains **BLOCKED**. No genuine export, capture, authenticity check or macro/connection/source-link inspection has been supplied or completed.
+
+| New composition                    | Provenance / public treatment                                                                                                                                                                                                         | Usage                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| EvidenceScene and RunRecord        | Original semantic HTML using fixtures.ts. P2P DEMO-RUN-018, credit DEMO-CREDIT-001 and IFC DEMO-IFC-001 remain separate. Invented sources/versions; unresolved review; no file checksum, private artifact or product capture invented | Product and three solution pages            |
+| Fourteen-part Recipe / SourceRoles | Recipe anatomy and six roles from canonical specification; same synthetic P2P procedure                                                                                                                                               | Recipe and Documents                        |
+| FindingRelationship                | HTML explanation, zero confirmed exceptions and no finding raised                                                                                                                                                                     | Review and Findings                         |
+| PaperContents                      | Annotated HTML contents explanation, Draft / review incomplete; never an export or download                                                                                                                                           | Working Papers                              |
+| Policy version chain               | Code-native relationship from Policy v3 / Recipe v3 / DEMO-RUN-018 to separately reviewed future work                                                                                                                                 | Knowledge Hub and Copilot                   |
+| FormatEvaluation                   | Semantic evaluation table; no format support badge or availability promotion                                                                                                                                                          | Documents                                   |
+| Website QA screenshots             | Local credential-free production renders; not product evidence                                                                                                                                                                        | [72-image review board](phase-5/index.html) |
+
+The eleven legacy public/product root PNGs (A01-A11 below) were retired after all runtime consumers switched and reference searches over src/tests/scripts returned none. They remain in Git history. Removed legacy PageHero/LedgerRows/CapabilityLayout/SolutionLayout/LegalLayout/CtaSection, ProductFrame, motion scenes and unused page copy. Existing identity, favicons, licensed font files and all Phase 3 responsive illustrative assets remain intact. No generated art or new public raster payload was needed.
+
+---
+
 # Asset manifest — Phase 0 inventory and Phase 3 production
 
 **Inventory date:** 11 September 2026. **Website source:** `7308d77ee69fe3d59e503c84faa937e80a85f815`. All 23 files under `public/`, three App Router icon files and the generated OG source are inventoried below. Dimensions, decoded format and byte lengths were measured from local files with the installed Sharp decoder. No image was edited, generated, copied from the product, or deleted.

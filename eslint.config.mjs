@@ -16,6 +16,8 @@ export default defineConfig([
     'playwright-report/**',
     'test-results/**',
     'test-results-phase4/**',
+    'test-results-phase5/**',
+    'playwright-report-phase5/**',
     'playwright-report-phase4/**',
   ]),
   {

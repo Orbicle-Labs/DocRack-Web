@@ -24,7 +24,7 @@ for (const { path } of publishedRoutes) {
     expect(response?.status()).toBe(200);
     await expect(page.locator('main')).toHaveCount(1);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.getByRole('banner')).toBeVisible();
     await expect(page.locator('footer')).toBeVisible();
     expect(errors).toEqual([]);
   });

@@ -11,7 +11,7 @@ import {
 import { primaryNav, footerNav, legalNav } from '@/content/navigation';
 import sitemap from '@/app/sitemap';
 
-it('matches the actual page tree, keeping future pages unpublished', () => {
+it('matches the canonical page tree after the deliberate cutover', () => {
   const root = 'src/app/(marketing)';
   function pages(dir: string): string[] {
     return readdirSync(dir, { withFileTypes: true }).flatMap((entry): string[] => {
@@ -41,5 +41,5 @@ it('publishes only real canonical pages and keeps all navigation destinations re
     expect(paths).not.toContain(redirect.source);
     expect(redirect.source.startsWith('/api/')).toBe(false);
   }
-  expect(activeRedirects).toHaveLength(3);
+  expect(activeRedirects).toHaveLength(7);
 });

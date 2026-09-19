@@ -1,13 +1,35 @@
-import { SolutionLayout } from '@/components/sections/SolutionLayout';
-import { creditLoanAudit } from '@/content/pages/solutions';
-import { buildMetadata } from '@/lib/seo/metadata';
-
-export const metadata = buildMetadata({
-  title: creditLoanAudit.metaTitle,
-  description: creditLoanAudit.metaDescription,
-  path: creditLoanAudit.path,
-});
-
-export default function CreditLoanAuditPage() {
-  return <SolutionLayout page={creditLoanAudit} />;
+import { solutionProcedures } from '@/content/pages/solution-procedures';
+import {
+  PageOpening,
+  ProseSection,
+  PageClose,
+  pageCopy,
+  pageMetadata,
+} from '@/components/sections/pages/Editorial';
+import { EvidenceScene, RunRecord } from '@/components/sections/pages/Evidence';
+import { fixtures } from '@/content/demos/fixtures';
+const page = pageCopy('/solutions/credit-loan-audit');
+export const metadata = pageMetadata(page.path);
+export default function Page() {
+  return (
+    <article className="v2 fieldwork-page">
+      <PageOpening page={page} />
+      <div className="design-container page-body">
+        <ProseSection section={page.sections[0]} />
+        <ProseSection section={page.sections[1]} />
+        <EvidenceScene fixture={fixtures.credit} />
+        <RunRecord fixture={fixtures.credit} />
+        <ProseSection section={page.sections[2]} />
+        <ProseSection section={solutionProcedures.credit} />
+        <ProseSection section={page.sections[3]} />
+      </div>
+      <PageClose
+        page={page}
+        links={[
+          { href: '/product/audit-test-recipes', label: 'Audit Test Recipes' },
+          { href: '/product/review-and-findings', label: 'Review and findings' },
+        ]}
+      />
+    </article>
+  );
 }

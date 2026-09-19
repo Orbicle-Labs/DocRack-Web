@@ -1,0 +1,520 @@
+{
+  "date": "2026-09-15T16:09:54.152Z",
+  "browser": "153.0.8010.12",
+  "methodology": "Cold contexts; local production, no CPU/network throttling. External requests and API writes blocked; analytics stubbed. Initial response gzip estimates and measured transfer separately; not field CWV.",
+  "pages": [
+    {
+      "path": "/",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 0,
+      "transfer": 279589,
+      "jsGzip": 178943,
+      "totalGzip": 273529
+    },
+    {
+      "path": "/",
+      "width": 390,
+      "cls": 0,
+      "lcp": 0,
+      "transfer": 279589,
+      "jsGzip": 178943,
+      "totalGzip": 273529
+    },
+    {
+      "path": "/",
+      "width": 320,
+      "cls": 0,
+      "lcp": 144,
+      "transfer": 322043,
+      "jsGzip": 205427,
+      "totalGzip": 300013
+    },
+    {
+      "path": "/product",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 112,
+      "transfer": 351470,
+      "jsGzip": 210388,
+      "totalGzip": 293463
+    },
+    {
+      "path": "/product",
+      "width": 390,
+      "cls": 0,
+      "lcp": 100,
+      "transfer": 310532,
+      "jsGzip": 205427,
+      "totalGzip": 288502
+    },
+    {
+      "path": "/product",
+      "width": 320,
+      "cls": 0,
+      "lcp": 80,
+      "transfer": 310532,
+      "jsGzip": 205427,
+      "totalGzip": 288502
+    },
+    {
+      "path": "/product/audit-test-recipes",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 136,
+      "transfer": 327314,
+      "jsGzip": 205427,
+      "totalGzip": 289940
+    },
+    {
+      "path": "/product/audit-test-recipes",
+      "width": 390,
+      "cls": 0,
+      "lcp": 84,
+      "transfer": 318253,
+      "jsGzip": 205427,
+      "totalGzip": 289940
+    },
+    {
+      "path": "/product/audit-test-recipes",
+      "width": 320,
+      "cls": 0,
+      "lcp": 84,
+      "transfer": 318253,
+      "jsGzip": 205427,
+      "totalGzip": 289940
+    },
+    {
+      "path": "/product/documents",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 116,
+      "transfer": 325896,
+      "jsGzip": 205427,
+      "totalGzip": 288522
+    },
+    {
+      "path": "/product/documents",
+      "width": 390,
+      "cls": 0,
+      "lcp": 128,
+      "transfer": 316835,
+      "jsGzip": 205427,
+      "totalGzip": 288522
+    },
+    {
+      "path": "/product/documents",
+      "width": 320,
+      "cls": 0,
+      "lcp": 116,
+      "transfer": 316835,
+      "jsGzip": 205427,
+      "totalGzip": 288522
+    },
+    {
+      "path": "/product/reconciliation-and-checks",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 136,
+      "transfer": 326266,
+      "jsGzip": 205427,
+      "totalGzip": 288892
+    },
+    {
+      "path": "/product/reconciliation-and-checks",
+      "width": 390,
+      "cls": 0,
+      "lcp": 104,
+      "transfer": 317205,
+      "jsGzip": 205427,
+      "totalGzip": 288892
+    },
+    {
+      "path": "/product/reconciliation-and-checks",
+      "width": 320,
+      "cls": 0,
+      "lcp": 120,
+      "transfer": 317205,
+      "jsGzip": 205427,
+      "totalGzip": 288892
+    },
+    {
+      "path": "/product/review-and-findings",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 100,
+      "transfer": 331970,
+      "jsGzip": 210388,
+      "totalGzip": 294296
+    },
+    {
+      "path": "/product/review-and-findings",
+      "width": 390,
+      "cls": 0,
+      "lcp": 128,
+      "transfer": 322909,
+      "jsGzip": 210388,
+      "totalGzip": 294296
+    },
+    {
+      "path": "/product/review-and-findings",
+      "width": 320,
+      "cls": 0,
+      "lcp": 120,
+      "transfer": 322909,
+      "jsGzip": 210388,
+      "totalGzip": 294296
+    },
+    {
+      "path": "/product/working-papers",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 108,
+      "transfer": 326923,
+      "jsGzip": 205427,
+      "totalGzip": 289549
+    },
+    {
+      "path": "/product/working-papers",
+      "width": 390,
+      "cls": 0,
+      "lcp": 84,
+      "transfer": 317862,
+      "jsGzip": 205427,
+      "totalGzip": 289549
+    },
+    {
+      "path": "/product/working-papers",
+      "width": 320,
+      "cls": 0,
+      "lcp": 116,
+      "transfer": 317862,
+      "jsGzip": 205427,
+      "totalGzip": 289549
+    },
+    {
+      "path": "/product/knowledge-hub-and-copilot",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 124,
+      "transfer": 325003,
+      "jsGzip": 205427,
+      "totalGzip": 287629
+    },
+    {
+      "path": "/product/knowledge-hub-and-copilot",
+      "width": 390,
+      "cls": 0,
+      "lcp": 108,
+      "transfer": 315942,
+      "jsGzip": 205427,
+      "totalGzip": 287629
+    },
+    {
+      "path": "/product/knowledge-hub-and-copilot",
+      "width": 320,
+      "cls": 0,
+      "lcp": 84,
+      "transfer": 315942,
+      "jsGzip": 205427,
+      "totalGzip": 287629
+    },
+    {
+      "path": "/product/test-library",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 140,
+      "transfer": 330683,
+      "jsGzip": 205427,
+      "totalGzip": 286459
+    },
+    {
+      "path": "/product/test-library",
+      "width": 390,
+      "cls": 0,
+      "lcp": 104,
+      "transfer": 314772,
+      "jsGzip": 205427,
+      "totalGzip": 286459
+    },
+    {
+      "path": "/product/test-library",
+      "width": 320,
+      "cls": 0,
+      "lcp": 84,
+      "transfer": 314772,
+      "jsGzip": 205427,
+      "totalGzip": 286459
+    },
+    {
+      "path": "/solutions/internal-audit",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 120,
+      "transfer": 320204,
+      "jsGzip": 205427,
+      "totalGzip": 289113
+    },
+    {
+      "path": "/solutions/internal-audit",
+      "width": 390,
+      "cls": 0,
+      "lcp": 124,
+      "transfer": 311143,
+      "jsGzip": 205427,
+      "totalGzip": 289113
+    },
+    {
+      "path": "/solutions/internal-audit",
+      "width": 320,
+      "cls": 0,
+      "lcp": 76,
+      "transfer": 311143,
+      "jsGzip": 205427,
+      "totalGzip": 289113
+    },
+    {
+      "path": "/solutions/credit-loan-audit",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 84,
+      "transfer": 320174,
+      "jsGzip": 205427,
+      "totalGzip": 289083
+    },
+    {
+      "path": "/solutions/credit-loan-audit",
+      "width": 390,
+      "cls": 0,
+      "lcp": 116,
+      "transfer": 311113,
+      "jsGzip": 205427,
+      "totalGzip": 289083
+    },
+    {
+      "path": "/solutions/credit-loan-audit",
+      "width": 320,
+      "cls": 0,
+      "lcp": 80,
+      "transfer": 311113,
+      "jsGzip": 205427,
+      "totalGzip": 289083
+    },
+    {
+      "path": "/solutions/ifc-sox",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 124,
+      "transfer": 320215,
+      "jsGzip": 205427,
+      "totalGzip": 289124
+    },
+    {
+      "path": "/solutions/ifc-sox",
+      "width": 390,
+      "cls": 0,
+      "lcp": 120,
+      "transfer": 311154,
+      "jsGzip": 205427,
+      "totalGzip": 289124
+    },
+    {
+      "path": "/solutions/ifc-sox",
+      "width": 320,
+      "cls": 0,
+      "lcp": 80,
+      "transfer": 311154,
+      "jsGzip": 205427,
+      "totalGzip": 289124
+    },
+    {
+      "path": "/security",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 76,
+      "transfer": 323383,
+      "jsGzip": 207073,
+      "totalGzip": 287463
+    },
+    {
+      "path": "/security",
+      "width": 390,
+      "cls": 0,
+      "lcp": 68,
+      "transfer": 314322,
+      "jsGzip": 207073,
+      "totalGzip": 287463
+    },
+    {
+      "path": "/security",
+      "width": 320,
+      "cls": 0,
+      "lcp": 120,
+      "transfer": 314322,
+      "jsGzip": 207073,
+      "totalGzip": 287463
+    },
+    {
+      "path": "/company",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 76,
+      "transfer": 316727,
+      "jsGzip": 205427,
+      "totalGzip": 285636
+    },
+    {
+      "path": "/company",
+      "width": 390,
+      "cls": 0,
+      "lcp": 92,
+      "transfer": 307666,
+      "jsGzip": 205427,
+      "totalGzip": 285636
+    },
+    {
+      "path": "/company",
+      "width": 320,
+      "cls": 0,
+      "lcp": 112,
+      "transfer": 307666,
+      "jsGzip": 205427,
+      "totalGzip": 285636
+    },
+    {
+      "path": "/book-demo",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 140,
+      "transfer": 348800,
+      "jsGzip": 207073,
+      "totalGzip": 308864
+    },
+    {
+      "path": "/book-demo",
+      "width": 390,
+      "cls": 0,
+      "lcp": 128,
+      "transfer": 329548,
+      "jsGzip": 205427,
+      "totalGzip": 307218
+    },
+    {
+      "path": "/book-demo",
+      "width": 320,
+      "cls": 0,
+      "lcp": 124,
+      "transfer": 329548,
+      "jsGzip": 205427,
+      "totalGzip": 307218
+    },
+    {
+      "path": "/support",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 64,
+      "transfer": 319129,
+      "jsGzip": 207073,
+      "totalGzip": 287738
+    },
+    {
+      "path": "/support",
+      "width": 390,
+      "cls": 0,
+      "lcp": 60,
+      "transfer": 310068,
+      "jsGzip": 207073,
+      "totalGzip": 287738
+    },
+    {
+      "path": "/support",
+      "width": 320,
+      "cls": 0,
+      "lcp": 56,
+      "transfer": 310068,
+      "jsGzip": 207073,
+      "totalGzip": 287738
+    },
+    {
+      "path": "/glossary",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 108,
+      "transfer": 327356,
+      "jsGzip": 205427,
+      "totalGzip": 289359
+    },
+    {
+      "path": "/glossary",
+      "width": 390,
+      "cls": 0,
+      "lcp": 116,
+      "transfer": 318295,
+      "jsGzip": 205427,
+      "totalGzip": 289359
+    },
+    {
+      "path": "/glossary",
+      "width": 320,
+      "cls": 0,
+      "lcp": 80,
+      "transfer": 318295,
+      "jsGzip": 205427,
+      "totalGzip": 289359
+    },
+    {
+      "path": "/privacy",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 84,
+      "transfer": 413346,
+      "jsGzip": 212034,
+      "totalGzip": 291331
+    },
+    {
+      "path": "/privacy",
+      "width": 390,
+      "cls": 0,
+      "lcp": 68,
+      "transfer": 360459,
+      "jsGzip": 207073,
+      "totalGzip": 286370
+    },
+    {
+      "path": "/privacy",
+      "width": 320,
+      "cls": 0,
+      "lcp": 80,
+      "transfer": 333321,
+      "jsGzip": 207073,
+      "totalGzip": 286370
+    },
+    {
+      "path": "/terms",
+      "width": 1440,
+      "cls": 0,
+      "lcp": 80,
+      "transfer": 413333,
+      "jsGzip": 212034,
+      "totalGzip": 291318
+    },
+    {
+      "path": "/terms",
+      "width": 390,
+      "cls": 0,
+      "lcp": 68,
+      "transfer": 360446,
+      "jsGzip": 207073,
+      "totalGzip": 286357
+    },
+    {
+      "path": "/terms",
+      "width": 320,
+      "cls": 0,
+      "lcp": 72,
+      "transfer": 339938,
+      "jsGzip": 207073,
+      "totalGzip": 286357
+    }
+  ]
+}

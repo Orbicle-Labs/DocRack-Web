@@ -32,3 +32,6 @@ playwright-report
 test-results-phase4
 playwright-report-phase4
 *service-account*.json
+
+test-results-phase5/
+playwright-report-phase5/

@@ -24,10 +24,12 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
     items: [
       { label: 'Overview', href: '/product' },
       { label: 'Audit Test Recipes', href: '/product/audit-test-recipes' },
-      { label: 'Documents', href: '/documents' },
-      { label: 'Reconciliation and checks', href: '/reconciliation-and-checks' },
-      { label: 'Review and findings', href: '/review-and-findings' },
-      { label: 'Working papers', href: '/working-papers' },
+      { label: 'Documents', href: '/product/documents' },
+      { label: 'Reconciliation and checks', href: '/product/reconciliation-and-checks' },
+      { label: 'Review and findings', href: '/product/review-and-findings' },
+      { label: 'Working papers', href: '/product/working-papers' },
+      { label: 'Knowledge Hub and Copilot', href: '/product/knowledge-hub-and-copilot' },
+      { label: 'Test Library', href: '/product/test-library' },
     ],
   },
   {
@@ -35,6 +37,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
     items: [
       { label: 'Internal audit', href: '/solutions/internal-audit' },
       { label: 'Credit and loan audit', href: '/solutions/credit-loan-audit' },
+      { label: 'IFC/SOX controls', href: '/solutions/ifc-sox' },
     ],
   },
   {

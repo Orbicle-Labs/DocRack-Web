@@ -1,74 +1,46 @@
+import {
+  PageOpening,
+  ProseSection,
+  PageClose,
+  pageCopy,
+  pageMetadata,
+} from '@/components/sections/pages/Editorial';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Section } from '@/components/ui';
-import { PageHero } from '@/components/sections/PageHero';
-import { CtaSection } from '@/components/sections/CtaSection';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { glossaryPage, terms } from '@/content/pages/glossary';
 import { definedTermSetSchema } from '@/lib/seo/structured-data';
-import { buildMetadata } from '@/lib/seo/metadata';
-
-export const metadata = buildMetadata({
-  title: glossaryPage.metaTitle,
-  description: glossaryPage.metaDescription,
-  path: glossaryPage.path,
-});
-
-/**
- * A definition list, not LedgerRows.
- *
- * LedgerRows renders <ul>/<li>, which is the wrong element for a term and its
- * definition, and giving its shared LedgerRow type an href would push a
- * glossary-only concern into the eight other pages that use it. Hand-composing
- * a bespoke list from the primitives is what /security and /company already do.
- */
-export default function GlossaryPage() {
+import { glossaryTerms } from '@/content/pages/glossary';
+const page = pageCopy('/glossary');
+export const metadata = pageMetadata(page.path);
+export default function Page() {
   return (
-    <>
+    <article className="v2 fieldwork-page">
       <JsonLd
-        data={definedTermSetSchema(terms, {
-          name: `${glossaryPage.metaTitle} — DocRack`,
-          description: glossaryPage.metaDescription,
-          path: glossaryPage.path,
+        data={definedTermSetSchema(glossaryTerms, {
+          name: page.metadata.title,
+          description: page.metadata.description,
+          path: page.path,
         })}
       />
-
-      <PageHero
-        eyebrow={glossaryPage.eyebrow}
-        heading={glossaryPage.heading}
-        sub={glossaryPage.sub}
-        cta={{ label: 'Book a demo' }}
-        secondary={{ label: 'Ask a question', href: '/support' }}
-      />
-
-      <Section tone="canvas" spacing="open">
-        <dl className="border-b border-line">
-          {terms.map((entry) => (
-            <div
-              key={entry.slug}
-              id={entry.slug}
-              // scroll-mt clears the sticky header when an anchor is followed.
-              className="grid scroll-mt-24 gap-x-6 gap-y-2 border-t border-line py-7 lg:grid-cols-12"
-            >
-              <dt className="min-w-0 text-h4 lg:col-span-4">{entry.term}</dt>
-              <dd className="min-w-0 lg:col-start-6 lg:col-span-7">
-                <p className="max-w-prose text-body text-muted">{entry.definition}</p>
-                {entry.href && (
-                  <Link
-                    href={entry.href}
-                    className="mt-3 inline-flex items-center gap-1.5 text-body-sm font-medium text-accent transition-colors duration-fast ease-out hover:text-accent-hover"
-                  >
-                    {entry.hrefLabel}
-                    <ArrowRight size={15} aria-hidden="true" />
-                  </Link>
-                )}
-              </dd>
-            </div>
+      <PageOpening page={page} />
+      <div className="design-container reading-page">
+        <nav className="related-pages" aria-label="Glossary terms">
+          {page.sections.map((s) => (
+            <Link href={'#' + s.id} key={s.id}>
+              {s.heading}
+            </Link>
           ))}
-        </dl>
-      </Section>
-
-      <CtaSection heading={glossaryPage.cta.heading} body={glossaryPage.cta.body} />
-    </>
+        </nav>
+        {page.sections.map((section) => (
+          <ProseSection key={section.id} section={section} />
+        ))}
+      </div>
+      <PageClose
+        page={page}
+        links={[
+          { href: '/product/audit-test-recipes', label: 'Audit Test Recipes' },
+          { href: '/product/review-and-findings', label: 'Review and findings' },
+        ]}
+      />
+    </article>
   );
 }

@@ -81,6 +81,6 @@ export const procedures = [
     inputs: 'Journal-entry control record ↔ sign-off evidence ↔ control procedure',
     check: 'Check that the control reviewer differs from the performer.',
     exception: `${fixtures.ifc.actual}; independent review is not evidenced.`,
-    href: '/review-and-findings',
+    href: '/solutions/ifc-sox',
   },
 ] as const;

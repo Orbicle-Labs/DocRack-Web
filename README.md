@@ -6,7 +6,7 @@ This repository contains the **public website and its demo/support enquiry backe
 
 ## Rebuild status and project documents
 
-Phase 3 adds typed copy/metadata and briefs for nineteen launch pages, shared synthetic fixtures, responsive illustrative assets, traced identity outputs and a new OG image using the Phase 2 direction. Phase 4 implements the full homepage, six-step workflow and accessible source inspection using those labelled illustrations. Genuine current-product captures/exports remain blocked, and other-page adoption remains Phase 5. Review [the page briefs](docs/content/page-briefs.md), [asset board](docs/design/phase-3/index.html) and [current handoff](docs/CURRENT_PHASE.md). No founder visual approval is inferred.
+Phase 5 implements the remaining product, solution and supporting pages using the established visual direction and labelled synthetic illustrations. Nineteen canonical paths exist; Privacy and Terms are reachable, noindex hold pages with concrete internal review drafts. Seven permanent redirects are active. Phase 3 genuine captures/exports remain BLOCKED, and the Phase 4 mobile LCP requirement remains open. Review [the current handoff](docs/CURRENT_PHASE.md), [Phase 5 QA](docs/qa/phase-5.md) and [page screenshots](docs/design/phase-5/index.html). No founder visual or legal approval is inferred.
 
 | Document                                                                           | Purpose                                                                                  |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -25,31 +25,31 @@ The current website is a source for backend behaviour and route migration. Its d
 
 Versions below are the lockfile/configuration snapshot checked on 12 September 2026. Refresh this table when implementation changes them.
 
-| Area           | Implemented now                                                   | Remaining rebuild                                              |
-| -------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- |
-| Framework      | Next.js 16.3.4, React/React DOM 19.3.0, App Router                | New visual composition and page content                        |
-| Runtime        | Node 24.21.0 in engines, .nvmrc, both Dockerfiles and CI          | Recheck security patches before release                        |
-| Language/style | Strict TypeScript 5.9.3, Tailwind 3.4.19, new ivory/forest tokens | Final page adoption in Phases 3–5                              |
-| Source         | src/app, src/components, src/content, src/lib                     | New content and demos in Phases 3–5                            |
-| Forms          | Existing React Hook Form/Zod contracts and inline/Sonner feedback | Shared schema and reliability hardening in Phase 6             |
-| Integrations   | Server-only Google auth 11.0.2, Sheets and best-effort Resend     | Shared limiter, provider timeouts and safe logging in Phase 6  |
-| Analytics      | Existing Vercel integration; delivery unverified                  | Disabled-until-configured adapter in Phase 6                   |
-| Tests          | ESLint CLI, TypeScript, Vitest/RTL and Chromium Playwright        | Broader accessibility/browser/content/asset QA in later phases |
-| Deployment     | Docker standalone image and main-only Cloud Run pipeline          | No deployment performed in Phase 1                             |
+| Area           | Implemented now                                                           | Remaining rebuild                                             |
+| -------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Framework      | Next.js 16.3.4, React/React DOM 19.3.0, App Router                        | Release review and current-product evidence                   |
+| Runtime        | Node 24.21.0 in engines, .nvmrc, both Dockerfiles and CI                  | Recheck security patches before release                       |
+| Language/style | Strict TypeScript 5.9.3, Tailwind 3.4.19, ivory/forest page system        | Owner visual review and release accessibility checks          |
+| Source         | src/app, src/components, src/content, src/lib; nineteen canonical pages   | Genuine product evidence and legal publication approval       |
+| Forms          | Existing React Hook Form/Zod contracts and inline/Sonner feedback         | Shared schema and reliability hardening in Phase 6            |
+| Integrations   | Server-only Google auth 11.0.2, Sheets and best-effort Resend             | Shared limiter, provider timeouts and safe logging in Phase 6 |
+| Analytics      | Existing Vercel integration; delivery unverified                          | Disabled-until-configured adapter in Phase 6                  |
+| Tests          | ESLint CLI, TypeScript, Vitest/RTL and Chromium/Firefox/WebKit Playwright | Field/device/assistive-technology release acceptance          |
+| Deployment     | Docker standalone image and main-only Cloud Run pipeline                  | Local builds only; no Phase 5 deployment                      |
 
 Use the exact Node version in [.nvmrc](.nvmrc), for example with your Node version manager. Phase 1 checks also used a checksum-verified portable Node installation in the ignored local tools directory; the machine-wide Node installation was not changed.
 
 ### Source boundaries
 
 - `src/app/layout.tsx`: document markup, fonts, metadata and global providers.
-- `src/app/(marketing)/layout.tsx`: header, one main landmark, footer and skip link. Existing public paths are unchanged.
+- `src/app/(marketing)/layout.tsx`: header, one main landmark, footer and skip link. Canonical paths and legal holds are explicit in the route registry.
 - `src/styles/`, `src/components/demos/`, `src/content/demos/p2p.ts`: Phase 2 visual system and clearly labelled synthetic source-review prototypes.
-- `src/content/pages/launch.ts`: final Phase 3 candidate copy, metadata, FAQs, briefs and publication holds for nineteen target pages. Inherited page modules remain until Phase 4/5 adoption. `src/content/routes.ts` still records sixteen published pages and seven planned destinations; no future redirect is active.
+- `src/content/pages/launch.ts`: qualified page copy, metadata and FAQs. Explicit route components compose editorial sections, evidence, Recipe anatomy, paper contents and separate solution procedures. The route registry contains nineteen canonical paths; Privacy/Terms hold pages are excluded from its seventeen-entry sitemap.
 - `src/content/demos/fixtures.ts`, `src/content/readiness.ts`, `src/content/assets.ts`: three separate controlled display fixtures, editorial format/readiness evidence and generated asset registry. These do not implement or call the authenticated product.
 - `src/lib/server/`: Sheets, notifications and the current process-local limiter, guarded by `server-only`.
 - `src/lib/forms/submit.ts`, `src/lib/hooks/`, `src/lib/seo/`: browser submission, headless interaction and SEO helpers. `@/*` resolves into `src/*`.
 
-Public assets remain in `public/`; their URLs do not change. The four future product redirects remain inactive until replacement pages ship. Phase 0 registers retain historical source paths; the phase report documents the move.
+Public assets remain in `public/`. Eleven replaced legacy product PNGs were removed after consumer checks; original identity, fonts and Phase 3 illustrations remain. Four product redirects now join the three preserved redirects. Phase 0 registers retain historical source paths; the Phase 5 addenda record current status.
 
 ## Run the current site locally
 
@@ -186,7 +186,7 @@ The rebuild includes claim verification, privacy-text correction, shared abuse c
 
 The checked-in workflow runs checks for pull requests and deploys qualifying main-branch push/manual runs. **Pushing or merging to main can release the site.** Consult [DEPLOYMENT.md](DEPLOYMENT.md) before release work.
 
-Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). Phase 2's local prototype gate is complete; review [the direction and screenshots](docs/design/direction.md). The next implementation phase, when authorised, is Phase 3: source-grounded content and asset production. Validation is recorded in [Phase 2 QA](docs/qa/phase-2.md); [Phase 1 QA](docs/qa/phase-1.md) retains foundation evidence.
+Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). Independent Phase 5 work is implemented with explicit legal, product-evidence and performance holds. The local Phase 5 commit is authorised; stop before Phase 6, further commits, push, deployment or live services until separately authorised.
 
 ### Phase 4 homepage QA
 
@@ -204,3 +204,31 @@ Remove-Item Env:PLAYWRIGHT_BASE_URL
 The default suite includes the homepage checks and all retained regressions. `playwright.phase4.config.ts` adds the focused homepage suite in Firefox and WebKit. Native device Safari and assistive-technology acceptance remain separate release work. If using this checkout's ignored browser cache, set `PLAYWRIGHT_BROWSERS_PATH` to the absolute `.local-tools/browsers` path for both installation and execution; the default browser cache may contain an older revision. Firefox may require a runner outside the filesystem sandbox to launch.
 
 `measure-homepage.mjs` refuses remote targets, blocks external/API requests, stubs analytics and records homepage resource sizes, gzip estimates, local layout shift, evidence bounds and focus return in `docs/qa/phase-4-measurements.json`. It does not post enquiries. Gzip estimates include the small walkthrough; no heavy media is loaded. Lighthouse results and conditions are recorded separately in [Phase 4 QA](docs/qa/phase-4.md). The asset/content checks remain part of `npm test`.
+
+### Phase 5 local production QA
+
+Use a credential-free standalone image on 3100. Do not use Compose with a live env/key mount for these checks; ports 3000/8000 remain outside this task.
+
+```powershell
+docker build -t docrack-web:phase5 .
+docker run --detach --rm --name docrack-web-phase5-qa --publish 127.0.0.1:3100:3000 docrack-web:phase5
+$env:PLAYWRIGHT_BASE_URL = 'http://127.0.0.1:3100'
+# When using this checkout's existing browser cache:
+$env:PLAYWRIGHT_BROWSERS_PATH = (Resolve-Path .local-tools/browsers).Path
+npm run lint
+npm run check-types
+npm test
+npm run check-content
+npm run check-assets
+npx playwright test
+npx playwright test --config playwright.phase5.config.ts --project firefox --project webkit
+npx playwright test --config playwright.phase4.config.ts
+# Run measurements after browser suites finish to avoid competing load.
+node scripts/measure-pages.mjs
+node scripts/lighthouse-pages.mjs
+docker stop docrack-web-phase5-qa
+```
+
+The default suite covers Chromium regressions and Phase 5. The focused configs use separate ignored output/report directories. Phase 5 retains 72 website screenshots under docs/design/screenshots/phase-5 and checks six viewport widths, contrast, metadata, anchors, mocked form save failures/success, touch, reduced motion and no-JS content. Browser engines do not establish actual iOS/assistive-technology acceptance. Hydrated form tests wait for initial scripts; early typing before hydration remains a Phase 6 reliability item.
+
+`measure-pages.mjs` writes Phase 5 payload/CLS measurements for all nineteen paths at 1440/390/320px. `lighthouse-pages.mjs` measures three fresh mobile runs each for home, Product, Documents and Demo. It uses Lighthouse 13.4.1 from an isolated QA install at .local-tools/performance; set LIGHTHOUSE_MODULE to an alternate local module path if needed. This is not an app dependency. Both scripts reject remote targets, block external traffic/API writes and preserve historical Phase 4 reports.

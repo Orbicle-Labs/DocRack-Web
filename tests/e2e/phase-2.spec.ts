@@ -126,10 +126,10 @@ test('new navigation contains focus, resets at desktop and supports disclosures'
   await page.keyboard.press('Escape');
   await expect(summary).toBeFocused();
   await page.goto('/product');
-  const disclosure = page.locator('.disclosure summary').first();
+  const disclosure = page.locator('.page-faq summary').first();
   await disclosure.focus();
   await page.keyboard.press('Space');
-  await expect(page.locator('.disclosure').first()).toHaveAttribute('open', '');
+  await expect(page.locator('.page-faq details').first()).toHaveAttribute('open', '');
 });
 
 test('the opening and first evidence state remain readable without JavaScript or fonts', async ({

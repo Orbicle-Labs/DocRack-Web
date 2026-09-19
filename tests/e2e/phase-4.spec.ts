@@ -73,7 +73,11 @@ for (const [width, height] of [
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
       .analyze();
     expect(axe.violations).toEqual([]);
-    await page.screenshot({ path: info.outputPath(`home-${width}.png`), fullPage: true });
+    await page.screenshot({
+      path: info.outputPath(`home-${width}.png`),
+      fullPage: true,
+      scale: 'css',
+    });
     for (const chapter of [
       'workflow',
       'recipe',

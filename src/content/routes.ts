@@ -1,93 +1,162 @@
-/** Publication is explicit and independent of navigation. Planned URLs stay private. */
+/** Explicit canonical routes. Legal hold pages are reachable but not indexable. */
 export const contentModules = {
   homepage: 'src/content/pages/home.ts',
-  product: 'src/content/pages/product.ts',
-  solutions: 'src/content/pages/solutions.ts',
-  support: 'src/content/pages/support.ts',
-  glossary: 'src/content/pages/glossary.ts',
-  inline: 'route page',
+  launch: 'src/content/pages/launch.ts',
+  legalHold: 'route page',
 } as const;
-
-interface RouteEntry {
-  path: `/${string}`;
-  status: 'published' | 'planned';
-  indexable: boolean;
-  content: keyof typeof contentModules;
-  /** Future path only; does not activate a redirect. */
-  replacement?: `/${string}`;
-}
-
 export const routes = [
-  { path: '/', status: 'published', indexable: true, content: 'homepage' },
-  { path: '/product', status: 'published', indexable: true, content: 'product' },
-  { path: '/product/audit-test-recipes', status: 'published', indexable: true, content: 'product' },
   {
-    path: '/documents',
+    path: '/',
     status: 'published',
     indexable: true,
-    content: 'product',
-    replacement: '/product/documents',
+    content: 'homepage',
   },
   {
-    path: '/reconciliation-and-checks',
+    path: '/product',
     status: 'published',
     indexable: true,
-    content: 'product',
-    replacement: '/product/reconciliation-and-checks',
+    content: 'launch',
   },
   {
-    path: '/review-and-findings',
+    path: '/product/audit-test-recipes',
     status: 'published',
     indexable: true,
-    content: 'product',
-    replacement: '/product/review-and-findings',
+    content: 'launch',
   },
   {
-    path: '/working-papers',
+    path: '/product/documents',
     status: 'published',
     indexable: true,
-    content: 'product',
-    replacement: '/product/working-papers',
+    content: 'launch',
   },
-  { path: '/solutions/internal-audit', status: 'published', indexable: true, content: 'solutions' },
+  {
+    path: '/product/reconciliation-and-checks',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/product/review-and-findings',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/product/working-papers',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/product/knowledge-hub-and-copilot',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/product/test-library',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/solutions/internal-audit',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
   {
     path: '/solutions/credit-loan-audit',
     status: 'published',
     indexable: true,
-    content: 'solutions',
+    content: 'launch',
   },
-  { path: '/security', status: 'published', indexable: true, content: 'inline' },
-  { path: '/company', status: 'published', indexable: true, content: 'inline' },
-  { path: '/book-demo', status: 'published', indexable: true, content: 'inline' },
-  { path: '/support', status: 'published', indexable: true, content: 'support' },
-  { path: '/glossary', status: 'published', indexable: true, content: 'glossary' },
-  { path: '/privacy', status: 'published', indexable: true, content: 'inline' },
-  { path: '/terms', status: 'published', indexable: true, content: 'inline' },
-  { path: '/product/documents', status: 'planned', indexable: false, content: 'product' },
   {
-    path: '/product/reconciliation-and-checks',
-    status: 'planned',
-    indexable: false,
-    content: 'product',
+    path: '/solutions/ifc-sox',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
   },
-  { path: '/product/review-and-findings', status: 'planned', indexable: false, content: 'product' },
-  { path: '/product/working-papers', status: 'planned', indexable: false, content: 'product' },
   {
-    path: '/product/knowledge-hub-and-copilot',
-    status: 'planned',
-    indexable: false,
-    content: 'product',
+    path: '/security',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
   },
-  { path: '/product/test-library', status: 'planned', indexable: false, content: 'product' },
-  { path: '/solutions/ifc-sox', status: 'planned', indexable: false, content: 'solutions' },
-] as const satisfies readonly RouteEntry[];
-
-export type PublishedPath = Extract<(typeof routes)[number], { status: 'published' }>['path'];
-export const publishedRoutes = routes.filter((route) => route.status === 'published');
+  {
+    path: '/company',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/book-demo',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/support',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/glossary',
+    status: 'published',
+    indexable: true,
+    content: 'launch',
+  },
+  {
+    path: '/privacy',
+    status: 'published',
+    indexable: false,
+    content: 'legalHold',
+  },
+  {
+    path: '/terms',
+    status: 'published',
+    indexable: false,
+    content: 'legalHold',
+  },
+] as const;
+export type PublishedPath = (typeof routes)[number]['path'];
+export const publishedRoutes = routes;
 export const sitemapRoutes = publishedRoutes.filter((route) => route.indexable);
-
 export const activeRedirects = [
-  { source: '/intake', destination: '/book-demo', permanent: true },
-  { source: '/workflow', destination: '/product', permanent: true },
-  { source: '/about', destination: '/company', permanent: true },
+  {
+    source: '/intake',
+    destination: '/book-demo',
+    permanent: true,
+  },
+  {
+    source: '/workflow',
+    destination: '/product',
+    permanent: true,
+  },
+  {
+    source: '/about',
+    destination: '/company',
+    permanent: true,
+  },
+  {
+    source: '/documents',
+    destination: '/product/documents',
+    permanent: true,
+  },
+  {
+    source: '/reconciliation-and-checks',
+    destination: '/product/reconciliation-and-checks',
+    permanent: true,
+  },
+  {
+    source: '/review-and-findings',
+    destination: '/product/review-and-findings',
+    permanent: true,
+  },
+  {
+    source: '/working-papers',
+    destination: '/product/working-papers',
+    permanent: true,
+  },
 ] satisfies { source: string; destination: PublishedPath; permanent: true }[];

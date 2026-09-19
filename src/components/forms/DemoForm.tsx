@@ -225,11 +225,11 @@ export function DemoForm() {
       </Button>
 
       <p className="mt-4 text-caption text-muted">
-        We use these details to respond to your enquiry. Read our{' '}
+        We use these details to respond to your enquiry. See our{' '}
         <Link href="/privacy" className="underline underline-offset-4">
-          privacy notice
+          privacy review status
         </Link>{' '}
-        for information about website data handling.
+        or contact the team with questions about website data handling.
       </p>
     </form>
   );

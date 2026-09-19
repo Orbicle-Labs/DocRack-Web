@@ -6,5 +6,4 @@ export { Eyebrow } from './Eyebrow';
 export { Field, Input, Select, Textarea, HoneypotInput } from './Field';
 export { Heading } from './Heading';
 export { Panel } from './Panel';
-export { ProductFrame } from './ProductFrame';
 export { Section, type SectionProps } from './Section';

@@ -263,3 +263,11 @@ The full homepage uses labelled synthetic HTML scenes and an illustrative workin
 The final image and exact evidence are recorded in [Phase 4 QA](docs/qa/phase-4.md). Run the normal Chromium regression suite, the focused `npx playwright test --config=playwright.phase4.config.ts` Firefox/WebKit suite, and `node scripts/measure-homepage.mjs` against the credential-free port-3100 container. The measurement command refuses remote targets and never submits forms. See README for browser-cache selection. Keep ports 3000/8000 and live integrations untouched.
 
 Homepage implementation acceptance does not close the genuine-product evidence, performance, legal, actual-device, assistive-technology or release gates. Three mobile Lighthouse reports are local lab evidence, not field INP/p75 or production verification.
+
+## Phase 5 local validation and publication holds
+
+Phase 5 uses the credential-free standalone image docrack-web:phase5 on 127.0.0.1:3100, without env files, credentials, volume mounts or provider writes. Docker build runs the pinned Node 24.21.0 production build. [README](README.md#phase-5-local-production-qa) contains current browser and measurement commands. The temporary QA container is stopped at handoff; no deployment, push or live-service change is part of this phase.
+
+Seven exact redirects are active in the local build; nineteen canonical paths exist. Privacy and Terms serve noindex publication holds and are omitted from the sitemap until owner/legal facts and final wording are approved. Final legal text is internal under docs/content/legal. Do not treat these reachable hold routes as complete legal publication. Product evidence and the Phase 4 LCP target remain open; see [Phase 5 QA](docs/qa/phase-5.md).
+
+Enquiry fields/statuses, Sheets tabs/columns, Sheets-first persistence, internal best-effort Resend notifications, credentials and provider configuration are preserved. Form copy changes do not establish live processing/retention facts. No setup-sheet, Firestore/shared-limiter work or analytics/provider migration was run; those remain separately scoped Phase 6 work.

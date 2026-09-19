@@ -1,0 +1,422 @@
+.fieldwork-page {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 28px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.breadcrumbs a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.breadcrumbs > span {
+  display: inline-flex;
+  align-items: center;
+}
+.page-opening {
+  padding: 56px 0 72px;
+  max-width: 1050px;
+}
+.page-opening h1 {
+  font-size: clamp(36px, 5.2vw, 76px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  max-width: 19ch;
+  margin: 20px 0 28px;
+}
+.page-lead {
+  font-size: clamp(18px, 2vw, 22px);
+  max-width: 62ch;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+.page-qualification {
+  max-width: 68ch;
+  margin-top: 20px;
+}
+.page-body {
+  padding-bottom: 32px;
+}
+.prose-section {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 64px;
+  padding: 64px 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 112px;
+}
+.prose-section h2,
+.page-next h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+.prose-section p,
+.page-next p {
+  max-width: 68ch;
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+.evidence-scene {
+  background: var(--forest);
+  color: white;
+  padding: clamp(24px, 4vw, 56px);
+  border-radius: 10px;
+  margin-bottom: 64px;
+}
+.evidence-scene figcaption {
+  font-size: 14px;
+  color: var(--on-dark);
+  padding-bottom: 28px;
+}
+.evidence-scene-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: start;
+}
+.evidence-scene-heading .outcome {
+  background: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.evidence-scene h2 {
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.2;
+  margin: 12px 0 24px;
+}
+.evidence-scene .eyeline {
+  color: var(--muted-on-dark);
+}
+.evidence-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 16px 0 24px;
+}
+.evidence-comparison span,
+.evidence-comparison strong {
+  display: block;
+}
+.evidence-comparison strong {
+  font-size: clamp(25px, 3.5vw, 48px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  margin-top: 8px;
+}
+.trace-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 28px 0;
+}
+.trace-list details {
+  background: white;
+  color: var(--ink);
+  padding: 22px;
+  border-radius: 6px;
+  min-width: 0;
+}
+.trace-list summary {
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.trace-list dl div {
+  padding-top: 16px;
+}
+.trace-list dt {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.trace-list dd {
+  margin-top: 6px;
+  font-size: 17px;
+}
+.evidence-scene blockquote {
+  border-left: 3px solid var(--citron);
+  padding: 12px 0 12px 24px;
+  line-height: 1.7;
+}
+.evidence-scene blockquote p {
+  margin: 12px 0;
+}
+.evidence-scene > .caption {
+  color: var(--muted-on-dark);
+  margin-top: 24px;
+}
+.run-record {
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--surface-soft);
+  margin-bottom: 64px;
+  border-radius: 8px;
+}
+.run-record h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.2;
+  margin: 16px 0;
+}
+.run-record p {
+  line-height: 1.75;
+  margin-top: 20px;
+}
+.population-counters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 28px 0;
+}
+.population-counters dt {
+  font-size: 14px;
+}
+.population-counters dd {
+  font-size: 34px;
+  font-weight: 650;
+}
+.state-counts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 24px;
+}
+.state-counts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.source-roles dl,
+.recipe-anatomy {
+  border-top: 1px solid var(--line);
+  margin: 28px 0 64px;
+}
+.source-roles dl > div,
+.recipe-anatomy li {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+  line-height: 1.7;
+}
+.source-roles dt,
+.recipe-anatomy h3 {
+  font-weight: 700;
+}
+.recipe-anatomy {
+  counter-reset: anatomy;
+}
+.recipe-anatomy li {
+  counter-increment: anatomy;
+}
+.recipe-anatomy h3::before {
+  content: counter(anatomy, decimal-leading-zero) ' / ';
+  color: var(--text-muted);
+}
+.page-close {
+  padding-bottom: 72px;
+}
+.page-faq details {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.page-faq summary {
+  cursor: pointer;
+  min-height: 44px;
+  font-weight: 650;
+}
+.page-faq p {
+  max-width: 68ch;
+  line-height: 1.75;
+}
+.related-pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin: 32px 0 56px;
+}
+.related-pages a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.page-next {
+  border-top: 1px solid var(--line);
+  padding-top: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+.page-next > div {
+  max-width: 760px;
+}
+.page-next h2 {
+  margin: 16px 0 24px;
+}
+.page-next > a {
+  flex-shrink: 0;
+}
+.reading-page {
+  max-width: 900px;
+}
+.reading-page .prose-section {
+  display: block;
+  padding: 40px 0;
+}
+.reading-page .prose-section h2 {
+  margin-bottom: 20px;
+}
+.reading-page .page-opening {
+  padding-bottom: 48px;
+}
+.product-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+  margin-bottom: 64px;
+}
+.product-index a {
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+  font-size: 22px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.version-chain {
+  padding: 32px;
+  background: var(--surface-soft);
+  line-height: 1.8;
+  margin-bottom: 64px;
+}
+.version-chain li + li {
+  margin-top: 20px;
+}
+.error-surface {
+  min-height: 70vh;
+  padding-block: 100px;
+  max-width: 850px;
+}
+.error-surface h1 {
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.15;
+  margin: 24px 0;
+}
+.error-surface p {
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.format-evaluation {
+  margin-bottom: 64px;
+}
+.format-evaluation table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.format-evaluation caption {
+  text-align: left;
+  font-size: 24px;
+  font-weight: 650;
+  padding-bottom: 24px;
+}
+.format-evaluation th,
+.format-evaluation td {
+  text-align: left;
+  padding: 20px 16px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.format-evaluation thead {
+  background: var(--surface-soft);
+}
+.format-evaluation .caption {
+  margin-top: 20px;
+}
+.paper-contents {
+  background: white;
+  border: 1px solid var(--line);
+  padding: clamp(24px, 4vw, 56px);
+  margin-bottom: 64px;
+}
+.paper-contents figcaption {
+  font-size: 14px;
+  margin-bottom: 24px;
+  color: var(--text-muted);
+}
+.paper-contents h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.2;
+  margin: 16px 0;
+}
+.paper-contents details {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.paper-contents > p {
+  margin-bottom: 28px;
+}
+.paper-contents summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 44px;
+}
+.paper-contents details p {
+  line-height: 1.75;
+  max-width: 68ch;
+}
+@media (max-width: 767px) {
+  .format-evaluation th,
+  .format-evaluation td {
+    padding: 12px 6px;
+    font-size: 14px;
+  }
+  .page-opening {
+    padding: 32px 0 48px;
+  }
+  .prose-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 0;
+  }
+  .trace-list,
+  .evidence-comparison,
+  .product-index {
+    grid-template-columns: 1fr;
+  }
+  .evidence-scene-heading {
+    flex-direction: column;
+  }
+  .evidence-scene-heading h2 {
+    margin-bottom: 0;
+  }
+  .state-counts {
+    grid-template-columns: 1fr;
+  }
+  .population-counters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .source-roles dl > div,
+  .recipe-anatomy li {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .page-next {
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+  }
+}

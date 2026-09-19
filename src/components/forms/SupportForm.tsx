@@ -91,8 +91,8 @@ export function SupportForm() {
         <CheckCircle2 size={28} className="text-success" aria-hidden="true" />
         <h2 className="mt-4 text-h3">Message sent.</h2>
         <p className="mt-3 max-w-prose text-body text-muted">
-          We reply by email within one working day. If your question is about an evaluation already
-          under way, mention the organisation name and it will reach the right person faster.
+          Your message has been submitted to the team. We will use your details to respond to your
+          question.
         </p>
         <Button
           variant="secondary"
@@ -168,7 +168,7 @@ export function SupportForm() {
       </Button>
 
       <p className="mt-4 text-caption text-muted">
-        We use these details to answer your question and follow up about it. Nothing else.
+        We use these details to answer your question and follow up about it.
       </p>
     </form>
   );

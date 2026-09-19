@@ -61,11 +61,13 @@ function HeaderForRoute() {
                 <ChevronDown size={14} aria-hidden="true" />
               </summary>
               <div className="nav-panel">
-                {group.items.map((item) => (
-                  <Link key={item.href} href={item.href}>
-                    {item.label}
-                  </Link>
-                ))}
+                {group.items
+                  .filter((item) => item.href !== '/product/test-library')
+                  .map((item) => (
+                    <Link key={item.href} href={item.href}>
+                      {item.label}
+                    </Link>
+                  ))}
               </div>
             </details>
           ))}

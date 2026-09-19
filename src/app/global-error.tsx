@@ -1,16 +1,17 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 // global-error catches errors in the root layout itself, so it renders its own
 // <html> and <body> and cannot rely on globals.css having loaded. Every value
 // is inlined and hardcoded on purpose — the tokens are mirrored from
 // app/globals.css (:root) rather than referenced, because var() would resolve
 // to nothing in exactly the failure this page exists to handle.
-const INK = '#10141c';
-const CANVAS = '#f6f7f9';
-const MUTED = '#5b6577';
-const BRAND = '#2855d9';
+const INK = '#182823';
+const CANVAS = '#f5f2eb';
+const MUTED = '#56635b';
+const BRAND = '#153c31';
 const SANS =
   'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
 
@@ -36,10 +37,17 @@ export default function GlobalError({
           WebkitFontSmoothing: 'antialiased',
         }}
       >
-        <div style={{ textAlign: 'center', maxWidth: 480, padding: '0 24px' }}>
+        <main
+          style={{
+            textAlign: 'left',
+            maxWidth: 560,
+            padding: '40px 24px',
+            overflowWrap: 'anywhere',
+          }}
+        >
           <p
             style={{
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: 600,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
@@ -61,8 +69,7 @@ export default function GlobalError({
             DocRack could not load this page.
           </h1>
           <p style={{ fontSize: 16, lineHeight: 1.6, color: MUTED, margin: '0 0 32px' }}>
-            Refreshing usually resolves it. If it does not, the reference below identifies the
-            failure in our logs.
+            Try loading the page again. You can also return to the homepage or contact the team.
           </p>
 
           {process.env.NODE_ENV === 'development' && error?.message && (
@@ -102,6 +109,18 @@ export default function GlobalError({
           >
             Reload page
           </button>
+          <p style={{ marginTop: 24 }}>
+            <Link href="/" style={{ color: INK, display: 'inline-block', padding: '12px 0' }}>
+              Back to home
+            </Link>
+            {' · '}
+            <Link
+              href="/support"
+              style={{ color: INK, display: 'inline-block', padding: '12px 0' }}
+            >
+              Contact the team
+            </Link>
+          </p>
 
           {error?.digest && (
             <p style={{ fontSize: 13, color: MUTED, margin: '24px 0 0' }}>
@@ -111,7 +130,7 @@ export default function GlobalError({
               </span>
             </p>
           )}
-        </div>
+        </main>
       </body>
     </html>
   );

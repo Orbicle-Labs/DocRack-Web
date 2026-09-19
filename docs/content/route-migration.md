@@ -1,3 +1,26 @@
+# Phase 5 cutover - 15 September 2026
+
+This section supersedes the historical phase snapshots below. Baseline: 0b88094. Nineteen canonical paths now exist: seventeen indexable content pages and two reachable, noindex legal hold pages. Privacy/Terms drafts are internal under docs/content/legal; their substantive publication gates remain incomplete.
+
+Four replacements were built and returned 200 with labelled content and next actions before cutover. Seven exact permanent redirects now target canonical 200 pages. Query strings and relevant browser fragments are retained. Header/footer, homepage links, related links, metadata and sitemap use canonical destinations. Sitemap no longer invents last-modified dates from build time.
+
+| Route group             | Implementation acceptance                                                                                | Remaining launch condition                                             |
+| ----------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| R01 Homepage            | Existing eight chapters retained; links updated                                                          | Phase 4 mobile LCP target open                                         |
+| R02-R09 Product         | Eight substantive pages, fourteen Recipe parts, six roles/states, source Traces, Run/approval boundaries | Genuine product evidence and owner visual review                       |
+| R10-R12 Solutions       | P2P, credit and IFC use distinct fixtures and procedures                                                 | Current release/Pack evidence                                          |
+| R13 Security            | Evaluation questions and separate website enquiry facts                                                  | Deployment/security/data-processing commitments require owner evidence |
+| R14 Company             | Product purpose and fieldwork focus                                                                      | Entity, biographies and recognition omitted pending verification       |
+| R15 Demo / R16 Support  | New presentation, existing form/API behaviour                                                            | Phase 6 reliability/live staging work remains unauthorised             |
+| R17 Glossary            | 22 definitions and matching DefinedTermSet; all 11 historical IDs retained                               | Final content/owner review                                             |
+| R18 Privacy / R19 Terms | Internal concrete review drafts; useful public hold pages, noindex                                       | Owner/legal facts and approval required; publication NOT complete      |
+
+Fragments retained: /product#copilot, /product/audit-test-recipes#recipe-run, /product/review-and-findings#evidence-trace, /product/working-papers#exception-handoff, homepage #workflow, and all historical glossary IDs. Documents #trace and Checks #checks also land after redirects. No search-console or external inbound-link audit was performed.
+
+Validation and exact limitations: [Phase 5 QA](../qa/phase-5.md). This is implementation acceptance with explicit legal/evidence/performance holds, not launch approval.
+
+---
+
 # Route migration map — Phase 0
 
 **Reviewed:** 11 September 2026 against `app/**/page.tsx`, both API handlers, `next.config.ts`, `lib/nav.ts`, metadata routes and content/interaction IDs. **Chosen scope:** nineteen canonical launch pages from marketing specification §6.1. No route, redirect, navigation or sitemap implementation changes in Phase 0.
