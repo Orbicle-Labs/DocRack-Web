@@ -1,14 +1,14 @@
 ﻿# Marketing rebuild - current phase
 
-**Updated:** 19 September 2026 (implementation and runtime QA measured 15 September; documentation handoff completed 19 September).
+**Updated:** 20 September 2026 (runtime QA measured 15 September; Phase 5 committed 19 September; main integration and Phase 6 prompt prepared 20 September).
 
 **Current phase:** Phase 5 - Product, solution and supporting pages
 
 **Status:** Independent implementation delivered with explicitly labelled synthetic illustrations. The complete launch-content gate is **incomplete**: Privacy and Terms remain noindex holds with internal review drafts awaiting owner/legal approval. **Phase 3 genuine capture/export remains BLOCKED. Phase 4 mobile LCP remains open**, with the new homepage median 3.12 s against 2.5 s. No founder approval or release readiness is inferred.
 
-**Repository:** baseline `0b88094`, branch `redesign/marketing-v2`. The user authorised a local Phase 5 commit on 19 September 2026. The implementation and this handoff are recorded in the commit containing this file, whose parent is `0b88094`. Pre-existing untracked `.claude/` preserved. Last full phase gate completed: Phase 2, `c3e12ff`; later independent work does not erase the genuine-evidence blocker.
+**Repository:** Phase 5 implementation `85fd025` (parent `0b88094`) was committed on `redesign/marketing-v2`, then fast-forwarded into local `main`. On 20 September the user authorised merging fetched origin/main (`b62efb7`) and pushing main. The commit containing this update preserves both histories; reviewed legacy conflicts retain the verified Phase 5 runtime. See [integration record](qa/main-integration.md). Pre-existing untracked `.claude/` is preserved. Last full phase gate completed: Phase 2, `c3e12ff`.
 
-**Exact next action:** review the committed implementation, [Phase 5 QA](qa/phase-5.md), [72 screenshots](design/phase-5/index.html), and [legal drafts](content/legal/privacy-review.md). Retain the product-evidence intake and LCP optimisation tasks. The authorised independent Phase 5 work is complete; stop before Phase 6, further commits, push, deployment or live-service changes until separately instructed.
+**Exact next action:** after the authorised merge/push, review the [Phase 6 continuation prompt](PHASE_6_PROMPT.md) and invoke it when ready. Phase 6 is not started. Preserve the genuine-evidence, LCP and legal holds. The merge/push authorisation is specific to this integration; it does not authorise later phase commits, pushes, deployments or live-service work. The existing main push workflow may deploy; Git transfer and workflow/release success are separate results.
 
 ## Implemented paths
 
@@ -44,7 +44,7 @@ All 57 local payload contexts have CLS 0. Homepage maximum JS is 200.6 KiB gzip;
 
 ## Preservation and stop boundary
 
-Both enquiry POST endpoints, fields/statuses, auditCount choices, Sheets columns/tabs, Sheets-first persistence and best-effort internal notification remain unchanged. Form edits affect presentation copy only, including removing an inherited response-time promise. Dependencies/lockfile, credentials, unrelated local configuration and `.claude/` remain untouched. No setup-sheet, live provider/form/notification, sibling-repository write, push or deployment. The subsequent local Phase 5 commit is explicitly authorised by the user.
+Both enquiry POST endpoints, fields/statuses, auditCount choices, Sheets columns/tabs, Sheets-first persistence and best-effort internal notification remain unchanged. Form edits affect presentation copy only, including removing an inherited response-time promise. Dependencies/lockfile, credentials, unrelated local configuration and `.claude/` remain untouched. Phase 5 implementation performed no setup-sheet, live provider/form/notification, sibling-repository write, push or deployment. The later 20 September merge and push are explicitly authorised; the existing main workflow may deploy after successful CI. No manual deployment, production enquiry or cloud/secret mutation is part of this integration.
 
 At the 19 September handoff, Docker inspection confirmed the temporary credential-free `docrack-web-phase5-qa` container on localhost:3100 no longer exists; no additional stop was necessary. Services on 3000/8000 were untouched. Final local image is `sha256:682353359144ac7a4e3fb0df6790059ae7b95b1e5994c65e482183053549e0c4`.
 

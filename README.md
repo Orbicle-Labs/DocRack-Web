@@ -186,7 +186,7 @@ The rebuild includes claim verification, privacy-text correction, shared abuse c
 
 The checked-in workflow runs checks for pull requests and deploys qualifying main-branch push/manual runs. **Pushing or merging to main can release the site.** Consult [DEPLOYMENT.md](DEPLOYMENT.md) before release work.
 
-Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). Independent Phase 5 work is implemented with explicit legal, product-evidence and performance holds. The local Phase 5 commit is authorised; stop before Phase 6, further commits, push, deployment or live services until separately authorised.
+Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). Independent Phase 5 work is implemented with explicit legal, product-evidence and performance holds. Phase 5 is committed and its main integration/push is authorised. See the [Phase 6 continuation prompt](docs/PHASE_6_PROMPT.md) for the next bounded task; Phase 6 has not started and later commits, pushes or live-service changes need their own authorisation.
 
 ### Phase 4 homepage QA
 
