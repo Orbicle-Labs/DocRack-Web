@@ -1,47 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { demoSchema, type DemoInput } from '@/lib/forms/schemas';
 import { CheckCircle2 } from 'lucide-react';
-import { toast } from 'sonner';
 import { Button, Field, HoneypotInput, Input, Select } from '@/components/ui';
+import { track } from '@/lib/analytics/client';
 import { submitForm } from '@/lib/forms/submit';
-
-/**
- * The client schema now mirrors app/api/demo-booking/route.ts exactly — same
- * regex, same lengths, same enum. It used to be looser, so a name with a digit
- * in it passed here and came back a 422 rendered as a generic toast with no
- * indication of which field was wrong.
- *
- * The wire contract is unchanged: same endpoint, same five field names, same
- * enum values. `auditCount` in particular must stay these four strings — the
- * server uses z.enum and anything else is a 422.
- */
-const demoSchema = z.object({
-  fullName: z
-    .string()
-    .min(2, 'Enter at least 2 characters')
-    .max(100, 'Keep this under 100 characters')
-    .regex(/^[\p{L}\s'\-\.]+$/u, 'Use letters, spaces, hyphens and apostrophes only'),
-  email: z
-    .string()
-    .min(1, 'Enter your work email')
-    .email('Enter a valid email address')
-    .max(254, 'Keep this under 254 characters'),
-  companyName: z
-    .string()
-    .min(2, 'Enter at least 2 characters')
-    .max(200, 'Keep this under 200 characters'),
-  auditCount: z.enum(['1-10', '10-50', '50-100', '100+'], {
-    errorMap: () => ({ message: 'Select a range' }),
-  }),
-  _hp: z.string().max(0).optional(),
-});
-
-type DemoInput = z.infer<typeof demoSchema>;
 
 /**
  * Labels only. The values are the server's enum and cannot change without a
@@ -58,9 +25,22 @@ const AUDIT_RANGES: { value: DemoInput['auditCount']; label: string }[] = [
 /** Fields the server can name in a 422. Anything else becomes a form-level error. */
 const MAPPABLE = new Set(['fullName', 'email', 'companyName', 'auditCount']);
 
+const subscribe = () => () => {};
 export function DemoForm() {
+  const hydrated = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
+  const started = useRef(false);
+  const inFlight = useRef(false);
+  const receipt = useRef<HTMLHeadingElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (submitted) receipt.current?.focus();
+  }, [submitted]);
 
   const {
     register,
@@ -75,12 +55,12 @@ export function DemoForm() {
     // from the first character tells someone their email is invalid while
     // they are still typing it.
     mode: 'onTouched',
-    defaultValues: { fullName: '', email: '', companyName: '', _hp: '' },
   });
 
   async function onSubmit(data: DemoInput) {
     // Client honeypot: a filled hidden field means a bot, so stop silently.
-    if (data._hp) return;
+    if (data._hp || inFlight.current) return;
+    inFlight.current = true;
 
     setFormError(null);
 
@@ -92,8 +72,8 @@ export function DemoForm() {
       _hp: data._hp ?? '',
     });
 
+    inFlight.current = false;
     if (result.ok) {
-      toast.success('Request received. We will be in touch.');
       setSubmitted(true);
       reset();
       return;
@@ -115,14 +95,15 @@ export function DemoForm() {
     }
 
     setFormError(message);
-    toast.error(message);
   }
 
   if (submitted) {
     return (
-      <div className="rounded-card bg-surface-1 p-7 shadow-raised sm:p-8">
+      <div role="status" className="rounded-card bg-surface-1 p-7 shadow-raised sm:p-8">
         <CheckCircle2 size={28} className="text-success" aria-hidden="true" />
-        <h2 className="mt-4 text-h3">Request received.</h2>
+        <h2 ref={receipt} tabIndex={-1} className="mt-4 text-h3">
+          Request received.
+        </h2>
         <p className="mt-3 max-w-prose text-body text-muted">
           Thank you for your interest. Your demo request has been received. Our team will follow up
           to discuss your workflow.
@@ -143,10 +124,27 @@ export function DemoForm() {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onFocus={() => {
+        if (!started.current) {
+          started.current = true;
+          track({ name: 'demo_form_start', props: { page: '/book-demo' } });
+        }
+      }}
+      onSubmit={(event) => {
+        void handleSubmit(onSubmit, () =>
+          track({ name: 'form_error', props: { form: 'demo', errorClass: 'validation' } })
+        )(event);
+      }}
+      data-hydrated={hydrated}
+      aria-busy={isSubmitting}
       noValidate
       className="rounded-card bg-surface-1 p-6 shadow-raised sm:p-8"
     >
+      <noscript>
+        <p className="mb-5 text-body-sm">
+          Enable JavaScript to send this form. You can read the website without it.
+        </p>
+      </noscript>
       <HoneypotInput {...register('_hp')} />
 
       <div className="flex flex-col gap-5">
@@ -220,7 +218,14 @@ export function DemoForm() {
         </p>
       )}
 
-      <Button type="submit" size="lg" fullWidth loading={isSubmitting} className="mt-6">
+      <Button
+        type="submit"
+        size="lg"
+        fullWidth
+        disabled={!hydrated}
+        loading={isSubmitting}
+        className="mt-6"
+      >
         {isSubmitting ? 'Sending…' : 'Request a demo'}
       </Button>
 

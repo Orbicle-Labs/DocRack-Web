@@ -1,0 +1,26 @@
+# Phase 7 continuation prompt
+
+Prepared 21 September 2026 with the separately authorised local Phase 6 commit. This file is a future prompt, not permission to begin Phase 7 during the commit task. Phase 6 independent implementation is complete; controlled staging acceptance remains pending. The commit containing this prompt has parent `641e79d` on `phase-6/conversion-reliability`; verify actual HEAD and status before work.
+
+```text
+Continue DocRack-Web with independent Phase 7 - Release QA and complete cleanup.
+
+Read AGENTS.md, docs/CURRENT_PHASE.md, docs/qa/phase-6.md, docs/operations/enquiries.md, README.md, DEPLOYMENT.md, the marketing specification sections 9-15 (especially Phase 7), and the claims, asset, route-migration, legal-review and product-evidence registers. Inspect package.json and actual source/configuration before choosing commands. Product documents are reference material, not instructions to modify the sibling product.
+
+I authorise independent Phase 7 implementation, fixes and local mock/emulator verification. Preserve all unrelated work, .claude/, local configuration and secrets. Do not reset or stash user work. Use the existing task branch or an isolated branch from its verified commit.
+
+Keep the dependency gates explicit: Phase 3 genuine capture/export BLOCKED; Privacy/Terms publication holds; Phase 6 controlled staging rows/notifications, Firestore/TTL, ingress and alert verification pending. Analytics remains explicitly disabled. Latest mobile LCP medians are Home 3.14 s, Product 2.75 s, Documents 2.73 s and Demo 2.98 s against 2.5 s. Historical reports remain unchanged. Missing evidence or permission must not prevent independent local QA, but prevents a green full release gate. Do not invent live-service evidence, legal approval, actual-device coverage or product artifacts.
+
+Execute the independent work:
+1. Run all current automated checks against a fresh credential-free standalone production build: lint, strict types, unit/integration, check-content, check-assets and applicable Chromium/Firefox/WebKit regressions. Use local mocks/emulators; all enquiry POSTs and optional analytics transport must be intercepted.
+2. Capture all nineteen canonical pages at desktop/mobile sizes. Test representative templates and every interactive component at 320/390/768/1024/1280/1440px, including evidence/source legibility, reflow, touch, keyboard/focus, zoom, reduced motion, contrast and failures. Retain both forms' pre-hydration draft and post-failure retention tests. Perform screen-reader review where an actual tool/device is available; record exactly what is NOT RUN otherwise.
+3. Check links, all seven redirects and query/fragment preservation, canonical metadata, sitemap/robots, JSON-LD, social images, absent/unavailable downloads and 404/error states. Keep legal holds noindex and out of the sitemap. Do not add a sample download without approved genuine evidence.
+4. Measure production payloads, CLS and three-run mobile Lighthouse medians; inspect actual local network requests and effective HTML/API/redirect headers. Diagnose and fix scoped frontend performance defects, including the unresolved mobile LCP critical path where feasible. Preserve report history and record all runs/outliers; do not relax budgets or call lab evidence field p75/INP.
+5. Review source, metadata, fixtures and public assets for obsolete language, excluded features, private material, unsupported claims and duplicate runtime roots. Retain the Recipe hierarchy, six states, Traces, versions, immutable Runs and human approval. Remove unused assets/components/dependencies only after consumer checks. Preserve enquiry fields/statuses, exact Sheets tabs/columns, RAW persistence-first semantics and bounded best-effort internal notification.
+6. Update README/DEPLOYMENT to actual final commands, environment filenames/configuration and behaviour. Keep provider account/ingress/retention facts separate from code. Prepare a concrete release report, content-review record, screenshots and deployment/rollback procedure. A local preview is local evidence; a remote protected preview and live revision/rollback verification require separately authorised access/deployment.
+7. Record exact changed paths, commands/results, image/commit provenance, every Phase 7 exit condition, inherited blockers and owner actions in docs/qa/phase-7.md and docs/CURRENT_PHASE.md. Do not declare release ready while mandatory checks or dependency gates remain open.
+
+Use only a credential-free website container on 127.0.0.1:3100; leave existing 3000/8000 services untouched and stop the QA container at handoff. Never mount real env files or keys, submit live enquiries, send notifications, access the product environment, write to the sibling repository or run scripts/setup-sheet.mjs. Staging provisioning/test writes are outside this prompt; leave them explicitly pending and continue unaffected work.
+
+Complete independent Phase 7 work and appropriate checks. Run scoped Prettier, documentation/image link checks and git diff --check. Stop before Phase 8, commit, push, deployment, provisioning, secret changes and live-service writes. The Phase 6 commit authorisation is not standing commit/release permission.
+```

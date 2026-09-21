@@ -6,7 +6,7 @@ This repository contains the **public website and its demo/support enquiry backe
 
 ## Rebuild status and project documents
 
-Phase 5 implements the remaining product, solution and supporting pages using the established visual direction and labelled synthetic illustrations. Nineteen canonical paths exist; Privacy and Terms are reachable, noindex hold pages with concrete internal review drafts. Seven permanent redirects are active. Phase 3 genuine captures/exports remain BLOCKED, and the Phase 4 mobile LCP requirement remains open. Review [the current handoff](docs/CURRENT_PHASE.md), [Phase 5 QA](docs/qa/phase-5.md) and [page screenshots](docs/design/phase-5/index.html). No founder visual or legal approval is inferred.
+Phase 6 implements conversion reliability, shared abuse-control code and a disabled-by-default analytics adapter. Controlled staging verification remains pending. Phase 5 supplies the product, solution and supporting pages using labelled synthetic illustrations. Nineteen canonical paths exist; Privacy and Terms are reachable, noindex hold pages with concrete internal review drafts. Seven permanent redirects are active. Phase 3 genuine captures/exports remain BLOCKED, and the Phase 4 mobile LCP requirement remains open. Review [the current handoff](docs/CURRENT_PHASE.md), [Phase 5 QA](docs/qa/phase-5.md) and [page screenshots](docs/design/phase-5/index.html). No founder visual or legal approval is inferred.
 
 | Document                                                                           | Purpose                                                                                  |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -23,19 +23,19 @@ The current website is a source for backend behaviour and route migration. Its d
 
 ## Current implementation versus planned changes
 
-Versions below are the lockfile/configuration snapshot checked on 12 September 2026. Refresh this table when implementation changes them.
+Versions below reflect the lockfile/configuration reviewed through Phase 6 on 21 September 2026.
 
-| Area           | Implemented now                                                           | Remaining rebuild                                             |
-| -------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Framework      | Next.js 16.3.4, React/React DOM 19.3.0, App Router                        | Release review and current-product evidence                   |
-| Runtime        | Node 24.21.0 in engines, .nvmrc, both Dockerfiles and CI                  | Recheck security patches before release                       |
-| Language/style | Strict TypeScript 5.9.3, Tailwind 3.4.19, ivory/forest page system        | Owner visual review and release accessibility checks          |
-| Source         | src/app, src/components, src/content, src/lib; nineteen canonical pages   | Genuine product evidence and legal publication approval       |
-| Forms          | Existing React Hook Form/Zod contracts and inline/Sonner feedback         | Shared schema and reliability hardening in Phase 6            |
-| Integrations   | Server-only Google auth 11.0.2, Sheets and best-effort Resend             | Shared limiter, provider timeouts and safe logging in Phase 6 |
-| Analytics      | Existing Vercel integration; delivery unverified                          | Disabled-until-configured adapter in Phase 6                  |
-| Tests          | ESLint CLI, TypeScript, Vitest/RTL and Chromium/Firefox/WebKit Playwright | Field/device/assistive-technology release acceptance          |
-| Deployment     | Docker standalone image and main-only Cloud Run pipeline                  | Local builds only; no Phase 5 deployment                      |
+| Area           | Implemented now                                                           | Remaining rebuild                                            |
+| -------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Framework      | Next.js 16.3.4, React/React DOM 19.3.0, App Router                        | Release review and current-product evidence                  |
+| Runtime        | Node 24.21.0 in engines, .nvmrc, both Dockerfiles and CI                  | Recheck security patches before release                      |
+| Language/style | Strict TypeScript 5.9.3, Tailwind 3.4.19, ivory/forest page system        | Owner visual review and release accessibility checks         |
+| Source         | src/app, src/components, src/content, src/lib; nineteen canonical pages   | Genuine product evidence and legal publication approval      |
+| Forms          | Shared React Hook Form/Zod schemas, retained drafts and inline feedback   | Controlled staging receipt verification                      |
+| Integrations   | Google auth 11.0.2, Firestore SDK 9.2.0, Sheets and best-effort Resend    | Firestore/TTL provisioning, ingress and staging verification |
+| Analytics      | Typed Plausible adapter, disabled by default                              | Owner processing/account review before any activation        |
+| Tests          | ESLint CLI, TypeScript, Vitest/RTL and Chromium/Firefox/WebKit Playwright | Field/device/assistive-technology release acceptance         |
+| Deployment     | Docker standalone image and main-only Cloud Run pipeline                  | Local builds only; no Phase 6 deployment                     |
 
 Use the exact Node version in [.nvmrc](.nvmrc), for example with your Node version manager. Phase 1 checks also used a checksum-verified portable Node installation in the ignored local tools directory; the machine-wide Node installation was not changed.
 
@@ -46,7 +46,7 @@ Use the exact Node version in [.nvmrc](.nvmrc), for example with your Node versi
 - `src/styles/`, `src/components/demos/`, `src/content/demos/p2p.ts`: Phase 2 visual system and clearly labelled synthetic source-review prototypes.
 - `src/content/pages/launch.ts`: qualified page copy, metadata and FAQs. Explicit route components compose editorial sections, evidence, Recipe anatomy, paper contents and separate solution procedures. The route registry contains nineteen canonical paths; Privacy/Terms hold pages are excluded from its seventeen-entry sitemap.
 - `src/content/demos/fixtures.ts`, `src/content/readiness.ts`, `src/content/assets.ts`: three separate controlled display fixtures, editorial format/readiness evidence and generated asset registry. These do not implement or call the authenticated product.
-- `src/lib/server/`: Sheets, notifications and the current process-local limiter, guarded by `server-only`.
+- `src/lib/server/`: bounded Sheets/notifications, transactional Firestore counters and bounded process-local fallback, guarded by `server-only`.
 - `src/lib/forms/submit.ts`, `src/lib/hooks/`, `src/lib/seo/`: browser submission, headless interaction and SEO helpers. `@/*` resolves into `src/*`.
 
 Public assets remain in `public/`. Eleven replaced legacy product PNGs were removed after consumer checks; original identity, fonts and Phase 3 illustrations remain. Four product redirects now join the three preserved redirects. Phase 0 registers retain historical source paths; the Phase 5 addenda record current status.
@@ -176,17 +176,17 @@ Current limits are three demo requests per 20 minutes and five support requests 
 
 ## Security and data-flow facts
 
-The current Next config sets security headers, including CSP. Production `script-src` still permits `'unsafe-inline'`; the old README's claim that inline scripts were blocked was incorrect.
+The current Next config and narrow legacy-redirect proxy apply shared security headers, including CSP. Production `script-src` still permits `'unsafe-inline'`; the old README's claim that inline scripts were blocked was incorrect.
 
-The repository does not establish live delivery of Vercel Analytics, product tenant isolation, certifications, or India residency. The website workflow targets Cloud Run `asia-southeast1`; the separate product's intended India deployment is a different system.
+Analytics is explicitly disabled. The repository does not establish live provider delivery, product tenant isolation, certifications, or India residency. The website workflow targets Cloud Run `asia-southeast1`; the separate product's intended India deployment is a different system.
 
-The rebuild includes claim verification, privacy-text correction, shared abuse control, provider timeouts, and header review. Those requirements remain planned until implemented and tested.
+Phase 6 implements shared abuse controls, provider deadlines, safe operational logging and reviewed headers. Provisioning, verified ingress, actual retention decisions and controlled staging delivery remain pending; see the [enquiry operations runbook](docs/operations/enquiries.md).
 
 ## Deployment and continuation
 
 The checked-in workflow runs checks for pull requests and deploys qualifying main-branch push/manual runs. **Pushing or merging to main can release the site.** Consult [DEPLOYMENT.md](DEPLOYMENT.md) before release work.
 
-Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md). Independent Phase 5 work is implemented with explicit legal, product-evidence and performance holds. Phase 5 is committed and its main integration/push is authorised. See the [Phase 6 continuation prompt](docs/PHASE_6_PROMPT.md) for the next bounded task; Phase 6 has not started and later commits, pushes or live-service changes need their own authorisation.
+Continue from [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [Phase 6 QA](docs/qa/phase-6.md). Independent Phase 6 work is locally committed on phase-6/conversion-reliability from main 641e79d; staging acceptance remains pending. The [Phase 7 prompt](docs/PHASE_7_PROMPT.md) is prepared for a future explicit instruction. Product-evidence, legal and LCP holds remain. Stop before Phase 7 execution, push, deployment, provisioning, secret changes or live-service writes.
 
 ### Phase 4 homepage QA
 
@@ -229,6 +229,38 @@ node scripts/lighthouse-pages.mjs
 docker stop docrack-web-phase5-qa
 ```
 
-The default suite covers Chromium regressions and Phase 5. The focused configs use separate ignored output/report directories. Phase 5 retains 72 website screenshots under docs/design/screenshots/phase-5 and checks six viewport widths, contrast, metadata, anchors, mocked form save failures/success, touch, reduced motion and no-JS content. Browser engines do not establish actual iOS/assistive-technology acceptance. Hydrated form tests wait for initial scripts; early typing before hydration remains a Phase 6 reliability item.
+The default suite covers Chromium regressions and Phase 5. The focused configs use separate ignored output/report directories. Phase 5 retains 72 website screenshots under docs/design/screenshots/phase-5 and checks six viewport widths, contrast, metadata, anchors, mocked form save failures/success, touch, reduced motion and no-JS content. Browser engines do not establish actual iOS/assistive-technology acceptance. Hydrated form tests wait for initial scripts; Phase 6 adds delayed-script draft retention checks for both forms.
 
 `measure-pages.mjs` writes Phase 5 payload/CLS measurements for all nineteen paths at 1440/390/320px. `lighthouse-pages.mjs` measures three fresh mobile runs each for home, Product, Documents and Demo. It uses Lighthouse 13.4.1 from an isolated QA install at .local-tools/performance; set LIGHTHOUSE_MODULE to an alternate local module path if needed. This is not an app dependency. Both scripts reject remote targets, block external traffic/API writes and preserve historical Phase 4 reports.
+
+## Phase 6 local checks and integration defaults
+
+See [Phase 6 QA](docs/qa/phase-6.md) for results and [enquiry operations](docs/operations/enquiries.md) for the full configuration, ingress trust boundary, provisioning recipe, notification ownership and retention/deletion runbook. No cloud resources or secrets are created by local checks.
+
+`FORM_ALLOWED_ORIGINS` must contain exact approved browser origins before forms can be deployed; blank configuration fails closed. `ALLOW_MISSING_ORIGIN=false` is the default. `FORM_INGRESS_MODE=shared` ignores arbitrary forwarded headers; verified per-client operation requires separately verified ingress overwrite/bypass restrictions. The primary limiter needs `FIRESTORE_PROJECT_ID`, `FIRESTORE_DATABASE_ID` and server-only `RATE_LIMIT_HMAC_SECRET`; otherwise bounded local fallback emits degradation signals. Analytics needs explicit public-production and processing approval switches and remains disabled here. Full variable names and examples are in [.env.example](.env.example).
+
+Use the pinned Node version and existing browser cache when applicable:
+
+```powershell
+docker build -t docrack-web:phase6 .
+docker run --detach --rm --name docrack-web-phase6-qa --publish 127.0.0.1:3100:3000 --env FORM_ALLOWED_ORIGINS=http://127.0.0.1:3100 docrack-web:phase6
+$env:PLAYWRIGHT_BASE_URL = 'http://127.0.0.1:3100'
+$env:PLAYWRIGHT_BROWSERS_PATH = (Resolve-Path .local-tools/browsers).Path
+npm run lint
+npm run check-types
+npm test
+npm run check-content
+npm run check-assets
+npx playwright test
+npx playwright test --config playwright.phase6.config.ts
+npx playwright test --config playwright.phase5.config.ts --project firefox --project webkit
+npx playwright test --config playwright.phase4.config.ts
+# Run performance checks after the suites, without competing QA load.
+$env:QA_PHASE = '6'
+node scripts/measure-pages.mjs
+node scripts/lighthouse-pages.mjs
+Remove-Item Env:QA_PHASE
+docker stop docrack-web-phase6-qa
+```
+
+The default suite includes Chromium Phase 6 checks; the focused Phase 6 config also checks Firefox/WebKit. Form POSTs and enabled analytics transport are mocked. The container has no env-file or credential mounts; existing services on 3000/8000 are not touched. `QA_PHASE=6` writes new Phase 6 reports while retaining historical Phase 4/5 results. Scripts accept only 5 or 6 and default to the historical Phase 5 filenames; select 6 for this handoff. Actual device/screen-reader acceptance and staging delivery are separate gates.

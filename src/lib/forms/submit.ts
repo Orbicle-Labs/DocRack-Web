@@ -1,109 +1,87 @@
-/**
- * Shared submit path for the two lead forms.
- *
- * Both API routes answer with the same shape — `{ error }` plus `{ fields }` on
- * a 422 and a `Retry-After` header on a 429 — but neither form used to read
- * either, so a per-field validation failure surfaced as one generic toast and a
- * rate limit gave no indication of how long to wait. This is where that is
- * translated, once, for both.
- *
- * The request bodies themselves are unchanged: same endpoints, same field
- * names, same JSON.
- */
+﻿import { track } from '@/lib/analytics/client';
 
 export interface SubmitFailure {
-  /** Human-readable, safe to show in a toast and an inline alert. */
   message: string;
-  /** From a 422 — field name to its first message, ready for RHF setError. */
   fields?: Record<string, string>;
-  /** True for a 429, so the caller can suppress a retry prompt. */
   rateLimited?: boolean;
 }
-
 export type SubmitResult = { ok: true } | { ok: false; failure: SubmitFailure };
-
-const GENERIC = 'Something went wrong. Please try again.';
-
-/** "in 4 minutes" reads better than "in 214 seconds" and is what people need. */
-function formatRetryAfter(seconds: number): string {
-  if (seconds <= 90) return `${seconds} seconds`;
-  const minutes = Math.ceil(seconds / 60);
-  return `${minutes} minute${minutes === 1 ? '' : 's'}`;
-}
-
-/** `{ fullName: ['too short', ...] }` → `{ fullName: 'too short' }`. */
-function firstMessagePerField(raw: unknown): Record<string, string> | undefined {
-  if (typeof raw !== 'object' || raw === null) return undefined;
-
-  const out: Record<string, string> = {};
-  for (const [key, value] of Object.entries(raw as Record<string, unknown>)) {
-    const message = Array.isArray(value) ? value[0] : value;
-    if (typeof message === 'string' && message.length > 0) out[key] = message;
-  }
-
-  return Object.keys(out).length > 0 ? out : undefined;
-}
+const fieldMessages: Record<string, string> = {
+  fullName: 'Check your full name.',
+  email: 'Check your email address.',
+  companyName: 'Check your organisation name.',
+  auditCount: 'Select a range.',
+  message: 'Check your message (10–5000 characters).',
+};
 
 export async function submitForm(
-  endpoint: string,
+  endpoint: '/api/demo-booking' | '/api/support-ticket',
   payload: Record<string, string>
 ): Promise<SubmitResult> {
-  let res: Response;
-
+  const form = endpoint === '/api/demo-booking' ? 'demo' : 'support';
+  function fail(
+    errorClass: 'validation' | 'network' | 'storage' | 'rate-limit' | 'request',
+    failure: SubmitFailure
+  ): SubmitResult {
+    track({ name: 'form_error', props: { form, errorClass } });
+    return { ok: false, failure };
+  }
   try {
-    res = await fetch(endpoint, {
+    const res = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(25000),
     });
-  } catch {
-    // Offline, DNS failure, blocked request — never a server message.
-    return {
-      ok: false,
-      failure: { message: 'Could not reach the server. Check your connection and try again.' },
-    };
-  }
-
-  // A 200 with no body is still a success: the server answers 200 to a filled
-  // honeypot deliberately, so bots learn nothing from the response.
-  let json: Record<string, unknown> = {};
-  try {
-    json = (await res.json()) as Record<string, unknown>;
-  } catch {
-    /* empty or non-JSON body */
-  }
-
-  if (res.ok) return { ok: true };
-
-  if (res.status === 429) {
-    const header = Number(res.headers.get('Retry-After'));
-    const wait = Number.isFinite(header) && header > 0 ? formatRetryAfter(header) : 'a few minutes';
-    return {
-      ok: false,
-      failure: {
+    let json: Record<string, unknown> = {};
+    try {
+      const value: unknown = await res.json();
+      if (value && typeof value === 'object') json = value as Record<string, unknown>;
+    } catch {
+      /* safe generic failure below */
+    }
+    if (res.status === 201 && json.success === true) {
+      if (form === 'demo') track({ name: 'demo_request_success', props: { page: '/book-demo' } });
+      else track({ name: 'support_request_success', props: { page: '/support' } });
+      return { ok: true };
+    }
+    if (res.status === 429) {
+      const seconds = Number(res.headers.get('Retry-After'));
+      const minutes = Math.ceil(seconds / 60);
+      const wait =
+        seconds > 0 && seconds <= 1800
+          ? seconds <= 90
+            ? `${seconds} seconds`
+            : `${minutes} minute${minutes === 1 ? '' : 's'}`
+          : 'a few minutes';
+      return fail('rate-limit', {
         message: `Too many submissions from this network. Please try again in ${wait}.`,
         rateLimited: true,
-      },
-    };
+      });
+    }
+    if (res.status === 422) {
+      const fields: Record<string, string> = {};
+      if (json.fields && typeof json.fields === 'object')
+        for (const name of Object.keys(json.fields))
+          if (Object.hasOwn(fieldMessages, name)) fields[name] = fieldMessages[name];
+      return fail('validation', { message: 'Please correct the highlighted fields.', fields });
+    }
+    if (res.status === 413)
+      return fail('request', {
+        message: 'This request is too large. Shorten your message and try again.',
+      });
+    if (res.status === 403 || res.status === 415)
+      return fail('request', {
+        message: 'This request could not be accepted. Reload this page and try again.',
+      });
+    return fail('storage', {
+      message:
+        'We could not confirm receipt. Your details are still here. A retry may send a duplicate.',
+    });
+  } catch {
+    return fail('network', {
+      message:
+        'Could not reach the server. Check your connection. Your details are still here; a retry may send a duplicate.',
+    });
   }
-
-  if (res.status === 422) {
-    const fields = firstMessagePerField(json.fields);
-    return {
-      ok: false,
-      failure: {
-        message: fields
-          ? 'Please correct the highlighted fields.'
-          : typeof json.error === 'string'
-            ? json.error
-            : GENERIC,
-        fields,
-      },
-    };
-  }
-
-  return {
-    ok: false,
-    failure: { message: typeof json.error === 'string' ? json.error : GENERIC },
-  };
 }

@@ -6,6 +6,8 @@ import { resolve } from 'node:path';
 const modulePath =
   process.env.LIGHTHOUSE_MODULE ?? '.local-tools/performance/node_modules/lighthouse/core/index.js';
 const { default: lighthouse } = await import(pathToFileURL(resolve(modulePath)).href);
+const phase = process.env.QA_PHASE ?? '5';
+if (!['5', '6'].includes(phase)) throw Error('QA_PHASE must be 5 or 6');
 const base = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3100';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw Error('Local QA only');
 for (const path of ['/', '/product', '/product/documents', '/book-demo']) {
@@ -21,7 +23,7 @@ for (const path of ['/', '/product', '/product/documents', '/book-demo']) {
       });
       if (result.lhr.runtimeError) throw Error(JSON.stringify(result.lhr.runtimeError));
       await writeFile(
-        `docs/qa/phase-5-lighthouse-${path === '/' ? 'home' : path.slice(1).replaceAll('/', '-')}-${run}.json`,
+        `docs/qa/phase-${phase}-lighthouse-${path === '/' ? 'home' : path.slice(1).replaceAll('/', '-')}-${run}.json`,
         result.report
       );
       console.log(

@@ -1,3 +1,16 @@
+# Phase 6 enquiry reliability and analytics - 21 September 2026
+
+This addendum supersedes older website integration descriptions below. It changes no product availability, legal approval or capture/export status. Phase 3 genuine evidence remains **BLOCKED**; Privacy/Terms remain noindex holds.
+
+| Claims            | Current implemented fact and source                                                                                                                                                                            | Publication decision / missing evidence                                                                                                                         |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C36-C38, C42-C43  | Shared schemas and Node handlers preserve fields/enums/tabs/columns. Sheets RAW append precedes awaited bounded internal Resend notification; only persisted 201 produces receipt. Mocked provider/form tests. | Source/mock verified; controlled staging row/inbox verification NOT RUN. No calendar, visitor-email, SLA or exactly-once claim.                                 |
+| C39-C40           | Firestore transaction counters use namespaced HMAC IDs and window/reset/count/expiry only. Bounded local fallback with expiry cleanup; request guards trust no arbitrary forwarded header.                     | Ingress/Firestore/TTL provisioning and live retention unverified. Do not claim precise deletion at window end or collection limited to form fields.             |
+| C41               | Vercel removed; typed Plausible adapter disabled by default. Fixed allowlisted event props, no field/query/referrer capture. Mocked enabled transport only.                                                    | Owner/account/domain/processing review absent; no dashboard-delivery or consent claim. Direct provider network processing requires review before activation.    |
+| C29, C33, C39-C43 | Updated internal privacy draft and website Security processing copy; concrete configuration, ownership, retention/deletion and alert runbook.                                                                  | Legal identity, legal basis, schedules, named owners, alternate contact, live processor facts and final approval still PENDING. No product residency inference. |
+
+Evidence: [Phase 6 QA](../qa/phase-6.md), [enquiry runbook](../operations/enquiries.md), src/lib/server, src/lib/forms and src/lib/analytics. No live enquiries, notifications, provisioning or secret changes were performed.
+
 # Phase 5 page adoption - 15 September 2026
 
 This addendum supersedes historical remaining-page consumer statements below. Independent page implementation is authorised from 0b88094 using clearly labelled illustrations. **No product capability is promoted to Verified available or Pilot. Phase 3 capture/export remains BLOCKED.**

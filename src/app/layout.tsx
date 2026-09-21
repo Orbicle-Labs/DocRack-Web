@@ -1,8 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Toaster } from 'sonner';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@/lib/analytics/Analytics';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo/metadata';
 import './globals.css';
 
@@ -94,17 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         {children}
-        <Toaster
-          richColors
-          position="top-right"
-          theme="light"
-          aria-live="polite"
-          aria-atomic="true"
-        />
-        {/* Only mount in production: locally the insights script fails to load
-            (404 / ad-blocker) and rejects with an Event, which Next's dev
-            overlay surfaces as "Runtime Error: [object Event]". */}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Analytics />
       </body>
     </html>
   );

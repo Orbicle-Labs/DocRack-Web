@@ -1,4 +1,5 @@
 'use client';
+import { track } from '@/lib/analytics/client';
 
 import { useRef, useState, useSyncExternalStore } from 'react';
 import { ArrowUpRight, FileText, LockKeyhole } from 'lucide-react';
@@ -21,6 +22,7 @@ export function SourceReview() {
   const example = outcomeExamples[selected];
   function openSource(next: Source, trigger: HTMLButtonElement) {
     triggerRef.current = trigger;
+    track({ name: 'source_open', props: { demoId: 'p2p', sourceKind: next } });
     setSource(next);
     sourceRef.current?.focus({ preventScroll: true });
     sourceRef.current?.scrollIntoView({ block: 'nearest', behavior: 'instant' });

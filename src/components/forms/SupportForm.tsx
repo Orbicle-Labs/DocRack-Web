@@ -1,40 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState, useSyncExternalStore } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { supportSchema, type SupportInput } from '@/lib/forms/schemas';
 import { CheckCircle2 } from 'lucide-react';
-import { toast } from 'sonner';
 import { Button, Field, HoneypotInput, Input, Textarea } from '@/components/ui';
+import { track } from '@/lib/analytics/client';
 import { submitForm } from '@/lib/forms/submit';
-
-/** Mirrors app/api/support-ticket/route.ts exactly — same regex, same lengths. */
-const supportSchema = z.object({
-  fullName: z
-    .string()
-    .min(2, 'Enter at least 2 characters')
-    .max(100, 'Keep this under 100 characters')
-    .regex(/^[\p{L}\s'\-\.]+$/u, 'Use letters, spaces, hyphens and apostrophes only'),
-  email: z
-    .string()
-    .min(1, 'Enter your email')
-    .email('Enter a valid email address')
-    .max(254, 'Keep this under 254 characters'),
-  message: z
-    .string()
-    .min(10, 'Tell us a little more — at least 10 characters')
-    .max(5000, 'Keep this under 5000 characters'),
-  _hp: z.string().max(0).optional(),
-});
-
-type SupportInput = z.infer<typeof supportSchema>;
 
 const MAPPABLE = new Set(['fullName', 'email', 'message']);
 
+const subscribe = () => () => {};
 export function SupportForm() {
+  const hydrated = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
+  const inFlight = useRef(false);
+  const receipt = useRef<HTMLHeadingElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (submitted) receipt.current?.focus();
+  }, [submitted]);
 
   const {
     register,
@@ -46,11 +37,11 @@ export function SupportForm() {
   } = useForm<SupportInput>({
     resolver: zodResolver(supportSchema),
     mode: 'onTouched',
-    defaultValues: { fullName: '', email: '', message: '', _hp: '' },
   });
 
   async function onSubmit(data: SupportInput) {
-    if (data._hp) return;
+    if (data._hp || inFlight.current) return;
+    inFlight.current = true;
 
     setFormError(null);
 
@@ -61,8 +52,8 @@ export function SupportForm() {
       _hp: data._hp ?? '',
     });
 
+    inFlight.current = false;
     if (result.ok) {
-      toast.success('Message sent. We will reply by email.');
       setSubmitted(true);
       reset();
       return;
@@ -82,14 +73,15 @@ export function SupportForm() {
     }
 
     setFormError(message);
-    toast.error(message);
   }
 
   if (submitted) {
     return (
-      <div className="rounded-card bg-surface-1 p-7 shadow-raised sm:p-8">
+      <div role="status" className="rounded-card bg-surface-1 p-7 shadow-raised sm:p-8">
         <CheckCircle2 size={28} className="text-success" aria-hidden="true" />
-        <h2 className="mt-4 text-h3">Message sent.</h2>
+        <h2 ref={receipt} tabIndex={-1} className="mt-4 text-h3">
+          Message sent.
+        </h2>
         <p className="mt-3 max-w-prose text-body text-muted">
           Your message has been submitted to the team. We will use your details to respond to your
           question.
@@ -110,10 +102,21 @@ export function SupportForm() {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(event) => {
+        void handleSubmit(onSubmit, () =>
+          track({ name: 'form_error', props: { form: 'support', errorClass: 'validation' } })
+        )(event);
+      }}
+      data-hydrated={hydrated}
+      aria-busy={isSubmitting}
       noValidate
       className="rounded-card bg-surface-1 p-6 shadow-raised sm:p-8"
     >
+      <noscript>
+        <p className="mb-5 text-body-sm">
+          Enable JavaScript to send this form. You can read the website without it.
+        </p>
+      </noscript>
       <HoneypotInput {...register('_hp')} />
 
       <div className="flex flex-col gap-5">
@@ -163,7 +166,14 @@ export function SupportForm() {
         </p>
       )}
 
-      <Button type="submit" size="lg" fullWidth loading={isSubmitting} className="mt-6">
+      <Button
+        type="submit"
+        size="lg"
+        fullWidth
+        disabled={!hydrated}
+        loading={isSubmitting}
+        className="mt-6"
+      >
         {isSubmitting ? 'Sending…' : 'Send message'}
       </Button>
 

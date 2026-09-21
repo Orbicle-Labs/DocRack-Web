@@ -2,6 +2,9 @@
 
 import { useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 
+import { track } from '@/lib/analytics/client';
+import { steps } from '@/lib/analytics/events';
+
 const subscribe = () => () => {};
 const labels = ['Documents', 'Tests', 'Runs', 'Review', 'Findings', 'Working Papers'];
 
@@ -13,6 +16,10 @@ export function WorkflowViewer({ children }: { children: ReactNode[] }) {
     () => true,
     () => false
   );
+  function select(index: number) {
+    setStep(index);
+    track({ name: 'workflow_step_view', props: { stepId: steps[index] } });
+  }
   const controls = useRef<(HTMLButtonElement | null)[]>([]);
   return (
     <div className="workflow-viewer">
@@ -30,7 +37,7 @@ export function WorkflowViewer({ children }: { children: ReactNode[] }) {
             aria-selected={step === index}
             tabIndex={step === index ? 0 : -1}
             disabled={!ready}
-            onClick={() => setStep(index)}
+            onClick={() => select(index)}
             onKeyDown={(event) => {
               const next =
                 event.key === 'ArrowRight'
@@ -44,7 +51,7 @@ export function WorkflowViewer({ children }: { children: ReactNode[] }) {
                         : null;
               if (next === null) return;
               event.preventDefault();
-              setStep(next);
+              select(next);
               controls.current[next]?.focus();
             }}
           >

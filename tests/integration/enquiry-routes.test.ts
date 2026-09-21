@@ -47,16 +47,19 @@ const cases = [
 ];
 
 beforeEach(() => {
+  vi.stubEnv('ALLOW_MISSING_ORIGIN', 'true');
+  vi.stubEnv('FORM_INGRESS_MODE', 'verified-header');
+  vi.stubEnv('RATE_LIMIT_HMAC_SECRET', 'synthetic-secret-for-test-' + ++identity);
   vi.mocked(appendRow).mockReset().mockResolvedValue();
-  vi.mocked(sendEmail).mockReset().mockResolvedValue();
+  vi.mocked(sendEmail).mockReset().mockResolvedValue('sent');
   vi.spyOn(console, 'error').mockImplementation(() => {});
 });
 
 describe.each(cases)('$name endpoint', ({ route, endpoint, tab, max, window, payload, row }) => {
-  const request = (body: unknown, ip = `synthetic-${++identity}`) =>
+  const request = (body: unknown, ip = `192.0.2.${++identity % 250}`) =>
     new NextRequest(`http://localhost${endpoint}`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', 'x-forwarded-for': ip },
+      headers: { 'content-type': 'application/json', 'x-docrack-client-ip': ip },
       body: typeof body === 'string' ? body : JSON.stringify(body),
     });
 
@@ -88,13 +91,13 @@ describe.each(cases)('$name endpoint', ({ route, endpoint, tab, max, window, pay
     expect(appendRow).not.toHaveBeenCalled();
   });
 
-  it('maps validation errors and rejects invalid names and email whitespace', async () => {
+  it('maps validation errors and rejects invalid names and normalises email whitespace', async () => {
     const response = await route.POST(
       request({ ...payload, fullName: 'Asha123', email: ' asha@example.com ' })
     );
     expect(response.status).toBe(422);
     expect((await response.json()).fields).toEqual(
-      expect.objectContaining({ fullName: expect.any(Array), email: expect.any(Array) })
+      expect.objectContaining({ fullName: expect.any(Array) })
     );
     expect(sendEmail).not.toHaveBeenCalled();
   });
@@ -115,7 +118,7 @@ describe.each(cases)('$name endpoint', ({ route, endpoint, tab, max, window, pay
 
   it('awaits storage and notification before returning success', async () => {
     let saved!: () => void;
-    let notified!: () => void;
+    let notified!: (value: 'sent') => void;
     vi.mocked(appendRow).mockImplementationOnce(
       () =>
         new Promise<void>((resolve) => {
@@ -124,7 +127,7 @@ describe.each(cases)('$name endpoint', ({ route, endpoint, tab, max, window, pay
     );
     vi.mocked(sendEmail).mockImplementationOnce(
       () =>
-        new Promise<void>((resolve) => {
+        new Promise<'sent'>((resolve) => {
           notified = resolve;
         })
     );
@@ -139,13 +142,13 @@ describe.each(cases)('$name endpoint', ({ route, endpoint, tab, max, window, pay
     saved();
     await vi.waitFor(() => expect(sendEmail).toHaveBeenCalledOnce());
     expect(finished).toBe(false);
-    notified();
+    notified('sent');
     expect((await pending).status).toBe(201);
   });
 
   it('enforces the existing per-IP threshold, Retry-After and reset', async () => {
     vi.useFakeTimers();
-    const ip = `rate-${++identity}`;
+    const ip = `192.0.2.${++identity % 250}`;
     for (let count = 0; count < max; count++)
       expect((await route.POST(request({ _hp: 'bot' }, ip))).status).toBe(200);
     const blocked = await route.POST(request(payload, ip));
@@ -153,6 +156,29 @@ describe.each(cases)('$name endpoint', ({ route, endpoint, tab, max, window, pay
     expect(blocked.headers.get('Retry-After')).toBe(String(window));
     vi.advanceTimersByTime(window * 1000 + 1);
     expect((await route.POST(request({ _hp: 'bot' }, ip))).status).toBe(200);
+  });
+
+  it.each([
+    { headers: { 'content-type': 'text/plain' }, body: payload, status: 415 },
+    { headers: { origin: 'https://unapproved.example' }, body: payload, status: 403 },
+    { headers: {}, body: 'a'.repeat(16385), status: 413 },
+  ])('applies request guard status $status before providers', async ({ headers, body, status }) => {
+    const req = request(body);
+    for (const [key, value] of Object.entries(headers)) if (value) req.headers.set(key, value);
+    expect((await route.POST(req)).status).toBe(status);
+    expect(appendRow).not.toHaveBeenCalled();
+    expect(sendEmail).not.toHaveBeenCalled();
+  });
+
+  it('keeps form data, provider bodies and credentials out of routine logs and responses', async () => {
+    vi.mocked(appendRow).mockRejectedValue(
+      new Error('private-provider-token ' + JSON.stringify(payload))
+    );
+    const response = await route.POST(request(payload));
+    const output = (await response.text()) + JSON.stringify(vi.mocked(console.error).mock.calls);
+    expect(output).not.toMatch(/Asha|ASHA|Synthetic|private-provider-token|192\.0\.2/);
+    expect(response.headers.get('X-Request-ID')).toMatch(/^[a-f0-9-]{36}$/);
+    expect(response.headers.get('Cache-Control')).toBe('no-store');
   });
 
   it('returns 405 to GET', async () => {
@@ -163,7 +189,10 @@ describe.each(cases)('$name endpoint', ({ route, endpoint, tab, max, window, pay
 it.each(['1-10', '10-50', '50-100', '100+'])('preserves demo enum %s', async (auditCount) => {
   const req = new NextRequest('http://localhost/api/demo-booking', {
     method: 'POST',
-    headers: { 'x-real-ip': `enum-${++identity}` },
+    headers: {
+      'content-type': 'application/json',
+      'x-docrack-client-ip': `192.0.2.${++identity % 250}`,
+    },
     body: JSON.stringify({ ...cases[0].payload, auditCount }),
   });
   expect((await demo.POST(req)).status).toBe(201);
@@ -172,7 +201,10 @@ it.each(['1-10', '10-50', '50-100', '100+'])('preserves demo enum %s', async (au
 it('rejects an unknown audit count', async () => {
   const req = new NextRequest('http://localhost/api/demo-booking', {
     method: 'POST',
-    headers: { 'x-real-ip': `enum-${++identity}` },
+    headers: {
+      'content-type': 'application/json',
+      'x-docrack-client-ip': `192.0.2.${++identity % 250}`,
+    },
     body: JSON.stringify({ ...cases[0].payload, auditCount: '11-50' }),
   });
   expect((await demo.POST(req)).status).toBe(422);

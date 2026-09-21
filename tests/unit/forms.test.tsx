@@ -7,7 +7,6 @@ import '@testing-library/jest-dom/vitest';
 import { DemoForm } from '@/components/forms/DemoForm';
 import { SupportForm } from '@/components/forms/SupportForm';
 
-vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
 afterEach(cleanup);
 
 describe.each([
@@ -82,7 +81,7 @@ describe.each([
     render(<Form />);
     const user = await fill();
     await user.click(screen.getByRole('button', { name: button }));
-    expect(await screen.findByText('Synthetic email validation error')).toBeVisible();
+    expect(await screen.findByText('Check your email address.')).toBeVisible();
     expect(screen.getByLabelText(/^(Work email|Email)$/)).toHaveFocus();
     expect(screen.getByLabelText('Full name')).toHaveValue('Asha Rao');
   });

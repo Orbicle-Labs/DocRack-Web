@@ -1,10 +1,10 @@
 # DocRack-Web — deployment and operations
 
-**Documentation refreshed:** 11 September 2026.
+**Documentation refreshed:** 21 September 2026.
 
 This runbook describes the existing website deployment configuration and the planned rebuild release gates. It does not certify the current cloud state, domain mapping, secret values, Sheet sharing, or email delivery. Verify those facts when performing operations.
 
-Phase 1 migrated the runtime and source boundaries and added mocked unit/browser tests. Phase 2 added the visual system and locally served licensed fonts; the build no longer downloads Google fonts. Its standalone image and browser checks are local validation only, not a deployment. Shared limiting and the analytics adapter remain Phase 6 work. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
+Phase 1 migrated the runtime and source boundaries and added mocked unit/browser tests. Phase 2 added the visual system and locally served licensed fonts; the build no longer downloads Google fonts. Its standalone image and browser checks are local validation only, not a deployment. Phase 6 implements shared-limiter code, reliability controls and disabled analytics; provisioning, ingress and staging acceptance remain pending. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
 
 ## 1. Configured deployment topology
 
@@ -64,7 +64,7 @@ The previous runbook recorded a WIF restriction to this repository and main ref.
 
 The current notification helper skips email when either API key or notification destination is absent. A saved enquiry still succeeds. Verify sender/domain eligibility in Resend before expecting delivery; the code's default `onboarding@resend.dev` sender is not evidence that general production sending is configured.
 
-Copy [.env.example](.env.example) only into a missing local file, and enter values privately. The template contains current variable names only; planned Firestore/analytics/sign-in variables will be added alongside their implementations.
+Copy [.env.example](.env.example) only into a missing local file, and enter values privately. The template includes Phase 6 origin, ingress, Firestore and disabled analytics configuration. See [the enquiry runbook](docs/operations/enquiries.md) for defaults, owner inputs and provisioning steps.
 
 For Docker, Compose expects `.env.docker.local`; it does not load `.env.docker` by name. The current production Compose profile also requires an intended local key file at `secrets/gcp-sa-key.json`. These are local Compose requirements, not Cloud Run requirements.
 
@@ -113,7 +113,7 @@ Record the active traffic allocation and known-good revision in the release repo
 
 Verify current Sheet access, sender verification, notification destination, secret bindings, container port/health, domain routing, and WIF restrictions through the appropriate authorised inspection. Avoid dumping a full service/environment configuration into a shared transcript.
 
-Confirm the schema, env names, and integrations expected by the candidate revision. Before future Firestore/analytics changes, document provisioning, permissions, data handling, and rollback compatibility.
+Confirm the schema, env names, and integrations expected by the candidate revision. Before deploying Phase 6, complete the origin/ingress configuration and separately authorised Firestore/staging checklist in the enquiry runbook; retain the disabled analytics default.
 
 ## 6. Rebuild quality gates before release
 
@@ -240,9 +240,9 @@ An authorised operator can inspect recent service logs:
 gcloud run services logs read docrack-web --project docrack-web --region asia-southeast1 --limit 50
 ```
 
-Existing logs may contain provider error details. Review them privately and redact any enquiry/credential information before sharing. Phase 6 adds safer logging and operational signals; those protections are not implemented yet.
+Existing logs may contain provider error details. Review them privately and redact any enquiry/credential information before sharing. Phase 6 application code emits only correlation ID, event, status and latency; this does not retroactively redact older logs or establish hosting-log retention.
 
-Monitor API storage failures, notification failures, provider latency, and—once implemented—shared-limiter fallback. Record a response owner. Do not infer business success from a green build alone.
+Monitor API storage failures, notification failures, provider latency, shared-limiter fallback and unverified ingress signals. Record a response owner. Do not infer business success from a green build alone.
 
 ## 10. Provisioning and historical notes
 
@@ -270,4 +270,16 @@ Phase 5 uses the credential-free standalone image docrack-web:phase5 on 127.0.0.
 
 Seven exact redirects are active in the local build; nineteen canonical paths exist. Privacy and Terms serve noindex publication holds and are omitted from the sitemap until owner/legal facts and final wording are approved. Final legal text is internal under docs/content/legal. Do not treat these reachable hold routes as complete legal publication. Product evidence and the Phase 4 LCP target remain open; see [Phase 5 QA](docs/qa/phase-5.md).
 
-Enquiry fields/statuses, Sheets tabs/columns, Sheets-first persistence, internal best-effort Resend notifications, credentials and provider configuration are preserved. Form copy changes do not establish live processing/retention facts. No setup-sheet, Firestore/shared-limiter work or analytics/provider migration was run; those remain separately scoped Phase 6 work.
+Enquiry fields/statuses, Sheets tabs/columns, Sheets-first persistence, internal best-effort Resend notifications, credentials and provider configuration are preserved. Form copy changes do not establish live processing/retention facts. That Phase 5 record is historical. Phase 6 subsequently implements shared limiting and migrates analytics locally; it performs no cloud provisioning or live-service writes.
+
+## Phase 6 release prerequisites and local evidence
+
+Phase 6 code is locally implemented and uncommitted from `641e79d`; it is not deployed. See [Phase 6 QA](docs/qa/phase-6.md), [local commands](README.md#phase-6-local-checks-and-integration-defaults) and the [enquiry operations runbook](docs/operations/enquiries.md).
+
+Before a separately authorised deployment, configure exact `FORM_ALLOWED_ORIGINS` or browser submissions will return 403. Decide whether legitimate nonbrowser JSON clients need `ALLOW_MISSING_ORIGIN`. Leave `FORM_INGRESS_MODE=shared` unless an operator has proved that the dedicated client-IP header is overwritten and direct ingress bypass is blocked. This default is conservative and can rate limit unrelated visitors together.
+
+The runbook supplies the named Firestore database/TTL/IAM recipe and runtime secret requirements, plus staging verification, notification ownership, alert filters and retention/deletion actions. None is provisioned by this phase. Do not deploy a new public revision while required origins/ingress/shared-limiter staging evidence is missing and call it release-ready. Preserve existing env/secret bindings and use scoped updates only after separate authorisation.
+
+Plausible activation remains disabled and requires public-production configuration, owner processing review and the approved domain. No account activation, dashboard delivery or consent conclusion is inferred. Privacy/Terms noindex holds, genuine product capture/export blocker and unresolved mobile LCP requirement remain intact.
+
+Local CSP keeps inline scripts for prerendered Next hydration and JSON-LD; it does not claim to prevent inline execution. X-Frame-Options DENY matches frame-ancestors none. Only the seven legacy redirects pass through the narrow proxy so their 308 responses carry the same security headers. Effective production headers, HTTPS/subdomain policy and ingress chain still require authorised verification.

@@ -21,8 +21,8 @@
     "analyze": "node scripts/analyze.mjs"
   },
   "dependencies": {
+    "@google-cloud/firestore": "9.2.0",
     "@hookform/resolvers": "^3.6.0",
-    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "framer-motion": "13.2.0",
     "google-auth-library": "11.0.2",
@@ -32,7 +32,6 @@
     "react-dom": "19.3.0",
     "react-hook-form": "^7.51.5",
     "server-only": "0.0.1",
-    "sonner": "2.0.8",
     "tailwind-merge": "^2.3.0",
     "zod": "^3.23.8"
   },

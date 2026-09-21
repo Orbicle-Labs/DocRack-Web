@@ -1,4 +1,5 @@
 import 'server-only';
+import { deadline, ServiceFailure } from './deadline';
 
 // Email notifications for form submissions, sent via the Resend REST API.
 // Email is best-effort: callers must catch — a failed notification must never
@@ -25,34 +26,36 @@ export async function sendEmail({
   from: string;
   subject: string;
   html: string;
-}): Promise<void> {
+}): Promise<'sent' | 'skipped'> {
   const apiKey = process.env.RESEND_API_KEY;
   const notifyEmail = process.env.NOTIFY_EMAIL;
-  if (!apiKey || !notifyEmail) {
-    console.warn('[notify] RESEND_API_KEY or NOTIFY_EMAIL not set — skipping email notification');
-    return;
-  }
+  if (!apiKey && !notifyEmail) return 'skipped';
+  if (!apiKey || !notifyEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(notifyEmail))
+    throw new ServiceFailure('configuration');
 
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      // Until docrack.ai is verified at Resend, the resend.dev sender only
-      // delivers to the Resend account's own email address
-      from: process.env.EMAIL_FROM ?? from,
-      to: [notifyEmail],
-      subject,
-      html,
-    }),
+  await deadline(4000, async (signal) => {
+    const res = await fetch('https://api.resend.com/emails', {
+      signal,
+      redirect: 'error',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        // Until docrack.ai is verified at Resend, the resend.dev sender only
+        // delivers to the Resend account's own email address
+        from: process.env.EMAIL_FROM ?? from,
+        to: [notifyEmail],
+        subject,
+        html,
+      }),
+    });
+
+    await res.body?.cancel();
+    if (!res.ok) throw new ServiceFailure('provider', res.status);
   });
-
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Resend API error ${res.status}: ${body}`);
-  }
+  return 'sent';
 }
 
 export function demoBookingEmailHtml({

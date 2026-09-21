@@ -1,59 +1,55 @@
 ﻿# Marketing rebuild - current phase
 
-**Updated:** 20 September 2026 (runtime QA measured 15 September; Phase 5 committed 19 September; main integration and Phase 6 prompt prepared 20 September).
+**Updated:** 21 September 2026.
 
-**Current phase:** Phase 5 - Product, solution and supporting pages
+**Current phase:** Phase 6 - Conversion reliability, abuse controls and analytics.
 
-**Status:** Independent implementation delivered with explicitly labelled synthetic illustrations. The complete launch-content gate is **incomplete**: Privacy and Terms remain noindex holds with internal review drafts awaiting owner/legal approval. **Phase 3 genuine capture/export remains BLOCKED. Phase 4 mobile LCP remains open**, with the new homepage median 3.12 s against 2.5 s. No founder approval or release readiness is inferred.
+**Status:** Independent implementation and local verification delivered. **Full Phase 6 gate INCOMPLETE:** controlled staging row/notification delivery is NOT RUN. Analytics is explicitly disabled. Firestore/TTL provisioning and ingress verification remain pending. **Phase 3 genuine capture/export remains BLOCKED; Phase 4/5 mobile LCP remains OPEN; Privacy/Terms publication holds remain.** No release or founder approval is inferred.
 
-**Repository:** Phase 5 implementation `85fd025` (parent `0b88094`) was committed on `redesign/marketing-v2`, then fast-forwarded into local `main`. On 20 September the user authorised merging fetched origin/main (`b62efb7`) and pushing main. The commit containing this update preserves both histories; reviewed legacy conflicts retain the verified Phase 5 runtime. See [integration record](qa/main-integration.md). Pre-existing untracked `.claude/` is preserved. Last full phase gate completed: Phase 2, `c3e12ff`.
+**Repository:** Phase 6 is recorded in the local commit containing this handoff on `phase-6/conversion-reliability`, with parent main `641e79d`. The user separately authorised this commit on 21 September 2026; it does not mark staging acceptance complete. Phase 5 implementation `85fd025` and the reviewed main integration are retained. No push, deployment, provisioning, secret change or live-service write in Phase 6. Pre-existing `.claude/` and unrelated work remain untouched. Last complete phase gate remains Phase 2, `c3e12ff`.
 
-**Exact next action:** after the authorised merge/push, review the [Phase 6 continuation prompt](PHASE_6_PROMPT.md) and invoke it when ready. Phase 6 is not started. Preserve the genuine-evidence, LCP and legal holds. The merge/push authorisation is specific to this integration; it does not authorise later phase commits, pushes, deployments or live-service work. The existing main push workflow may deploy; Git transfer and workflow/release success are separate results.
+**Exact next action:** review the [Phase 6 QA and exit table](qa/phase-6.md), [visual board](design/phase-6/index.html) and [enquiry operations runbook](operations/enquiries.md). Separately authorise identified isolated staging targets and specific provisioning/test writes to complete the pending Phase 6 gate. A [Phase 7 continuation prompt](PHASE_7_PROMPT.md) is prepared for independent local release QA when explicitly invoked; it preserves the incomplete dependency gates and does not authorise release. Phase 7 has not started. The original [Phase 6 prompt](PHASE_6_PROMPT.md) remains a historical scope record.
 
-## Implemented paths
+## Delivered and verified
 
-- All eight product pages, three solution pages, Company, Security, Support, Glossary and Demo; Privacy/Terms hold pages and concrete internal drafts; 404/error recovery. Fourteen Recipe components, six source roles and states, source Traces, versions, immutable completed Runs and explicit human approval boundaries remain central. Additional procedures do not invent executed results or available Packs.
-- `src/components/sections/pages/{Editorial,Evidence,ProcedureDetails}.tsx`, `src/styles/pages.css`, recipe/solution/glossary/support content and explicit `src/app/(marketing)` routes provide the shared page system. P2P amounts and unresolved review stay consistent with the homepage; credit/IFC use separate fixtures.
-- Route/navigation registries, metadata, breadcrumbs, related links and sitemap cover nineteen canonical paths, seventeen indexable pages and seven single-hop redirects. Four planned product redirects are active; three existing redirects retained. Homepage chapter structure preserved with canonical links.
-- Retired fully replaced page shells, motion scenes, copy, ProductFrame, four old route files and eleven unused product PNGs after consumer checks. Original identity/fonts and Phase 3 illustrations retained.
-- `tests/e2e/phase-5.spec.ts`, `tests/unit/phase-5.test.tsx`, `playwright.phase5.config.ts`, measurement/Lighthouse scripts, screenshot board and isolated report ignores added. Retained tests adapted for deliberate route/semantic changes. README/DEPLOYMENT, [claims](content/claims-register.md), [assets](design/assets.md) and [route acceptance](content/route-migration.md) updated.
+Shared schemas preserve both enquiry contracts. Pre-hydration drafts survive and submit unchanged. Forms retain failed drafts, prevent concurrent clicks and focus inline errors/receipts. JSON/origin and streaming body guards, explicit ingress trust, Firestore transactional HMAC counters, bounded fallback, actual provider deadlines and PII-minimised operational logs are implemented. Sheets persists before awaited best-effort internal notification; ambiguous appends are never automatically replayed. Analytics uses fixed allowlisted events and remains disabled; obsolete Vercel/toast dependencies and vendor allowances are removed. Redirect headers agree with canonical HTML/API policy while pages remain static.
 
-## Validation and exit gate
+Lint, strict types, **117 unit/integration tests**, content/asset checks (**24 each**) and credential-free standalone production build pass. **166 distinct browser checks** pass across Chromium/Firefox/WebKit, including retained page/homepage coverage and both forms' delayed hydration, keyboard/focus, offline/touch, repeated clicks and analytics-blocked journeys. New form checks include **30 axe scans, zero violations**, 320/390/768/1440px and 200% text reflow. Three hydration-wait timeouts under concurrent load passed on sequential rerun with an explicit functional timeout; this is not performance acceptance. See [QA](qa/phase-6.md) for image provenance, commands, exact scope and report links.
 
-Lint/types, **73 mocked/unit/content/asset tests**, content/asset scripts and credential-free standalone production build pass. **139 distinct browser checks** pass: 71 Chromium, 24 new-page checks plus 10 homepage checks each in Firefox and WebKit. After the final support success-copy change, the affected form check passes again in all three engines; the complete suite was not redundantly rerun for that string. Exact image provenance is in [QA](qa/phase-5.md).
+Performance was remeasured into new Phase 6 reports: 57 cold page contexts and twelve Lighthouse mobile runs. Historical Phase 4/5 reports remain unchanged, including Home 3.07 s / 3.12 s and Phase 5 Product/Documents 2.67 s, Demo 2.96 s versus the 2.5 s target. Current medians and budget results are recorded in [Phase 6 performance evidence](qa/phase-6.md#performance-evidence). Mobile LCP remains an unresolved requirement; field INP/p75 is not established.
 
-Six viewport widths from 320 to 1440px, source legibility/bounds, keyboard/touch/focus, menu, reduced motion, forced colours, 200% text reflow, no-JS/blocked-font/media fallbacks, query/fragment redirects, metadata and sitemap are checked. New Phase 5 axe scans: **108, zero violations**, with retained scans also passing. Forms use mocked responses only and are tested after hydration. Seventy-two website screenshots are retained; these are never genuine product evidence.
+## Changed paths
 
-All 57 local payload contexts have CLS 0. Homepage maximum JS is 200.6 KiB gzip; maximum initial measured transfer across nineteen paths is 403.7 KiB. Three-run Lighthouse medians: home **94/100/100, LCP 3.12 s**; Product/Documents **97/100/100, 2.67 s**; Demo **95/100/100, 2.96 s**. Score/payload/CLS budgets pass; **all four LCP medians fail 2.5 s**. Historical Phase 4's 3.07 s miss is preserved. Field INP/p75 is not established.
-
-| Phase 5 exit condition                                         | Result                                                                                             |
-| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Every launch route has useful reviewed content and next action | PARTIAL - seventeen content pages and two useful legal holds; final Privacy/Terms approval missing |
-| Hierarchy, states, Traces, versions and approvals consistent   | PASS within labelled illustrations/content checks                                                  |
-| Single-hop redirects with relevant queries/anchors             | PASS - all seven                                                                                   |
-| No excluded features, fabricated customers or dead navigation  | PASS within source/content/browser review                                                          |
-| No accidental publication of private/unverified content        | PASS for tested website output; actual product artifact inspection remains NOT RUN                 |
+- Forms/API: `src/lib/forms/{schemas,submit}.ts`, `src/components/forms/{DemoForm,SupportForm}.tsx`, `src/app/api/{demo-booking,support-ticket}/route.ts`.
+- Server: `src/lib/server/{request-guards,deadline,enquiry,log,rate-limit,sheets,notify}.ts`.
+- Analytics/header integration: `src/lib/analytics/{events,client}.ts`, `src/lib/analytics/Analytics.tsx`, `src/app/api/analytics-config/route.ts`, `src/app/layout.tsx`, `src/components/demos/SourceReview.tsx`, `src/components/product-demo/WorkflowViewer.tsx`, `src/lib/security-headers.ts`, `src/proxy.ts`, `next.config.ts`.
+- Public copy/config: `src/content/pages/launch.ts`, `package.json`, `package-lock.json`, `.env.example`, `.gitignore`, `.dockerignore`, `eslint.config.mjs`.
+- Checks: `tests/setup.ts`, `tests/integration/enquiry-routes.test.ts`, `tests/e2e/phase-6.spec.ts`, `tests/unit/forms.test.tsx`, `tests/unit/{providers,analytics,analytics-config,firestore-deadlines,rate-limit,redirect-headers,request-guards}.test.ts`, `playwright.phase6.config.ts`, `scripts/{measure-pages,lighthouse-pages}.mjs`.
+- Docs/evidence: `README.md`, `DEPLOYMENT.md`, this handoff, `docs/content/claims-register.md`, `docs/content/legal/privacy-review.md`, `docs/operations/enquiries.md`, `docs/qa/phase-6.md`, measurement JSON/twelve Lighthouse JSON files and twelve screenshots plus review board in `docs/design/phase-6/`. Historical screenshots/reports and Terms draft unchanged.
 
 ## Remaining work by owner
 
-**From implementation, when separately authorised:** optimise the shared mobile LCP critical path and repeat production measurements. Phase 6 should address observed early-input loss before React hydration; current form success/failure tests wait for hydration and do not prove that behaviour. Full device/assistive-technology, analytics/provider, security and release acceptance remain later-phase work.
+**From implementation:** no independent authorised Phase 6 code task remains. Review the candidate, then complete separately authorised isolated staging acceptance: exact rows and internal notification, saved 201 after notification failure, real multi-instance limits, TTL, verified ingress, alert delivery and effective headers. These are **NOT RUN**, not silently passed. No staging resources, owners or permission are invented. Analytics remains disabled unless separately configured and approved.
 
-**From the user/product owner:** founder visual review; responsible entity/contact/jurisdiction and approved legal text; actual retention/deletion/processor/analytics facts; verified company/security/deployment and release/Pack evidence. See both [Privacy](content/legal/privacy-review.md) and [Terms](content/legal/terms-review.md) review drafts. Public holds omit substantive unapproved legal commitments and remain outside the sitemap.
+**From the user/operations owner:** approved staging Sheet/inbox/runtime/database/region and ingress design; named enquiry/support/incident/privacy owners; verified alternate contact; secret-handling and test-row cleanup authorisation; retention/deletion/processor decisions. The [runbook](operations/enquiries.md) contains a concrete provisioning recipe and acceptance procedure, neither executed against cloud services.
 
-**Phase 3 evidence - BLOCKED:** supply approved synthetic genuine captures/export with product commit, Run, Recipe/input versions and approval provenance, or separately authorise an identified isolated synthetic session. Apply the [intake gate](content/product-evidence.md). Actual artifact confidentiality, macro/connection and source-link inspection remains NOT RUN. No product environment was accessed and no artifacts fabricated. [Phase 3](qa/phase-3.md) and [Phase 4](qa/phase-4.md) historical reports remain unchanged.
+**Product evidence - BLOCKED:** approved genuine synthetic captures/export with product commit, Run, Recipe/input versions and approval provenance, or separately authorised isolated synthetic product session. Follow the [intake gate](content/product-evidence.md); confidentiality/macro/connection/source-link inspection remains NOT RUN. Website screenshots do not close this gate.
+
+**Legal and performance:** founder visual review; approved responsible entity/contact/jurisdiction and [Privacy](content/legal/privacy-review.md)/[Terms](content/legal/terms-review.md) text. Both public holds remain noindex and outside the sitemap. Mobile LCP needs separately scoped remediation and repeated production measurements before acceptance. Actual devices, assistive technology and complete release QA remain later work.
 
 ## Preservation and stop boundary
 
-Both enquiry POST endpoints, fields/statuses, auditCount choices, Sheets columns/tabs, Sheets-first persistence and best-effort internal notification remain unchanged. Form edits affect presentation copy only, including removing an inherited response-time promise. Dependencies/lockfile, credentials, unrelated local configuration and `.claude/` remain untouched. Phase 5 implementation performed no setup-sheet, live provider/form/notification, sibling-repository write, push or deployment. The later 20 September merge and push are explicitly authorised; the existing main workflow may deploy after successful CI. No manual deployment, production enquiry or cloud/secret mutation is part of this integration.
+`POST /api/demo-booking` and `POST /api/support-ticket`, fields, auditCount choices, exact Sheets tabs/columns and Sheets-first/internal-notification semantics remain. Dependencies changed only for the Phase 6 Firestore integration and verified unused runtime removals. No env/key mounts, live form POSTs, notifications, setup-sheet or sibling-product writes. Existing 3000/8000 services are untouched. The temporary local QA container is stopped at final handoff; image provenance is in QA.
 
-At the 19 September handoff, Docker inspection confirmed the temporary credential-free `docrack-web-phase5-qa` container on localhost:3100 no longer exists; no additional stop was necessary. Services on 3000/8000 were untouched. Final local image is `sha256:682353359144ac7a4e3fb0df6790059ae7b95b1e5994c65e482183053549e0c4`.
+The user authorised the local Phase 6 commit only. Stop before **Phase 7 execution, push, deployment, provisioning, secret changes and live-service writes**. Prior main merge/push permission was specific to that earlier integration.
 
-| Phase | State                                                                                                                           |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------- |
-| 0     | Baseline/public truth complete with recorded limitations                                                                        |
-| 1     | Foundation complete, `1486ee4`                                                                                                  |
-| 2     | Visual system/prototypes complete, `c3e12ff`; no inferred founder approval                                                      |
-| 3     | Independent content/assets committed `49b000f`; genuine capture/export BLOCKED                                                  |
-| 4     | Homepage/workflow committed `0b88094`; functional checks pass, LCP open                                                         |
-| 5     | Independent pages implemented and committed with this handoff; legal/content gate partial, product evidence and LCP remain open |
-| 6-9   | Not started; no authorisation inferred                                                                                          |
+| Phase | State                                                                                                  |
+| ----- | ------------------------------------------------------------------------------------------------------ |
+| 0     | Baseline/public truth complete with recorded limitations                                               |
+| 1     | Foundation complete, `1486ee4`                                                                         |
+| 2     | Visual system complete, `c3e12ff`; no inferred founder approval                                        |
+| 3     | Independent content/assets `49b000f`; genuine capture/export BLOCKED                                   |
+| 4     | Homepage/workflow `0b88094`; functional checks pass, mobile LCP open                                   |
+| 5     | Independent pages `85fd025`, integrated in `641e79d`; legal/content gate partial                       |
+| 6     | Independent implementation locally committed; full gate incomplete pending staging; analytics disabled |
+| 7-9   | Not started; no authorisation inferred                                                                 |

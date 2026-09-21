@@ -1130,7 +1130,7 @@ export const launchPages = [
         id: 'website',
         heading: 'Website enquiries are separate.',
         paragraphs: [
-          'The website code saves demo and support enquiries to Google Sheets and attempts an optional internal notification through Resend. It processes an IP-derived key for rate limiting and includes a production analytics component; live delivery and hosting-log retention have not been verified.',
+          'The website code saves demo and support enquiries to Google Sheets and attempts an optional internal notification through Resend. Shared abuse controls are implemented with a local fallback. Optional analytics is disabled pending owner configuration and processing review; live delivery and hosting-log retention have not been verified.',
           "Do not submit confidential audit evidence in either enquiry form. Product audit-evidence storage and the website's hosting configuration are separate matters.",
         ],
         claims: ['C39', 'C40', 'C43'],
@@ -1618,7 +1618,7 @@ export const launchPages = [
         heading: 'Information processed',
         paragraphs: [
           'A demo request contains your name, email, company and annual audit-volume selection. A support enquiry contains your name, email and message. The server adds a submission timestamp.',
-          'The website uses an IP-derived key to limit repeated requests and a hidden field to help detect automated submissions. Its production layout includes Vercel Analytics. Actual analytics delivery, provider processing and hosting-log retention need confirmation before this notice is published.',
+          'The website uses a hidden field and rate-limit counters to help detect repeated automated submissions. When a trusted ingress is configured, the counter key is HMAC-derived from its client IP; otherwise requests share a fallback identity. Counters contain no form data or raw IP. The optional Plausible adapter is disabled by default, pending owner configuration and processing review. Hosting-log retention and live provider operation remain unverified.',
         ],
         claims: ['C39', 'C40', 'C41'],
       },
@@ -1643,7 +1643,7 @@ export const launchPages = [
         id: 'retention',
         heading: 'Retention and requests',
         paragraphs: [
-          'A rate-limit window is not a verified deletion schedule. The current in-memory limiter can retain expired keys until they are reused or the process restarts. Enquiry, provider and hosting retention periods require owner confirmation.',
+          'Counters expire in application logic after the 20-minute demo or 30-minute support window. Configured Firestore TTL removes expired documents eventually, not at an exact deadline; TTL provisioning is pending. The bounded in-process fallback removes expired entries on requests and a one-minute cleanup timer while the process runs. Enquiry, provider and hosting retention periods require owner confirmation.',
           'Use the support form for a website privacy question, without including sensitive supporting documents. The responsible legal entity, dedicated request contact, legal basis and request-handling procedure must be settled during final notice review.',
         ],
         claims: ['C29', 'C40', 'C41'],
