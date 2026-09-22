@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { fixtures } from '../../src/content/demos/fixtures';
 import { assets } from '../../src/content/assets';
+import { advanceToLink } from './keyboard';
 
 test.beforeEach(async ({ context }) => {
   await context.route('**/*', (route) => {
@@ -17,7 +18,10 @@ test.beforeEach(async ({ context }) => {
   });
 });
 for (const width of [1440, 768, 390, 320]) {
-  test(`Phase 3 illustrative evidence, reflow and access at ${width}px`, async ({ page }, info) => {
+  test(`Phase 3 illustrative evidence, reflow and access at ${width}px`, async ({
+    page,
+    browserName,
+  }, info) => {
     await page.setViewportSize({ width, height: 1000 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(pathToFileURL(resolve('docs/design/phase-3/index.html')).href);
@@ -39,7 +43,11 @@ for (const width of [1440, 768, 390, 320]) {
         .screenshot({ path: info.outputPath(`${scene.id}-${width}.png`) });
     }
     await page.getByRole('link', { name: 'p2p-review', exact: true }).focus();
-    await page.keyboard.press('Tab');
+    await advanceToLink(
+      page,
+      page.getByRole('link', { name: 'credit-review', exact: true }),
+      browserName
+    );
     await expect(page.getByRole('link', { name: 'credit-review', exact: true })).toBeFocused();
     expect(
       await page

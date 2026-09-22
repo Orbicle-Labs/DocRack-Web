@@ -1,0 +1,6 @@
+{
+  "note": "Interrupted after skip-link defect was confirmed; connection failures during temporary QA container replacement. Superseded by corrected candidate full suite.",
+  "passed": 0,
+  "failed": 0,
+  "completedCases": []
+}

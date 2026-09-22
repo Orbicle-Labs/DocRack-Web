@@ -7,7 +7,7 @@ const modulePath =
   process.env.LIGHTHOUSE_MODULE ?? '.local-tools/performance/node_modules/lighthouse/core/index.js';
 const { default: lighthouse } = await import(pathToFileURL(resolve(modulePath)).href);
 const phase = process.env.QA_PHASE ?? '5';
-if (!['5', '6'].includes(phase)) throw Error('QA_PHASE must be 5 or 6');
+if (!['5', '6', '7'].includes(phase)) throw Error('QA_PHASE must be 5, 6 or 7');
 const base = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3100';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw Error('Local QA only');
 for (const path of ['/', '/product', '/product/documents', '/book-demo']) {

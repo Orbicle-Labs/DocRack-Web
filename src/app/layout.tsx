@@ -18,6 +18,8 @@ const manropeExtended = localFont({
   display: 'swap',
   weight: '200 800',
   adjustFontFallback: false,
+  // Extended glyphs remain available without competing with the opening's fonts.
+  preload: false,
 });
 const editorial = localFont({
   src: [

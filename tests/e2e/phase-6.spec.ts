@@ -140,9 +140,10 @@ for (const form of forms) {
       );
       expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
       if (info.project.name === 'chromium') {
-        mkdirSync('docs/design/phase-6', { recursive: true });
+        const captureDirectory = `docs/design/phase-${process.env.QA_PHASE === '7' ? '7' : '6'}`;
+        mkdirSync(captureDirectory, { recursive: true });
         await page.screenshot({
-          path: `docs/design/phase-6/${form.kind}-${width}.png`,
+          path: `${captureDirectory}/${form.kind}-${width}.png`,
           fullPage: true,
         });
       }

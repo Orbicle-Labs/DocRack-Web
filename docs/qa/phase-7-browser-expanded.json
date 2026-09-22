@@ -1,0 +1,253 @@
+{
+  "stats": {
+    "startTime": "2026-09-21T15:18:12.153Z",
+    "duration": 237626.414,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "release crawl: canonical pages, links, fragments, structured data, media and network",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "native link Tab traversal reaches skip content",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 320px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 390px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 768px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1024px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1280px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1440px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release crawl: canonical pages, links, fragments, structured data, media and network",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "native link Tab traversal reaches skip content",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 320px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 390px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 768px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1024px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1280px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1440px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release crawl: canonical pages, links, fragments, structured data, media and network",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "native link Tab traversal reaches skip content",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 320px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 390px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 768px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1024px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1280px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1440px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

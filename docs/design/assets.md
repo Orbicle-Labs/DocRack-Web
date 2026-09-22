@@ -1,3 +1,7 @@
+# Phase 7 asset review - 21 September 2026
+
+Unreferenced `public/logos/nvidia-inception.png` and `public/logos/iit-bombay.png` are removed after executable source/test/script consumer checks; programme rights/relationship evidence remains unverified. Historical A14/A15 inventory entries below are not current public-delivery statements. All generated illustrative assets, original identity inputs and conventional favicons remain. [Current public inventory](../qa/phase-7-source-audit.json) records hashes/dimensions; [Phase 7 screenshots](phase-7/index.html) are credential-free website renders from base `e8f7973` plus the Phase 7 diff. They do not close the genuine capture/export BLOCKED gate.
+
 # Phase 5 asset adoption - 15 September 2026
 
 This addendum supersedes historical consumer/status statements below. The full current-product capture/export gate remains **BLOCKED**. No genuine export, capture, authenticity check or macro/connection/source-link inspection has been supplied or completed.

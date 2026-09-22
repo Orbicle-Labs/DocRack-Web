@@ -1,3 +1,7 @@
+# Phase 7 release crawl - 21 September 2026
+
+The nineteen canonical paths and seven redirects remain unchanged. [Phase 7 QA](../qa/phase-7.md) records production browser checks for links, fragments, metadata, social images, sitemap/robots, redirects and 404s. Privacy/Terms remain noindex holds outside the seventeen-entry sitemap. No sample download is available while genuine evidence is BLOCKED. Search Console/backlink data and actual domain/remote preview/indexing remain unverified; local checks do not establish them. Phase 6 independent implementation is now in base `e8f7973`; staging acceptance remains pending.
+
 # Phase 5 cutover - 15 September 2026
 
 This section supersedes the historical phase snapshots below. Baseline: 0b88094. Nineteen canonical paths now exist: seventeen indexable content pages and two reachable, noindex legal hold pages. Privacy/Terms drafts are internal under docs/content/legal; their substantive publication gates remain incomplete.

@@ -2,7 +2,7 @@
 
 **Documentation refreshed:** 21 September 2026.
 
-This runbook describes the existing website deployment configuration and the planned rebuild release gates. It does not certify the current cloud state, domain mapping, secret values, Sheet sharing, or email delivery. Verify those facts when performing operations.
+This runbook describes checked-in website deployment configuration and release gates. Independent Phase 7 local QA is recorded in [the release report](docs/qa/phase-7.md). The candidate is **not release ready**: product evidence, mobile LCP, legal publication and Phase 6 staging/Firestore/TTL/ingress/alerts remain open. No current cloud state, revision, domain mapping, secret binding, Sheet sharing or email delivery is certified by local QA.
 
 Phase 1 migrated the runtime and source boundaries and added mocked unit/browser tests. Phase 2 added the visual system and locally served licensed fonts; the build no longer downloads Google fonts. Its standalone image and browser checks are local validation only, not a deployment. Phase 6 implements shared-limiter code, reliability controls and disabled analytics; provisioning, ingress and staging acceptance remain pending. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
 
@@ -153,7 +153,7 @@ No env file or key mount is needed to render this image. Browser POSTs are inter
 - Prepare a release report with the intended target, checks, factual limitations, configuration changes, current revision, and rollback action.
 - Complete all local/reviewable work before seeking any missing release authorisation.
 
-Vitest and Chromium Playwright commands exist and run in CI. Phase 3 adds `check-content`, `check-assets` and `assets:produce`; the focused content/asset suite is also included in `npm test`. Its generator uses only local content and installed Chromium, never product services or credentials. The full release browser matrix remains a future gate. Keep production credentials and live submissions out of CI.
+Vitest and Chromium Playwright commands exist in CI. `check-content` and `check-assets` are also included in `npm test`; `assets:produce` uses local controlled content only. The full local three-engine regression command is `npx playwright test --config playwright.phase7.config.ts`, using the credential-free image and loopback URL in [README](README.md#local-production-release-qa). Local engine coverage is separate from physical-device, screen-reader and remote preview acceptance. Keep production credentials and live submissions out of CI.
 
 ## 7. Release procedure
 
@@ -183,7 +183,7 @@ Inspect the intended public domain for:
 
 - Home, Product, Book a Demo, Support, Security, and representative solution pages.
 - CSS/fonts/images and the generated social image.
-- Existing redirects plus new product redirects once Phase 5 implements them.
+- All seven implemented redirects, including query strings and meaningful browser fragments.
 - Correct canonical origin, sitemap/robots, and no accidental production noindex.
 - Effective headers and browser console/network failures.
 - A nonexistent path returning a usable 404.
@@ -274,7 +274,7 @@ Enquiry fields/statuses, Sheets tabs/columns, Sheets-first persistence, internal
 
 ## Phase 6 release prerequisites and local evidence
 
-Phase 6 code is locally implemented and uncommitted from `641e79d`; it is not deployed. See [Phase 6 QA](docs/qa/phase-6.md), [local commands](README.md#phase-6-local-checks-and-integration-defaults) and the [enquiry operations runbook](docs/operations/enquiries.md).
+Phase 6 code is committed in `e8f7973`, descending from `641e79d`; deployed acceptance remains unverified. See [Phase 6 QA](docs/qa/phase-6.md), [local commands](README.md#phase-6-local-checks-and-integration-defaults) and the [enquiry operations runbook](docs/operations/enquiries.md).
 
 Before a separately authorised deployment, configure exact `FORM_ALLOWED_ORIGINS` or browser submissions will return 403. Decide whether legitimate nonbrowser JSON clients need `ALLOW_MISSING_ORIGIN`. Leave `FORM_INGRESS_MODE=shared` unless an operator has proved that the dedicated client-IP header is overwritten and direct ingress bypass is blocked. This default is conservative and can rate limit unrelated visitors together.
 

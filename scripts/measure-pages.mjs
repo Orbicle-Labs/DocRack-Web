@@ -4,7 +4,7 @@ import { writeFile } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import { routes } from '../src/content/routes.ts';
 const phase = process.env.QA_PHASE ?? '5';
-if (!['5', '6'].includes(phase)) throw Error('QA_PHASE must be 5 or 6');
+if (!['5', '6', '7'].includes(phase)) throw Error('QA_PHASE must be 5, 6 or 7');
 const base = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3100';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw Error('Local QA only');
 const browser = await chromium.launch();
@@ -44,6 +44,10 @@ try {
         }).observe({ type: 'largest-contentful-paint', buffered: true });
       });
       const bodies = [];
+      const network = [];
+      page.on('request', (request) =>
+        network.push({ url: request.url(), method: request.method(), type: request.resourceType() })
+      );
       page.on('response', (r) => {
         const type = r.request().resourceType();
         if (['document', 'stylesheet', 'script', 'font', 'image'].includes(type))
@@ -77,6 +81,7 @@ try {
         path: entry.path,
         width,
         ...measurements,
+        network,
         jsGzip: resources.filter((r) => r.type === 'script').reduce((n, r) => n + r.gzipBytes, 0),
         totalGzip: resources.reduce((n, r) => n + r.gzipBytes, 0),
       });

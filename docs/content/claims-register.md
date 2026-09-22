@@ -1,3 +1,7 @@
+# Phase 7 release review - 21 September 2026
+
+[Content review](phase-7-review.md) and [local QA](../qa/phase-7.md) cover all nineteen pages, metadata, fixtures and public assets. No product capability is promoted to Verified available or Pilot. The unused legacy five-state badge and unreferenced programme marks are removed. Genuine capture/export remains BLOCKED; legal publication and Phase 6 staging/Firestore/TTL/ingress/alerts remain pending; analytics remains disabled. Local browser evidence is not live delivery or product acceptance.
+
 # Phase 6 enquiry reliability and analytics - 21 September 2026
 
 This addendum supersedes older website integration descriptions below. It changes no product availability, legal approval or capture/export status. Phase 3 genuine evidence remains **BLOCKED**; Privacy/Terms remain noindex holds.

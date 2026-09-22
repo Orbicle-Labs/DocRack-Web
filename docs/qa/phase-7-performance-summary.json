@@ -1,0 +1,158 @@
+[
+  {
+    "route": "Home",
+    "runs": [
+      {
+        "file": "phase-7-lighthouse-home-1.json",
+        "lcp": 2.5643250000000006,
+        "cls": 0,
+        "performance": 97,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 39.5,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-home-2.json",
+        "lcp": 3.1239719999999997,
+        "cls": 0,
+        "performance": 93,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 30.5,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-home-3.json",
+        "lcp": 3.1092100000000005,
+        "cls": 0,
+        "performance": 94,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 23.5,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      }
+    ],
+    "medianLcp": 3.1092100000000005
+  },
+  {
+    "route": "Product",
+    "runs": [
+      {
+        "file": "phase-7-lighthouse-product-1.json",
+        "lcp": 2.67409,
+        "cls": 0,
+        "performance": 96,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 67,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-product-2.json",
+        "lcp": 2.6619039999999994,
+        "cls": 0,
+        "performance": 97,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 53,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-product-3.json",
+        "lcp": 2.667214,
+        "cls": 0,
+        "performance": 97,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 60,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      }
+    ],
+    "medianLcp": 2.667214
+  },
+  {
+    "route": "Documents",
+    "runs": [
+      {
+        "file": "phase-7-lighthouse-product-documents-1.json",
+        "lcp": 2.6817640000000003,
+        "cls": 0,
+        "performance": 96,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 71,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-product-documents-2.json",
+        "lcp": 2.656286,
+        "cls": 0,
+        "performance": 97,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 50,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-product-documents-3.json",
+        "lcp": 2.6629340000000004,
+        "cls": 0,
+        "performance": 97,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 54.999999999999545,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      }
+    ],
+    "medianLcp": 2.6629340000000004
+  },
+  {
+    "route": "Demo",
+    "runs": [
+      {
+        "file": "phase-7-lighthouse-book-demo-1.json",
+        "lcp": 2.832176,
+        "cls": 0,
+        "performance": 96,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 36,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-book-demo-2.json",
+        "lcp": 2.821726,
+        "cls": 0,
+        "performance": 95,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 30,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      },
+      {
+        "file": "phase-7-lighthouse-book-demo-3.json",
+        "lcp": 2.80775,
+        "cls": 0,
+        "performance": 96,
+        "accessibility": 100,
+        "seo": 100,
+        "tbt": 25.5,
+        "warnings": [],
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+      }
+    ],
+    "medianLcp": 2.821726
+  }
+]

@@ -64,7 +64,11 @@ for (const entry of publishedRoutes.filter((r) => r.path !== '/')) {
           )
         );
       expect(clipped).toEqual([]);
-      if ([1440, 768, 390, 320].includes(width) && info.project.name === 'chromium') {
+      if (
+        !process.env.QA_PHASE &&
+        [1440, 768, 390, 320].includes(width) &&
+        info.project.name === 'chromium'
+      ) {
         mkdirSync('docs/design/screenshots/phase-5', { recursive: true });
         await page.screenshot({
           path: `docs/design/screenshots/phase-5/${entry.path.slice(1).replaceAll('/', '-')}-${width}.png`,

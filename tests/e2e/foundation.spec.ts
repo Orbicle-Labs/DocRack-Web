@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { publishedRoutes, activeRedirects } from '../../src/content/routes';
+import { advanceToLink } from './keyboard';
 
 test.beforeEach(async ({ context }) => {
   await context.route('**/*', async (route) => {
@@ -46,7 +47,7 @@ test('existing redirects preserve queries; APIs and missing pages retain status 
 });
 
 for (const width of [320, 390, 768, 1440]) {
-  test(`responsive shell and forms at ${width}px`, async ({ page }, info) => {
+  test(`responsive shell and forms at ${width}px`, async ({ page, browserName }, info) => {
     await page.setViewportSize({ width, height: width === 1440 ? 1000 : 900 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     for (const path of ['/', '/product', '/book-demo', '/support']) {
@@ -70,13 +71,14 @@ for (const width of [320, 390, 768, 1440]) {
       await page.screenshot({
         path: info.outputPath(`${path.replaceAll('/', '-') || 'home'}-${width}.png`),
         fullPage: true,
+        scale: 'css',
       });
       await page.screenshot({
         path: info.outputPath(`opening-${path.replaceAll('/', '-')}-${width}.png`),
       });
     }
     await page.goto('/');
-    await page.keyboard.press('Tab');
+    await advanceToLink(page, page.getByRole('link', { name: 'Skip to content' }), browserName);
     await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
     if (width < 1024) {
       await page.getByRole('button', { name: 'Open navigation' }).click();

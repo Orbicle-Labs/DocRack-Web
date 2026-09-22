@@ -1,0 +1,26 @@
+# Phase 8 prompt — gated future handoff
+
+Prepared 21 September 2026. **Phase 8 acceptance prerequisites remain unmet:** the [Phase 7 report](qa/phase-7.md) records an incomplete gate. Independent local implementation is delivered; required acceptance is not complete. The user subsequently explicitly authorised the Phase 7 checkpoint commit/main push and its existing pipeline trigger after reviewing those gaps. That action does not close them. Preparing this prompt does not start Phase 8 or authorise additional deployment or live writes.
+
+The immediate action remains the owner and engineering work in [current phase](CURRENT_PHASE.md). Use the following prompt when returning to the release decision; its preflight must stop launch if prerequisites remain missing.
+
+```text
+Continue DocRack-Web toward Phase 8 — Controlled launch and operational verification.
+
+Read AGENTS.md, docs/CURRENT_PHASE.md, docs/qa/phase-7.md, docs/operations/enquiries.md, README.md, DEPLOYMENT.md and marketing specification sections 13–15. Inspect actual Git status, branch, commit and workflow configuration. Preserve unrelated work, .claude/, secrets and local configuration; never reset, stash or discard user work. Phase 7 QA used base main e8f7973; the user later authorised its checkpoint/main push. Verify the resulting current Git and pipeline state instead of assuming a commit or deployment outcome.
+
+First establish whether Phase 7 is green using actual evidence. Check the mobile LCP budget of 2.5 seconds, native WebKit keyboard acceptance, screen-reader/physical-device/zoom review, genuine synthetic product capture/export provenance, legal publication decisions, Phase 6 staging delivery/Firestore TTL/ingress/alerts and protected preview/rollback preparation. Keep missing, failed and not-run evidence explicit. Local mocks do not prove live delivery; illustrative website captures do not prove authenticated product behaviour. If required gates remain open, report their owners and exact next actions and stop before Phase 8. Do not relax a budget or infer approval to make the gate green.
+
+Even with a green gate, verify production-release authority and its scope in the current conversation before any additional main merge/push, workflow dispatch or deployment. Preserve authority already given within its scope; do not ask again for the already-authorised Phase 7 checkpoint/main push. This template grants no new authority. The existing workflow deploys on a push to main; a triggered or successful deployment does not prove the outstanding acceptance checks passed.
+
+Once both the green gate and production-release authority are established:
+1. Prepare the exact release candidate and report; refresh checks appropriate to any changes since recorded QA. Review the scoped diff and preserve all histories. Commit only authorised task changes. Fetch origin, inspect divergence and integrate through a normal merge if needed; do not force-push or invent a merge when already on main with no divergence. Validate any resulting changes before release.
+2. Record the actual serving production revision, traffic split, approved candidate commit/image, compatible configuration and known-good rollback target before the first action that can deploy. Identify the operator and monitoring owner. Keep credentials and enquiry data out of outputs.
+3. Use the existing authorised main-only pipeline. Do not re-provision the project, rotate or replace secrets, run setup-sheet, change enquiry contracts or enable analytics. Verify the intended revision is serving the intended canonical domain.
+4. Check TLS, pages, redirects, assets, effective HTML/API headers, forms and indexing. Ensure protected-preview restrictions do not leak into production while preserving any intentional route-specific publication hold. Never publish unapproved legal text or an unapproved sample export.
+5. Perform a production smoke submission only with separate explicit authority naming the test scope, internal identity, records and notifications. Verify the saved row and internal notification, exclude test enquiries from sales reporting and preserve rows. Without that authority, complete read-only checks and record live conversion acceptance as pending. Do not declare the Phase 8 exit gate passed without its required evidence.
+6. Monitor API errors, provider timeouts, limiter fallback, failed notifications and 404s for an agreed observation window. Record actual observations and recovery ownership. If conversion or critical navigation fails, use the authorised recorded traffic rollback path; never delete enquiry rows or reinitialise Sheet headers.
+7. Record commands/results, commit and origin relationship, deployed revision, domain checks, smoke evidence, monitoring observations and rollback outcome or untested limitations in docs/qa/phase-8.md and docs/CURRENT_PHASE.md. Update README/DEPLOYMENT only where actual behaviour changed. Run scoped formatting, documentation-link checks and git diff --check.
+
+Report exact completion status and remaining owner actions. Stop before Phase 9, unrelated changes, provisioning, secret changes, sibling-product writes or any live-service write outside the explicitly approved release/smoke/rollback scope.
+```

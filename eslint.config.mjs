@@ -18,6 +18,8 @@ export default defineConfig([
     'test-results-phase4/**',
     'test-results-phase5/**',
     'test-results-phase6/**',
+    'test-results-phase7/**',
+    'playwright-report-phase7/**',
     'playwright-report-phase6/**',
     'playwright-report-phase5/**',
     'playwright-report-phase4/**',

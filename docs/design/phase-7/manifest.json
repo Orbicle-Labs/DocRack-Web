@@ -1,0 +1,246 @@
+{
+  "baseCommit": "e8f7973",
+  "provenance": "Uncommitted Phase 7 candidate; local website only; image IDs in phase-7.md",
+  "images": [
+    {
+      "file": "book-demo-1440.png",
+      "bytes": 183105,
+      "sha256": "ddefa834a84f59d838c7e03e9ef073af8b77d2ea24cd23adb29fe6487ab9b7fd"
+    },
+    {
+      "file": "book-demo-390.png",
+      "bytes": 157442,
+      "sha256": "61cbeccd5288e052280345eaf0a0af2215bf52c12bf678de75d90792f3617f7d"
+    },
+    {
+      "file": "company-1440.png",
+      "bytes": 233409,
+      "sha256": "31c006c033335ad62e2ac85191fbfd4b058c7a7598bb384c70abf5597cf80430"
+    },
+    {
+      "file": "company-390.png",
+      "bytes": 194032,
+      "sha256": "8d6dacf69674f4ac493a382162f20a92d54cbef448a1d21dfc368c8028905784"
+    },
+    {
+      "file": "demo-1440.png",
+      "bytes": 183105,
+      "sha256": "ddefa834a84f59d838c7e03e9ef073af8b77d2ea24cd23adb29fe6487ab9b7fd"
+    },
+    {
+      "file": "demo-320.png",
+      "bytes": 155317,
+      "sha256": "5dcf3f706a2a81a6b3cbfd4cf385dab8810ed7e61669725e27d794957c83dc53"
+    },
+    {
+      "file": "demo-390.png",
+      "bytes": 157442,
+      "sha256": "61cbeccd5288e052280345eaf0a0af2215bf52c12bf678de75d90792f3617f7d"
+    },
+    {
+      "file": "demo-768.png",
+      "bytes": 173938,
+      "sha256": "0cabe78ff2f68148211bd2d77102911125e5e7217ff885bcb8de434f9d1f957d"
+    },
+    {
+      "file": "detail-paper-320.png",
+      "bytes": 109064,
+      "sha256": "efe16fde76b05c47eefbad97001e024dbe0ca6023fda794449ffac873de390b6"
+    },
+    {
+      "file": "detail-source-320.png",
+      "bytes": 48897,
+      "sha256": "d9493603699a048941fafda1a846e4881cae0d81c662565125c271bb751a5e7a"
+    },
+    {
+      "file": "detail-source-768.png",
+      "bytes": 48148,
+      "sha256": "4332759b98ea370846c7cb88bbcb6da1a0835de1ea7e9f3b4747de2fe865f7fa"
+    },
+    {
+      "file": "detail-trace-768.png",
+      "bytes": 33794,
+      "sha256": "8d79a18c660b42bb71e59d0c71f5be5f8bd1d98d783caf9700b607c30b7b896f"
+    },
+    {
+      "file": "glossary-1440.png",
+      "bytes": 547621,
+      "sha256": "0b0064086128d7b4a0826667ea0155513ba08d574635bb3716a73d0c5a51fd71"
+    },
+    {
+      "file": "glossary-390.png",
+      "bytes": 516448,
+      "sha256": "eb61f1be49377f2e5e8c35e6432a03a5aa88de04d01693b966467135b57abb56"
+    },
+    {
+      "file": "home-1440.png",
+      "bytes": 1066242,
+      "sha256": "d5e7466c2bc532c700fd7f1c963be90b11029acb7d35710b350f427786c25b40"
+    },
+    {
+      "file": "home-390.png",
+      "bytes": 895605,
+      "sha256": "fe9ee5f60f6df7f943bba6522309dd312cf127f54eff8f5e9f5711c2d9400673"
+    },
+    {
+      "file": "privacy-1440.png",
+      "bytes": 94015,
+      "sha256": "e7b2ee13ec9edc64c69efa0e947809ab3f53d330b1e661f7592702d7193c492b"
+    },
+    {
+      "file": "privacy-390.png",
+      "bytes": 74774,
+      "sha256": "81ea2acc0545972bd4bd05b3076de4461c9e0982c5cecab808cd1176f4cea503"
+    },
+    {
+      "file": "product-1440.png",
+      "bytes": 480906,
+      "sha256": "978001dd24a3a89a8283dca9a01a324f6ef27c504dad5f7476eaa22bb03f5020"
+    },
+    {
+      "file": "product-390.png",
+      "bytes": 447302,
+      "sha256": "af36035ce8123b6bedaa38e73894fb32a85714a4d7dc468ed4148a976b62e3fb"
+    },
+    {
+      "file": "product-audit-test-recipes-1440.png",
+      "bytes": 630190,
+      "sha256": "a105bb79ee434d2c4abe51923a0bc328d677bfd1e26a10dba2b113a18ff1aa9b"
+    },
+    {
+      "file": "product-audit-test-recipes-390.png",
+      "bytes": 626685,
+      "sha256": "a8b566e6bf83bb6be5d202345dec1610f0584c2e9347767c050b348ef9401f04"
+    },
+    {
+      "file": "product-documents-1440.png",
+      "bytes": 503993,
+      "sha256": "4c2c05b50fbe004d9305493a6515142aa643b571c99f8be6a40f8ff2bb0e863b"
+    },
+    {
+      "file": "product-documents-390.png",
+      "bytes": 492605,
+      "sha256": "f685a1d5f01c73b31e853df923789289882bf65a9dee64a21352930367fc6b82"
+    },
+    {
+      "file": "product-knowledge-hub-and-copilot-1440.png",
+      "bytes": 403114,
+      "sha256": "06a01f8e9a98b9fbb48911555de2d841cd21cd7b6e7b666b34eb74c687ba26a8"
+    },
+    {
+      "file": "product-knowledge-hub-and-copilot-390.png",
+      "bytes": 382239,
+      "sha256": "2d3a94990cfc9c4b0d5f421136c2611c389b20991530ec4797f0dd52fea67f5a"
+    },
+    {
+      "file": "product-reconciliation-and-checks-1440.png",
+      "bytes": 469295,
+      "sha256": "c08e4d3524e67abd4c5d681864f83bee508fed74537fc1b0371384ef77c1a65e"
+    },
+    {
+      "file": "product-reconciliation-and-checks-390.png",
+      "bytes": 451925,
+      "sha256": "686f288e8bb3b3e792fef2d2637e1ce8c0a46acae9e99e2fa1d8d027149e79fe"
+    },
+    {
+      "file": "product-review-and-findings-1440.png",
+      "bytes": 523838,
+      "sha256": "c4745d9749a85a631e4c0aa966cb488cac06c6701783b94d24b96d262004743b"
+    },
+    {
+      "file": "product-review-and-findings-390.png",
+      "bytes": 491307,
+      "sha256": "efac231a37dfb78097aaa029a748eb289f18d697c5e1e6e455b3db8856174c24"
+    },
+    {
+      "file": "product-test-library-1440.png",
+      "bytes": 340610,
+      "sha256": "4f9f58c6785a76312d4f525eb21604c61174a761adc248e9c818ac403f7bd98f"
+    },
+    {
+      "file": "product-test-library-390.png",
+      "bytes": 319337,
+      "sha256": "5828164b17406c98c7745595fd8ff47bac60aa71bd257b542caba28e20981ec2"
+    },
+    {
+      "file": "product-working-papers-1440.png",
+      "bytes": 588706,
+      "sha256": "e43141b72db41062c1b2325c66058517e59392d92da33e488f00e14192c50235"
+    },
+    {
+      "file": "product-working-papers-390.png",
+      "bytes": 578686,
+      "sha256": "3dcaa55b0f9ff1ff059e7ce0857a07a6f2aebb96074c0dd5552906d2bb78e586"
+    },
+    {
+      "file": "security-1440.png",
+      "bytes": 259216,
+      "sha256": "1e1393f5fd31628575f75585298c3ca21ca5b6a2b23d2dbf00dac13f2ec20ce5"
+    },
+    {
+      "file": "security-390.png",
+      "bytes": 235634,
+      "sha256": "db1cc97776a8b51a97ff04eae3bd370554a487dbeb6d7b3b6fddd0eb775cd8ba"
+    },
+    {
+      "file": "solutions-credit-loan-audit-1440.png",
+      "bytes": 531005,
+      "sha256": "c11f8610fc48758c4430be4c659e86aa0841f5d73791edf91b31ea08adb99fdf"
+    },
+    {
+      "file": "solutions-credit-loan-audit-390.png",
+      "bytes": 514816,
+      "sha256": "087b08f9ae64b6bfd687bd275195d2c3d6272dbc58df2239e40c021f56d26f41"
+    },
+    {
+      "file": "solutions-ifc-sox-1440.png",
+      "bytes": 552436,
+      "sha256": "9fad1fccbf4756c7db8b97332bae9d867311c5900f9d312ae92712bff364143c"
+    },
+    {
+      "file": "solutions-ifc-sox-390.png",
+      "bytes": 540835,
+      "sha256": "87d41fb5bd5c1fab727cd0933e9481c18035b7cd232393d2e1d490ac9e150518"
+    },
+    {
+      "file": "solutions-internal-audit-1440.png",
+      "bytes": 530816,
+      "sha256": "6b7bc80cdb4714d9b0272450d08e00e506bfccbbed26c7153b2517e0a937380b"
+    },
+    {
+      "file": "solutions-internal-audit-390.png",
+      "bytes": 510994,
+      "sha256": "de4a3268bd06e388ea82a61a462265e44b2cd787e41b023f85c2857330a34f77"
+    },
+    {
+      "file": "support-1440.png",
+      "bytes": 148306,
+      "sha256": "9b618af27c215426f268fffadb5eb3610f03913f50c7f7e71e0666cf2b7bbc40"
+    },
+    {
+      "file": "support-320.png",
+      "bytes": 121437,
+      "sha256": "6a4e59ccca97d115f28fed05ebfacf74be779323c3e8b02ee9059c9cca09dba6"
+    },
+    {
+      "file": "support-390.png",
+      "bytes": 121585,
+      "sha256": "609f5f98ce5329cb614a4385ac1dfd32a89c98d80e0ebc50d500cf645d1132a1"
+    },
+    {
+      "file": "support-768.png",
+      "bytes": 139379,
+      "sha256": "1df372e8780ec22b10a5e8b83824233e477852db46fcd13a1457e8bb218b5be2"
+    },
+    {
+      "file": "terms-1440.png",
+      "bytes": 86348,
+      "sha256": "8710a8afae8818b2c07f5377174c3d3f804be8b8f4facf280d86d067b4e3e608"
+    },
+    {
+      "file": "terms-390.png",
+      "bytes": 71259,
+      "sha256": "a76e615320b30f388be58ff10b16d9e1ae32987dbff8d14b40dba4139f1159ca"
+    }
+  ]
+}

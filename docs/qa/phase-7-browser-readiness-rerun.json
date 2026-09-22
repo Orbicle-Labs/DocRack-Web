@@ -1,0 +1,22 @@
+{
+  "stats": {
+    "startTime": "2026-09-21T15:18:02.491Z",
+    "duration": 8288.52,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "Phase 2 reviewable layouts and access at 320px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

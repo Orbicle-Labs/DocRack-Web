@@ -1,0 +1,2639 @@
+{
+  "stats": {
+    "startTime": "2026-09-21T10:45:55.820Z",
+    "duration": 910038.098,
+    "expected": 244,
+    "skipped": 0,
+    "unexpected": 17,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "existing page /",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/audit-test-recipes",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/documents",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/reconciliation-and-checks",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/review-and-findings",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/working-papers",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/knowledge-hub-and-copilot",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/test-library",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/internal-audit",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/credit-loan-audit",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/ifc-sox",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /security",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /company",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /book-demo",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /support",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /glossary",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /privacy",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /terms",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing redirects preserve queries; APIs and missing pages retain status codes",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 320px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 390px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 768px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 1440px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "both hydrated forms submit the existing contracts with a mocked response",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/audit-test-recipes",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/documents",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/reconciliation-and-checks",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/review-and-findings",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/working-papers",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/knowledge-hub-and-copilot",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/test-library",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/internal-audit",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/credit-loan-audit",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/ifc-sox",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /security",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /company",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /book-demo",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /support",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /glossary",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /privacy",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /terms",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing redirects preserve queries; APIs and missing pages retain status codes",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 320px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 390px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 768px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 1440px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "both hydrated forms submit the existing contracts with a mocked response",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/audit-test-recipes",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/documents",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/reconciliation-and-checks",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/review-and-findings",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/working-papers",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/knowledge-hub-and-copilot",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /product/test-library",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/internal-audit",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/credit-loan-audit",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /solutions/ifc-sox",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /security",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /company",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /book-demo",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /support",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /glossary",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /privacy",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing page /terms",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "existing redirects preserve queries; APIs and missing pages retain status codes",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 320px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 390px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 768px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 1440px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "both hydrated forms submit the existing contracts with a mocked response",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 1440px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 768px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 390px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 320px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "source citations, focus return and human review boundary",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "new navigation contains focus, resets at desktop and supports disclosures",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "the opening and first evidence state remain readable without JavaScript or fonts",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 1440px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 768px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 390px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 320px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "source citations, focus return and human review boundary",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "new navigation contains focus, resets at desktop and supports disclosures",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "the opening and first evidence state remain readable without JavaScript or fonts",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 1440px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 768px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 390px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 320px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n"
+        }
+      ]
+    },
+    {
+      "title": "source citations, focus return and human review boundary",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('region', { name: 'Source evidence', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('region', { name: 'Source evidence', exact: true }) with timeout 5000ms\n  - waiting for getByRole('region', { name: 'Source evidence', exact: true })\n    13 × locator resolved to <section tabindex=\"-1\" id=\"source-evidence\" class=\"source-evidence\" aria-label=\"Source evidence\">…</section>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "new navigation contains focus, resets at desktop and supports disclosures",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator: locator('.nav-panel').first().getByRole('link', { name: 'Overview', exact: true })\nExpected: focused\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeFocused\" locator('.nav-panel').first().getByRole('link', { name: 'Overview', exact: true }) with timeout 5000ms\n  - waiting for locator('.nav-panel').first().getByRole('link', { name: 'Overview', exact: true })\n"
+        }
+      ]
+    },
+    {
+      "title": "the opening and first evidence state remain readable without JavaScript or fonts",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 1440px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 768px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 390px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 320px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "new assets and social image resolve on the production website",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 1440px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 768px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 390px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 320px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "new assets and social image resolve on the production website",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 1440px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'credit-review', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'credit-review', exact: true }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'credit-review', exact: true })\n    13 × locator resolved to <a href=\"#credit-review\">credit-review</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 768px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'credit-review', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'credit-review', exact: true }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'credit-review', exact: true })\n    14 × locator resolved to <a href=\"#credit-review\">credit-review</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 390px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'credit-review', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'credit-review', exact: true }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'credit-review', exact: true })\n    14 × locator resolved to <a href=\"#credit-review\">credit-review</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 320px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'credit-review', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'credit-review', exact: true }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'credit-review', exact: true })\n    14 × locator resolved to <a href=\"#credit-review\">credit-review</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "new assets and social image resolve on the production website",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1440px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1280px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1024px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 768px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 390px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 320px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "walkthrough keyboard order, preserved record, source return and annotations",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch source inspection and return on a phone",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "all explanations survive no JavaScript, missing fonts and unavailable media",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "reduced motion, forced colours, text zoom and short landscape reflow",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1440px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1280px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1024px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 768px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 390px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 320px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "walkthrough keyboard order, preserved record, source return and annotations",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch source inspection and return on a phone",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "all explanations survive no JavaScript, missing fonts and unavailable media",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "reduced motion, forced colours, text zoom and short landscape reflow",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1440px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1280px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 1024px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 768px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 390px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 4 complete homepage and walkthrough at 320px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "walkthrough keyboard order, preserved record, source return and annotations",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch source inspection and return on a phone",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "all explanations survive no JavaScript, missing fonts and unavailable media",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "reduced motion, forced colours, text zoom and short landscape reflow",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/audit-test-recipes",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/documents",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/reconciliation-and-checks",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/review-and-findings",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/working-papers",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/knowledge-hub-and-copilot",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/test-library",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/internal-audit",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/credit-loan-audit",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/ifc-sox",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /security",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /company",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /book-demo",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /support",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /glossary",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /privacy",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /terms",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "seven single-hop redirects preserve queries and relevant fragments",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Recipes, source roles, Run identities and approval boundaries agree",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "keyboard, reduced motion and text reflow on new pages",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "both forms retain drafts on a failed save and report a mocked saved enquiry",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch opens evidence and restores focus in short landscape",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "all editorial pages remain useful without scripts, fonts or images",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/audit-test-recipes",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/documents",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/reconciliation-and-checks",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/review-and-findings",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/working-papers",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/knowledge-hub-and-copilot",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/test-library",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/internal-audit",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/credit-loan-audit",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/ifc-sox",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /security",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /company",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /book-demo",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /support",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /glossary",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /privacy",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /terms",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "seven single-hop redirects preserve queries and relevant fragments",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Recipes, source roles, Run identities and approval boundaries agree",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "keyboard, reduced motion and text reflow on new pages",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "both forms retain drafts on a failed save and report a mocked saved enquiry",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch opens evidence and restores focus in short landscape",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "all editorial pages remain useful without scripts, fonts or images",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/audit-test-recipes",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/documents",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/reconciliation-and-checks",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/review-and-findings",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/working-papers",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/knowledge-hub-and-copilot",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /product/test-library",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/internal-audit",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/credit-loan-audit",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /solutions/ifc-sox",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /security",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /company",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /book-demo",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /support",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /glossary",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /privacy",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 5 content, metadata and responsive access: /terms",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "seven single-hop redirects preserve queries and relevant fragments",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Recipes, source roles, Run identities and approval boundaries agree",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "keyboard, reduced motion and text reflow on new pages",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "both forms retain drafts on a failed save and report a mocked saved enquiry",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch opens evidence and restores focus in short landscape",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "all editorial pages remain useful without scripts, fonts or images",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: retains a complete draft typed before hydration and submits the same values once",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: validation, keyboard focus, storage/network failures and duplicate clicks",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: mobile/tablet reflow, reduced motion and accessible feedback",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: retains a complete draft typed before hydration and submits the same values once",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: validation, keyboard focus, storage/network failures and duplicate clicks",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: mobile/tablet reflow, reduced motion and accessible feedback",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "optional analytics sends allowlisted events through mocked transport, failures leave navigation usable",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch and offline form journeys retain drafts and recover on both pages",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "analytics remains explicitly disabled and local headers protect HTML, redirects, API errors and 404",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: retains a complete draft typed before hydration and submits the same values once",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: validation, keyboard focus, storage/network failures and duplicate clicks",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: mobile/tablet reflow, reduced motion and accessible feedback",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: retains a complete draft typed before hydration and submits the same values once",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: validation, keyboard focus, storage/network failures and duplicate clicks",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: mobile/tablet reflow, reduced motion and accessible feedback",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "optional analytics sends allowlisted events through mocked transport, failures leave navigation usable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch and offline form journeys retain drafts and recover on both pages",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "analytics remains explicitly disabled and local headers protect HTML, redirects, API errors and 404",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: retains a complete draft typed before hydration and submits the same values once",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: validation, keyboard focus, storage/network failures and duplicate clicks",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "demo: mobile/tablet reflow, reduced motion and accessible feedback",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: retains a complete draft typed before hydration and submits the same values once",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: validation, keyboard focus, storage/network failures and duplicate clicks",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "support: mobile/tablet reflow, reduced motion and accessible feedback",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "optional analytics sends allowlisted events through mocked transport, failures leave navigation usable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "touch and offline form journeys retain drafts and recover on both pages",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "analytics remains explicitly disabled and local headers protect HTML, redirects, API errors and 404",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release crawl: canonical pages, links, fragments, structured data, media and network",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 320px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 390px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 768px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1024px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1280px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1440px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release crawl: canonical pages, links, fragments, structured data, media and network",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 320px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 390px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 768px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1024px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1280px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1440px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release crawl: canonical pages, links, fragments, structured data, media and network",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 320px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    14 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 390px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 768px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1024px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1280px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1440px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Skip to content' })\n    13 × locator resolved to <a href=\"#main-content\" class=\"skip-to-content\">Skip to content</a>\n       - unexpected value \"inactive\"\n"
+        }
+      ]
+    }
+  ]
+}

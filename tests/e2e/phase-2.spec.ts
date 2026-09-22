@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { outcomeExamples } from '../../src/content/demos/p2p';
+import { advanceToLink } from './keyboard';
 
 test.beforeEach(async ({ context }) => {
   await context.route('**/*', async (route) => {
@@ -32,7 +33,11 @@ for (const width of [1440, 768, 390, 320]) {
         true
       );
       await expect(page.locator('h1')).toBeVisible();
-      await page.screenshot({ path: info.outputPath(`${name}-${width}.png`), fullPage: true });
+      await page.screenshot({
+        path: info.outputPath(`${name}-${width}.png`),
+        fullPage: true,
+        scale: 'css',
+      });
       await page.screenshot({ path: info.outputPath(`${name}-opening-${width}.png`) });
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
@@ -47,6 +52,7 @@ for (const width of [1440, 768, 390, 320]) {
           const control = page
             .getByRole('group', { name: 'Explore result states' })
             .getByRole('button', { name: example.outcome, exact: true });
+          await expect(control).toBeEnabled();
           await control.focus();
           await page.keyboard.press('Enter');
           await expect(control).toHaveAttribute('aria-pressed', 'true');
@@ -77,6 +83,7 @@ test('source citations, focus return and human review boundary', async ({ page }
   await page.goto('/');
   const source = page.getByRole('region', { name: 'Source evidence', exact: true });
   const order = page.getByRole('button', { name: 'PO · Orders!H43', exact: true });
+  await expect(order).toBeEnabled();
   await order.focus();
   await page.keyboard.press('Enter');
   await expect(source).toBeFocused();
@@ -98,6 +105,7 @@ test('source citations, focus return and human review boundary', async ({ page }
 
 test('new navigation contains focus, resets at desktop and supports disclosures', async ({
   page,
+  browserName,
 }) => {
   await page.setViewportSize({ width: 390, height: 600 });
   await page.goto('/');
@@ -119,7 +127,11 @@ test('new navigation contains focus, resets at desktop and supports disclosures'
   await summary.focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('.nav-disclosure').first()).toHaveAttribute('open', '');
-  await page.keyboard.press('Tab');
+  await advanceToLink(
+    page,
+    page.locator('.nav-panel').first().getByRole('link', { name: 'Overview', exact: true }),
+    browserName
+  );
   await expect(
     page.locator('.nav-panel').first().getByRole('link', { name: 'Overview', exact: true })
   ).toBeFocused();

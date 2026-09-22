@@ -1,0 +1,183 @@
+{
+  "stats": {
+    "startTime": "2026-09-21T15:15:06.251Z",
+    "duration": 125491.31300000001,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "responsive shell and forms at 320px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 390px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 768px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "responsive shell and forms at 1440px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 2 reviewable layouts and access at 320px",
+      "project": "webkit",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByRole('group', { name: 'Explore result states' }).getByRole('button', { name: 'Pass', exact: true })\nExpected: \"true\"\nReceived: \"false\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" getByRole('group', { name: 'Explore result states' }).getByRole('button', { name: 'Pass', exact: true }) with timeout 5000ms\n  - waiting for getByRole('group', { name: 'Explore result states' }).getByRole('button', { name: 'Pass', exact: true })\n    13 × locator resolved to <button type=\"button\" aria-pressed=\"false\">…</button>\n       - unexpected value \"false\"\n"
+        }
+      ]
+    },
+    {
+      "title": "source citations, focus return and human review boundary",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "new navigation contains focus, resets at desktop and supports disclosures",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 1440px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 768px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 390px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "Phase 3 illustrative evidence, reflow and access at 320px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 320px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 390px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 768px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1024px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1280px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "title": "release interactive components at 1440px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}
