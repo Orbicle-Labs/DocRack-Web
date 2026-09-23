@@ -1,0 +1,170 @@
+[
+  {
+    "engine": "chromium",
+    "version": "153.0.8010.12",
+    "platform": "win32",
+    "explicitTabIndex": false,
+    "sequence": [
+      {
+        "tag": "A",
+        "text": "Skip",
+        "tabIndex": 0
+      },
+      {
+        "tag": "A",
+        "text": "Other",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BODY",
+        "text": "SkipOtherButtonContent",
+        "tabIndex": -1
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "version": "153.0.8010.12",
+    "platform": "win32",
+    "explicitTabIndex": true,
+    "sequence": [
+      {
+        "tag": "A",
+        "text": "Skip",
+        "tabIndex": 0
+      },
+      {
+        "tag": "A",
+        "text": "Other",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BODY",
+        "text": "SkipOtherButtonContent",
+        "tabIndex": -1
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "version": "155.0",
+    "platform": "win32",
+    "explicitTabIndex": false,
+    "sequence": [
+      {
+        "tag": "A",
+        "text": "Skip",
+        "tabIndex": 0
+      },
+      {
+        "tag": "A",
+        "text": "Other",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "version": "155.0",
+    "platform": "win32",
+    "explicitTabIndex": true,
+    "sequence": [
+      {
+        "tag": "A",
+        "text": "Skip",
+        "tabIndex": 0
+      },
+      {
+        "tag": "A",
+        "text": "Other",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "platform": "win32",
+    "explicitTabIndex": false,
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BODY",
+        "text": "SkipOtherButtonContent",
+        "tabIndex": -1
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BODY",
+        "text": "SkipOtherButtonContent",
+        "tabIndex": -1
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "platform": "win32",
+    "explicitTabIndex": true,
+    "sequence": [
+      {
+        "tag": "A",
+        "text": "Skip",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Button",
+        "tabIndex": 0
+      },
+      {
+        "tag": "BODY",
+        "text": "SkipOtherButtonContent",
+        "tabIndex": -1
+      },
+      {
+        "tag": "A",
+        "text": "Skip",
+        "tabIndex": 0
+      }
+    ]
+  }
+]

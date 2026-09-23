@@ -1,8 +1,14 @@
 # DocRack-Web — deployment and operations
 
-**Documentation refreshed:** 21 September 2026.
+**Current scope:** [owner-directed checkpoint and deferral](docs/qa/phase-7-checkpoint.md) authorises Phase 8 local preparation. Items 1–6 are to be resolved before hosting. The release commands below are future procedures, not current deployment permission.
+
+**Documentation refreshed:** 22 September 2026.
+
+**Read-only preflight:** `main`/remote `main` are at `8f9fa9b`. Its [existing pipeline](https://github.com/Orbicle-Labs/DocRack-Web/actions/runs/35762388532) failed at lint; deploy was skipped. A fresh Cloud Run metadata read again returned `PERMISSION_DENIED`; serving revision, traffic and rollback remain unknown. The [separate assessment](docs/qa/phase-8-preflight.md) records the uncommitted local lint repair and exact owner evidence needed. No account/permission workaround or workflow retry was attempted. The latest instruction separately authorises the Phase 7 local follow-up commit; pushes, workflow triggers and release/live-write actions still need separate authority. Phase 8 local preparation is now authorised by explicit owner deferral; hosting and operational acceptance remain pending.
 
 This runbook describes checked-in website deployment configuration and release gates. Independent Phase 7 local QA is recorded in [the release report](docs/qa/phase-7.md). The candidate is **not release ready**: product evidence, mobile LCP, legal publication and Phase 6 staging/Firestore/TTL/ingress/alerts remain open. No current cloud state, revision, domain mapping, secret binding, Sheet sharing or email delivery is certified by local QA.
+
+The [23 September follow-up](docs/qa/phase-7-followup.md) records new local fixes and the user's confirmation that owner checks are complete. Founder visual approval is recorded; supporting product/legal/device/staging records still need to be linked to the candidate. Mobile LCP still misses acceptance. Analytics stays disabled; its validator loads only for an enabled, allowed event, with configuration/privacy rechecks before sending. No enquiry data flow, provider binding or runtime configuration changed. Use a unique `QA_RUN_ID` for follow-up evidence as described in README.
 
 Phase 1 migrated the runtime and source boundaries and added mocked unit/browser tests. Phase 2 added the visual system and locally served licensed fonts; the build no longer downloads Google fonts. Its standalone image and browser checks are local validation only, not a deployment. Phase 6 implements shared-limiter code, reliability controls and disabled analytics; provisioning, ingress and staging acceptance remain pending. Follow [docs/CURRENT_PHASE.md](docs/CURRENT_PHASE.md) and [the rebuild specification](DOCRACK_MARKETING_WEBSITE_BUILD_SPEC.md).
 
@@ -266,7 +272,7 @@ Homepage implementation acceptance does not close the genuine-product evidence, 
 
 ## Phase 5 local validation and publication holds
 
-Phase 5 uses the credential-free standalone image docrack-web:phase5 on 127.0.0.1:3100, without env files, credentials, volume mounts or provider writes. Docker build runs the pinned Node 24.21.0 production build. [README](README.md#phase-5-local-production-qa) contains current browser and measurement commands. The temporary QA container is stopped at handoff; no deployment, push or live-service change is part of this phase.
+Phase 5 uses the credential-free standalone image docrack-web:phase5 on 127.0.0.1:3100, without env files, credentials, volume mounts or provider writes. Docker build runs the pinned Node 24.21.0 production build. [README](README.md#local-production-release-qa) contains current browser and measurement commands. The temporary QA container is stopped at handoff; no deployment, push or live-service change is part of this phase.
 
 Seven exact redirects are active in the local build; nineteen canonical paths exist. Privacy and Terms serve noindex publication holds and are omitted from the sitemap until owner/legal facts and final wording are approved. Final legal text is internal under docs/content/legal. Do not treat these reachable hold routes as complete legal publication. Product evidence and the Phase 4 LCP target remain open; see [Phase 5 QA](docs/qa/phase-5.md).
 
@@ -274,7 +280,7 @@ Enquiry fields/statuses, Sheets tabs/columns, Sheets-first persistence, internal
 
 ## Phase 6 release prerequisites and local evidence
 
-Phase 6 code is committed in `e8f7973`, descending from `641e79d`; deployed acceptance remains unverified. See [Phase 6 QA](docs/qa/phase-6.md), [local commands](README.md#phase-6-local-checks-and-integration-defaults) and the [enquiry operations runbook](docs/operations/enquiries.md).
+Phase 6 code is committed in `e8f7973`, descending from `641e79d`; deployed acceptance remains unverified. See [Phase 6 QA](docs/qa/phase-6.md), [local commands](README.md#local-production-release-qa) and the [enquiry operations runbook](docs/operations/enquiries.md).
 
 Before a separately authorised deployment, configure exact `FORM_ALLOWED_ORIGINS` or browser submissions will return 403. Decide whether legitimate nonbrowser JSON clients need `ALLOW_MISSING_ORIGIN`. Leave `FORM_INGRESS_MODE=shared` unless an operator has proved that the dedicated client-IP header is overwritten and direct ingress bypass is blocked. This default is conservative and can rate limit unrelated visitors together.
 

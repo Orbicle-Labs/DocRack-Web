@@ -8,18 +8,27 @@ import './globals.css';
 const manrope = localFont({
   src: '../../public/fonts/manrope-variable.woff2',
   variable: '--font-manrope',
-  display: 'swap',
+  display: 'optional',
   weight: '200 800',
   adjustFontFallback: false,
 });
 const manropeExtended = localFont({
   src: '../../public/fonts/manrope-latin-ext.woff2',
   variable: '--font-manrope-ext',
-  display: 'swap',
+  display: 'optional',
   weight: '200 800',
   adjustFontFallback: false,
   // Extended glyphs remain available without competing with the opening's fonts.
   preload: false,
+  // Upstream Fontsource 5.3.0 subset coverage: avoid fetching this face for
+  // unsupported symbols that will ultimately use the system fallback anyway.
+  declarations: [
+    {
+      prop: 'unicode-range',
+      value:
+        'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF',
+    },
+  ],
 });
 const editorial = localFont({
   src: [
@@ -27,7 +36,7 @@ const editorial = localFont({
     { path: '../../public/fonts/instrument-serif-italic.woff2', weight: '400', style: 'italic' },
   ],
   variable: '--font-editorial',
-  display: 'swap',
+  display: 'optional',
   preload: false,
   fallback: ['Georgia'],
 });

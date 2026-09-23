@@ -3,6 +3,7 @@ import { chromium } from '@playwright/test';
 import { writeFile } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import { routes } from '../src/content/routes.ts';
+import { qaLabel } from './qa-artifacts.mjs';
 const phase = process.env.QA_PHASE ?? '5';
 if (!['5', '6', '7'].includes(phase)) throw Error('QA_PHASE must be 5, 6 or 7');
 const base = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3100';
@@ -90,8 +91,9 @@ try {
     console.log(`Measured ${entry.path}`);
   }
   await writeFile(
-    `docs/qa/phase-${phase}-measurements.json`,
-    JSON.stringify(report, null, 2) + '\n'
+    `docs/qa/${qaLabel(phase)}-measurements.json`,
+    JSON.stringify(report, null, 2) + '\n',
+    { flag: 'wx' }
   );
 } finally {
   await browser.close();

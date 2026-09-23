@@ -3,6 +3,7 @@ import { readdir, readFile, writeFile, access } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join, extname } from 'node:path';
 import sharp from 'sharp';
+import { qaLabel } from './qa-artifacts.mjs';
 
 async function files(root) {
   return (
@@ -60,7 +61,9 @@ for (const path of await files('src')) {
       report.sourceFindings.push({ path: path.replaceAll('\\', '/'), line: i + 1 });
   });
 }
-await writeFile('docs/qa/phase-7-source-audit.json', JSON.stringify(report, null, 2) + '\n');
+await writeFile(`docs/qa/${qaLabel(7)}-source-audit.json`, JSON.stringify(report, null, 2) + '\n', {
+  flag: 'wx',
+});
 console.log(
   JSON.stringify({
     publicAssets: report.publicAssets.length,

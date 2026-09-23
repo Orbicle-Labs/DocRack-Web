@@ -5,17 +5,17 @@ import type { AnalyticsEvent } from '@/lib/analytics/events';
 import { submitForm } from '@/lib/forms/submit';
 afterEach(() => configureAnalytics({ enabled: false }));
 const event: AnalyticsEvent = { name: 'demo_form_start', props: { page: '/book-demo' } };
-it('is disabled by default and rejects unapproved domains', () => {
-  track(event);
+it('is disabled by default and rejects unapproved domains', async () => {
+  await track(event);
   configureAnalytics({ enabled: true, domain: 'private.example' });
-  track(event);
+  await track(event);
   expect(fetch).not.toHaveBeenCalled();
 });
-it('sends a fixed allowlisted payload without query, fragment, referrer, cookies or form values', () => {
+it('sends a fixed allowlisted payload without query, fragment, referrer, cookies or form values', async () => {
   window.history.replaceState({}, '', '/book-demo?email=private@example.com#secret');
   configureAnalytics({ enabled: true, domain: 'docrack.ai' });
   vi.mocked(fetch).mockResolvedValue(new Response(null, { status: 202 }));
-  track(event);
+  await track(event);
   const [url, options] = vi.mocked(fetch).mock.calls[0];
   expect(url).toBe('https://plausible.io/api/event');
   expect(options).toMatchObject({ credentials: 'omit', referrerPolicy: 'no-referrer' });
@@ -26,7 +26,7 @@ it('sends a fixed allowlisted payload without query, fragment, referrer, cookies
     props: { page: '/book-demo' },
   });
 });
-it('rejects unknown events, arbitrary properties, unknown pages and unavailable samples', () => {
+it('rejects unknown events, arbitrary properties, unknown pages and unavailable samples', async () => {
   window.history.replaceState({}, '', '/book-demo');
   configureAnalytics({ enabled: true, domain: 'docrack.ai' });
   for (const value of [
@@ -34,9 +34,9 @@ it('rejects unknown events, arbitrary properties, unknown pages and unavailable 
     { name: 'sample_download', props: { assetId: 'invented' } },
     { ...event, props: { page: '/private' } },
   ])
-    track(value as AnalyticsEvent);
+    await track(value as AnalyticsEvent);
   window.history.replaceState({}, '', '/private-person-name');
-  track(event);
+  await track(event);
   expect(fetch).not.toHaveBeenCalled();
 });
 it('contains both synchronous blockers and asynchronous provider failures', async () => {
@@ -47,8 +47,8 @@ it('contains both synchronous blockers and asynchronous provider failures', asyn
       throw Error('blocked');
     })
     .mockRejectedValueOnce(Error('offline'));
-  expect(() => track(event)).not.toThrow();
-  track(event);
+  await expect(track(event)).resolves.toBeUndefined();
+  await expect(track(event)).resolves.toBeUndefined();
   await Promise.resolve();
 });
 it.each([200, 201, 500])(
@@ -62,6 +62,8 @@ it.each([200, 201, 500])(
         : new Response(null, { status: 202 })
     );
     const result = await submitForm('/api/demo-booking', { fullName: 'Private Person' });
+    // Optional telemetry loads independently; it never delays the form result.
+    await vi.waitFor(() => expect(fetch).toHaveBeenCalledTimes(2));
     const events = vi
       .mocked(fetch)
       .mock.calls.filter(([url]) => url === 'https://plausible.io/api/event')
@@ -71,6 +73,22 @@ it.each([200, 201, 500])(
     expect(JSON.stringify(events)).not.toContain('Private Person');
   }
 );
+it('cancels a pending event if analytics is disabled during validator loading', async () => {
+  window.history.replaceState({}, '', '/book-demo');
+  configureAnalytics({ enabled: true, domain: 'docrack.ai' });
+  const pending = track(event);
+  configureAnalytics({ enabled: false });
+  await pending;
+  expect(fetch).not.toHaveBeenCalled();
+});
+it('rechecks privacy preference changes before sending a pending event', async () => {
+  window.history.replaceState({}, '', '/book-demo');
+  configureAnalytics({ enabled: true, domain: 'docrack.ai' });
+  const pending = track(event);
+  vi.stubGlobal('navigator', { doNotTrack: '1' });
+  await pending;
+  expect(fetch).not.toHaveBeenCalled();
+});
 it('does not reflect untrusted response values as field errors or alerts', async () => {
   vi.mocked(fetch).mockResolvedValue(
     Response.json(

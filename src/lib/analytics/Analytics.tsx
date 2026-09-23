@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import { canonicalPage } from './events';
+import { canonicalPage } from './catalog';
 import { configureAnalytics, track } from './client';
 
 export function Analytics() {

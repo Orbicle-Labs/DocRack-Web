@@ -1,0 +1,94 @@
+{
+  "assessmentDateUtc": "2026-09-22",
+  "phase7Gate": "incomplete",
+  "phase8OperationalWork": "not_started",
+  "git": {
+    "branch": "main",
+    "head": "8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5",
+    "cachedOriginMain": "8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5",
+    "liveRemoteMain": "8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5",
+    "remoteMethod": "git ls-remote origin refs/heads/main",
+    "initialUntracked": [".claude/"],
+    "repairCommitted": false,
+    "pushOrWorkflowTriggered": false
+  },
+  "pipeline": {
+    "runId": 35762388532,
+    "url": "https://github.com/Orbicle-Labs/DocRack-Web/actions/runs/35762388532",
+    "event": "push",
+    "headSha": "8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5",
+    "createdAt": "2026-09-22T17:41:51Z",
+    "updatedAt": "2026-09-22T17:42:31Z",
+    "status": "completed",
+    "conclusion": "failure",
+    "failedJobId": 106863375855,
+    "failedStep": "Run Linter",
+    "diagnostic": {
+      "path": "src/app/opengraph-image.tsx",
+      "line": 28,
+      "column": 10,
+      "message": "Unused eslint-disable directive (no problems were reported from '@next/next/no-img-element')",
+      "errors": 0,
+      "warnings": 1,
+      "maximumWarnings": 0
+    },
+    "subsequentTypesTestsBuildBrowserSteps": "skipped",
+    "deployJobId": 106863608278,
+    "deployConclusion": "skipped",
+    "repairCiResult": "not_run"
+  },
+  "cloud": {
+    "project": "docrack-web",
+    "service": "docrack-web",
+    "region": "asia-southeast1",
+    "readResult": "PERMISSION_DENIED",
+    "reason": "CONSUMER_INVALID",
+    "accountCredentialOrPermissionChanged": false,
+    "servingRevision": null,
+    "trafficSplit": null,
+    "knownGoodRollback": null,
+    "protectedPreview": null
+  },
+  "localQa": {
+    "node": "24.21.0",
+    "windowsBaselineLint": "pass",
+    "windowsRepairedLint": "pass",
+    "windowsRepairedTypes": "pass",
+    "linuxRepairedLint": "pass",
+    "linuxRepairedTypes": "pass",
+    "linuxProductionBuild": "pass",
+    "linuxMockTests": { "passed": 119, "files": 13, "contentAssetChecksIncluded": 24 },
+    "imageTag": "docrack-web:phase7-preflight-20260922",
+    "imagePurpose": "local builder target only; not a production release image",
+    "imageManifestList": "sha256:02eebc7c364694fc9b636a8ce1730c5fe4dceca89d1b3ad1f45a00a9fc5d4c91",
+    "imageConfig": "sha256:202cc6575a36648fb54a16998ce24e23e79b8285e69a102ba45fe8dafb27bb38",
+    "verifiedHostAndImageSha256": {
+      "eslint.config.mjs": "eb18913e2a9316bb0e407e5a8474f77b3624cc16d3308f0d8cc2d49ed25e281d",
+      "src/app/opengraph-image.tsx": "7fedf5032f70626ced3b4b18cd45ed30085bf3a0484ca86fdb9a53315b4af896"
+    },
+    "testContainerNetwork": "none",
+    "testContainerMounts": [],
+    "testContainerPorts": [],
+    "testContainerExited": true,
+    "providers": "mocked",
+    "browserAndPerformanceRerun": false,
+    "warnings": [
+      "Vite native config-loader future compatibility warning",
+      "React html-under-div warning in root-error component test harness"
+    ]
+  },
+  "historicalMobileLcpSeconds": {
+    "source": "phase-7-performance-summary.json",
+    "budget": 2.5,
+    "home": 3.109,
+    "product": 2.667,
+    "documents": 2.663,
+    "demo": 2.822,
+    "result": "fail; unchanged historical measurements"
+  },
+  "prerequisitesAndOwners": "phase-8-preflight.md#mandatory-prerequisites-and-owners",
+  "historicalQaFilesChanged": false,
+  "analytics": "disabled",
+  "liveEnquiryOrNotificationWrites": false,
+  "siblingProductWrites": false
+}

@@ -1,11 +1,22 @@
 import Link from 'next/link';
+import localFont from 'next/font/local';
 import { DemoForm } from '@/components/forms/DemoForm';
 import { Breadcrumbs, pageCopy, pageMetadata } from '@/components/sections/pages/Editorial';
 const page = pageCopy('/book-demo');
+// This face is part of the opening heading; discover it before CSS/layout.
+const openingAccent = localFont({
+  src: '../../../../public/fonts/instrument-serif-regular.woff2',
+  display: 'optional',
+  weight: '400',
+  preload: true,
+  variable: '--font-editorial',
+  adjustFontFallback: false,
+  fallback: ['Georgia'],
+});
 export const metadata = pageMetadata(page.path);
 export default function BookDemoPage() {
   return (
-    <article className="v2 fieldwork-page design-container">
+    <article className={`v2 fieldwork-page design-container ${openingAccent.variable}`}>
       <Breadcrumbs page={page} />
       <div className="demo-layout">
         <div className="demo-intro">

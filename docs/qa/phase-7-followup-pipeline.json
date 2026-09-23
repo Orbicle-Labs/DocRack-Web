@@ -1,0 +1,93 @@
+{
+  "inspectedAt": "2026-09-23T11:15:11.515Z",
+  "mode": "Read only; existing Git credential helper; no credential/config change or workflow trigger",
+  "id": 35762388532,
+  "headSha": "8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5",
+  "status": "completed",
+  "conclusion": "failure",
+  "runAttempt": 1,
+  "updatedAt": "2026-09-22T17:42:31Z",
+  "url": "https://github.com/Orbicle-Labs/DocRack-Web/actions/runs/35762388532",
+  "jobs": [
+    {
+      "name": "lint-and-compile",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/Orbicle-Labs/DocRack-Web/actions/runs/35762388532/job/106863375855",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Checkout Source Codes",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Setup NodeJS Runtime Environment",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install Dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run Linter",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Run Type Checks",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run mocked contract tests",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Build Next.js Portal Frontend",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install browser for baseline checks",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verify routes and mocked forms in production mode",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Setup NodeJS Runtime Environment",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Checkout Source Codes",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "skipped",
+      "url": "https://github.com/Orbicle-Labs/DocRack-Web/actions/runs/35762388532/job/106863608278",
+      "steps": []
+    }
+  ]
+}

@@ -39,6 +39,12 @@ export default defineConfig([
     rules: { 'no-console': 'off' },
   },
   {
+    // ImageResponse renders this metadata route to PNG. Next's metadata exemption
+    // is path-separator dependent; use a file-scoped override on both platforms.
+    files: ['src/app/opengraph-image.tsx'],
+    rules: { '@next/next/no-img-element': 'off' },
+  },
+  {
     files: ['src/content/**/*.{ts,tsx}', 'src/lib/forms/**/*.{ts,tsx}'],
     rules: {
       'no-restricted-imports': [

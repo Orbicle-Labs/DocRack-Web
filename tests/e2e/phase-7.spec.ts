@@ -2,7 +2,9 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { publishedRoutes, activeRedirects, sitemapRoutes } from '../../src/content/routes';
-import { advanceToLink } from './keyboard';
+import { qaLabel } from '../../scripts/qa-artifacts.mjs';
+
+const captureDirectory = `docs/design/${qaLabel(7)}`;
 
 test.beforeEach(async ({ context }) => {
   await context.route('**/*', (route) => {
@@ -82,9 +84,9 @@ test('release crawl: canonical pages, links, fragments, structured data, media a
         true
       );
       if (info.project.name === 'chromium') {
-        mkdirSync('docs/design/phase-7', { recursive: true });
+        mkdirSync(captureDirectory, { recursive: true });
         await page.screenshot({
-          path: `docs/design/phase-7/${route.path === '/' ? 'home' : route.path.slice(1).replaceAll('/', '-')}-${width}.png`,
+          path: `${captureDirectory}/${route.path === '/' ? 'home' : route.path.slice(1).replaceAll('/', '-')}-${width}.png`,
           fullPage: true,
         });
       }
@@ -153,7 +155,7 @@ test('release crawl: canonical pages, links, fragments, structured data, media a
   }
   if (info.project.name === 'chromium')
     writeFileSync(
-      'docs/qa/phase-7-crawl.json',
+      `docs/qa/${qaLabel(7)}-crawl.json`,
       JSON.stringify(
         {
           pages: records,
@@ -172,10 +174,107 @@ test('native link Tab traversal reaches skip content', async ({ page }) => {
   await page.waitForLoadState('networkidle');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main-content')).toBeFocused();
+});
+
+test.describe('native bypass before hydration', () => {
+  test.use({ javaScriptEnabled: false });
+  test('Tab and Enter reach main content without JavaScript', async ({ page }) => {
+    await page.goto('/');
+    await page.keyboard.press('Tab');
+    const skip = page.getByRole('link', { name: 'Skip to content' });
+    await expect(skip).toBeFocused();
+    await expect(skip).toBeInViewport();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#main-content')).toBeFocused();
+  });
+});
+
+test('slow fonts leave readable, stable headings and reachable forms', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.route('**/*.woff2', async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await route.continue();
+  });
+  await page.goto('/book-demo', { waitUntil: 'domcontentloaded' });
+  const heading = page.getByRole('heading', { level: 1 });
+  await expect(heading).toBeVisible();
+  // Observe settled fallback after the short optional-font block period, while
+  // the font response is still delayed, then ensure arrival does not reflow it.
+  await page.waitForTimeout(250);
+  const before = await heading.boundingBox();
+  await page.evaluate(() => document.fonts.ready);
+  const after = await heading.boundingBox();
+  expect(after?.width).toBeCloseTo(before!.width, 0);
+  expect(after?.height).toBeCloseTo(before!.height, 0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole('link', { name: 'Go to the request form' }).click();
+  await expect(page.getByLabel('Full name', { exact: true })).toBeVisible();
+});
+
+test('header reserves the logo slot while its image loads across breakpoints', async ({ page }) => {
+  let releaseLogo!: () => void;
+  const logoReady = new Promise<void>((resolve) => (releaseLogo = resolve));
+  await page.route('**/_next/image?**', async (route) => {
+    await logoReady;
+    await route.continue();
+  });
+  try {
+    await page.goto('/book-demo', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('form')).toHaveAttribute('data-hydrated', 'true');
+    for (const width of [1440, 320, 768, 390, 320]) {
+      await page.setViewportSize({ width, height: 900 });
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true
+      );
+      if (width < 1024) {
+        const menu = page.getByRole('button', { name: 'Open navigation' });
+        await expect(menu).toBeInViewport();
+        await menu.click();
+        await expect(page.getByRole('dialog')).toBeVisible();
+        await page.keyboard.press('Escape');
+        await expect(menu).toBeFocused();
+      }
+    }
+  } finally {
+    releaseLogo();
+  }
+  await page.waitForLoadState('networkidle');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('client navigation keeps destination typography and form styling', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/book-demo');
+  await page.evaluate(() => document.fonts.ready);
+  const appearance = () =>
+    page.getByRole('heading', { level: 1 }).evaluate((heading) => {
+      const style = getComputedStyle(heading);
+      return { fontSize: style.fontSize, lineHeight: style.lineHeight, color: style.color };
+    });
+  const direct = await appearance();
+  await page.goto('/');
+  await page.waitForLoadState('networkidle');
+  await page.evaluate(() => {
+    document.documentElement.dataset.navigationProbe = 'retained';
+  });
+  await page.locator('header').getByRole('link', { name: 'Book a demo' }).click();
+  await expect(page).toHaveURL(/\/book-demo$/);
+  await expect(page.locator('form')).toHaveAttribute('data-hydrated', 'true');
+  expect(await page.evaluate(() => document.documentElement.dataset.navigationProbe)).toBe(
+    'retained'
+  );
+  expect(await appearance()).toEqual(direct);
+  await page.getByRole('button', { name: 'Request a demo', exact: true }).click();
+  await expect(page.getByLabel('Full name', { exact: true })).toBeFocused();
+  await page.goBack();
+  await expect(page).toHaveURL('http://127.0.0.1:3100/');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('From audit evidence');
 });
 
 for (const width of [320, 390, 768, 1024, 1280, 1440]) {
-  test(`release interactive components at ${width}px`, async ({ page, browserName }) => {
+  test(`release interactive components at ${width}px`, async ({ page }) => {
     await page.setViewportSize({
       width,
       height:
@@ -194,7 +293,7 @@ for (const width of [320, 390, 768, 1024, 1280, 1440]) {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    await advanceToLink(page, page.getByRole('link', { name: 'Skip to content' }), browserName);
+    await page.keyboard.press('Tab');
     await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.locator('main')).toBeFocused();

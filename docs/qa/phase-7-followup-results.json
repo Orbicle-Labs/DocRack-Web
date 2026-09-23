@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-09-23T11:44:28.821Z",
+  "initialBrowser": {
+    "startTime": "2026-09-23T10:58:04.634Z",
+    "duration": 913390.5800000001,
+    "expected": 272,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "finalScopedBrowser": {
+    "startTime": "2026-09-23T11:13:55.428Z",
+    "duration": 399090.332,
+    "expected": 138,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "finalBrowserScope": "foundation, phase-6, phase-7 in all three engines; no retries",
+  "measurements": {
+    "count": 57,
+    "maxCls": 0,
+    "maxJsGzip": 203241,
+    "maxHomeJsGzip": 196600,
+    "maxTotalGzip": 290381,
+    "maxTransfer": 387909,
+    "budgetMisses": []
+  },
+  "finalLighthouse": [
+    {
+      "route": "home",
+      "medianLcpMs": 2415.915,
+      "passed": true
+    },
+    {
+      "route": "product",
+      "medianLcpMs": 2518.2300000000005,
+      "passed": false
+    },
+    {
+      "route": "product-documents",
+      "medianLcpMs": 2673.076,
+      "passed": false
+    },
+    {
+      "route": "book-demo",
+      "medianLcpMs": 2824.016,
+      "passed": false
+    }
+  ],
+  "sourceAudit": {
+    "assets": 49,
+    "findings": [],
+    "duplicateRoots": [],
+    "forbiddenPublicFiles": []
+  },
+  "ownerAttestation": {
+    "date": "2026-09-23",
+    "statement": "yes all done",
+    "evidenceLocationsSupplied": false,
+    "scope": "Founder visual, legal, genuine capture/export, device/screen-reader and staging checks; see report for distinction between reported completion and reviewed artifacts"
+  },
+  "fullPhase7Gate": "INCOMPLETE",
+  "phase8": "NOT STARTED"
+}

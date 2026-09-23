@@ -1,0 +1,261 @@
+[
+  {
+    "run": 0,
+    "immediate": {
+      "width": 320,
+      "scroll": 345,
+      "overflows": [
+        {
+          "tag": "DIV",
+          "class": "header-actions",
+          "text": "Book a demo",
+          "right": 344.78125,
+          "left": 218
+        },
+        {
+          "tag": "BUTTON",
+          "class": "menu-toggle",
+          "text": "",
+          "right": 344.78125,
+          "left": 316.40625
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "text": "",
+          "right": 341.59375,
+          "left": 319.59375
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        }
+      ]
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 345,
+      "overflows": [
+        {
+          "tag": "DIV",
+          "class": "header-actions",
+          "text": "Book a demo",
+          "right": 344.78125,
+          "left": 218
+        },
+        {
+          "tag": "BUTTON",
+          "class": "menu-toggle",
+          "text": "",
+          "right": 344.78125,
+          "left": 316.40625
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "text": "",
+          "right": 341.59375,
+          "left": 319.59375
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        }
+      ]
+    }
+  },
+  {
+    "run": 1,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 2,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 3,
+    "immediate": {
+      "width": 320,
+      "scroll": 345,
+      "overflows": [
+        {
+          "tag": "DIV",
+          "class": "header-actions",
+          "text": "Book a demo",
+          "right": 344.78125,
+          "left": 218
+        },
+        {
+          "tag": "BUTTON",
+          "class": "menu-toggle",
+          "text": "",
+          "right": 344.78125,
+          "left": 316.40625
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "text": "",
+          "right": 341.59375,
+          "left": 319.59375
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "text": "",
+          "right": 337.9270935058594,
+          "left": 323.2604064941406
+        }
+      ]
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 4,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 5,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 6,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 7,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 8,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  },
+  {
+    "run": 9,
+    "immediate": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    "settled": {
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    }
+  }
+]

@@ -5,7 +5,8 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 export default function MarketingLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <a href="#main-content" className="skip-to-content">
+      {/* Explicit sequential focus keeps the bypass reachable in WebKit's limited link-tab mode. */}
+      <a href="#main-content" className="skip-to-content" tabIndex={0}>
         Skip to content
       </a>
       <div className="flex min-h-screen flex-col">

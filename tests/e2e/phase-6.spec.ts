@@ -1,6 +1,7 @@
 import { mkdirSync } from 'node:fs';
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { qaLabel } from '../../scripts/qa-artifacts.mjs';
 
 test.beforeEach(async ({ context }) => {
   await context.route('**/*', (route) => {
@@ -140,7 +141,7 @@ for (const form of forms) {
       );
       expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
       if (info.project.name === 'chromium') {
-        const captureDirectory = `docs/design/phase-${process.env.QA_PHASE === '7' ? '7' : '6'}`;
+        const captureDirectory = `docs/design/${qaLabel(process.env.QA_PHASE === '7' ? '7' : '6')}`;
         mkdirSync(captureDirectory, { recursive: true });
         await page.screenshot({
           path: `${captureDirectory}/${form.kind}-${width}.png`,

@@ -1,0 +1,416 @@
+{
+  "publicAssets": [
+    {
+      "path": "public/apple-touch-icon.png",
+      "bytes": 3297,
+      "sha256": "738969b88efc73bf4a7aa42f55b55b286a66c84fe04951c2a91055350b5e52ed",
+      "width": 180,
+      "height": 180,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/docrack-mark.svg",
+      "bytes": 21182,
+      "sha256": "0dd7f5b43de3d4916734df2d2326c1c1980c054a3a24fb4b90b724be5af43af4",
+      "width": 512,
+      "height": 512,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/docrack-wordmark.svg",
+      "bytes": 29614,
+      "sha256": "2c353d4f416a4cd552a3fa1cd7ebb2a233e52eb1becede59134e33135c2df835",
+      "width": 1024,
+      "height": 242,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/favicon-16.png",
+      "bytes": 278,
+      "sha256": "9efad46bd68d68d49175d7da66ec7790557f1982be8ca67a4b55a4153b1f9c82",
+      "width": 16,
+      "height": 16,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/favicon-180.png",
+      "bytes": 1733,
+      "sha256": "1e3b8299d0128dcd1abb482e881c645541d10b2b0847f392b71c5582a10a6c71",
+      "width": 180,
+      "height": 180,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/favicon-192.png",
+      "bytes": 1659,
+      "sha256": "6db6015d63e8fc463ad50a64213cb41420d3162344aeeafa3a3958de039bd52c",
+      "width": 192,
+      "height": 192,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/favicon-32.png",
+      "bytes": 364,
+      "sha256": "dae7ff88c4b6713f0214704907121f0521ba8aa9b75d6141d32a019086bf5963",
+      "width": 32,
+      "height": 32,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/favicon-48.png",
+      "bytes": 522,
+      "sha256": "cb4c4657daa564aa0adeb4f9b1dee80de3950012fdc42777df20ee5b9bf2313b",
+      "width": 48,
+      "height": 48,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/favicon-512.png",
+      "bytes": 5507,
+      "sha256": "f47e3cbcd9c0f706eb7a1acf18b7b865875183d3dc3c43222cefcae3a81e66ed",
+      "width": 512,
+      "height": 512,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/brand/favicon.ico",
+      "bytes": 1218,
+      "sha256": "ae5c39b02a803b53677d79254c55be1dc024cc3fde02dc9bed89c989751fb8b5"
+    },
+    {
+      "path": "public/docrack_full_logo.png",
+      "bytes": 24593,
+      "sha256": "194cf66002eb13526eba52401e11721185d13afa01b11de94e2b010eeb986308",
+      "width": 1024,
+      "height": 242,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/docrack_logo.png",
+      "bytes": 11950,
+      "sha256": "e141f457867dd2de72d8666a99b3c084e904e025d870cec0b51fbc15e0272fdf",
+      "width": 500,
+      "height": 500,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/favicon-16x16.png",
+      "bytes": 330,
+      "sha256": "1cfe4ab8a6501f4cc669c17c9207d2be9f9ca5036492d4f719e40c08b4cebbf9",
+      "width": 16,
+      "height": 16,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/favicon-180x180.png",
+      "bytes": 3297,
+      "sha256": "738969b88efc73bf4a7aa42f55b55b286a66c84fe04951c2a91055350b5e52ed",
+      "width": 180,
+      "height": 180,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/favicon-192x192.png",
+      "bytes": 3580,
+      "sha256": "10e83ba05838f5d13bc7a3546dbfe1972aad0ced33be8442c897efe2e0a5886b",
+      "width": 192,
+      "height": 192,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/favicon-32x32.png",
+      "bytes": 481,
+      "sha256": "b22434450b0a967ac3a1b515b5a731bfd84868a9c7434cb48511ecd92da74f6e",
+      "width": 32,
+      "height": 32,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/favicon-48x48.png",
+      "bytes": 739,
+      "sha256": "a0350aa6467d9ddaf6a32566b11626b3ea15112fae5785af90aa302213a003d7",
+      "width": 48,
+      "height": 48,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/favicon-512x512.png",
+      "bytes": 17579,
+      "sha256": "308bc55d52db7061d83623a2a39dcac7692f69aaaa84f25956dd2ffa8b475ad5",
+      "width": 512,
+      "height": 512,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/favicon.ico",
+      "bytes": 481,
+      "sha256": "b22434450b0a967ac3a1b515b5a731bfd84868a9c7434cb48511ecd92da74f6e"
+    },
+    {
+      "path": "public/fonts/instrument-serif-italic.woff2",
+      "bytes": 22128,
+      "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7"
+    },
+    {
+      "path": "public/fonts/instrument-serif-OFL.txt",
+      "bytes": 4532,
+      "sha256": "b6106a757902d2d412e09d94dc4a226fe3da80485208a98003969f1b8b6b1d74"
+    },
+    {
+      "path": "public/fonts/instrument-serif-regular.woff2",
+      "bytes": 21032,
+      "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31"
+    },
+    {
+      "path": "public/fonts/manrope-latin-ext.woff2",
+      "bytes": 15120,
+      "sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb"
+    },
+    {
+      "path": "public/fonts/manrope-OFL.txt",
+      "bytes": 4383,
+      "sha256": "d826ab6583b12c26807d8716a545bdbbb672df04f48608a364ba9efdbe501c30"
+    },
+    {
+      "path": "public/fonts/manrope-variable.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "path": "public/illustrations/credit-review-desktop.png",
+      "bytes": 189309,
+      "sha256": "8fea3908062159076267655ead403343a2aba74052c5c8c12ad2f635351d188b",
+      "width": 1936,
+      "height": 1422,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/credit-review-mobile.png",
+      "bytes": 94236,
+      "sha256": "f8dae77e0158e52268a59e37e95e2d35f50fe3d893bdb762ae9d2c7a7d6c79bb",
+      "width": 366,
+      "height": 1585,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/credit-review-narrow.png",
+      "bytes": 95761,
+      "sha256": "86af06d005f5e15d5de64831e1e3b77818396a8ebc9e9e534a83d0e373734632",
+      "width": 296,
+      "height": 1823,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/credit-review-tablet.png",
+      "bytes": 103067,
+      "sha256": "b0410eba81e3f05475be98d274e2d7e9c3137e8e28d2bc400202b8243dea16bd",
+      "width": 704,
+      "height": 1006,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/ifc-review-desktop.png",
+      "bytes": 214277,
+      "sha256": "1ff1998770a617301013e63b13ff2116d4457de4f8330d24816db6b9cc878846",
+      "width": 1936,
+      "height": 1480,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/ifc-review-mobile.png",
+      "bytes": 106390,
+      "sha256": "ab03434d2e8930520e160cf84c1792770dccb0036dc9797c91a0d00ad792c551",
+      "width": 366,
+      "height": 1645,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/ifc-review-narrow.png",
+      "bytes": 108109,
+      "sha256": "a4aeda2b85f84be86a1d7130864fe4a21213b1b339b7379a5d6959e9f6ee7392",
+      "width": 296,
+      "height": 1960,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/ifc-review-tablet.png",
+      "bytes": 116173,
+      "sha256": "89868a8c4c2df40b16ae2f5a8135d25570065a59a9a9a096bf3ac2bdb454ef12",
+      "width": 704,
+      "height": 1029,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/knowledge-versions-desktop.png",
+      "bytes": 78727,
+      "sha256": "a4aa64c37ebb087164a7b1e14fffd11d56802d2e7f0b62b9d529bafceed91dcb",
+      "width": 1936,
+      "height": 769,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/knowledge-versions-mobile.png",
+      "bytes": 44236,
+      "sha256": "a57c8779adb1de54ec8bc182693515e1236e7e9e4312675b3e1dfa440d3cbd9f",
+      "width": 366,
+      "height": 926,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/knowledge-versions-narrow.png",
+      "bytes": 44713,
+      "sha256": "5fe5c459f795888eb10b64348873945b0814b37a7e3e831d58a84019d56b65dc",
+      "width": 296,
+      "height": 979,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/knowledge-versions-tablet.png",
+      "bytes": 45907,
+      "sha256": "41b1d154cec316a2e8cc7900861088a4c362a5ed9e70aab0a56181479eb3e368",
+      "width": 704,
+      "height": 541,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-population-desktop.png",
+      "bytes": 135698,
+      "sha256": "12ae4eeefa65bd90928c61c4b1620f7c288ddb74ba1501cd36512ebb2a83b194",
+      "width": 2136,
+      "height": 1144,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-population-mobile.png",
+      "bytes": 74409,
+      "sha256": "2405a450330275e71c0e795918e564091407f723688d726f6dbc8ac37905db8a",
+      "width": 366,
+      "height": 1355,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-population-narrow.png",
+      "bytes": 75600,
+      "sha256": "0870165455c5c1697cb24ff5842c08106a95c264a426b105552ccd54e37e7a8a",
+      "width": 296,
+      "height": 1492,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-population-tablet.png",
+      "bytes": 76387,
+      "sha256": "e49e52fa29bb612caa42faf161f22c82ebdac76d0b961b7952fe6b029775622f",
+      "width": 704,
+      "height": 826,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-recipe-desktop.png",
+      "bytes": 124404,
+      "sha256": "3699cd1e1c9b965ebd91d496d1644a76bf4a31b99c62c18825e1ea92d29c4088",
+      "width": 2136,
+      "height": 1006,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-recipe-mobile.png",
+      "bytes": 75883,
+      "sha256": "65ec22030ad463b60abf0adeed4c6c99dd2114dec405047d71512dfe56b5b7fd",
+      "width": 366,
+      "height": 1195,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-recipe-narrow.png",
+      "bytes": 79625,
+      "sha256": "71c3ff13f455029ce37ac99215baa825e9917de51cee39028eb70c156db820e7",
+      "width": 296,
+      "height": 1429,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-recipe-tablet.png",
+      "bytes": 87566,
+      "sha256": "4373bd1e745d8e4c5555b347023869ebac52df9706ae5002465a81de0a3b70f3",
+      "width": 704,
+      "height": 809,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-review-desktop.png",
+      "bytes": 177146,
+      "sha256": "13bb83a7212d4d897818d1653d458e39c8d5d4d27d391768ba9f6a4c885997e4",
+      "width": 2136,
+      "height": 1423,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-review-mobile.png",
+      "bytes": 91224,
+      "sha256": "95bbb77aaa927bc1fb702bd69e29b1e68ed8c7ebc2aa2d75dc21130698864ed8",
+      "width": 366,
+      "height": 1586,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-review-narrow.png",
+      "bytes": 91014,
+      "sha256": "a60867d3ba8397326820b3d0d1bcbc65f2a20a4b9a5465cf967ada45578e1491",
+      "width": 296,
+      "height": 1716,
+      "exif": false,
+      "xmp": false
+    },
+    {
+      "path": "public/illustrations/p2p-review-tablet.png",
+      "bytes": 99122,
+      "sha256": "0c1280982d58cfbc369502ef16a347dd35b0993be11cecc78429c6fa746a33bb",
+      "width": 704,
+      "height": 1005,
+      "exif": false,
+      "xmp": false
+    }
+  ],
+  "sourceFindings": [],
+  "duplicateRoots": [],
+  "forbiddenPublicFiles": []
+}

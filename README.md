@@ -2,7 +2,7 @@
 
 This repository contains the public DocRack website and demo/support enquiry backend. The authenticated audit product lives separately in `../DocRack`.
 
-Independent Phase 7 release QA continues from `main` commit `e8f7973`. **Not release ready:** genuine product captures/exports, mobile LCP ≤2.5 seconds, legal publication, controlled staging delivery, Firestore/TTL, verified ingress and alerts remain open. Analytics is explicitly disabled. See [current status](docs/CURRENT_PHASE.md), [Phase 7 release report](docs/qa/phase-7.md), [screenshots](docs/design/phase-7/index.html), [content review](docs/content/phase-7-review.md) and [operations](docs/operations/enquiries.md).
+The owner has authorised a Phase 7 local checkpoint and **Phase 8 local release preparation**, deferring items 1–6 until hosting. The [checkpoint decision](docs/qa/phase-7-checkpoint.md) records that scope; [current status](docs/CURRENT_PHASE.md) identifies the active milestone. Full release acceptance is not certified: product/legal/device/staging evidence, protected preview/traffic/rollback and three mobile LCP misses remain deferred. The old `8f9fa9b` pipeline failed lint and skipped deployment; the tested local repair has no new remote CI result. Analytics remains disabled and legal publication holds remain. Historical [follow-up QA](docs/qa/phase-7-followup.md) and [operations](docs/operations/enquiries.md) retain the evidence.
 
 ## Implementation
 
@@ -39,6 +39,7 @@ docker build -t docrack-web:phase7 .
 docker run --detach --rm --name docrack-web-phase7-qa --publish 127.0.0.1:3100:3000 --env FORM_ALLOWED_ORIGINS=http://127.0.0.1:3100 docrack-web:phase7
 $env:PLAYWRIGHT_BASE_URL = 'http://127.0.0.1:3100'
 $env:QA_PHASE = '7'
+$env:QA_RUN_ID = 'review-20260923' # Choose a new unused suffix for each QA session.
 npm run lint
 npm run check-types
 npm test
@@ -56,11 +57,13 @@ Remove-Item Env:PLAYWRIGHT_BASE_URL, Env:QA_PHASE
 
 When reusing this checkout's ignored tools, put `.local-tools/node-v24.21.0-win-x64` on PATH and set `PLAYWRIGHT_BROWSERS_PATH` to the absolute `.local-tools/browsers` path. Browser installation is unnecessary if those exact engines are already installed. The Phase 7 config runs the complete retained suite in Chromium, Firefox and WebKit with one worker and separate reports; it sets `QA_PHASE=7` to preserve historical screenshots. `npm run test:e2e` remains the default Chromium CI suite. Without an external base URL it starts a production server on 3100 after a build.
 
-Vitest does not load Next env files and blocks unmocked fetch. Browser form POSTs and optional analytics transport are intercepted. The QA container has no provider credentials. Browser engines and automated accessibility scans do not establish physical-device or screen-reader acceptance. The dedicated native-link Tab test remains failing in this Windows WebKit runner; annotated direct-focus activation tests do not close that traversal gate. The full Phase 7 command therefore must not be reported as entirely green.
+Vitest does not load Next env files and blocks unmocked fetch. Browser form POSTs and optional analytics transport are intercepted. The QA container has no provider credentials. Native skip-link checks now use actual Tab/Enter in all engines, with and without JavaScript; ordinary-link activation helpers retain their labelled Windows WebKit limitation. Automated browser and axe checks do not establish physical-device, Safari keyboard-settings, screen-reader or actual zoom acceptance. See the follow-up for exact results; a passing browser suite alone does not close Phase 7.
 
 `check-content` and `check-assets` each execute the same 24-test suite, also included in `npm test`. `release-audit.mjs` inventories/hashes public assets and checks specified obsolete phrases, duplicate runtime roots and unsafe public file types. This limited scan supplements manual review; it is not a general secret scanner. After captures, `node scripts/release-board.mjs` refreshes the offline board/hash manifest and `node scripts/check-release-docs.mjs` checks local documentation/image targets.
 
-`measure-pages.mjs` records 57 cold local contexts. `lighthouse-pages.mjs` records three simulated-mobile runs for Home, Product, Documents and Demo using a separate local Lighthouse installation (13.4.1 here). Default module: `.local-tools/performance/node_modules/lighthouse/core/index.js`; `LIGHTHOUSE_MODULE` can select an installed alternative. Both refuse remote targets. `QA_PHASE` accepts 5, 6 or 7; select 7 for this candidate. Default output remains Phase 5 for historical compatibility. Archive existing same-phase reports before intentional repeated measurements. Lab evidence is not field p75 or INP.
+Pass additional documents to include new evidence without changing historical reports, for example `node scripts/check-release-docs.mjs docs/qa/phase-7-followup.md docs/qa/phase-8-preflight.md docs/PHASE_8_PROMPT.md docs/operations/enquiries.md`. This checks local file targets; it does not validate remote URLs or Markdown fragment anchors.
+
+`measure-pages.mjs` records 57 cold local contexts. `lighthouse-pages.mjs` records three simulated-mobile runs for Home, Product, Documents and Demo using a separate local Lighthouse installation (13.4.1 here). Default module: `.local-tools/performance/node_modules/lighthouse/core/index.js`; `LIGHTHOUSE_MODULE` can select an installed alternative. Both refuse remote targets. `QA_PHASE` accepts 5, 6 or 7; select 7 for this candidate. Default output remains Phase 5 for historical compatibility. Set a unique `QA_RUN_ID` (lowercase letters, numbers and single hyphens) for follow-ups; never overwrite historical evidence. Measurement/audit JSON writes fail if the file exists. Browser JSON/HTML results use `test-results-phase7/phase-7-<run>/` and `playwright-report-phase7/phase-7-<run>/`; captures use `docs/design/phase-7-<run>/`. Do not reuse a browser run label. Lab evidence is not field p75 or INP.
 
 `npm run assets:produce` regenerates illustrative/brand artifacts from controlled local inputs, not product captures or exports. `npm run analyze` performs optional webpack bundle analysis; normal builds use Turbopack. Use file-scoped Prettier and `git diff --check`; `npm run format` rewrites the repository.
 
@@ -79,7 +82,7 @@ Firestore transaction counters implement 3 demo attempts/20 minutes and 5 suppor
 
 `FORM_ALLOWED_ORIGINS` must list approved exact origins; blank fails closed. Missing-Origin requests default to rejected. Default shared ingress identity ignores arbitrary forwarded headers. Per-client operation requires separately verified ingress overwrite and bypass restrictions. The primary limiter requires `FIRESTORE_PROJECT_ID`, `FIRESTORE_DATABASE_ID` and server-only `RATE_LIMIT_HMAC_SECRET`. Other configuration and ownership/retention decisions are in [.env.example](.env.example) and the [enquiry runbook](docs/operations/enquiries.md).
 
-Optional analytics remains disabled. No live provider delivery, product residency or certification is inferred. Production CSP allows inline Next bootstrap/JSON-LD; do not describe it as blocking inline scripts.
+Optional analytics remains disabled. The strict event validator loads only for an enabled, allowed event; pending events recheck configuration and DNT/GPC before sending. Form success never waits for telemetry. No live provider delivery, product residency or certification is inferred. Production CSP allows inline Next bootstrap/JSON-LD; do not describe it as blocking inline scripts.
 
 Never run `scripts/setup-sheet.mjs` as part of QA, builds or deployment: it mutates tab names/header rows. Local forms can write live records when supplied live credentials.
 

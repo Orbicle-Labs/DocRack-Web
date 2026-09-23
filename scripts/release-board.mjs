@@ -2,7 +2,9 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { routes } from '../src/content/routes.ts';
-const directory = 'docs/design/phase-7';
+import { qaLabel } from './qa-artifacts.mjs';
+const directory = `docs/design/${qaLabel(7)}`;
+const report = process.env.QA_RUN_ID ? 'phase-7-followup.md' : 'phase-7.md';
 const images = (await readdir(directory)).filter((name) => name.endsWith('.png')).sort();
 const manifest = [];
 for (const name of images) {
@@ -36,14 +38,15 @@ sections.push(
 );
 await writeFile(
   `${directory}/index.html`,
-  `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DocRack Phase 7 website review</title><style>body{margin:0;padding:32px;background:#f5f2eb;color:#182823;font:16px/1.6 system-ui}main{max-width:1300px;margin:auto}a{color:inherit}h1{line-height:1.15}.pair{display:grid;grid-template-columns:3fr 1fr;gap:24px;align-items:start}figure{margin:0}img{width:100%;height:auto;border:1px solid #77857a}section{margin-block:48px}a:focus-visible{outline:3px solid #225c48;outline-offset:4px}@media(max-width:600px){body{padding:16px}.pair{grid-template-columns:1fr}}</style><main><h1>Phase 7 website review</h1><p>21 September 2026 · base main e8f7973 plus uncommitted Phase 7 changes. Credential-free local standalone production on 127.0.0.1:3100. These are website screenshots, never authenticated-product captures.</p><p><strong>Not release ready.</strong> Genuine capture/export, legal publication, mobile LCP and Phase 6 operational acceptance remain open. No founder approval inferred.</p><p><a href="../../qa/phase-7.md">Release report</a> · <a href="manifest.json">Screenshot SHA-256 manifest</a></p>${sections.join('')}</main></html>\n`
+  `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DocRack Phase 7 website review</title><style>body{margin:0;padding:32px;background:#f5f2eb;color:#182823;font:16px/1.6 system-ui}main{max-width:1300px;margin:auto}a{color:inherit}h1{line-height:1.15}.pair{display:grid;grid-template-columns:3fr 1fr;gap:24px;align-items:start}figure{margin:0}img{width:100%;height:auto;border:1px solid #77857a}section{margin-block:48px}a:focus-visible{outline:3px solid #225c48;outline-offset:4px}@media(max-width:600px){body{padding:16px}.pair{grid-template-columns:1fr}}</style><main><h1>Phase 7 website review</h1><p>Run ${qaLabel(7)}. Credential-free local standalone production on 127.0.0.1:3100. These are website screenshots, never authenticated-product captures.</p><p>See the release report for the exact candidate, measurements, owner confirmations and remaining acceptance evidence. This board does not establish release approval.</p><p><a href="../../qa/${report}">Release report</a> · <a href="manifest.json">Screenshot SHA-256 manifest</a></p>${sections.join('')}</main></html>\n`
 );
 await writeFile(
   `${directory}/manifest.json`,
   JSON.stringify(
     {
-      baseCommit: 'e8f7973',
-      provenance: 'Uncommitted Phase 7 candidate; local website only; image IDs in phase-7.md',
+      run: qaLabel(7),
+      generatedAt: new Date().toISOString(),
+      provenance: `Local website only; candidate commit and image IDs in ${report}`,
       images: manifest,
     },
     null,

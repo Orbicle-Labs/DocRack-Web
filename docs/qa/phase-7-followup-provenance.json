@@ -1,0 +1,139 @@
+{
+  "generatedAt": "2026-09-23T11:12:09.311Z",
+  "baselineCommit": "8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5",
+  "commitState": "Uncommitted worktree; no new remote candidate or pipeline",
+  "image": {
+    "tag": "docrack-web:phase7-followup-final",
+    "manifestList": "sha256:65dc051748b24e40aa39d5062839e4315dfbd456b13c434652f801518109400b",
+    "config": "sha256:bdd01eb274466bcf742a26553b2b17cf58d7c2f0eae502bacae15bd5f992a27b"
+  },
+  "runtime": {
+    "origin": "http://127.0.0.1:3100",
+    "mounts": [],
+    "credentials": "none",
+    "analytics": "disabled",
+    "submissions": "mocked; no live writes"
+  },
+  "files": [
+    {
+      "path": "eslint.config.mjs",
+      "bytes": 1718,
+      "sha256": "eb18913e2a9316bb0e407e5a8474f77b3624cc16d3308f0d8cc2d49ed25e281d"
+    },
+    {
+      "path": "playwright.phase7.config.ts",
+      "bytes": 848,
+      "sha256": "38931b77c7de450efb540dafed5b8b47bb5594bc9046a3f16ebdb61461ac62b3"
+    },
+    {
+      "path": "scripts/check-release-docs.mjs",
+      "bytes": 1156,
+      "sha256": "aada99ca9a3cb034c095d3e5911e79f821454cdef20702b6abc9408d25a1d52a"
+    },
+    {
+      "path": "scripts/lighthouse-pages.mjs",
+      "bytes": 2060,
+      "sha256": "05cb0b25f0e25775ceefce559529df97e0a30b8d5e1dc1c2632310de9f0f6d7c"
+    },
+    {
+      "path": "scripts/measure-pages.mjs",
+      "bytes": 3991,
+      "sha256": "ab24edc5fbd8e0998decb4505ca2a5bf45c643a7b5e69f12237840c70b55f7a6"
+    },
+    {
+      "path": "scripts/qa-artifacts.mjs",
+      "bytes": 352,
+      "sha256": "fb4ad2fc94211c3e52547d5f0810cba7d55a09f068564935d94b18dec5040af3"
+    },
+    {
+      "path": "scripts/release-audit.mjs",
+      "bytes": 2572,
+      "sha256": "b00672ecdb2f37b687a3fc51c740f06dd541cb0a2afb1a190ea1cccc5f769206"
+    },
+    {
+      "path": "scripts/release-board.mjs",
+      "bytes": 3480,
+      "sha256": "3cae82e3240d647fd67fc405c35739a0cd9a44cb2b2da377a4a0f901b7c74d0b"
+    },
+    {
+      "path": "src/app/(marketing)/book-demo/page.tsx",
+      "bytes": 2859,
+      "sha256": "71391fa6811d4aa96c739095a5c3a7cf1ba2677f1408bdf75741d783a2bc539f"
+    },
+    {
+      "path": "src/app/(marketing)/layout.tsx",
+      "bytes": 699,
+      "sha256": "05a779c2abe0c3a94628a00ef741e9212182faefd876b6acf127e1d94d6c58f9"
+    },
+    {
+      "path": "src/app/(marketing)/page.tsx",
+      "bytes": 2289,
+      "sha256": "6de4e2caab1e83a936eba0afa3aae608cf971e1d6b22fff60cc4da9d1507bb8f"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "bytes": 3768,
+      "sha256": "2018fa43c24f062af86154fc82eea4d7d9cafa1f6f54a05552d38ea2ade009f9"
+    },
+    {
+      "path": "src/app/opengraph-image.tsx",
+      "bytes": 2146,
+      "sha256": "7fedf5032f70626ced3b4b18cd45ed30085bf3a0484ca86fdb9a53315b4af896"
+    },
+    {
+      "path": "src/components/product-demo/WorkflowViewer.tsx",
+      "bytes": 2458,
+      "sha256": "8a4e5da328f44fa114a5285a9017422cae11cad7ae5a196235e03354960daa5e"
+    },
+    {
+      "path": "src/lib/analytics/Analytics.tsx",
+      "bytes": 1408,
+      "sha256": "8d31e50dbb0a5ce62d5c53707d3e6df1b0878404ec3be9182f638dd217327759"
+    },
+    {
+      "path": "src/lib/analytics/catalog.ts",
+      "bytes": 297,
+      "sha256": "d859635fa193c072feec56467500b9274e116d97b6d3bb5f9d30d34b5719d50e"
+    },
+    {
+      "path": "src/lib/analytics/client.ts",
+      "bytes": 2001,
+      "sha256": "1bd6412655e7d5969eddbc303e0e4dc185c51e0b8bab587bbbb18e149493f431"
+    },
+    {
+      "path": "src/lib/analytics/events.ts",
+      "bytes": 1761,
+      "sha256": "15beca127c09d199422a262f263d3e1750fee474615647842d4e3f4f583b9fee"
+    },
+    {
+      "path": "src/styles/visual-system.css",
+      "bytes": 21082,
+      "sha256": "bef34c6ddc5c341a67cb5ce802e4dfa8cad0603b584a90dc2c2787456f332966"
+    },
+    {
+      "path": "tests/e2e/foundation.spec.ts",
+      "bytes": 5593,
+      "sha256": "76798718e70ae18d015df5a6ad7a5181d625deac959bc8d876218b54d87c89b4"
+    },
+    {
+      "path": "tests/e2e/keyboard.ts",
+      "bytes": 648,
+      "sha256": "325afabc97d2d63d289660088b6434fcb7f7273f18629b61e62f7fa651f537bc"
+    },
+    {
+      "path": "tests/e2e/phase-6.spec.ts",
+      "bytes": 11509,
+      "sha256": "90bb6f1419ffbd2fd9029259bbf290f7b8547967c603511df370017520e9f849"
+    },
+    {
+      "path": "tests/e2e/phase-7.spec.ts",
+      "bytes": 15794,
+      "sha256": "30a0d6d39519f5e85d264856f3c755c59fec1d4623b39cda8cfc808d1eabf437"
+    },
+    {
+      "path": "tests/unit/analytics.test.ts",
+      "bytes": 4795,
+      "sha256": "c658915ddb54ae50efedb20806db53dd3615e58c581dc4ba769dc4532670f415"
+    }
+  ]
+}

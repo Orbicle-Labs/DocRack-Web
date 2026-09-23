@@ -16,7 +16,7 @@ import '@/styles/home.css';
 // Preload only the regular accent used in the LCP heading, not the unused italic face.
 const openingAccent = localFont({
   src: '../../../public/fonts/instrument-serif-regular.woff2',
-  display: 'swap',
+  display: 'optional',
   weight: '400',
   preload: true,
   variable: '--font-editorial',

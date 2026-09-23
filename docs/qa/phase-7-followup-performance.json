@@ -1,0 +1,732 @@
+{
+  "generatedAt": "2026-09-23T10:58:41.653Z",
+  "baselineCommit": "8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5",
+  "candidate": "uncommitted worktree; final experiment deferred",
+  "method": "Unchanged Lighthouse 13.4.1 simulated mobile; three cold runs per route; local credential-free standalone; no concurrent heavy QA; all runs retained. Not field p75 or INP.",
+  "experiments": [
+    {
+      "label": "baseline",
+      "routes": [
+        {
+          "route": "home",
+          "medianLcpMs": 2591.625,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-baseline-lighthouse-home-1.json",
+              "fetchedAt": "2026-09-23T07:34:37.838Z",
+              "lcpMs": 2591.625,
+              "cls": 0,
+              "scores": {
+                "performance": 94,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-home-2.json",
+              "fetchedAt": "2026-09-23T07:34:49.159Z",
+              "lcpMs": 2580.7889999999998,
+              "cls": 0,
+              "scores": {
+                "performance": 97,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-home-3.json",
+              "fetchedAt": "2026-09-23T07:34:58.301Z",
+              "lcpMs": 3150.032,
+              "cls": 0,
+              "scores": {
+                "performance": 93,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product",
+          "medianLcpMs": 2116.09,
+          "targetMs": 2500,
+          "passed": true,
+          "runs": [
+            {
+              "file": "phase-7-followup-baseline-lighthouse-product-1.json",
+              "fetchedAt": "2026-09-23T07:35:06.994Z",
+              "lcpMs": 2672.1979999999994,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-product-2.json",
+              "fetchedAt": "2026-09-23T07:35:15.642Z",
+              "lcpMs": 2116.09,
+              "cls": 0,
+              "scores": {
+                "performance": 99,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-product-3.json",
+              "fetchedAt": "2026-09-23T07:35:23.260Z",
+              "lcpMs": 2112.8379999999997,
+              "cls": 0,
+              "scores": {
+                "performance": 99,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product-documents",
+          "medianLcpMs": 3032.8599999999997,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-baseline-lighthouse-product-documents-1.json",
+              "fetchedAt": "2026-09-23T07:35:32.945Z",
+              "lcpMs": 3169.808,
+              "cls": 0,
+              "scores": {
+                "performance": 69,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-product-documents-2.json",
+              "fetchedAt": "2026-09-23T07:35:44.049Z",
+              "lcpMs": 2118.392,
+              "cls": 0,
+              "scores": {
+                "performance": 98,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-product-documents-3.json",
+              "fetchedAt": "2026-09-23T07:35:54.386Z",
+              "lcpMs": 3032.8599999999997,
+              "cls": 0,
+              "scores": {
+                "performance": 78,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "book-demo",
+          "medianLcpMs": 2723.218,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-baseline-lighthouse-book-demo-1.json",
+              "fetchedAt": "2026-09-23T07:36:06.557Z",
+              "lcpMs": 3137.376,
+              "cls": 0,
+              "scores": {
+                "performance": 78,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-book-demo-2.json",
+              "fetchedAt": "2026-09-23T07:36:15.683Z",
+              "lcpMs": 2158.502,
+              "cls": 0,
+              "scores": {
+                "performance": 99,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-baseline-lighthouse-book-demo-3.json",
+              "fetchedAt": "2026-09-23T07:36:24.126Z",
+              "lcpMs": 2723.218,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "inline",
+      "routes": [
+        {
+          "route": "home",
+          "medianLcpMs": 3159.81875,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-inline-lighthouse-home-1.json",
+              "fetchedAt": "2026-09-23T07:40:30.568Z",
+              "lcpMs": 2485.518,
+              "cls": 0,
+              "scores": {
+                "performance": 95,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-home-2.json",
+              "fetchedAt": "2026-09-23T07:40:40.410Z",
+              "lcpMs": 3159.81875,
+              "cls": 0,
+              "scores": {
+                "performance": 92,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-home-3.json",
+              "fetchedAt": "2026-09-23T07:40:49.721Z",
+              "lcpMs": 3171.7149999999997,
+              "cls": 0,
+              "scores": {
+                "performance": 93,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product",
+          "medianLcpMs": 2859.042,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-inline-lighthouse-product-1.json",
+              "fetchedAt": "2026-09-23T07:40:58.772Z",
+              "lcpMs": 2844.2970000000005,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-product-2.json",
+              "fetchedAt": "2026-09-23T07:41:07.238Z",
+              "lcpMs": 2859.042,
+              "cls": 0,
+              "scores": {
+                "performance": 95,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-product-3.json",
+              "fetchedAt": "2026-09-23T07:41:16.283Z",
+              "lcpMs": 2909.611,
+              "cls": 0,
+              "scores": {
+                "performance": 94,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product-documents",
+          "medianLcpMs": 2835.5110000000004,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-inline-lighthouse-product-documents-1.json",
+              "fetchedAt": "2026-09-23T07:41:24.774Z",
+              "lcpMs": 2835.5110000000004,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-product-documents-2.json",
+              "fetchedAt": "2026-09-23T07:41:33.225Z",
+              "lcpMs": 2434.481,
+              "cls": 0,
+              "scores": {
+                "performance": 97,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-product-documents-3.json",
+              "fetchedAt": "2026-09-23T07:41:42.179Z",
+              "lcpMs": 2894.539,
+              "cls": 0,
+              "scores": {
+                "performance": 94,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "book-demo",
+          "medianLcpMs": 3015.2379999999994,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-inline-lighthouse-book-demo-1.json",
+              "fetchedAt": "2026-09-23T07:41:50.846Z",
+              "lcpMs": 3007.5610000000006,
+              "cls": 0,
+              "scores": {
+                "performance": 92,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-book-demo-2.json",
+              "fetchedAt": "2026-09-23T07:41:59.027Z",
+              "lcpMs": 3015.2379999999994,
+              "cls": 0,
+              "scores": {
+                "performance": 94,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-inline-lighthouse-book-demo-3.json",
+              "fetchedAt": "2026-09-23T07:42:07.450Z",
+              "lcpMs": 3026.0589999999997,
+              "cls": 0,
+              "scores": {
+                "performance": 93,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fonts",
+      "routes": [
+        {
+          "route": "home",
+          "medianLcpMs": 3173.124,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-fonts-lighthouse-home-1.json",
+              "fetchedAt": "2026-09-23T07:47:09.029Z",
+              "lcpMs": 2432.4089999999997,
+              "cls": 0,
+              "scores": {
+                "performance": 87,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-home-2.json",
+              "fetchedAt": "2026-09-23T07:47:19.044Z",
+              "lcpMs": 3186.9709999999995,
+              "cls": 0,
+              "scores": {
+                "performance": 93,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-home-3.json",
+              "fetchedAt": "2026-09-23T07:47:28.538Z",
+              "lcpMs": 3173.124,
+              "cls": 0,
+              "scores": {
+                "performance": 93,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product",
+          "medianLcpMs": 2671.8849999999998,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-fonts-lighthouse-product-1.json",
+              "fetchedAt": "2026-09-23T07:47:37.790Z",
+              "lcpMs": 2678.293,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-product-2.json",
+              "fetchedAt": "2026-09-23T07:47:46.127Z",
+              "lcpMs": 2671.8849999999998,
+              "cls": 0,
+              "scores": {
+                "performance": 97,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-product-3.json",
+              "fetchedAt": "2026-09-23T07:47:54.414Z",
+              "lcpMs": 2665.384,
+              "cls": 0,
+              "scores": {
+                "performance": 97,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product-documents",
+          "medianLcpMs": 2664.736,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-fonts-lighthouse-product-documents-1.json",
+              "fetchedAt": "2026-09-23T07:48:02.275Z",
+              "lcpMs": 2664.736,
+              "cls": 0,
+              "scores": {
+                "performance": 97,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-product-documents-2.json",
+              "fetchedAt": "2026-09-23T07:48:10.365Z",
+              "lcpMs": 2680.572,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-product-documents-3.json",
+              "fetchedAt": "2026-09-23T07:48:18.439Z",
+              "lcpMs": 2112.52,
+              "cls": 0,
+              "scores": {
+                "performance": 99,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "book-demo",
+          "medianLcpMs": 2835.814,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-fonts-lighthouse-book-demo-1.json",
+              "fetchedAt": "2026-09-23T07:48:26.559Z",
+              "lcpMs": 2835.814,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-book-demo-2.json",
+              "fetchedAt": "2026-09-23T07:48:34.161Z",
+              "lcpMs": 2839.534,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-fonts-lighthouse-book-demo-3.json",
+              "fetchedAt": "2026-09-23T07:48:43.936Z",
+              "lcpMs": 2831.576,
+              "cls": 0,
+              "scores": {
+                "performance": 95,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "deferred",
+      "routes": [
+        {
+          "route": "home",
+          "medianLcpMs": 3040.1825,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-deferred-lighthouse-home-1.json",
+              "fetchedAt": "2026-09-23T10:55:38.927Z",
+              "lcpMs": 3096.9110000000005,
+              "cls": 0,
+              "scores": {
+                "performance": 94,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-home-2.json",
+              "fetchedAt": "2026-09-23T10:55:49.646Z",
+              "lcpMs": 3040.1825,
+              "cls": 0,
+              "scores": {
+                "performance": 94,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-home-3.json",
+              "fetchedAt": "2026-09-23T10:55:58.838Z",
+              "lcpMs": 2985.4285,
+              "cls": 0,
+              "scores": {
+                "performance": 94,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product",
+          "medianLcpMs": 2524.13,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-deferred-lighthouse-product-1.json",
+              "fetchedAt": "2026-09-23T10:56:08.009Z",
+              "lcpMs": 2531.8420000000006,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-product-2.json",
+              "fetchedAt": "2026-09-23T10:56:16.218Z",
+              "lcpMs": 2466.964,
+              "cls": 0,
+              "scores": {
+                "performance": 97,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-product-3.json",
+              "fetchedAt": "2026-09-23T10:56:24.679Z",
+              "lcpMs": 2524.13,
+              "cls": 0,
+              "scores": {
+                "performance": 97,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "product-documents",
+          "medianLcpMs": 2676.911,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-deferred-lighthouse-product-documents-1.json",
+              "fetchedAt": "2026-09-23T10:56:32.836Z",
+              "lcpMs": 2676.911,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-product-documents-2.json",
+              "fetchedAt": "2026-09-23T10:56:40.898Z",
+              "lcpMs": 2612.7620000000006,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-product-documents-3.json",
+              "fetchedAt": "2026-09-23T10:56:49.356Z",
+              "lcpMs": 2719.794,
+              "cls": 0,
+              "scores": {
+                "performance": 96,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "route": "book-demo",
+          "medianLcpMs": 2858.34,
+          "targetMs": 2500,
+          "passed": false,
+          "runs": [
+            {
+              "file": "phase-7-followup-deferred-lighthouse-book-demo-1.json",
+              "fetchedAt": "2026-09-23T10:56:57.830Z",
+              "lcpMs": 2838.359,
+              "cls": 0,
+              "scores": {
+                "performance": 95,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-book-demo-2.json",
+              "fetchedAt": "2026-09-23T10:57:05.843Z",
+              "lcpMs": 2870.9370000000004,
+              "cls": 0,
+              "scores": {
+                "performance": 95,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            },
+            {
+              "file": "phase-7-followup-deferred-lighthouse-book-demo-3.json",
+              "fetchedAt": "2026-09-23T10:57:13.998Z",
+              "lcpMs": 2858.34,
+              "cls": 0,
+              "scores": {
+                "performance": 95,
+                "accessibility": 100,
+                "seo": 100
+              },
+              "warnings": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

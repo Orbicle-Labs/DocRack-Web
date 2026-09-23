@@ -18,9 +18,10 @@
 }
 .brand-logo {
   flex-shrink: 0;
+  width: 138px;
 }
 .brand-logo img {
-  width: 138px;
+  width: 100%;
   height: auto;
 }
 .desktop-nav,
@@ -936,7 +937,7 @@ summary::-webkit-details-marker {
     height: 72px;
     gap: 12px;
   }
-  .brand-logo img {
+  .brand-logo {
     width: 105px;
   }
   .header-actions {
@@ -1114,7 +1115,7 @@ summary::-webkit-details-marker {
   .design-container {
     width: calc(100% - 32px);
   }
-  .brand-logo img {
+  .brand-logo {
     width: 90px;
   }
   .header-actions {

@@ -1,17 +1,6 @@
 import { z } from 'zod';
-import { routes } from '@/content/routes';
-
-export const steps = [
-  'documents',
-  'tests',
-  'runs',
-  'review',
-  'findings',
-  'working-papers',
-] as const;
-const page = z
-  .string()
-  .refine((value) => routes.some((route) => route.path === value && route.indexable));
+import { canonicalPage, steps } from './catalog';
+const page = z.string().refine((value) => canonicalPage(value) !== null);
 export const eventSchema = z.discriminatedUnion('name', [
   z
     .object({
@@ -72,6 +61,3 @@ export const eventSchema = z.discriminatedUnion('name', [
 // sample_download deliberately absent: no approved genuine sample exists.
 export type AnalyticsEvent = z.infer<typeof eventSchema>;
 export type AnalyticsConfig = { enabled: boolean; domain?: string };
-export function canonicalPage(path: string) {
-  return routes.some((route) => route.path === path && route.indexable) ? path : null;
-}

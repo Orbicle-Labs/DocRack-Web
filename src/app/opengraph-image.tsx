@@ -25,7 +25,6 @@ export default async function OpengraphImage() {
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
         {/* Existing identity, preserved while traced vector candidates are reviewed. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`data:image/png;base64,${mark.toString('base64')}`}
           width={54}

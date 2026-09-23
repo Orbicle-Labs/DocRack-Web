@@ -3,7 +3,7 @@
 import { useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 
 import { track } from '@/lib/analytics/client';
-import { steps } from '@/lib/analytics/events';
+import { steps } from '@/lib/analytics/catalog';
 
 const subscribe = () => () => {};
 const labels = ['Documents', 'Tests', 'Runs', 'Review', 'Findings', 'Working Papers'];

@@ -10,6 +10,7 @@ const documents = [
   'docs/content/route-migration.md',
   'docs/design/assets.md',
   'docs/design/phase-7/index.html',
+  ...process.argv.slice(2),
 ];
 const checked = new Set();
 const broken = [];
