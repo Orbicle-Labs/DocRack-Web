@@ -3,8 +3,9 @@ import type { NextConfig } from 'next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig: NextConfig = {
-  // Emit a self-contained server bundle (.next/standalone) for a lean Docker image
-  output: 'standalone',
+  // Emit a self-contained server bundle (.next/standalone) for a lean Docker image.
+  // Vercel's build step fails on standalone output (missing next-server.js.nft.json), so skip it there.
+  output: process.env.VERCEL ? undefined : 'standalone',
 
   // Apply security headers to all routes
   async headers() {
