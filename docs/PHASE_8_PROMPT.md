@@ -2,6 +2,8 @@
 
 **23 September 2026 scope update:** the user explicitly authorised a Phase 7 local commit and starting Phase 8, deferring items 1–6 until hosting. The [checkpoint record](qa/phase-7-checkpoint.md) governs this transition. This is an intentional owner-directed phase transition, not a declaration that the historical acceptance gaps passed.
 
+Phase 7 is now committed locally as `812d7dd`. [Phase 8 preparation](qa/phase-8.md) has started; no push or deployment occurred.
+
 Continue with this scope:
 
 ```text

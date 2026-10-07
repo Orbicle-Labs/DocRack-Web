@@ -2,7 +2,7 @@
 
 **Updated:** 23 September 2026.
 
-**Current milestone:** Phase 7 local checkpoint; Phase 8 preparation is authorised next.
+**Current phase:** Phase 8 — local release preparation started; hosting deferred.
 
 The user explicitly authorised committing Phase 7 and starting Phase 8, and deferred items 1–6 to before hosting. This supersedes the previous stop-before-Phase-8 instruction. The [checkpoint decision](qa/phase-7-checkpoint.md) records the exact scope. **Phase 7 implementation/local QA is accepted for checkpoint; full release acceptance remains incomplete.** Deferred requirements are not failed again or relabelled passed.
 
@@ -20,12 +20,14 @@ The earlier “yes all done” is retained in historical records; the latest ins
 
 ## Git, CI and authority
 
-Baseline main/origin is `8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5`; its verified [pipeline](https://github.com/Orbicle-Labs/DocRack-Web/actions/runs/35762388532) failed lint and skipped deploy. The local follow-up repair is being checkpointed with the user's new commit authority. No new remote CI or serving revision is claimed. Cloud Run metadata access remains denied; keep accounts/credentials/permissions unchanged.
+Baseline main/origin is `8f9fa9b2330176e4f99d6b6e073ad9c3f062e5d5`; its verified [pipeline](https://github.com/Orbicle-Labs/DocRack-Web/actions/runs/35762388532) failed lint and skipped deploy. The follow-up is committed locally as `812d7ddcba6d24f5cc5f99be0375ae5f7d9e1d65` on main, one commit ahead of cached origin/main. No push occurred. No new remote CI or serving revision is claimed. Cloud Run metadata access remains denied; keep accounts/credentials/permissions unchanged.
 
-Authorised now: the Phase 7 local commit and Phase 8 local preparation/documentation. **No push, PR creation, merge, workflow dispatch/retry, deployment, provisioning, secret change, live enquiry/notification write or Phase 9.** The workflow supports PR-only validation without deployment, but publishing that branch/PR needs separate authority. A main push deploys.
+The authorised Phase 7 local commit is complete. Phase 8 local preparation/documentation is active; this does not authorise further commits. **No push, PR creation, merge, workflow dispatch/retry, deployment, provisioning, secret change, live enquiry/notification write or Phase 9.** The workflow supports PR-only validation without deployment, but publishing that branch/PR needs separate authority. A main push deploys.
 
 ## Exact next action
 
-Finish the authorised local checkpoint, record its SHA, and begin the Phase 8 release preparation worksheet. Populate known candidate/test details and mark owner-deferred inputs explicitly. A deployment-ready release decision and operational verification wait until hosting is requested and those inputs are resolved. See [Phase 8 instructions](PHASE_8_PROMPT.md), [deployment procedure](../DEPLOYMENT.md) and [enquiry runbook](operations/enquiries.md).
+The [Phase 8 worksheet](qa/phase-8.md) now identifies the exact checkpoint/local image, CI path, domain/routes/assets/headers/indexing checks, proposed smoke records/notifications and monitoring/rollback criteria. Preparation documents are uncommitted for review. When the user resumes hosting, fill the deferred inputs, verify candidate CI through a separately authorised path, and agree the concrete release scope. Do not restart deferred performance or external checks now. See [Phase 8 instructions](PHASE_8_PROMPT.md), [deployment procedure](../DEPLOYMENT.md) and [enquiry runbook](operations/enquiries.md).
 
 The credential-free QA container is stopped. Existing services, sibling product, historical QA, `.claude/` and local settings remain untouched.
+
+**Transition verification:** 194 reviewed files committed; equivalent pre-commit tasks passed with `--no-stash --no-revert` to preserve the no-stash instruction. All 24 tested implementation/configuration/test hashes are retained. Phase 8 changes are documentation only; formatting, local-link and diff checks apply.
